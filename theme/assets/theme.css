@@ -1,12 +1,12 @@
 :root {
   /*   dark blue; */
-  --main-bg-color: #2C3673;
+  --text_color: #2C3673;
   
 }
 
 body {
-    overflow: hidden;
-  color: #2C3673;
+  overflow: hidden;
+  color: var(--text_color);
 }
 
 /* 
