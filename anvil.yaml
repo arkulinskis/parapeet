@@ -1,0 +1,299 @@
+correct_dependency_ids: {C6ZZPAPN4YYF5NVJ: C6ZZPAPN4YYF5NVJ}
+dependencies:
+- app_id: C6ZZPAPN4YYF5NVJ
+  version: {dev: false}
+services:
+- source: /runtime/services/tables.yml
+  client_config: {enable_v2: true}
+  server_config: {}
+- source: /runtime/services/anvil/files.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/anvil/users.yml
+  client_config: {allow_signup: true, enable_automatically: true, use_email: true,
+    confirm_email: false, use_google: true, allow_remember_me: true, remember_me_days: 30,
+    share_login_status: true}
+  server_config: {user_table: users}
+- source: /runtime/services/google.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/stripe.yml
+  client_config: {}
+  server_config: {}
+startup: {type: form, module: Startup}
+package_name: Situation_French_
+allow_embedding: true
+name: Clone of Situation French!
+runtime_options:
+  version: 2
+  client_version: '3'
+  server_version: python3-sandbox
+  server_spec: {base: python310-standard}
+  server_spec_disabled: {base: python310-standard, requirements: ''}
+metadata: {title: Situation French!, description: Finish learning french by ironing out your situational responses.,
+  logo_img: 'asset:SituationFrench.png'}
+startup_form: null
+native_deps: {head_html: "<script>\nfunction isScreenLockSupported() {\n  return ('wakeLock'\
+    \ in navigator);\n}\nvar screenLock;\nasync function lockWakeState() {\n  console.log(\"\
+    asked to keep awake\");\n  if(isScreenLockSupported()){\n    try {\n       screenLock\
+    \ = await navigator.wakeLock.request('screen');\n    } catch(err) {\n       console.log(err.name,\
+    \ err.message);\n    }\n    return screenLock;\n  }\n}\nfunction releaseWakeState()\
+    \ { \n  console.log(\"asked to be able to sleep\");\n  if(typeof screenLock !==\
+    \ \"undefined\" && screenLock != null) {\n    screenLock.release()\n    .then(()\
+    \ => {\n      console.log(\"Lock released \ud83c\udf88\");\n      screenLock =\
+    \ null;\n    });\n  }\n}  \n</script>\n\n<div class=\"bg\"></div>\n<div class=\"\
+    bg bg2\"></div>\n<div class=\"bg bg3\"></div>\n\n<script>\n  function similarity(s1,\
+    \ s2) {\n  var longer = s1;\n  var shorter = s2;\n  if (s1.length < s2.length)\
+    \ {\n    longer = s2;\n    shorter = s1;\n  }\n  var longerLength = longer.length;\n\
+    \  if (longerLength == 0) {\n    return 1.0;\n  }\n  return (longerLength - editDistance(longer,\
+    \ shorter)) / parseFloat(longerLength);\n}\n  function editDistance(s1, s2) {\n\
+    \  s1 = s1.toLowerCase();\n  s2 = s2.toLowerCase();\n\n  var costs = new Array();\n\
+    \  for (var i = 0; i <= s1.length; i++) {\n    var lastValue = i;\n    for (var\
+    \ j = 0; j <= s2.length; j++) {\n      if (i == 0)\n        costs[j] = j;\n  \
+    \    else {\n        if (j > 0) {\n          var newValue = costs[j - 1];\n  \
+    \        if (s1.charAt(i - 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
+    \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
+    \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
+    \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>"}
+db_schema:
+  voicefiles:
+    client: none
+    server: full
+    columns:
+    - name: LineID
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: Type
+      admin_ui: {order: 1, width: 200}
+      type: string
+    - name: VoiceFile
+      admin_ui: {order: 2, width: 200}
+      type: media
+    title: VoiceFiles
+  userpoints:
+    client: none
+    server: full
+    columns:
+    - name: user
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: Basic
+      admin_ui: {order: 1, width: 200}
+      type: string
+    - name: Boss
+      admin_ui: {order: 2, width: 200}
+      type: string
+    - name: Client
+      admin_ui: {order: 3, width: 200}
+      type: string
+    - name: Colleague
+      admin_ui: {order: 4, width: 200}
+      type: string
+    - name: Lover
+      admin_ui: {order: 5, width: 200}
+      type: string
+    - name: Sad
+      admin_ui: {order: 6, width: 200}
+      type: string
+    - name: Frustrated
+      admin_ui: {order: 7, width: 200}
+      type: string
+    - name: Agressive
+      admin_ui: {order: 8, width: 200}
+      type: string
+    - name: Impressed
+      admin_ui: {order: 9, width: 200}
+      type: string
+    - name: Stupid
+      admin_ui: {order: 10, width: 200}
+      type: string
+    title: UserPoints
+  usernotes:
+    client: none
+    server: full
+    columns:
+    - name: French
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: Comment
+      admin_ui: {order: 1, width: 200}
+      type: string
+    - name: Level
+      admin_ui: {order: 5, width: 200}
+      type: number
+    - name: User
+      admin_ui: {order: 7, width: 200}
+      type: string
+    title: UserNotes
+  frenchsentences_translation:
+    client: none
+    server: full
+    columns:
+    - name: Agressive
+      admin_ui: {}
+      type: string
+    - name: Availability
+      admin_ui: {}
+      type: string
+    - name: Boss
+      admin_ui: {}
+      type: string
+    - name: Basic
+      admin_ui: {}
+      type: string
+    - name: CategoryID
+      admin_ui: {}
+      type: number
+    - name: Colleague
+      admin_ui: {}
+      type: string
+    - name: Frustrated
+      admin_ui: {}
+      type: string
+    - name: LineID
+      admin_ui: {}
+      type: number
+    - name: Lover
+      admin_ui: {}
+      type: string
+    - name: Sad
+      admin_ui: {}
+      type: string
+    - name: Impressed
+      admin_ui: {}
+      type: string
+    - name: Stupid
+      admin_ui: {}
+      type: string
+    - name: Client
+      admin_ui: {}
+      type: string
+    title: FrenchSentences_translation
+  users:
+    client: none
+    server: full
+    columns:
+    - name: email
+      type: string
+      admin_ui: {order: 0, width: 200}
+    - name: enabled
+      type: bool
+      admin_ui: {order: 1, width: 200}
+    - name: last_login
+      type: datetime
+      admin_ui: {order: 2, width: 200}
+    - name: password_hash
+      type: string
+      admin_ui: {order: 3, width: 200}
+    - name: n_password_failures
+      type: number
+      admin_ui: {order: 4, width: 200}
+    - name: confirmed_email
+      type: bool
+      admin_ui: {order: 5, width: 200}
+    - name: remembered_logins
+      type: simpleObject
+      admin_ui: {order: 6, width: 200}
+    - name: signed_up
+      type: datetime
+      admin_ui: {order: 7, width: 200}
+    - name: name
+      admin_ui: {order: 8, width: 200}
+      type: string
+    - name: customer_type
+      admin_ui: {order: 9, width: 200}
+      type: string
+    title: Users
+  music:
+    client: search
+    server: full
+    columns:
+    - name: Music_file
+      admin_ui: {order: 0, width: 200}
+      type: media
+    - name: music_id
+      admin_ui: {order: 1, width: 200}
+      type: string
+    title: music
+  voicefiles_english:
+    client: none
+    server: full
+    columns:
+    - name: LineID
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: Type
+      admin_ui: {order: 1, width: 200}
+      type: string
+    - name: VoiceFile
+      admin_ui: {order: 2, width: 200}
+      type: media
+    title: VoiceFiles_english
+  frenchsentences:
+    client: none
+    server: full
+    columns:
+    - name: Basic
+      admin_ui: {order: 2, width: 200}
+      type: string
+    - name: Boss
+      admin_ui: {order: 3, width: 200}
+      type: string
+    - name: Colleague
+      admin_ui: {order: 4, width: 200}
+      type: string
+    - name: Client
+      admin_ui: {order: 5, width: 200}
+      type: string
+    - name: Lover
+      admin_ui: {order: 6, width: 200}
+      type: string
+    - name: Agressive
+      admin_ui: {order: 7, width: 200}
+      type: string
+    - name: Frustrated
+      admin_ui: {order: 8, width: 200}
+      type: string
+    - name: Sad
+      admin_ui: {order: 9, width: 200}
+      type: string
+    - name: Impressed
+      admin_ui: {order: 10, width: 200}
+      type: string
+    - name: CategoryID
+      admin_ui: {order: 1, width: 200}
+      type: number
+    - name: LineID
+      admin_ui: {order: 1.5, width: 200}
+      type: number
+    - name: Availability
+      admin_ui: {order: 1.75, width: 200}
+      type: string
+    - {name: Stupid, admin_ui: null, type: string}
+    title: FrenchSentences
+  interest:
+    client: none
+    server: full
+    columns:
+    - name: showed_interest
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: mydatetime
+      admin_ui: {order: 1, width: 200}
+      type: datetime
+    - name: interested
+      admin_ui: {order: 2, width: 200}
+      type: string
+    title: interest
+  videos:
+    client: search
+    server: full
+    columns:
+    - name: Video_id
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: Video_file
+      admin_ui: {order: 1, width: 200}
+      type: media
+    title: videos
+uplink_visible: true

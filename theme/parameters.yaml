@@ -1,0 +1,25 @@
+roles:
+- {name: mobile}
+- {name: desktop}
+- {name: swipezone}
+- {name: freefloat_TR}
+- {name: freefloat_BR}
+- {name: freefloat_TL}
+- {name: freefloat_BL}
+- {name: freefloat_TM}
+- {name: freefloat_BM}
+- {name: noscbar}
+- {name: getstarted}
+- {name: freefloat_TM}
+- {name: freefloat_MR}
+- {name: freefloat_ML}
+- {name: menubuttons}
+- {name: noscbar_inner}
+- {name: noscbar_inner_inv}
+- {name: freefloat_BM2}
+- {name: fixed_explanation}
+- {name: freefloat_TM2}
+- {name: margin_sides_5}
+- {name: freefloat_BM3}
+- {name: push_up}
+- {name: freefloat_BL2}
