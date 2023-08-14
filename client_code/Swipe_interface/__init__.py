@@ -182,20 +182,20 @@ class Swipe_interface(Swipe_interfaceTemplate):
     anvil.server.call_s('send_interest', "launched")
     
     self.app_ready = True
-    self.like_button.foreground = "#b205ca"
-    self.catch_panel.foreground = "#b205ca"
-    self.check_button.foreground = "#b205ca"
-    self.answer_panel.foreground = "#b205ca"
-    self.hands_free_mode.foreground = "#b205ca"
-    self.play_example.foreground = "#b205ca"
+    self.like_button.foreground = "#2C3673"
+    self.catch_panel.foreground = "#2C3673"
+    self.check_button.foreground = "#2C3673"
+    self.answer_panel.foreground = "#2C3673"
+    self.hands_free_mode.foreground = "#2C3673"
+    self.play_example.foreground = "#2C3673"
     self.record.foreground = "#ff2e2e"
-    self.play_recorded.foreground = "#b205ca"
-    self.button_add_note.foreground = "#b205ca"
-    self.launch_level_select.foreground = "#b205ca"
-    self.butdown.foreground = "#b205ca"
-    self.butright.foreground = "#b205ca"
-    self.butleft.foreground = "#b205ca"
-    self.butup.foreground = "#b205ca"
+    self.play_recorded.foreground = "#2C3673"
+    self.button_add_note.foreground = "#2C3673"
+    self.launch_level_select.foreground = "#2C3673"
+    self.butdown.foreground = "#2C3673"
+    self.butright.foreground = "#2C3673"
+    self.butleft.foreground = "#2C3673"
+    self.butup.foreground = "#2C3673"
  
   def on_touch_start(self, event):
     self.touch_start_x = event.touches[0].clientX
@@ -598,7 +598,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       except:
         print("can't pause")
       self.play_example.font_size = 30
-      self.play_example.foreground ="#b205ca"
+      self.play_example.foreground ="#2C3673"
       self.play_example.icon = "fa:play"
     else:
       self.playing_example = True
@@ -680,7 +680,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
         self.audio_recording.pause()
         self.audio_recording.currentTime = 0
         self.play_recorded.font_size = 30
-        self.play_recorded.foreground = "#b205ca"
+        self.play_recorded.foreground = "#2C3673"
         self.play_recorded.icon = "fa:play-circle"
       else:
         if self.rec_finish_time is not None and self.rec_start_time is not None:
@@ -711,7 +711,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
         self.looping = False
         self.audio_recording_example.pause()
         self.audio_recording_example.currentTime = 0
-        self.hands_free_mode.foreground ="#b205ca"
+        self.hands_free_mode.foreground ="#2C3673"
         self.hands_free_mode.icon = "fa:graduation-cap"
         self.hands_free_mode.font_size = 30
         self.stop_background_music()

@@ -23,15 +23,15 @@ services:
 startup: {type: form, module: Startup}
 package_name: Situation_French_
 allow_embedding: true
-name: Clone of Situation French!
+name: Parapeet
 runtime_options:
   version: 2
   client_version: '3'
   server_version: python3-sandbox
   server_spec: {base: python310-standard}
   server_spec_disabled: {base: python310-standard, requirements: ''}
-metadata: {title: Situation French!, description: Finish learning french by ironing out your situational responses.,
-  logo_img: 'asset:SituationFrench.png'}
+metadata: {title: Parapeet!, description: Meet Parapeet - language stealing parakeet!,
+  logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
 native_deps: {head_html: "<script>\nfunction isScreenLockSupported() {\n  return ('wakeLock'\
     \ in navigator);\n}\nvar screenLock;\nasync function lockWakeState() {\n  console.log(\"\

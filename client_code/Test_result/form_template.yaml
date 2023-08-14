@@ -4,7 +4,7 @@ container:
   event_bindings: {show: form_show}
 components:
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: The prompt was ..., font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: true, icon: ''}
@@ -13,7 +13,7 @@ components:
     col_widths: {}
     grid_position: ZTTHYK,RYZSJH
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: x, font_size: 24, font: Garamond, spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
@@ -22,14 +22,14 @@ components:
     col_widths: {}
     grid_position: POCMRA,ICDVAS
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Your answer is ..., font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: true, icon: ''}
   name: label_1
   layout_properties: {grid_position: 'TWQRXJ,JQVRQT'}
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: x, font_size: 24, font: Garamond, spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
@@ -38,7 +38,7 @@ components:
     col_widths: {}
     grid_position: RKFLTI,BIPJEG
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Saved answer is ..., font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: true, icon: ''}
@@ -47,7 +47,7 @@ components:
     col_widths: {}
     grid_position: DRWSVW,MBDOAY
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: y, font_size: 24, font: Garamond, spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
@@ -56,7 +56,7 @@ components:
     col_widths: {}
     grid_position: GUBIEK,JACAIW
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Similarity % is ..., font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: true, icon: ''}
@@ -65,7 +65,7 @@ components:
     col_widths: {}
     grid_position: EQDUIN,NNWHLC
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: 0%, font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: large, italic: false, background: '', bold: false,
     underline: false, icon: ''}
@@ -81,10 +81,10 @@ components:
   components:
   - type: Link
     properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '#b205ca', visible: true, text: 'Next, please!', font_size: 30,
-      wrap_on: mobile, font: Garamond, col_spacing: medium, spacing_above: small,
-      icon_align: left, col_widths: '', spacing_below: small, italic: false, background: '#ffffff',
-      bold: true, underline: false, icon: ''}
+      foreground: '', visible: true, text: 'Next, please!', font_size: 30, wrap_on: mobile,
+      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
+      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
+      underline: false, icon: ''}
     name: next
     layout_properties: {grid_position: 'RBDPIY,LBUEPU'}
     event_bindings: {click: next_click}

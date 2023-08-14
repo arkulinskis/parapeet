@@ -1,3 +1,19 @@
+:root {
+  /*   dark blue; */
+  --main-bg-color: #2C3673;
+  
+}
+
+body {
+    overflow: hidden;
+  color: #2C3673;
+}
+
+/* 
+colors: , #66CDD9 - the light blue bird, #F2D541 - yellow accent, #73513D - brown tree, #0D0D0D - basically black
+*/
+
+
 @media screen and (max-width: 825px) {
   a.anvil-role-mobile[anvil-role="mobile"] , div.anvil-role-mobile[anvil-role="mobile"] {
     display: block;
@@ -44,9 +60,7 @@
     min-height: calc(100vh - 75px); 
 }
 
-body {
-    overflow: hidden;
-}
+
 
 .anvil-root-container {
   height: 100vh; 
@@ -232,7 +246,6 @@ body.anvil-show-banner {
 
 
 
-
 [style="width: 47px;"] {
   cursor: help; 
 }
@@ -242,7 +255,16 @@ body.anvil-show-banner {
   padding-right: 10px;
   padding-left: 10px;
   border-radius: 16px;
-  border: 2px solid #b205ca;
+  border: 2px solid #73513D;
+  margin: 2px 2px 3px 2px;
+  box-shadow: 2px 2px 2px #888888;
+}
+
+.anvil-role-menubuttons_close {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 16px;
+  border: 2px solid #73513D;
   margin: 2px 2px 3px 2px;
   box-shadow: 2px 2px 2px #888888;
 }
@@ -268,7 +290,8 @@ body.anvil-show-banner {
 /* ........................ BG ANIMATION .................. */
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #C0C0C0 50%, #E8E8E8 50%);
+  background-image: linear-gradient(-60deg, #b5e655 50%, #2e7d32 50%);
+/*   background-image: linear-gradient(-60deg, #C0C0C0 50%, #E8E8E8 50%); */
 /*   background-image: linear-gradient(-60deg, #EFEA5A 50%, #16DB93 50%); */
 /*   background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%); */
   bottom:0;
@@ -352,7 +375,16 @@ body.anvil-show-banner {
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24) !important;
 }
 
+.anvil-role-menubuttons_close:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24) !important;
+}
+
 .anvil-role-menubuttons:hover div {
+text-decoration: underline;
+}
+
+.anvil-role-menubuttons_close:hover div {
 text-decoration: underline;
 }
 
@@ -362,18 +394,17 @@ text-decoration: underline;
 
 /* -----------------------------------*/
 
-
-/* @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } } */
 #loadingSpinner {
-/*     -webkit-animation:spin 2s linear infinite;
-    -moz-animation:spin 2s linear infinite;
-    animation:spin 2s linear infinite; */
-  filter: invert(21%) sepia(83%) saturate(7469%) hue-rotate(289deg) brightness(88%) contrast(109%);
-    width: 100px;
-    height:100px;
-    border-radius: 0;
-    box-shadow: none;/*0px 0px 10px 10px #fcfcfc;*/
-    background-color: transparent;
+  width: 200px;
+  height: 200px;
+  border-radius: 0;
+  background-size: 200px;
+  box-shadow: none;/*0px 0px 10px 10px #fcfcfc;*/
+  background-color: transparent;
+  background-image: url(_/theme/parapeet.gif) !important;
+  left: calc(50% - 100px);
+}
+
+#appGoesHere > div > div > div > div > div > div > div > div > div > div:nth-child(1) > div > div:nth-child(1) > div > div > div > div > div > div {
+    margin-top: 10%;
 }

@@ -18,7 +18,7 @@ components:
     col_widths: {}
     grid_position: LLCFMG,PCULCV
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: French, font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: false, icon: ''}
@@ -33,7 +33,7 @@ components:
   layout_properties: {grid_position: 'IDWDTC,TPWOGT'}
   event_bindings: {}
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Explanation, font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: false, icon: ''}

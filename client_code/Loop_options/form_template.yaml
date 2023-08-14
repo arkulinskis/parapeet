@@ -5,7 +5,7 @@ container:
     spacing_below: none, background: ''}
 components:
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Create a lesson plan, font_size: 30, font: Garamond, spacing_above: medium,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: false, icon: ''}
@@ -21,21 +21,21 @@ components:
   components:
   - type: RadioButton
     properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '#b205ca', value: EF, visible: true, text: English-French,
+      enabled: true, foreground: '', value: EF, visible: true, text: English-French,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: true, group_name: lesson_type, underline: false}
     name: ref
     layout_properties: {grid_position: 'BWEORU,OQKVHA'}
   - type: RadioButton
     properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '#b205ca', value: EFP, visible: true, text: English-French-Pause,
+      enabled: true, foreground: '', value: EFP, visible: true, text: English-French-Pause,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: true, group_name: lesson_type, underline: false}
     name: refp
     layout_properties: {grid_position: 'BWEORU,CGLMJR'}
   - type: RadioButton
     properties: {role: null, selected: true, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '#b205ca', value: EPFP, visible: true, text: English-pause-French-Pause,
+      enabled: true, foreground: '', value: EPFP, visible: true, text: English-pause-French-Pause,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: true, group_name: lesson_type, underline: false}
     name: repfp
@@ -48,7 +48,7 @@ components:
   components:
   - type: RadioButton
     properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '#b205ca', value: FE, visible: true, text: French-English,
+      enabled: true, foreground: '', value: FE, visible: true, text: French-English,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: true, group_name: lesson_type, underline: false}
     name: rfe
@@ -56,20 +56,20 @@ components:
     event_bindings: {}
   - type: RadioButton
     properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '#b205ca', value: FFP, visible: true, text: French-French-Pause,
+      enabled: true, foreground: '', value: FFP, visible: true, text: French-French-Pause,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: true, group_name: lesson_type, underline: false}
     name: ffp
     layout_properties: {grid_position: 'VCCKNM,VGBCYJ'}
   - type: RadioButton
     properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '#b205ca', value: FPEP, visible: true, text: French-Pause-English-Pause,
+      enabled: true, foreground: '', value: FPEP, visible: true, text: French-Pause-English-Pause,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: true, group_name: lesson_type, underline: false}
     name: rfpep
     layout_properties: {grid_position: 'VONKJJ,SBYFPQ'}
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: 'Duration: 5 minutes', font_size: 26, font: Garamond, spacing_above: none,
     icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
     underline: false, icon: ''}
@@ -80,7 +80,7 @@ components:
     pips_stepped: true, pips: false, pips_values: '', max: 30, padding: '', enabled: true,
     pips_density: null, limit: null, animate: true, visible: true, connect: 'True,
       False', start: '5', behaviour: tap, handle_size: '40', spacing_above: small,
-    spacing_below: small, bar_height: '20', color: '#b205ca', format: .2f, step: 5}
+    spacing_below: small, bar_height: '20', color: '', format: .2f, step: 5}
   name: time_slider
   layout_properties:
     col_widths: {}
@@ -89,7 +89,7 @@ components:
     expand: true
   event_bindings: {slide: time_slider_slide}
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Emotional and situational context, font_size: 22, font: Garamond,
     spacing_above: small, icon_align: left, spacing_below: none, italic: false, background: '',
     bold: true, underline: false, icon: ''}
@@ -103,78 +103,78 @@ components:
   components:
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Basic,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+      foreground: '', allow_indeterminate: false, visible: true, text: Basic, font_size: 18,
+      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, checked: true, underline: false}
     name: basic
     layout_properties: {grid_position: 'MUHQXR,GHRAWF'}
     event_bindings: {}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Colleague,
+      foreground: '', allow_indeterminate: false, visible: true, text: Colleague,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: false, checked: true, underline: false}
     name: colleague
     layout_properties: {grid_position: 'MUHQXR,PYSWYN'}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Client,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+      foreground: '', allow_indeterminate: false, visible: true, text: Client, font_size: 18,
+      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, checked: true, underline: false}
     name: client
     layout_properties: {grid_position: 'PGAVOO,QAVQRS'}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Boss,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+      foreground: '', allow_indeterminate: false, visible: true, text: Boss, font_size: 18,
+      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, checked: true, underline: false}
     name: boss
     layout_properties: {grid_position: 'MUHQXR,KAMMYL'}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Agressive,
+      foreground: '', allow_indeterminate: false, visible: true, text: Agressive,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: false, checked: true, underline: false}
     name: agressive
     layout_properties: {grid_position: 'MUHQXR,GDJVCN'}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Frustrated,
+      foreground: '', allow_indeterminate: false, visible: true, text: Frustrated,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: false, checked: true, underline: false}
     name: frustrated
     layout_properties: {grid_position: 'ZBDDUW,ZDPRRC'}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Sad,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+      foreground: '', allow_indeterminate: false, visible: true, text: Sad, font_size: 18,
+      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, checked: true, underline: false}
     name: sad
     layout_properties: {grid_position: 'ZBDDUW,DAFFOT'}
     event_bindings: {}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Lover,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+      foreground: '', allow_indeterminate: false, visible: true, text: Lover, font_size: 18,
+      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, checked: true, underline: false}
     name: lover
     layout_properties: {grid_position: 'ZBDDUW,NJSFRL'}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Impressed,
+      foreground: '', allow_indeterminate: false, visible: true, text: Impressed,
       font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: false, checked: true, underline: false}
     name: impressed
     layout_properties: {grid_position: 'ZBDDUW,VPQEVM'}
   - type: CheckBox
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Stupid,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+      foreground: '', allow_indeterminate: false, visible: true, text: Stupid, font_size: 18,
+      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, checked: true, underline: false}
     name: stupid
     layout_properties: {grid_position: 'ZBDDUW,ANDJVX'}
 - type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '#b205ca',
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Additional options, font_size: 24, font: Garamond, spacing_above: small,
     icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
     underline: false, icon: ''}
@@ -184,7 +184,7 @@ components:
     grid_position: XEZMAG,GHIKCB
 - type: CheckBox
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Cards are spoken out loud,
+    foreground: '', allow_indeterminate: false, visible: true, text: Cards are spoken out loud,
     font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
     background: '', bold: true, checked: true, underline: false}
   name: playsound
@@ -192,7 +192,7 @@ components:
   event_bindings: {}
 - type: CheckBox
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '#b205ca', allow_indeterminate: false, visible: true, text: Background music,
+    foreground: '', allow_indeterminate: false, visible: true, text: Background music,
     font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
     background: '', bold: true, checked: false, underline: false}
   name: background_music
@@ -205,19 +205,19 @@ components:
   components:
   - type: Link
     properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '#b205ca', visible: true, text: ' Begin your lesson ', font_size: 30,
-      wrap_on: mobile, font: Garamond, col_spacing: medium, spacing_above: small,
-      icon_align: left, col_widths: '', spacing_below: small, italic: false, background: white,
-      bold: true, underline: false, icon: ''}
+      foreground: '', visible: true, text: ' Begin your lesson ', font_size: 30, wrap_on: mobile,
+      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
+      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
+      underline: false, icon: ''}
     name: begin_loop
     layout_properties: {grid_position: 'HRELAS,QZLCQQ'}
     event_bindings: {click: begin_loop_click}
   - type: Link
-    properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '#b205ca', visible: true, text: Later, font_size: 30, wrap_on: mobile,
+    properties: {role: menubuttons_close, url: '', align: center, tooltip: '', border: '',
+      foreground: '', visible: true, text: Later, font_size: 30, wrap_on: mobile,
       font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-      col_widths: '', spacing_below: small, italic: false, background: '#fbebff',
-      bold: true, underline: false, icon: ''}
+      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
+      underline: false, icon: ''}
     name: Later
     layout_properties: {grid_position: 'HRELAS,QZLCQQ'}
     event_bindings: {click: Later_click}
