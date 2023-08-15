@@ -1,13 +1,21 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {role: howtozone, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
 components:
-- type: TextBox
-  properties: {role: noscbar_inner_inv, align: left, hide_text: false, tooltip: '',
-    placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '',
-    font_size: null, font: '', spacing_above: small, type: text, spacing_below: small,
-    italic: false, background: '', bold: false, underline: false}
-  name: suggestion_text
-  layout_properties: {grid_position: 'CWWIFH,CVBBDH'}
-  event_bindings: {show: suggestion_text_show}
+- type: FlowPanel
+  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
+    foreground: '', visible: true, spacing_above: medium, spacing_below: medium, background: ''}
+  name: flow_panel_1
+  layout_properties: {grid_position: 'CWWIFH,PNBKCZ'}
+  components:
+  - type: TextBox
+    properties: {role: noscbar_inner_inv, align: left, hide_text: false, tooltip: '',
+      placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '',
+      font_size: null, font: '', spacing_above: small, type: text, spacing_below: small,
+      italic: false, background: '', bold: false, underline: false}
+    name: suggestion_text
+    layout_properties: {grid_position: 'CWWIFH,CVBBDH', width: 320, expand: false}
+    event_bindings: {show: suggestion_text_show}
 is_package: true

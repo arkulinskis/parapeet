@@ -33,25 +33,29 @@ runtime_options:
 metadata: {title: Parapeet!, description: Meet Parapeet - language stealing parakeet!,
   logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
-native_deps: {head_html: "<script>\nfunction isScreenLockSupported() {\n  return ('wakeLock'\
-    \ in navigator);\n}\nvar screenLock;\nasync function lockWakeState() {\n  console.log(\"\
-    asked to keep awake\");\n  if(isScreenLockSupported()){\n    try {\n       screenLock\
-    \ = await navigator.wakeLock.request('screen');\n    } catch(err) {\n       console.log(err.name,\
-    \ err.message);\n    }\n    return screenLock;\n  }\n}\nfunction releaseWakeState()\
-    \ { \n  console.log(\"asked to be able to sleep\");\n  if(typeof screenLock !==\
-    \ \"undefined\" && screenLock != null) {\n    screenLock.release()\n    .then(()\
-    \ => {\n      console.log(\"Lock released \ud83c\udf88\");\n      screenLock =\
-    \ null;\n    });\n  }\n}  \n</script>\n\n<div class=\"bg\"></div>\n<div class=\"\
-    bg bg2\"></div>\n<div class=\"bg bg3\"></div>\n\n<script>\n  function similarity(s1,\
-    \ s2) {\n  var longer = s1;\n  var shorter = s2;\n  if (s1.length < s2.length)\
-    \ {\n    longer = s2;\n    shorter = s1;\n  }\n  var longerLength = longer.length;\n\
-    \  if (longerLength == 0) {\n    return 1.0;\n  }\n  return (longerLength - editDistance(longer,\
-    \ shorter)) / parseFloat(longerLength);\n}\n  function editDistance(s1, s2) {\n\
-    \  s1 = s1.toLowerCase();\n  s2 = s2.toLowerCase();\n\n  var costs = new Array();\n\
-    \  for (var i = 0; i <= s1.length; i++) {\n    var lastValue = i;\n    for (var\
-    \ j = 0; j <= s2.length; j++) {\n      if (i == 0)\n        costs[j] = j;\n  \
-    \    else {\n        if (j > 0) {\n          var newValue = costs[j - 1];\n  \
-    \        if (s1.charAt(i - 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
+native_deps: {head_html: "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"\
+    >\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\
+    <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
+    \ rel=\"stylesheet\">\n\n\n<script>\nfunction isScreenLockSupported() {\n  return\
+    \ ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState()\
+    \ {\n  console.log(\"asked to keep awake\");\n  if(isScreenLockSupported()){\n\
+    \    try {\n       screenLock = await navigator.wakeLock.request('screen');\n\
+    \    } catch(err) {\n       console.log(err.name, err.message);\n    }\n    return\
+    \ screenLock;\n  }\n}\nfunction releaseWakeState() { \n  console.log(\"asked to\
+    \ be able to sleep\");\n  if(typeof screenLock !== \"undefined\" && screenLock\
+    \ != null) {\n    screenLock.release()\n    .then(() => {\n      console.log(\"\
+    Lock released \ud83c\udf88\");\n      screenLock = null;\n    });\n  }\n}  \n\
+    </script>\n\n<div class=\"bg\"></div>\n<div class=\"bg bg2\"></div>\n<div class=\"\
+    bg bg3\"></div>\n\n<script>\n  function similarity(s1, s2) {\n  var longer = s1;\n\
+    \  var shorter = s2;\n  if (s1.length < s2.length) {\n    longer = s2;\n    shorter\
+    \ = s1;\n  }\n  var longerLength = longer.length;\n  if (longerLength == 0) {\n\
+    \    return 1.0;\n  }\n  return (longerLength - editDistance(longer, shorter))\
+    \ / parseFloat(longerLength);\n}\n  function editDistance(s1, s2) {\n  s1 = s1.toLowerCase();\n\
+    \  s2 = s2.toLowerCase();\n\n  var costs = new Array();\n  for (var i = 0; i <=\
+    \ s1.length; i++) {\n    var lastValue = i;\n    for (var j = 0; j <= s2.length;\
+    \ j++) {\n      if (i == 0)\n        costs[j] = j;\n      else {\n        if (j\
+    \ > 0) {\n          var newValue = costs[j - 1];\n          if (s1.charAt(i -\
+    \ 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
     \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
     \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
     \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>"}

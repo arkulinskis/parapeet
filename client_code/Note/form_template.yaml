@@ -1,17 +1,19 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {role: howtozone, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
   event_bindings: {show: form_show}
 components:
 - type: RichText
   properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: 20, content: '', font: Garamond, spacing_above: small,
+    foreground: '', visible: true, font_size: 20, content: '', font: Garamond, spacing_above: medium,
     spacing_below: small, data: null, background: '', format: markdown}
   name: the_quote_fr
   layout_properties: {grid_position: 'LLCFMG,OWRGLP'}
 - type: RichText
   properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: 20, content: '', font: Garamond, spacing_above: small,
+    foreground: '', visible: true, font_size: 20, content: '', font: Garamond, spacing_above: medium,
     spacing_below: small, data: null, background: '', format: markdown}
   name: the_quote_en
   layout_properties:
@@ -42,7 +44,7 @@ components:
 - type: TextArea
   properties: {role: null, align: center, height: '', tooltip: '', placeholder: '',
     border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-    auto_expand: true, font: '', spacing_above: small, spacing_below: small, italic: false,
+    auto_expand: true, font: '', spacing_above: small, spacing_below: medium, italic: false,
     background: '', bold: false, underline: false}
   name: explanation_area
   layout_properties: {grid_position: 'EOORAO,YVPPTU'}

@@ -305,7 +305,7 @@ components:
     layout_properties: {width: null, expand: false}
     components:
     - type: form:C6ZZPAPN4YYF5NVJ:ProgressBar.Determinate
-      properties: {track_colour: '#b3d4fc', indicator_colour: '#b205ca', progress: 1}
+      properties: {track_colour: '#b3d4fc', indicator_colour: '#F2D541', progress: 1}
       name: progress_bar
       layout_properties: {grid_position: 'CEKGGC,VAQQCC', width: 320, expand: false}
 is_package: true

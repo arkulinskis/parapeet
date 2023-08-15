@@ -1,11 +1,13 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {role: howtozone, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
   event_bindings: {show: form_show}
 components:
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: The prompt was ..., font_size: 24, font: Garamond, spacing_above: small,
+    visible: true, text: The prompt was ..., font_size: 24, font: Garamond, spacing_above: medium,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: true, icon: ''}
   name: label_1_copy
@@ -75,7 +77,7 @@ components:
     grid_position: UFSGNZ,NMOZZB
 - type: FlowPanel
   properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
+    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
   name: flow_panel_1
   layout_properties: {grid_position: 'RBDPIY,DBEHIF'}
   components:

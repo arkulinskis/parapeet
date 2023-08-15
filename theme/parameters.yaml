@@ -24,3 +24,4 @@ roles:
 - {name: push_up}
 - {name: freefloat_BL2}
 - {name: menubuttons_close}
+- {name: howtozone}
