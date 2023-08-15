@@ -33,10 +33,9 @@ runtime_options:
 metadata: {title: Parapeet!, description: Meet Parapeet - language stealing parakeet!,
   logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
-native_deps: {head_html: "<head>\n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\"\
-    \n     crossorigin=\"anonymous\"></script>\n</head>\n\n\n<link rel=\"preconnect\"\
-    \ href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\"\
-    \ crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
+native_deps: {head_html: "\n\n\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"\
+    >\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\
+    <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
     \ rel=\"stylesheet\">\n\n\n<script>\nfunction isScreenLockSupported() {\n  return\
     \ ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState()\
     \ {\n  console.log(\"asked to keep awake\");\n  if(isScreenLockSupported()){\n\
@@ -59,7 +58,7 @@ native_deps: {head_html: "<head>\n  <script async src=\"https://pagead2.googlesy
     \ 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
     \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
     \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
-    \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>"}
+    \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n"}
 db_schema:
   voicefiles:
     client: none
