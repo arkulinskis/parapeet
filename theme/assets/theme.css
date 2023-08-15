@@ -3,6 +3,8 @@
   --appborders: #F2D541;
   --button_border: #73513D;
   --closebutback: #F2D541;
+  --basic_black: #0D0D0D;
+  --baby_blue: #66CDD9;
 
 /*   #2C3673 - dark blue;  */
 /*   #73513D - brown tree  */
@@ -241,12 +243,13 @@ body.anvil-show-banner {
   margin: 4px 6px 4px 6px;
   border-radius: 12px;
   padding: 12px;
-  border: 2px solid var(--appborders);
+  border: 2px solid var(--button_border);
   box-shadow: 2px 2px 2px #888888;
   background: white;
 }
 .anvil-role-noscbar_inner > p, .anvil-role-noscbar_inner  {
   overflow: hidden;
+  color: var(--basic_black);
 }
 
 .anvil-role-noscbar_inner_inv{
@@ -261,6 +264,7 @@ body.anvil-show-banner {
 }
 .anvil-role-noscbar_inner_inv > p, .anvil-role-noscbar_inner_inv  {
   overflow: hidden;
+  color: var(--basic_black);
 }
 
 
@@ -347,6 +351,7 @@ body.anvil-show-banner {
 [anvil-role="freefloat_TR"] > .flow-panel-gutter > :last-child .fa {
   box-shadow: 2px 2px 2px #888888;
     border-radius: 6px;
+  background-image: linear-gradient(to bottom, var(--baby_blue), #FFFFFF00);
 }
 [anvil-role="freefloat_TR"] > .flow-panel-gutter > :last-child .fa:active {
   transform: scale(0.98);
