@@ -2,6 +2,7 @@
   --text_color: #2C3673;
   --appborders: #F2D541;
   --button_border: #73513D;
+  --closebutback: #F2D541;
 
 /*   #2C3673 - dark blue;  */
 /*   #73513D - brown tree  */
@@ -52,7 +53,7 @@ body {
   min-height: 550px;
   webkit-min-logical-height: 550px;
   border: 2px var(--appborders) solid;
-  margin: 5px;
+/*   margin: 5px; */
   border-radius: 16px;
   background-image: linear-gradient(131.83deg, #FFFAFA 0%, #FFF7F76e 99.21%);
   box-shadow: inset 1px 1px 5px #888888;
@@ -277,6 +278,7 @@ body.anvil-show-banner {
   border: 2px solid var(--button_border);
   margin: 2px 2px 3px 2px;
   box-shadow: 2px 2px 2px #888888;
+  background-image: linear-gradient(to bottom, white , #ffffff00 );
 }
 
 .anvil-role-menubuttons_close {
@@ -286,6 +288,7 @@ body.anvil-show-banner {
   border: 2px solid var(--button_border);
   margin: 2px 2px 3px 2px;
   box-shadow: 2px 2px 2px #888888;
+  background-image: linear-gradient(to bottom, var(--closebutback), #ffffff00);
 }
 
 
@@ -379,10 +382,11 @@ body.anvil-show-banner {
 * {
   box-sizing: border-box;
 }
-.flow-panel.flow-spacing-medium>.flow-panel-gutter {
+
+/* .flow-panel.flow-spacing-medium>.flow-panel-gutter {
   margin-right: 0px;
   margin-left: 0px;
-}
+} */
 
 .col-padding.col-padding-none {
     margin: 0 0px;
