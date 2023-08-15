@@ -124,6 +124,15 @@ components:
       name: suggestion
       layout_properties: {grid_position: 'NWQQUL,TVLBYP', expand: false, width: null}
       event_bindings: {click: suggestion_click}
+  - type: FlowPanel
+    properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
+      foreground: '', visible: true, spacing_above: medium, spacing_below: small,
+      background: ''}
+    name: flow_panel_4_copy_2
+    layout_properties:
+      col_widths: {}
+      grid_position: MWLVRR,JZLBBK
+    components:
     - type: Link
       properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
         foreground: '', visible: true, text: Acknowledgements, font_size: 26, wrap_on: mobile,
