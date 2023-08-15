@@ -10,7 +10,7 @@ body {
 }
 
 /* 
-colors: , #66CDD9 - the light blue bird, #F2D541 - yellow accent, #73513D - brown tree, #0D0D0D - basically black
+colors: , #66CDD9 - the light blue bird, #F2D541 - yellow accent, #73513Dvar(--button_border) - brown tree, #0D0D0D - basically black
 */
 
 
@@ -34,7 +34,7 @@ colors: , #66CDD9 - the light blue bird, #F2D541 - yellow accent, #73513D - brow
 .anvil-role-swipezone {
   min-height: 550px;
   webkit-min-logical-height: 550px;
-  border: 2px #b205ca solid;
+  border: 2px var(--appborders) solid;
   margin: 5px;
   border-radius: 16px;
   background-image: linear-gradient(131.83deg, #FFFAFA 0%, #FFF7F76e 99.21%);
@@ -44,7 +44,7 @@ colors: , #66CDD9 - the light blue bird, #F2D541 - yellow accent, #73513D - brow
   max-height: 95vh;
 }
 .anvil-role-getstarted {
-  border: 2px #b205ca solid;
+  border: 2px var(--appborders) solid;
   border-radius: 8px;
 }
 .anvil-role-getstarted div {
@@ -221,7 +221,7 @@ body.anvil-show-banner {
   margin: 4px 6px 4px 6px;
   border-radius: 12px;
   padding: 12px;
-  border: 2px solid #b205ca;
+  border: 2px solid var(--appborders);
   box-shadow: 2px 2px 2px #888888;
   background: white;
 }
@@ -234,7 +234,7 @@ body.anvil-show-banner {
 /*   margin: 4px 6px 4px 6px; */
   border-radius: 12px;
   padding: 12px;
-  border: 2px solid #b205ca;
+  border: 2px solid var(--appborders);
   box-shadow: inset 4px 4px 16px -2px #888888;
   background: white;
   
@@ -255,7 +255,7 @@ body.anvil-show-banner {
   padding-right: 10px;
   padding-left: 10px;
   border-radius: 16px;
-  border: 2px solid #73513D;
+  border: 2px solid var(--button_border);
   margin: 2px 2px 3px 2px;
   box-shadow: 2px 2px 2px #888888;
 }
@@ -264,7 +264,7 @@ body.anvil-show-banner {
   padding-right: 10px;
   padding-left: 10px;
   border-radius: 16px;
-  border: 2px solid #73513D;
+  border: 2px solid var(--button_border);
   margin: 2px 2px 3px 2px;
   box-shadow: 2px 2px 2px #888888;
 }
