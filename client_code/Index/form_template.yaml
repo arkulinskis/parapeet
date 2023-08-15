@@ -27,8 +27,8 @@ components:
       layout_properties: {grid_position: 'UZHQKN,IXRDCI'}
     - type: RichText
       properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
-        foreground: '', visible: true, font_size: 20, content: '<b><u>He stole your
-          french!</u></b><br><br>
+        foreground: '', visible: true, font_size: 20, content: '<b><u>Catch the language
+          parakeet!</u></b><br><br>
 
           <b>Use this app and finally get fluency.</b>
 
@@ -41,15 +41,22 @@ components:
       name: rich_text_1
       layout_properties: {grid_position: 'OBZHTE,EMADXH'}
       components: []
-    - type: Link
-      properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Play promo video!, font_size: 26, wrap_on: mobile, font: Garamond,
-        col_spacing: medium, spacing_above: medium, icon_align: top, col_widths: '',
-        spacing_below: medium, italic: false, background: '', bold: false, underline: false,
-        icon: 'fa:play'}
-      name: play_promo
-      layout_properties: {grid_position: 'GXIYEZ,NQSCHM'}
-      event_bindings: {click: play_promo_click}
+    - type: FlowPanel
+      properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
+        foreground: '', visible: true, spacing_above: small, spacing_below: small,
+        background: ''}
+      name: flow_panel_2
+      layout_properties: {grid_position: 'ZJKCJX,IIIRRR'}
+      components:
+      - type: Link
+        properties: {role: null, url: '', align: center, tooltip: '', border: '',
+          foreground: '', visible: true, text: The Parapeet story, font_size: 26,
+          wrap_on: mobile, font: Garamond, col_spacing: medium, spacing_above: medium,
+          icon_align: top, col_widths: '', spacing_below: medium, italic: false, background: '',
+          bold: false, underline: false, icon: 'fa:book'}
+        name: play_promo_copy
+        layout_properties: {grid_position: 'ZUOBVJ,LCQZMA'}
+        event_bindings: {click: play_promo_copy_click}
     - type: Link
       properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
         foreground: '', visible: false, text: Starting..., font_size: 32, wrap_on: mobile,

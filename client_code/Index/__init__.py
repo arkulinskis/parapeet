@@ -1,8 +1,9 @@
 from ._anvil_designer import IndexTemplate
-from anvil import open_form
+from anvil import open_form, alert
 import anvil.server
 from anvil.js.window import document, setTimeout, clearTimeout
 import anvil.js
+from ..Parapeet_story import Parapeet_story
 
 class Index(IndexTemplate):
   def __init__(self, **properties):
@@ -53,3 +54,8 @@ class Index(IndexTemplate):
     if self.newVideo.currentTime * 1000 > 42888:
       self.newVideo.currentTime = 0
     anvil.js.call("releaseWakeState")
+
+  def play_promo_copy_click(self, **event_args):
+    self.parapeet_story = Parapeet_story()
+    alert(self.parapeet_story, large=True)
+

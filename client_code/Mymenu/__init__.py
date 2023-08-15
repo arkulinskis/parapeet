@@ -107,6 +107,10 @@ class Mymenu(MymenuTemplate):
   def ackno_click(self, **event_args):
     self.raise_event("x-close-alert", value="ackno")
 
+  def LOGO_click(self, **event_args):
+    self.raise_event("x-close-alert", value="Index")
+
+
 
 
 
