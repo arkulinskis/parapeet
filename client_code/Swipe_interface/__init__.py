@@ -108,11 +108,14 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.touch_end_x = None
     self.touch_start_y = None
     self.touch_end_y = None
+    self.noalert = True
 
     self.notes_showing_item = 0
 
   def face_click(self, **event_args):
+    self.noalert = False
     result = alert(self.myhowto, buttons=[], large = True)#, title="How to get around the app?")
+    self.noalert = True
        
   def on_keydown(self, event):
     if str(event) == "<KeyboardEvent proxyobject>":
@@ -128,10 +131,10 @@ class Swipe_interface(Swipe_interfaceTemplate):
         elif event.key == "ArrowLeft":
           self.swipe_right()
         elif event.key == " ":
-          if self.mymenuv.mymode[0:7] == "Phrases":
+          if self.mymenuv.mymode[0:7] == "Phrases" and self.noalert:
             self.on_click("spacebar")
         elif event.key == "Enter":
-          if self.mymenuv.mymode[0:7] == "Phrases":
+          if self.mymenuv.mymode[0:7] == "Phrases" and self.noalert:
             self.play_example_click()
     
   def launch_user_app(self, fresh_launch=True):
@@ -443,7 +446,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
   def menulaunch_click(self, use_to_log_in = False, **event_args):
     current_log_in_state = self.mymenuv.signed_in
     if use_to_log_in == False:
+      self.noalert = False
       result = alert(content=self.mymenuv, large=True, buttons=[])
+      self.noalert = True
     else:
       result = use_to_log_in
       
@@ -461,7 +466,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
       if result == "Help":
         self.face_click()
       elif result == "ackno":
+        self.noalert = False
         alert(self.myackno, buttons=[], large = True)
+        self.noalert = True
       elif result == "Tests":
         anvil.js.get_dom_node(self.show_panel).classList.add("centermove")
         if self.mymenuv.mymode[6:] == "word":
@@ -578,7 +585,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
   
   def getaccount_click(self, **event_args):
     if self.app_ready == False:
+      self.noalert = False
       alert("Still loading the app...")
+      self.noalert = True
     else:
       user = anvil.users.login_with_form(allow_cancel=True)
       if anvil.users.get_user() is not None:
@@ -719,7 +728,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
         time.sleep(1)
         self.audio_recording_example.pause()
       else:
+        self.noalert = False
         result = alert(self.myloopoptions, buttons=[], large=True) #title="Lesson mode - pick your lesson type")
+        self.noalert = True
         if result == "begin":
           self.lesson_start_time = time.time()
           self.looping = True
@@ -781,15 +792,21 @@ class Swipe_interface(Swipe_interfaceTemplate):
           
         mynotev = Note(fr=fr, en=en)
         while True:
+          self.noalert = False
           result = alert(title="New note", large=True, content=mynotev, buttons=[("Cancel", "Cancel"), ("Save", "Save")])
+          self.noalert = True
           if result == "Save":
             if mynotev.french_area.text == "" or mynotev.explanation_area.text == "":
+              self.noalert = False
               alert("Can't save unless both fields are filled")
+              self.noalert = True
             else:
               if self.mymenuv.signed_in:
                 anvil.server.call('save_note',mynotev.french_area.text,mynotev.explanation_area.text)
               else:
+                self.noalert = False
                 alert("Sign in to use this feature!", buttons=[("Sounds good!", "Sounds good!")])
+                self.noalert = True
               break
           else:
             break
@@ -802,10 +819,14 @@ class Swipe_interface(Swipe_interfaceTemplate):
           mynotev.french_area.text = tmpword
           mynotev.explanation_area.text = tmpexplanation
           while True:
+            self.noalert = False
             result = alert(title="Edit note", content=mynotev, buttons=[("Delete","Delete"), ("Cancel", "Cancel"), ("Save", "Save")])
+            self.noalert = True
             if result == "Save":
               if mynotev.french_area.text == "" or mynotev.explanation_area.text == "":
+                self.noalert = False
                 alert("Can't save unless both fields are filled")
+                self.noalert = True
               else:
                 if tmpword != mynotev.french_area.text or tmpexplanation != mynotev.explanation_area.text:
                   if self.mymenuv.signed_in:
@@ -815,12 +836,16 @@ class Swipe_interface(Swipe_interfaceTemplate):
                       self.mynotes[self.notes_showing_order[self.notes_showing_item]]["Comment"] = mynotev.explanation_area.text
                       self.update_notes_visual()
                   else:
+                    self.noalert = False
                     alert("Sign in to use this feature!", buttons=[("Sounds good!", "Sounds good!")])
+                    self.noalert = True
                 break
             elif result == "Cancel":
               break
             elif result == "Delete":
+              self.noalert = False
               result2 = alert("Are you sure?", buttons=[("Yes", "Yes"), ("No", "No")])
+              self.noalert = True
               if result2 == "Yes":
                 if self.mymenuv.signed_in:
                   anvil.server.call('delete_note', tmpword, tmpexplanation)
@@ -835,7 +860,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
                   self.swipe_down()
                   break
                 else:
+                  self.noalert = False
                   alert("Sign in to use this feature!", buttons=[("Sounds good!", "Sounds good!")])
+                  self.noalert = True
             else:
               break
 
@@ -857,7 +884,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
       test_result_window.test_prompt.text = promptanswer
       test_result_window.savedanswer.text = savedanswer
       test_result_window.similarity_field.text = str(int(similarity(self.answer_box.text, savedanswer)*100)) + "%"
+      self.noalert = False
       next_step = alert(test_result_window, buttons=[], large=True, dismissible=False)
+      self.noalert = True
 
       self.answer_box.text = ""
       if next_step == "next":
@@ -927,7 +956,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
       pass
     else:
       if self.getaccount.visible:
+        self.noalert = False
         alert("Sign in to use this feature!", buttons=[("Sounds good!", "Sounds good!")])
+        self.noalert = True
       else:
         tmp0 = self.row_showing_order[self.row_showing_item]
         col_to_like = self.usable_sentences[tmp0]["LineID"]
@@ -961,7 +992,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
   def phrase_spoken(self):
     if self.getaccount.visible:
+      self.noalert = False
       alert("Sign in to use this feature!", buttons=[("Sounds good!", "Sounds good!")])
+      self.noalert = True
       self.catch_button.text = "Test yourself!"
     else:
       tmp0 = self.row_showing_order[self.row_showing_item]
@@ -980,6 +1013,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       self.update_points()
   
   def point_count_click(self, **event_args):
+    self.noalert = False
     alert("""
       How to get points?
 
@@ -995,6 +1029,7 @@ Get a point for that too ;)
 Can you go through all 1500 phrases and say you know them?
 That's the challenge - good luck!
     """)
+    self.noalert = True
 
   def sitimage_mouse_up(self, x, y, button, **event_args):
     self.face_click()
@@ -1034,11 +1069,15 @@ That's the challenge - good luck!
     self.transcript = e.results[0][0].transcript
     self.ratio = similarity(self.str_to_catch, self.transcript)
     if self.ratio > 0.8:
+      self.noalert = False
       keypressedhere = alert(random.choice(self.cong_list) + " You got it! Similarity was at " + str(int(self.ratio*100)) + "%")
+      self.noalert = True
       self.recognition = None
       self.phrase_spoken()
     else:
+      self.noalert = False
       alert("Not quite! Similarity was at " + str(int(self.ratio*100)) + "%, try again!")
+      self.noalert = True
       self.catching = True
       self.catch_button.text = "Listening - Stop"
       self.show_text.border = "3px solid #ff2e2e"
@@ -1091,7 +1130,9 @@ That's the challenge - good luck!
     if self.looping or self.app_ready == False:
       pass
     else:
+      self.noalert = False
       result = alert(content=self.myphrasemap, large=True, buttons=[])
+      self.noalert = True
       print("result", result)
       if result != -1 and result != None:
         if self.mymenuv.signed_in:
@@ -1101,4 +1142,6 @@ That's the challenge - good luck!
             self.swipe_type = "right"
             self.launch_user_app()
         else:
+          self.noalert = False
           alert("Sign in to use this feature!")
+          self.noalert = True
