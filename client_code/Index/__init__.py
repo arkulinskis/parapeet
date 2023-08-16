@@ -62,5 +62,5 @@ class Index(IndexTemplate):
 
   def more_info_click(self, **event_args):
     self.more_info_form = more_info()
-    alert(self.more_info_form)
+    alert(self.more_info_form, large=True)
 
