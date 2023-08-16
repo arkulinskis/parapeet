@@ -211,7 +211,7 @@ components:
     components:
     - type: RichText
       properties: {role: noscbar_inner, align: center, tooltip: '', enable_slots: true,
-        border: '', foreground: '', visible: true, font_size: 28, content: 'Loading...
+        border: '', foreground: '', visible: true, font_size: 40, content: 'Loading...
 
           (Swipe to navigate)', font: Garamond, spacing_above: none, spacing_below: none,
         data: null, background: '', format: markdown}

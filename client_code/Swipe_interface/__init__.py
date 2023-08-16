@@ -233,6 +233,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       pass
     elif event == "spacebar" or (not str(event.target.outerHTML).startswith(r'<i class="anvil-component-icon') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Get') and \
+    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Just') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Listening - Stop') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You got it!') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Test yourself!') and \
@@ -387,7 +388,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     if len(self.show_text.content) > 160:
       self.show_text.font_size = 24
     else:
-      self.show_text.font_size = 28
+      self.show_text.font_size = 40
       
     tmpcnt = "Phrase " + str(self.row_showing_item+1) + r" / " + str(len(self.usable_sentences))
     self.progress_label.text = tmpcnt + '  -  type: ' + self.ccols[self.active_column] 

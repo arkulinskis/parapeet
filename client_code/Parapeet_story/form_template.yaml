@@ -77,15 +77,15 @@ components:
         layout_properties: {grid_position: 'SKMGZK,JHJCQZ', full_width_row: false,
           expand: false, width: 300}
         event_bindings: {pressed_enter: adventure_name_pressed_enter}
-      - type: Link
-        properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-          visible: true, text: Continue the story!, font_size: 24, wrap_on: mobile,
-          font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-          col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
-          underline: true, icon: ''}
-        name: continue_story_1
-        layout_properties: {grid_position: 'SKMGZK,YZCPWE', full_width_row: false}
-        event_bindings: {click: continue_story_1_click}
+    - type: Link
+      properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: Continue the story!, font_size: 24, wrap_on: mobile,
+        font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
+        col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
+        underline: true, icon: ''}
+      name: continue_story_1
+      layout_properties: {grid_position: 'OZPLHQ,XYLUNL', full_width_row: false}
+      event_bindings: {click: continue_story_1_click}
     - type: RichText
       properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
         foreground: '', visible: false, font_size: 24, content: '', font: Garamond,

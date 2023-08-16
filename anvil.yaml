@@ -33,11 +33,12 @@ runtime_options:
 metadata: {title: Parapeet!, description: Meet Parapeet - language stealing parakeet!,
   logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
-native_deps: {head_html: "\n\n\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"\
-    >\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\
-    <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
-    \ rel=\"stylesheet\">\n\n\n<script>\nfunction isScreenLockSupported() {\n  return\
-    \ ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState()\
+native_deps: {head_html: "<head>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"\
+    >\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\
+    \  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
+    \ rel=\"stylesheet\">\n</head>\n\n<head>\n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\"\
+    \n     crossorigin=\"anonymous\"></script>\n</head>\n\n<script>\nfunction isScreenLockSupported()\
+    \ {\n  return ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState()\
     \ {\n  console.log(\"asked to keep awake\");\n  if(isScreenLockSupported()){\n\
     \    try {\n       screenLock = await navigator.wakeLock.request('screen');\n\
     \    } catch(err) {\n       console.log(err.name, err.message);\n    }\n    return\
@@ -58,7 +59,9 @@ native_deps: {head_html: "\n\n\n<link rel=\"preconnect\" href=\"https://fonts.go
     \ 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
     \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
     \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
-    \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n"}
+    \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\
+    \n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100%;\
+    \ opacity:0.2; position: fixed; top:0; left: 0; width: 100%;\"></div>"}
 db_schema:
   voicefiles:
     client: none

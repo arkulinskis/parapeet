@@ -12,6 +12,9 @@ class Index(IndexTemplate):
     self.init_components(**properties)
     self.myTimeout = 0
     
+    self.more_info_form = more_info()
+    self.parapeet_story = Parapeet_story()
+    
   def get_started_click(self, **event_args):
     self.get_started.visible = False
     self.starting.visible = True
@@ -57,10 +60,15 @@ class Index(IndexTemplate):
     anvil.js.call("releaseWakeState")
 
   def showstory_click(self, **event_args):
-    self.parapeet_story = Parapeet_story()
     alert(self.parapeet_story, large=True)
 
   def more_info_click(self, **event_args):
-    self.more_info_form = more_info()
-    alert(self.more_info_form, large=True)
+    print("pre-alert")
+    result = alert(self.more_info_form, large=True)
+    print("outnow")
+    print(result)
+    if result == "launch":
+      self.get_started_click()
+      print("launch")
+      
 
