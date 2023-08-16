@@ -16,6 +16,7 @@
 
 body {
 /*   overflow: hidden; */
+  overscroll-behavior: none;
 }
 
 #appGoesHere a, #appGoesHere span,  #appGoesHere div, #appGoesHere p,
