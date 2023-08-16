@@ -56,7 +56,7 @@ class Index(IndexTemplate):
       self.newVideo.currentTime = 0
     anvil.js.call("releaseWakeState")
 
-  def play_promo_copy_click(self, **event_args):
+  def showstory_click(self, **event_args):
     self.parapeet_story = Parapeet_story()
     alert(self.parapeet_story, large=True)
 

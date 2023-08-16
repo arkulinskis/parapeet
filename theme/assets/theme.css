@@ -439,8 +439,21 @@ text-decoration: underline;
 }
 
 
-anvil-role-ad_panel {
+.anvil-role-ad_panel {
   height: 55px;
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.anvil-role-jungle_BR {
+
+  
+}
+
+.anvil-role-jungle_BL {
+position: absolute;
+  z-index: -1;
+  opacity: 0.5;
+  left: 0px;
+  bottom: 0px;  
 }

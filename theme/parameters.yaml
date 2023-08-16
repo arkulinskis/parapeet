@@ -26,3 +26,5 @@ roles:
 - {name: menubuttons_close}
 - {name: howtozone}
 - {name: ad_panel}
+- {name: jungle_BL}
+- {name: jungle_BR}
