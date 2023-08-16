@@ -949,7 +949,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
 
     
-    self.point_count.text = "Just " + str(int(3000 - sum_points)) + " to the finish line!"
+    self.point_count.text = "Just " + str(int(3000 - sum_points)) + " seeds to catch Parapeet !"
   
   def like_button_click(self, **event_args):
     if self.looping or self.app_ready == False:

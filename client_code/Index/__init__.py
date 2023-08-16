@@ -4,6 +4,7 @@ import anvil.server
 from anvil.js.window import document, setTimeout, clearTimeout
 import anvil.js
 from ..Parapeet_story import Parapeet_story
+from ..more_info import more_info
 
 class Index(IndexTemplate):
   def __init__(self, **properties):
@@ -58,4 +59,8 @@ class Index(IndexTemplate):
   def play_promo_copy_click(self, **event_args):
     self.parapeet_story = Parapeet_story()
     alert(self.parapeet_story, large=True)
+
+  def more_info_click(self, **event_args):
+    self.more_info_form = more_info()
+    alert(self.more_info_form)
 

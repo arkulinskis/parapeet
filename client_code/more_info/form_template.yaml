@@ -1,0 +1,100 @@
+container:
+  type: ColumnPanel
+  properties: {role: howtozone, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
+components:
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: '
+
+      Title: Parapeet: Perfect Your French with a Feathered Twist
+
+
+      Language learning is a journey that often starts with the basics, but as learners
+      progress, the need for more advanced practice becomes crucial. For those looking
+      to elevate their French language skills from intermediate to expert, the Parapeet
+      app offers a unique and engaging way to master advanced phrases while having
+      fun. Aimed at learners who want to perfect their French, Parapeet provides a
+      creative and interactive approach to language learning.
+
+
+      Taking Flight with Parapeet: A Feathered Adventure
+
+
+      Parapeet is not just another language learning app; it''s an adventure in itself.
+      The app''s quirky concept centers around a mischievous parakeet named Parapeet
+      who has managed to steal advanced French phrases. Users find themselves in the
+      role of the language hero, tasked with recapturing their "stolen" French phrase
+      by phrase. This captivating storyline turns learning into a game, making it
+      more enjoyable and motivating for users to delve into advanced language practice.
+
+
+      Mastering Advanced Phrases: Elevate Your Language Proficiency
+
+
+      Unlike many language learning apps that target beginners, Parapeet focuses on
+      users who already have a grasp of the basics and are eager to perfect their
+      skills. The app offers a curated collection of advanced phrases that align with
+      real-world scenarios, enabling users to expand their vocabulary and linguistic
+      finesse. With each phrase recaptured from the clutches of Parapeet, users experience
+      a sense of accomplishment and are better prepared for complex conversations.
+
+
+      Fine-Tuning Your Accent: Speak Like a Native
+
+
+      A distinguishing feature of Parapeet is its accent practice functionality. Learning
+      a language isn''t just about knowing the words; it''s also about mastering the
+      correct pronunciation. Parapeet includes advanced voice recognition technology
+      that listens to users'' pronunciation and offers constructive feedback. This
+      feature is invaluable for learners striving to sound more like native speakers
+      and enhances the overall language learning experience.
+
+
+      Flashcards for Retention: Reinforce Learning Through Repetition
+
+
+      The app''s flashcard functionality is a staple for language learners, aiding
+      in retaining new vocabulary and phrases. Parapeet''s flashcards are designed
+      specifically for advanced learners, reinforcing their understanding of complex
+      language structures. Users can review these flashcards at their own pace, ensuring
+      that they can recall and use these advanced phrases effortlessly in conversations.
+
+
+      Hands-Free Learning: Productivity on the Go
+
+
+      Parapeet understands that busy schedules can often hinder dedicated language
+      learning time. That''s why the app offers a hands-free learning mode. This feature
+      allows users to create custom lessons and listen to them while engaging in other
+      activities like driving or doing household chores. With this innovative feature,
+      learners can seamlessly integrate language practice into their daily routines,
+      making the most of every moment.
+
+
+      Crafting Customized Lessons: Tailoring Learning to Your Needs
+
+
+      Parapeet empowers users to take charge of their learning journey by enabling
+      them to create customized lessons. Users can select specific themes, topics,
+      or scenarios they want to focus on, ensuring that their language practice aligns
+      with their personal interests or professional needs. This feature not only enhances
+      engagement but also helps users stay motivated as they see tangible progress
+      in areas that matter most to them.
+
+
+      In conclusion, Parapeet stands as a unique and comprehensive language learning
+      app, specifically designed for those who aim to perfect their French language
+      skills. Its captivating storyline involving a parakeet thief adds an element
+      of adventure and excitement to the learning process. With its advanced phrase
+      practice, accent improvement, flashcard functionality, hands-free learning mode,
+      and customizable lessons, Parapeet caters to the needs of advanced learners
+      seeking to reach a higher level of proficiency. So, if you''re ready to elevate
+      your French language skills while embarking on an entertaining linguistic journey,
+      Parapeet is the app that can guide you to success, one stolen phrase at a time.',
+    font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+    format: markdown}
+  name: rich_text_1
+  layout_properties: {grid_position: 'LCGQXA,NMGRES'}
+is_package: true
