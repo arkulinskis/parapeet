@@ -233,6 +233,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       pass
     elif event == "spacebar" or (not str(event.target.outerHTML).startswith(r'<i class="anvil-component-icon') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Get') and \
+    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Just') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Listening - Stop') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You got it!') and \
     not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Test yourself!') and \
@@ -386,8 +387,12 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.show_text.content = tmp[self.ccols[self.active_column]].replace(r"/", r" / ")
     if len(self.show_text.content) > 160:
       self.show_text.font_size = 24
-    else:
+    elif len(self.show_text.content) > 100:
       self.show_text.font_size = 28
+    elif len(self.show_text.content) > 50:
+      self.show_text.font_size = 32
+    else:
+      self.show_text.font_size = 40
       
     tmpcnt = "Phrase " + str(self.row_showing_item+1) + r" / " + str(len(self.usable_sentences))
     self.progress_label.text = tmpcnt + '  -  type: ' + self.ccols[self.active_column] 
@@ -949,7 +954,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
 
     
-    self.point_count.text = "Just " + str(int(3000 - sum_points)) + " to the finish line!"
+    self.point_count.text = "Just " + str(int(3000 - sum_points)) + " seeds to catch Parapeet !"
   
   def like_button_click(self, **event_args):
     if self.looping or self.app_ready == False:

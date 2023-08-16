@@ -14,6 +14,12 @@ var todo = [
   ,
   'When selling on linked in phrase it like do you know somebody who might need this?'
   ,
-  'english is all messed up - to fix'
+  'get phrase examples in there fo robots'
+  ,
+  'try making the video again'
+  ,
+  'robots + seo anvil'
+  ,
+  'submit to google to crawl'
 
 ]

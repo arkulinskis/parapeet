@@ -211,7 +211,7 @@ components:
     components:
     - type: RichText
       properties: {role: noscbar_inner, align: center, tooltip: '', enable_slots: true,
-        border: '', foreground: '', visible: true, font_size: 28, content: 'Loading...
+        border: '', foreground: '', visible: true, font_size: 40, content: 'Loading...
 
           (Swipe to navigate)', font: Garamond, spacing_above: none, spacing_below: none,
         data: null, background: '', format: markdown}
@@ -221,7 +221,7 @@ components:
       components:
       - type: FlowPanel
         properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-          foreground: '', visible: true, spacing_above: large, spacing_below: small,
+          foreground: '', visible: true, spacing_above: small, spacing_below: small,
           background: ''}
         name: catch_panel
         layout_properties: {}
@@ -291,7 +291,7 @@ components:
     components:
     - type: Link
       properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Just 3000 likes to the finish line!, font_size: 16, wrap_on: mobile,
+        visible: true, text: Just 3000 seeds to catch Parapeet !, font_size: 16, wrap_on: mobile,
         font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
         col_widths: '', spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}

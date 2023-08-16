@@ -15,7 +15,7 @@
 }
 
 body {
-  overflow: hidden;
+/*   overflow: hidden; */
 }
 
 #appGoesHere a, #appGoesHere span,  #appGoesHere div, #appGoesHere p,
@@ -228,6 +228,8 @@ body.anvil-show-banner {
 .anvil-role-noscbar{
    padding: 0px 65px 0px 20px;
   max-width: 420px;
+  position: relative;
+  z-index:10;
 }
 }
 
@@ -260,8 +262,8 @@ body.anvil-show-banner {
   border: 2px solid var(--appborders);
   box-shadow: inset 4px 4px 16px -2px #888888;
   background: white;
-  
 }
+
 .anvil-role-noscbar_inner_inv > p, .anvil-role-noscbar_inner_inv  {
   overflow: hidden;
   color: var(--basic_black);
@@ -439,8 +441,21 @@ text-decoration: underline;
 }
 
 
-anvil-role-ad_panel {
+.anvil-role-ad_panel {
   height: 55px;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin: 0px;
+}
+
+.anvil-role-jungle_BR {
+
+}
+
+.anvil-role-jungle_BL {
+  position: absolute;
+  bottom: 50px;
+  left: 4px;
+  margin: 10px;
+  padding: 10px;
+  width:65px;
+  height:auto;
 }

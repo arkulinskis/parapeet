@@ -1,14 +1,19 @@
 from ._anvil_designer import IndexTemplate
-from anvil import open_form
+from anvil import open_form, alert
 import anvil.server
 from anvil.js.window import document, setTimeout, clearTimeout
 import anvil.js
+from ..Parapeet_story import Parapeet_story
+from ..more_info import more_info
 
 class Index(IndexTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.myTimeout = 0
+    
+    self.more_info_form = more_info()
+    self.parapeet_story = Parapeet_story()
     
   def get_started_click(self, **event_args):
     self.get_started.visible = False
@@ -53,3 +58,15 @@ class Index(IndexTemplate):
     if self.newVideo.currentTime * 1000 > 42888:
       self.newVideo.currentTime = 0
     anvil.js.call("releaseWakeState")
+
+  def showstory_click(self, **event_args):
+    result = alert(self.parapeet_story, large=True)
+    if result == "launch":
+      self.get_started_click()
+      print("launch")
+
+  def more_info_click(self, **event_args):
+    result = alert(self.more_info_form, large=True)
+
+      
+
