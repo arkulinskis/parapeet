@@ -60,15 +60,13 @@ class Index(IndexTemplate):
     anvil.js.call("releaseWakeState")
 
   def showstory_click(self, **event_args):
-    alert(self.parapeet_story, large=True)
-
-  def more_info_click(self, **event_args):
-    print("pre-alert")
-    result = alert(self.more_info_form, large=True)
-    print("outnow")
-    print(result)
+    result = alert(self.parapeet_story, large=True)
     if result == "launch":
       self.get_started_click()
       print("launch")
+
+  def more_info_click(self, **event_args):
+    result = alert(self.more_info_form, large=True)
+
       
 

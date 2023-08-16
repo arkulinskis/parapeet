@@ -387,6 +387,10 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.show_text.content = tmp[self.ccols[self.active_column]].replace(r"/", r" / ")
     if len(self.show_text.content) > 160:
       self.show_text.font_size = 24
+    elif len(self.show_text.content) > 100:
+      self.show_text.font_size = 28
+    elif len(self.show_text.content) > 50:
+      self.show_text.font_size = 32
     else:
       self.show_text.font_size = 40
       

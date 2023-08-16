@@ -22,7 +22,6 @@ class Parapeet_story(Parapeet_storyTemplate):
       alert("I need your name adventurer!")
 
   def start_the_game_click(self, **event_args):
-    print("closing")
     self.raise_event("x-close-alert", value="launch")
 
   def adventure_name_pressed_enter(self, **event_args):
