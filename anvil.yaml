@@ -33,19 +33,20 @@ runtime_options:
 metadata: {title: Parapeet!, description: Meet Parapeet - language stealing parakeet!,
   logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
-native_deps: {head_html: "<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\"\
-    \ content=\"width=device-width, initial-scale=1.0\">\n  <meta name=\"description\"\
-    \ content=\"Parapeet: Perfect Your Advanced French Language Skills\">\n  <meta\
-    \ name=\"keywords\" content=\"advanced French learning, language learning app,\
-    \ perfect French, Parapeet\n  , Advanced French language learning, Expert French\
-    \ phrases, Perfecting French skills, Advanced French vocabulary\n  , Fluent French\
-    \ conversation, French idioms and expressions, Enhance French pronunciation, Mastering\
-    \ complex French\n  , French language proficiency, Expert French communication,\
-    \ Advanced language practice, Elevate your French\n  , Parapeet language app,\
-    \ Parapeet advanced French, French language fluency, Polishing French skills,\
-    \ Advanced language resources\n  , Professional French communication, Expertise\
-    \ in French language, Complex French grammar, Advanced language exercises\n  ,\
-    \ Fine-tuning French accent, Specialized French phrases, Advanced French fluency,\
+native_deps: {head_html: "<head>\n  <meta name=\"google-site-verification\" content=\"\
+    At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\" />\n  <meta charset=\"UTF-8\">\n\
+    \  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\
+    \  <meta name=\"description\" content=\"Parapeet: Perfect Your Advanced French\
+    \ Language Skills\">\n  <meta name=\"keywords\" content=\"advanced French learning,\
+    \ language learning app, perfect French, Parapeet\n  , Advanced French language\
+    \ learning, Expert French phrases, Perfecting French skills, Advanced French vocabulary\n\
+    \  , Fluent French conversation, French idioms and expressions, Enhance French\
+    \ pronunciation, Mastering complex French\n  , French language proficiency, Expert\
+    \ French communication, Advanced language practice, Elevate your French\n  , Parapeet\
+    \ language app, Parapeet advanced French, French language fluency, Polishing French\
+    \ skills, Advanced language resources\n  , Professional French communication,\
+    \ Expertise in French language, Complex French grammar, Advanced language exercises\n\
+    \  , Fine-tuning French accent, Specialized French phrases, Advanced French fluency,\
     \ High-level French practice\n  , Expertise in advanced French, Complex French\
     \ conversations, Advanced French learning techniques, Profound French vocabulary\n\
     \  , Fluent communication in French, Mastery of French language, Advanced French\
