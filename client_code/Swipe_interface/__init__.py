@@ -4,7 +4,7 @@ import anvil.server
 import anvil.users
 from anvil import open_form, alert
 import datetime
-from anvil.js.window import webkitSpeechRecognition, similarity, document, navigator, MediaRecorder, Audio, Blob, URL, location
+from anvil.js.window import similarity, document, navigator, MediaRecorder, Audio, Blob, URL, location
 import anvil.js
 from anvil_extras.storage import indexed_db
 import random
@@ -54,6 +54,11 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.on_refocus = self.on_refocus #key moment right there
     self.on_blur = self.on_blur #key moment right there
 
+    self.speech_notworking = False
+    try:
+      from anvil.js.window import webkitSpeechRecognition
+    except:
+      self.speech_notworking = True
     self.selected_category_number = 1
     self.catching = False
     self.myhowto = Howto()
@@ -1040,25 +1045,29 @@ That's the challenge - good luck!
     self.face_click()
 
   def catch_button_click(self, **event_args):
-    if self.catch_button.text == "You got it!":
-      pass
-    elif self.catching:
-      self.catching = False
-      self.catch_button.text = "Test yourself!"
-      self.show_text.border = ""
-      self.recognition.abort()  
+    if self.speech_notworking:
+      alert("Please use google chrome for this feature")
     else:
-      self.catching = True
-      tmp0 = self.row_showing_order[self.row_showing_item] #getting line_id
-      tmp1 = self.usable_sentences[tmp0] #getting the row with all columns
-      col0 = self.ccols[self.active_column]
-      self.str_to_catch = re.sub(r'/[.,]/g', '', tmp1[col0].lower())
-      self.catch_button.text = "Listening - Stop"
-      self.show_text.border = "3px solid #ff2e2e"
-      self.launch_recognition()
+      if self.catch_button.text == "You got it!":
+        pass
+      elif self.catching:
+        self.catching = False
+        self.catch_button.text = "Test yourself!"
+        self.show_text.border = ""
+        self.recognition.abort()  
+      else:
+        self.catching = True
+        tmp0 = self.row_showing_order[self.row_showing_item] #getting line_id
+        tmp1 = self.usable_sentences[tmp0] #getting the row with all columns
+        col0 = self.ccols[self.active_column]
+        self.str_to_catch = re.sub(r'/[.,]/g', '', tmp1[col0].lower())
+        self.catch_button.text = "Listening - Stop"
+        self.show_text.border = "3px solid #ff2e2e"
+        self.launch_recognition()
 
   def launch_recognition(self):
     self.recognition = webkitSpeechRecognition()
+    
     self.transcript = ""
     self.recognition.lang = "fr-CA"
     self.recognition.continuous = True
