@@ -751,6 +751,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
             # anvil.js.call("start_background_music")
             self.start_background_music()
           self.loop_cards()
+          self.looping = True
+          self.hands_free_mode_click()
       
   def loop_cards(self):
     for j in range(50):
