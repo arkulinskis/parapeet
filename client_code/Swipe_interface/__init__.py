@@ -779,6 +779,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
               time.sleep(5)
             # time.sleep(self.myloopoptions.radiogroup)
           if (time.time() - self.lesson_start_time)/60 > int(self.myloopoptions.time_slider.value):
+            self.looping = False
             break
           elif self.looping: 
             ratio_of_done = ((time.time() - self.lesson_start_time)/60) / int(self.myloopoptions.time_slider.value)
