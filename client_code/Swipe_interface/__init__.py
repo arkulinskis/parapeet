@@ -743,15 +743,24 @@ class Swipe_interface(Swipe_interfaceTemplate):
       if self.looping:
         self.progress_bar.progress = 1
         self.looping = False
-        self.audio_recording_example.pause()
-        self.audio_recording_example.currentTime = 0
+        try:
+          self.audio_recording_example.pause()
+          self.audio_recording_example.currentTime = 0
+        except:
+          print("nothing was playing")
         self.hands_free_mode.foreground ="#2C3673"
         self.hands_free_mode.icon = "fa:graduation-cap"
         self.hands_free_mode.font_size = 30
-        self.stop_background_music()
+        try:
+          self.stop_background_music()
+        except:
+          print("no background music playing")
         # anvil.js.call("stop_background_music")
         time.sleep(1)
-        self.audio_recording_example.pause()
+        try:
+          self.audio_recording_example.pause()
+        except:
+          pass
       else:
         self.noalert = False
         result = alert(self.myloopoptions, buttons=[], large=True) #title="Lesson mode - pick your lesson type")
