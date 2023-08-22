@@ -41,8 +41,16 @@ if 1:
   fly_out_right = reversed(fly_in_right)
   pulse = Transition(scale=[1, 1.5, 1])
   
-  
   sentences_store = indexed_db.create_store("fs_store")
+  
+  speech_notworking = False
+  try:
+    from anvil.js.window import webkitSpeechRecognition
+    print("import voice recognition succesful")
+  except:
+    speech_notworking = True
+    print("import voice recognition failed")
+  
 
 class Swipe_interface(Swipe_interfaceTemplate):
   def __init__(self, show_how_to=False, **properties):
@@ -53,12 +61,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.on_keydown = self.on_keydown #key moment right there
     self.on_refocus = self.on_refocus #key moment right there
     self.on_blur = self.on_blur #key moment right there
-
-    self.speech_notworking = False
-    try:
-      from anvil.js.window import webkitSpeechRecognition
-    except:
-      self.speech_notworking = True
+      
     self.selected_category_number = 1
     self.catching = False
     self.myhowto = Howto()
@@ -233,19 +236,22 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.touch_end_y = None
 
   def on_click(self, event):
-    # print(str(event.target.outerHTML))
+    print(str(event.target.outerHTML))
     if self.app_ready == False:
       pass
-    elif event == "spacebar" or (not str(event.target.outerHTML).startswith(r'<i class="anvil-component-icon') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Get') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Just') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Listening - Stop') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You got it!') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Test yourself!') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">HOW TO') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">MENU') and \
-    not str(event.target.outerHTML).startswith(r'<div class="anvil-spacing-above-none anvil-spacing-below-none anvil-image anvil-component" src="data:image/png;base64,') and \
-    not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You') ):
+    elif event == "spacebar" or (
+      not str(event.target.outerHTML).startswith(r'<i class="anvil-component-icon') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Get') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Just') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Listening - Stop') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You got it!') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Test yourself!') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">HOW TO') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">MENU') and \
+      not str(event.target.outerHTML).startswith(r'<div class="anvil-spacing-above-none anvil-spacing-below-none anvil-image anvil-component" src="data:image/png;base64,') and \
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You')
+                                
+                                ):
       self.swipe_type = "click"
       # print(event.target.outerHTML)
       if self.mymenuv.mymode[0:7] == "Phrases":
@@ -1048,8 +1054,9 @@ That's the challenge - good luck!
     self.face_click()
 
   def catch_button_click(self, **event_args):
-    if self.speech_notworking:
+    if speech_notworking:
       alert("Please use google chrome for this feature")
+      
     else:
       if self.catch_button.text == "You got it!":
         pass
@@ -1069,13 +1076,16 @@ That's the challenge - good luck!
         self.launch_recognition()
 
   def launch_recognition(self):
-    self.recognition = webkitSpeechRecognition()
-    
-    self.transcript = ""
-    self.recognition.lang = "fr-CA"
-    self.recognition.continuous = True
-    self.recognition.addEventListener("result", self.get_transcript)
-    self.recognition.start()
+    try:
+      self.recognition = webkitSpeechRecognition()
+      self.transcript = ""
+      self.recognition.lang = "fr-CA"
+      self.recognition.continuous = True
+      self.recognition.addEventListener("result", self.get_transcript)
+      self.recognition.start()
+    except:
+      alert("voice recognition error")
+      self.catch_button_click()
 
   def get_transcript(self, e):
     self.recognition.abort()
