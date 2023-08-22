@@ -248,8 +248,17 @@ class Swipe_interface(Swipe_interfaceTemplate):
       not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">Test yourself!') and \
       not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">HOW TO') and \
       not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">MENU') and \
-      not str(event.target.outerHTML).startswith(r'<div class="anvil-spacing-above-none anvil-spacing-below-none anvil-image anvil-component" src="data:image/png;base64,') and \
-      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You')
+      not str(event.target.outerHTML).startswith(r'<div class="link-text" style="display: inline-block;">You') and \
+      
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">Get') and \
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">Just') and \
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">Listening - Stop') and \
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">You got it!') and \
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">Test yourself!') and \
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">HOW TO') and \
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">MENU') and \
+      not str(event.target.outerHTML).startswith(r'<div style="display: inline-block;" class="link-text">You') and \
+      not str(event.target.outerHTML).startswith(r'<div class="anvil-spacing-above-none anvil-spacing-below-none anvil-image anvil-component" src="data:image/png;base64,')
                                 
                                 ):
       self.swipe_type = "click"
