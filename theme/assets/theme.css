@@ -56,7 +56,6 @@ body {
   min-height: 550px;
   webkit-min-logical-height: 550px;
   border: 2px var(--appborders) solid;
-/*   margin: 5px; */
   border-radius: 16px;
   background-image: linear-gradient(131.83deg, #FFFAFA 0%, #FFF7F76e 99.21%);
   box-shadow: inset 1px 1px 5px #888888;
