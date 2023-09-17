@@ -53,11 +53,10 @@ if 1:
   
 
 class Swipe_interface(Swipe_interfaceTemplate):
-  def __init__(self, show_how_to=False, **properties):
+  def __init__(self, **properties):
     global sentences_store
     self.init_components(**properties)
-
-    self.show_how_to = show_how_to
+    
     self.on_keydown = self.on_keydown #key moment right there
     self.on_refocus = self.on_refocus #key moment right there
     self.on_blur = self.on_blur #key moment right there
@@ -602,9 +601,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
       self.getaccount.visible = False
       self.mymenuv = Mymenu(signed_in=True)
     self.launch_user_app()
-    # sitface.addEventListener('click', self.face_click)
-    if self.show_how_to:
-      # sitface = anvil.js.get_dom_node(self.sitimage)
+    
+    if self.mymenuv.signed_in == False:
       self.face_click()
       animate(self.how_to_panel, pulse, duration=500)
   
