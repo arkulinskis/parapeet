@@ -28,3 +28,4 @@ roles:
 - {name: ad_panel}
 - {name: jungle_BL}
 - {name: jungle_BR}
+- {name: notezone}
