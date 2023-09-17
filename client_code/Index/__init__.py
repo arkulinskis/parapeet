@@ -18,7 +18,7 @@ class Index(IndexTemplate):
   def get_started_click(self, **event_args):
     self.get_started.visible = False
     self.starting.visible = True
-    open_form("Swipe_interface", show_how_to=True)
+    open_form("Swipe_interface")
 
   def play_promo_click(self, **event_args):
     anvil.js.call("lockWakeState")
