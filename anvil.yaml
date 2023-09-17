@@ -58,7 +58,10 @@ native_deps: {head_html: "\n  <meta name=\"google-site-verification\" content=\"
     \ rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link\
     \ href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
     \ rel=\"stylesheet\">\n  \n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\"\
-    \ crossorigin=\"anonymous\"></script>\n\n\n<script>\nfunction isScreenLockSupported()\
+    \ crossorigin=\"anonymous\"></script>\n\n  <meta name=\"msapplication-TileColor\"\
+    \ content=\"#ffffff\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
+    >\n  <meta name=\"theme-color\" content=\"#ffffff\">\n\n<script>\n  \ndocument.querySelector('meta[name=\"\
+    theme-color\"]').setAttribute(\"content\", \"#FFFFFF\");\n  \nfunction isScreenLockSupported()\
     \ {\n  return ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState()\
     \ {\n  console.log(\"asked to keep awake\");\n  if(isScreenLockSupported()){\n\
     \    try {\n       screenLock = await navigator.wakeLock.request('screen');\n\
@@ -81,8 +84,8 @@ native_deps: {head_html: "\n  <meta name=\"google-site-verification\" content=\"
     \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
     \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
     \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\
-    \n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100%;\
-    \ opacity:0.2; position: fixed; top:0; left: 0; width: 100%; margin:0px; padding:0px;\"\
+    \n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100vh;\
+    \ opacity:0.2; position: fixed; top:0; left: 0; width: 100vw; margin:0px; padding:0px;\"\
     ></div>"}
 db_schema:
   voicefiles:
