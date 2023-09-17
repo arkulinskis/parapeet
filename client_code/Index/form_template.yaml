@@ -68,7 +68,7 @@ components:
         foreground: '', visible: true, spacing_above: medium, spacing_below: large,
         background: ''}
       name: flow_panel_2
-      layout_properties: {grid_position: 'YFIFYN,MDOJQX'}
+      layout_properties: {grid_position: 'YFIFYN,MDOJQX', full_width_row: true}
       components:
       - type: Link
         properties: {role: null, url: '', align: center, tooltip: '', border: '',
@@ -111,11 +111,17 @@ components:
       name: more_info
       layout_properties: {grid_position: 'SUGDUT,YNKVTX'}
       event_bindings: {click: more_info_click}
-- type: Label
-  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-    visible: true, text: 'ArkVital ''23     ', font_size: 14, font: Garamond, spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-    underline: false, icon: 'fa:globe'}
-  name: label_1
-  layout_properties: {grid_position: 'FEOSDY,ZQHJYV', full_width_row: true}
+- type: FlowPanel
+  properties: {role: null, spacing: none, align: center, tooltip: '', border: '',
+    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
+  name: flow_panel_4
+  layout_properties: {grid_position: 'BSGKBX,BBPIHB', full_width_row: true}
+  components:
+  - type: Label
+    properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+      visible: true, text: ArkVital '23, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: 'fa:globe'}
+    name: label_1
+    layout_properties: {}
 is_package: true
