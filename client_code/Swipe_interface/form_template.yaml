@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: unscrollable, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   event_bindings: {show: form_show, hide: form_hide}
