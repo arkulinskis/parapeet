@@ -19,6 +19,10 @@ body {
   overscroll-behavior: none;
 }
 
+.anvil-role-unscrollable {
+  overflow: hidden;
+}
+
 #appGoesHere a, #appGoesHere span,  #appGoesHere div, #appGoesHere p,
 .modal a, .modal span, .modal div, .modal p {
   color: var(--text_color);
