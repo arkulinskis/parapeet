@@ -313,9 +313,5 @@ components:
     foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
   name: flow_panel_9
   layout_properties: {grid_position: 'ODABYR,SKDJAZ', full_width_row: false}
-  components:
-  - type: form:adsense_component
-    properties: {}
-    name: adsense_component_1
-    layout_properties: {grid_position: 'KPRLGP,WXRLFD'}
+  components: []
 is_package: true
