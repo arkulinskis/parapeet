@@ -56,6 +56,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
   def __init__(self, **properties):
     global sentences_store
     self.init_components(**properties)
+
+    document.getElementsByTagName("body")[0].classList.add("unscrollable")
+    
     
     self.on_keydown = self.on_keydown #key moment right there
     self.on_refocus = self.on_refocus #key moment right there
