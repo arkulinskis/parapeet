@@ -11,6 +11,7 @@ class Index(IndexTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.myTimeout = 0
+    document.getElementsByTagName("body")[0].classList.remove("unscrollable")
     
     self.more_info_form = more_info()
     self.parapeet_story = Parapeet_story()
