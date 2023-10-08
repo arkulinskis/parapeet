@@ -4,7 +4,7 @@ import anvil.server
 import anvil.users
 from anvil import open_form, alert
 import datetime
-from anvil.js.window import similarity, document, navigator, MediaRecorder, Audio, Blob, URL, location, Tone
+from anvil.js.window import similarity, document, navigator, MediaRecorder, Audio, Blob, URL, location
 import anvil.js
 from anvil_extras.storage import indexed_db
 import random
@@ -241,10 +241,14 @@ class Swipe_interface(Swipe_interfaceTemplate):
     if self.audio_disabled:
       self.audio_recording_example = Audio()
       self.audio_recording_example.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-      self.audio_recording_example.autoplay=True
+      # self.audio_recording_example.autoplay=True
       self.audio_recording = Audio()
-      self.audio_recording_example.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-      self.audio_recording_example.autoplay=True
+      self.audio_recording.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      # self.audio_recording.autoplay=True
+      self.background_music = Audio()
+      self.background_music.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      # self.background_music.autoplay=True
+      self.background_music.volume = 0.01
       self.audio_disabled = True
       
     if self.app_ready == False:
@@ -1150,40 +1154,54 @@ That's the challenge - good luck!
     if self.keepplaying:
       if self.music_1 == None:
         self.music_1 = anvil.server.call("get_music", "1")
-      self.bga1 = Audio(self.music_1)
-      self.bga1.volume = 0.01
-      self.bga1.play()
-      self.bga1.addEventListener("ended", self.play_bga2)
+      # self.bga1 = Audio(self.music_1)
+      # self.bga1.volume = 0.01
+      # self.bga1.play()
+      # self.bga1.addEventListener("ended", self.play_bga2)
+      self.background_music.src = self.music_1
+      self.background_music.play()
+      self.background_music.removeEventListener("ended", self.play_bga1)
+      self.background_music.addEventListener("ended", self.play_bga2)
       
   def play_bga2(self, event=False):
     if self.keepplaying:
       if self.music_2 == None:
         self.music_2 = anvil.server.call("get_music", "2")
-      self.bga2 = Audio(self.music_2)
-      self.bga2.volume = 0.01
-      self.bga2.play()
-      self.bga2.addEventListener("ended", self.play_bga3)
+      # self.bga2 = Audio(self.music_2)
+      # self.bga2.volume = 0.01
+      # self.bga2.play()
+      # self.bga2.addEventListener("ended", self.play_bga3)
+      self.background_music.src = self.music_2
+      self.background_music.play()
+      self.background_music.removeEventListener("ended", self.play_bga2)
+      self.background_music.addEventListener("ended", self.play_bga3)
 
   def play_bga3(self, event=False):
     if self.keepplaying:
       if self.music_3 == None:
         self.music_3 = anvil.server.call("get_music", "3")
-      self.bga3 = Audio(self.music_3)
-      self.bga3.volume = 0.01
-      self.bga3.play()
-      self.bga3.addEventListener("ended", self.play_bga1)
+      # self.bga3 = Audio(self.music_3)
+      # self.bga3.volume = 0.01
+      # self.bga3.play()
+      # self.bga3.addEventListener("ended", self.play_bga1)
+      self.background_music.src = self.music_3
+      self.background_music.play()
+      self.background_music.removeEventListener("ended", self.play_bga3)
+      self.background_music.addEventListener("ended", self.play_bga1)
   
   def stop_background_music(self):
     keepplaying = False
-    if self.music_1 != None:
-      self.bga1.pause()
-      self.bga1.currentTime = 0
-    if self.music_2 != None:
-      self.bga2.pause()
-      self.bga2.currentTime = 0
-    if self.music_3 != None:
-      self.bga3.pause()
-      self.bga3.currentTime = 0
+    # if self.music_1 != None:
+    #   self.bga1.pause()
+    #   self.bga1.currentTime = 0
+    # if self.music_2 != None:
+    #   self.bga2.pause()
+    #   self.bga2.currentTime = 0
+    # if self.music_3 != None:
+    #   self.bga3.pause()
+    #   self.bga3.currentTime = 0
+    self.background_music.pause()
+    self.background_music.currentTime = 0
 
   def launch_level_select_click(self, **event_args):
     if self.looping or self.app_ready == False:
