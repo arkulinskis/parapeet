@@ -4,7 +4,7 @@ import anvil.server
 import anvil.users
 from anvil import open_form, alert
 import datetime
-from anvil.js.window import similarity, document, navigator, MediaRecorder, Audio, Blob, URL, location
+from anvil.js.window import similarity, document, navigator, MediaRecorder, Audio, Blob, URL, location, AudioContext
 import anvil.js
 from anvil_extras.storage import indexed_db
 import random
@@ -650,6 +650,11 @@ class Swipe_interface(Swipe_interfaceTemplate):
       tmp0 = self.row_showing_order[self.row_showing_item]
       tmp = self.usable_sentences[tmp0]
       tmpblob = anvil.server.call("get_voice", tmp["LineID"],  self.ccols[self.active_column], language)
+
+      audioContext = AudioContext()
+      document.querySelector("audio")
+
+      
       self.audio_recording_example=Audio(tmpblob)
       if language == "english":
         self.audio_recording_example.volume = 0.3
