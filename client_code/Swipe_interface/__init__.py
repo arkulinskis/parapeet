@@ -1159,6 +1159,7 @@ That's the challenge - good luck!
       # self.bga1.play()
       # self.bga1.addEventListener("ended", self.play_bga2)
       self.background_music.src = self.music_1
+      self.background_music.volume = 0.01
       self.background_music.play()
       self.background_music.removeEventListener("ended", self.play_bga1)
       self.background_music.addEventListener("ended", self.play_bga2)
@@ -1172,6 +1173,7 @@ That's the challenge - good luck!
       # self.bga2.play()
       # self.bga2.addEventListener("ended", self.play_bga3)
       self.background_music.src = self.music_2
+      self.background_music.volume = 0.01
       self.background_music.play()
       self.background_music.removeEventListener("ended", self.play_bga2)
       self.background_music.addEventListener("ended", self.play_bga3)
@@ -1185,6 +1187,7 @@ That's the challenge - good luck!
       # self.bga3.play()
       # self.bga3.addEventListener("ended", self.play_bga1)
       self.background_music.src = self.music_3
+      self.background_music.volume = 0.01
       self.background_music.play()
       self.background_music.removeEventListener("ended", self.play_bga3)
       self.background_music.addEventListener("ended", self.play_bga1)
@@ -1200,8 +1203,13 @@ That's the challenge - good luck!
     # if self.music_3 != None:
     #   self.bga3.pause()
     #   self.bga3.currentTime = 0
+    self.background_music.removeEventListener("ended", self.play_bga1)
+    self.background_music.removeEventListener("ended", self.play_bga2)
+    self.background_music.removeEventListener("ended", self.play_bga3)
     self.background_music.pause()
     self.background_music.currentTime = 0
+    self.background_music.pause()
+    
 
   def launch_level_select_click(self, **event_args):
     if self.looping or self.app_ready == False:
