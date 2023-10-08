@@ -56,10 +56,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
   def __init__(self, **properties):
     global sentences_store
     self.init_components(**properties)
-    
-    self.audio_recording_example = Audio()
-    self.audio_recording_example.autoplay=True
-    
+
+    self.audio_disabled = True
+      
     document.getElementsByTagName("body")[0].classList.add("unscrollable")
         
     self.on_keydown = self.on_keydown #key moment right there
@@ -73,7 +72,6 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self._setup = False
     self.audio_chunks=[]
     self.recorder=None
-    self.audio_recording = Audio()
 
     self.music_1 = None
     self.music_2 = None
@@ -240,6 +238,15 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
   def on_click(self, event):
     # print(str(event.target.outerHTML))
+    if self.audio_disabled:
+      self.audio_recording_example = Audio()
+      self.audio_recording_example.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      self.audio_recording_example.autoplay=True
+      self.audio_recording = Audio()
+      self.audio_recording_example.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      self.audio_recording_example.autoplay=True
+      self.audio_disabled = True
+      
     if self.app_ready == False:
       pass
     elif event == "spacebar" or (
