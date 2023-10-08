@@ -59,6 +59,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
     document.getElementsByTagName("body")[0].classList.add("unscrollable")
     
+    self.player = Tone.Player().toDestination()
+    
     self.on_keydown = self.on_keydown #key moment right there
     self.on_refocus = self.on_refocus #key moment right there
     self.on_blur = self.on_blur #key moment right there
@@ -237,7 +239,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.touch_end_y = None
 
   def on_click(self, event):
-    print(str(event.target.outerHTML))
+    # print(str(event.target.outerHTML))
     if self.app_ready == False:
       pass
     elif event == "spacebar" or (
@@ -649,9 +651,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       tmp0 = self.row_showing_order[self.row_showing_item]
       tmp = self.usable_sentences[tmp0]
       tmpblob = anvil.server.call("get_voice", tmp["LineID"],  self.ccols[self.active_column], language)
-### 
-      # self.audio_recording_example = Audio(tmpblob)
-      self.audio_recording_example = Tone.Player(tmpblob).toDestination()
+      self.audio_recording_example = Audio(tmpblob)
       if language == "english":
         self.audio_recording_example.volume = 0.3
       else:
@@ -1111,8 +1111,8 @@ That's the challenge - good luck!
     self.recognition.abort()
     self.show_text.border = ""
     self.catching = False
-    for i in e.results[0]:
-      print(i.transcript)
+    # for i in e.results[0]:
+    #   print(i.transcript)
     self.transcript = e.results[0][0].transcript
     self.ratio = similarity(self.str_to_catch, self.transcript)
     if self.ratio > 0.8:
@@ -1180,7 +1180,7 @@ That's the challenge - good luck!
       self.noalert = False
       result = alert(content=self.myphrasemap, large=True, buttons=[])
       self.noalert = True
-      print("result", result)
+      # print("result", result)
       if result != -1 and result != None:
         if self.mymenuv.signed_in:
           if self.selected_category_number != result:
