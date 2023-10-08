@@ -56,11 +56,12 @@ class Swipe_interface(Swipe_interfaceTemplate):
   def __init__(self, **properties):
     global sentences_store
     self.init_components(**properties)
-
+    
+    self.audio_recording_example = Audio()
+    self.audio_recording_example.autoplay=True
+    
     document.getElementsByTagName("body")[0].classList.add("unscrollable")
-    
-    self.player = Tone.Player().toDestination()
-    
+        
     self.on_keydown = self.on_keydown #key moment right there
     self.on_refocus = self.on_refocus #key moment right there
     self.on_blur = self.on_blur #key moment right there
@@ -72,8 +73,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self._setup = False
     self.audio_chunks=[]
     self.recorder=None
-    self.audio_recording = None
-    self.audio_recording_example = None
+    self.audio_recording = Audio()
 
     self.music_1 = None
     self.music_2 = None
@@ -651,7 +651,11 @@ class Swipe_interface(Swipe_interfaceTemplate):
       tmp0 = self.row_showing_order[self.row_showing_item]
       tmp = self.usable_sentences[tmp0]
       tmpblob = anvil.server.call("get_voice", tmp["LineID"],  self.ccols[self.active_column], language)
-      self.audio_recording_example = Audio(tmpblob)
+      
+      ###
+      
+      self.audio_recording_example.src = tmpblob # self.audio_recording_example = Audio(tmpblob)
+      
       if language == "english":
         self.audio_recording_example.volume = 0.3
       else:
@@ -705,7 +709,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.audio_chunks.append(e.data)
     js_blob=Blob(self.audio_chunks)
     audio_url=URL.createObjectURL(js_blob)
-    self.audio_recording=Audio(audio_url)
+    # self.audio_recording = Audio()
+    self.audio_recording.src = audio_url
     
   def play_recorded_click(self, **event_args):  
     if self.looping or self.app_ready == False:
@@ -726,7 +731,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
           self.play_recorded.icon = "fa:square"
           try:
             self.audio_recording.play()
-            time.sleep(int(self.rec_finish_time-self.rec_start_time))
+            time.sleep(int(self.rec_finish_time-self.rec_start_time)+1)
             print("playback complete")          
           except:
             print("couldn't play")

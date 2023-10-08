@@ -85,17 +85,7 @@ native_deps: {head_html: "\n  <meta name=\"google-site-verification\" content=\"
     \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
     \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\
     \n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js\"\
-    ></script>\n\n<script>\n  Tone.start();\n  // Create an array to store the file\
-    \ paths\n  const filePaths = [\"_/theme/file1.mp3\", \"_/theme/file2.mp3\"];\n\
-    \  \n  // Load the audio files using Tone.Buffer\n  const buffers = [];\n  const\
-    \ player = new Tone.Player().toDestination();\n  \n  const loadAudio = async ()\
-    \ => {\n      for (const filePath of filePaths) {\n          const buffer = await\
-    \ Tone.Buffer.fromUrl(filePath);\n          buffers.push(buffer);\n      }\n \
-    \ };\n  \n  loadAudio().then(() => {\n    player.buffer = buffers[0];\n    player.start();\n\
-    \  \n    player.onended = () => {\n       if (buffers.length > 1) {\n        \
-    \  buffers.shift(); // Remove the first buffer\n          player.buffer = buffers[0];\n\
-    \          player.start();\n      }\n    }\n  });\n</script>\n\n\n\n\n\n\n<!--\
-    \ <script>\n  var audioCtx = new (window.AudioContext || window.webkitAudioContext);\n\
+    ></script>\n\n\n<!-- <script>\n  var audioCtx = new (window.AudioContext || window.webkitAudioContext);\n\
     \  \n  var volume = audioCtx.createGain();\n  volume.connect(audioCtx.destination);\n\
     \  volume.gain.value=0.2;\n\n  var sine = audioCtx.createOscillator();\n  sine.frequency.value\
     \ = 440;\n  sine.start();\n  sine.connect(volume);\n\n</script> -->\n\n\n\n<div\
