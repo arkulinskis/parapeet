@@ -241,7 +241,7 @@ db_schema:
     server: full
     columns:
     - name: Music_file
-      admin_ui: {order: 0, width: 200}
+      admin_ui: {order: 0, width: 380}
       type: media
     - name: music_id
       admin_ui: {order: 1, width: 200}
