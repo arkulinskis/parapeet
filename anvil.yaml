@@ -84,9 +84,23 @@ native_deps: {head_html: "\n  <meta name=\"google-site-verification\" content=\"
     \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
     \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
     \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\
-    \n\n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100vh;\
+    \n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100vh;\
     \ opacity:0.2; position: fixed; top:0; left: 0; width: 100vw; margin:0px; padding:0px;\"\
-    ></div>"}
+    ></div>\n\n<button onclick=\"startRecording()\">start</button><br>\n<button onclick=\"\
+    endRecording()\">end</button>\n<video id=\"video\" autoplay playsInline muted></video>\n\
+    \n<script>\nlet blobs = [];\nlet stream;\nlet mediaRecorder;\nasync function startRecording()\
+    \ {\n  blobs = [];\n  console.log(\"Starting recording\");\n    stream = await\
+    \ navigator.mediaDevices.getUserMedia({ audio: true, video: true });\n    mediaRecorder\
+    \ = new MediaRecorder(stream);\n    mediaRecorder.ondataavailable = (event) =>\
+    \ {\n       if (event.data) {\n        blobs.push(event.data);\n       }\n   \
+    \ }\n    mediaRecorder.onstop = doPreview;\n    mediaRecorder.start(1000);\n}\n\
+    function endRecording(){\n    console.log(\"Stopping capture\");\n    mediaRecorder.stop();\n\
+    \    stream.getTracks().forEach(track => track.stop());\n}\nfunction doPreview()\
+    \ {\n  console.log(\"doing preview\");\n    if (!blobs.length){\n        return;\
+    \     \n    }\n    // Let's concatenate blobs to preview the recorded content\n\
+    \    // var myaudio = document.getElementById(\"myaudio\");\n    video.src = URL.createObjectURL(new\
+    \ Blob(blobs, { type: mediaRecorder.mimeType }));\n    // myaudio.play();\n}\n\
+    \  </script>"}
 db_schema:
   voicefiles:
     client: none

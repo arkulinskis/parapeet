@@ -717,9 +717,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
   def save_audio(self,e):
     self.audio_chunks.append(e.data)
-    js_blob=Blob(self.audio_chunks)
-    audio_url=URL.createObjectURL(js_blob)
-    # self.audio_recording = Audio()
+    js_blob = Blob(self.audio_chunks)
+    audio_url = URL.createObjectURL(js_blob)
     self.audio_recording.src = audio_url
     
   def play_recorded_click(self, **event_args):  
