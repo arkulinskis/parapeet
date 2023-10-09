@@ -736,10 +736,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
     else:
       if self.playing_recorded:
         self.playing_recorded = False
-        self.audioElement.currentTime = 0
         self.audioElement.pause()
-        # self.audio_recording.pause()
-        # self.audio_recording.currentTime = 0
+        self.audioElement.currentTime = 0
         self.play_recorded.font_size = 30
         self.play_recorded.foreground = "#2C3673"
         self.play_recorded.icon = "fa:play-circle"
@@ -755,11 +753,15 @@ class Swipe_interface(Swipe_interfaceTemplate):
           self.sourceElement.currentTime = 0
           self.audioElement.play()          
           time.sleep(self.sourceElement.duration)
+          print(self.audioElement.currentTime, "and duration", self.sourceElement.duration, self.audioElement.duration)
+          if self.playing_recorded == True:
+            if (self.audioElement.currentTime + 0.2) > self.sourceElement.duration:
+              self.play_recorded_click()
           print("playback complete")          
           # except:
           #   print("couldn't play")
             
-          if self.playing_recorded: self.play_recorded_click()
+          # if self.playing_recorded: self.play_recorded_click()
 
   def stopMicrophone(self):
     if self.stream:
