@@ -750,7 +750,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
             self.audio_recording.currentTime = 0
             self.audio_recording.play()
             print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
-            time.sleep(self.rec_finish_time-self.rec_start_time)
+            time.sleep(self.rec_finish_time-self.rec_start_time+1)
             print("playback complete")          
           except:
             print("couldn't play")
