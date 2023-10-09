@@ -59,6 +59,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
     self.audio_disabled = True
     self.stream=None
+    
+    self.audioElement = document.getElementById('myaudio')
+    self.sourceElement = document.getElementById("mysource")
       
     document.getElementsByTagName("body")[0].classList.add("unscrollable")
         
@@ -243,9 +246,6 @@ class Swipe_interface(Swipe_interfaceTemplate):
       self.audio_recording_example = Audio()
       self.audio_recording_example.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
       
-      self.audioElement = document.createElement('audio')
-      self.sourceElement = document.createElement("source")
-      self.audioElement.appendChild(self.sourceElement)
       
       self.audio_recording = Audio()
       # self.audio_recording.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
@@ -726,6 +726,9 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.audio_chunks.append(e.data)
     js_blob = Blob(self.audio_chunks, {type: 'audio/wav'})
     self.audio_url = URL.createObjectURL(js_blob)
+    self.sourceElement.src = self.audio_url
+    self.sourceElement.duration = self.rec_finish_time-self.rec_start_time
+    
     
   def play_recorded_click(self, **event_args):  
     if self.looping or self.app_ready == False:
@@ -733,8 +736,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
     else:
       if self.playing_recorded:
         self.playing_recorded = False
+        self.audioElement.currentTime = 0
         self.audioElement.pause()
-        self.audioElement.currentTime= 0
         # self.audio_recording.pause()
         # self.audio_recording.currentTime = 0
         self.play_recorded.font_size = 30
@@ -746,21 +749,12 @@ class Swipe_interface(Swipe_interfaceTemplate):
           self.play_recorded.font_size = 60
           self.play_recorded.foreground = "#05cc2d"
           self.play_recorded.icon = "fa:square"
-          # try:
-###
-          print(self.audio_url)
-          self.sourceElement.src = self.audio_url
-          # self.sourceElement.type = 'audio/wav'
+
           self.audioElement.load()
           self.audioElement.currentTime = 0
-          self.audioElement.play()
-          print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
-          
-          # self.audio_recording.src = self.audio_url
-          # self.audio_recording.load()
-          # self.audio_recording.currentTime = 0
-          # self.audio_recording.play()
-          time.sleep(self.rec_finish_time-self.rec_start_time+1)
+          self.sourceElement.currentTime = 0
+          self.audioElement.play()          
+          time.sleep(self.sourceElement.duration)
           print("playback complete")          
           # except:
           #   print("couldn't play")
