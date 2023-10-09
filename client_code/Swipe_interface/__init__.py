@@ -739,7 +739,6 @@ class Swipe_interface(Swipe_interfaceTemplate):
         self.play_recorded.foreground = "#2C3673"
         self.play_recorded.icon = "fa:play-circle"
       else:
-        self.point_count.text = str(self.rec_finish_time) + "  " + str(self.rec_start_time) 
         if self.rec_finish_time is not None and self.rec_start_time is not None:
           self.playing_recorded = True
           self.play_recorded.font_size = 60
