@@ -241,13 +241,15 @@ class Swipe_interface(Swipe_interfaceTemplate):
     # print(str(event.target.outerHTML))
     if self.audio_disabled:
       self.audio_recording_example = Audio()
-      self.audio_recording_example.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-      # self.audio_recording_example.autoplay=True
+      self.audio_recording_example.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      self.audio_recording_example.autoplay=True
+      self.audio_recording_example.autoplay=False
       self.audio_recording = Audio()
-      self.audio_recording.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-      # self.audio_recording.autoplay=True
+      self.audio_recording.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      self.audio_recording.autoplay=True
+      self.audio_recording.autoplay=False
       self.background_music = Audio()
-      self.background_music.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+      self.background_music.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
       # self.background_music.autoplay=True
       
       self.audio_disabled = True
@@ -699,13 +701,15 @@ class Swipe_interface(Swipe_interfaceTemplate):
     else:
       if self.recording_audio:  
         self.recorder.stop()
-        self.recorder = None
         self.recording_audio = False
         self.record.font_size = 30
         self.record.icon = "fa:circle"
         self.show_text.border = ""
         self.stopMicrophone()
         self.rec_finish_time = time.time()
+        # self.recorder = None ###
+        # self.stream = None ###
+        
       else:
         self.audio_chunks=[]
         self.stream = navigator.mediaDevices.getUserMedia({'audio': True})
@@ -721,8 +725,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
   def save_audio(self,e):
     self.audio_chunks.append(e.data)
     js_blob = Blob(self.audio_chunks)
-    audio_url = URL.createObjectURL(js_blob)
-    self.audio_recording.src = audio_url
+    self.audio_url = URL.createObjectURL(js_blob)
     
   def play_recorded_click(self, **event_args):  
     if self.looping or self.app_ready == False:
@@ -742,8 +745,11 @@ class Swipe_interface(Swipe_interfaceTemplate):
           self.play_recorded.foreground = "#05cc2d"
           self.play_recorded.icon = "fa:square"
           try:
+            self.audio_recording.src = self.audio_url
+            self.audio_recording.currentTime = 0
             self.audio_recording.play()
-            time.sleep(int(self.rec_finish_time-self.rec_start_time)+1)
+            print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
+            time.sleep(self.rec_finish_time-self.rec_start_time)
             print("playback complete")          
           except:
             print("couldn't play")
