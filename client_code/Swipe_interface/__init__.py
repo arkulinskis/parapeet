@@ -744,16 +744,16 @@ class Swipe_interface(Swipe_interfaceTemplate):
           self.play_recorded.font_size = 60
           self.play_recorded.foreground = "#05cc2d"
           self.play_recorded.icon = "fa:square"
-          try:
-            self.audio_recording.src = self.audio_url
-            self.audio_recording.load()
-            self.audio_recording.currentTime = 0
-            self.audio_recording.play()
-            print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
-            time.sleep(self.rec_finish_time-self.rec_start_time+1)
-            print("playback complete")          
-          except:
-            print("couldn't play")
+          # try:
+          self.audio_recording.src = self.audio_url
+          self.audio_recording.load()
+          self.audio_recording.currentTime = 0
+          self.audio_recording.play()
+          print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
+          time.sleep(self.rec_finish_time-self.rec_start_time+1)
+          print("playback complete")          
+          # except:
+          #   print("couldn't play")
             
           if self.playing_recorded: self.play_recorded_click()
 
