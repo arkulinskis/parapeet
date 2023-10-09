@@ -756,7 +756,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
           time.sleep(self.sourceElement.duration)
           print(self.audioElement.currentTime, "and duration", self.sourceElement.duration, self.audioElement.duration)
           if self.playing_recorded == True:
-            if (self.audioElement.currentTime + 0.2) > self.sourceElement.duration:
+            if (self.audioElement.currentTime + 0.2) > self.sourceElement.duration or (self.audioElement.currentTime + 0.2) > self.audioElement.duration:
               self.play_recorded_click()
           print("playback complete")          
           # except:
