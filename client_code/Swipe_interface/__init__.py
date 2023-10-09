@@ -58,6 +58,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.init_components(**properties)
 
     self.audio_disabled = True
+    self.stream=None
       
     document.getElementsByTagName("body")[0].classList.add("unscrollable")
         
@@ -248,6 +249,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       self.background_music = Audio()
       self.background_music.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
       # self.background_music.autoplay=True
+      
       self.audio_disabled = True
       
     if self.app_ready == False:
@@ -697,6 +699,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     else:
       if self.recording_audio:  
         self.recorder.stop()
+        self.recorder = None
         self.recording_audio = False
         self.record.font_size = 30
         self.record.icon = "fa:circle"
@@ -705,15 +708,15 @@ class Swipe_interface(Swipe_interfaceTemplate):
         self.rec_finish_time = time.time()
       else:
         self.audio_chunks=[]
-        self.stream=navigator.mediaDevices.getUserMedia({'audio': True})
+        self.stream = navigator.mediaDevices.getUserMedia({'audio': True})
         self.recorder=MediaRecorder(self.stream)
+        self.recorder.ondataavailable = self.save_audio
+        self.recorder.start()
+        self.rec_start_time = time.time()
         self.recording_audio = True
         self.show_text.border = "3px solid #ff2e2e"
         self.record.font_size = 60
         self.record.icon = "fa:square"
-        self.recorder.ondataavailable=self.save_audio
-        self.rec_start_time = time.time()
-        self.recorder.start()
 
   def save_audio(self,e):
     self.audio_chunks.append(e.data)
