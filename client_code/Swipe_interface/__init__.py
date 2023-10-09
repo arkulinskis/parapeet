@@ -750,10 +750,11 @@ class Swipe_interface(Swipe_interfaceTemplate):
 ###
           print(self.audio_url)
           self.sourceElement.src = self.audio_url
-          self.sourceElement.type = 'audio/wav'
+          # self.sourceElement.type = 'audio/wav'
           self.audioElement.load()
           self.audioElement.currentTime = 0
           self.audioElement.play()
+          print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
           
           # self.audio_recording.src = self.audio_url
           # self.audio_recording.load()
