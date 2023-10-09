@@ -724,7 +724,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
   def save_audio(self,e):
     self.audio_chunks.append(e.data)
-    js_blob = Blob(self.audio_chunks)
+    js_blob = Blob(self.audio_chunks, {type: 'audio/wav'})
     self.audio_url = URL.createObjectURL(js_blob)
     
   def play_recorded_click(self, **event_args):  
@@ -746,6 +746,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
           self.play_recorded.icon = "fa:square"
           try:
             self.audio_recording.src = self.audio_url
+            self.audio_recording.load()
             self.audio_recording.currentTime = 0
             self.audio_recording.play()
             print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
