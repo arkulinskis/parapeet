@@ -242,15 +242,15 @@ class Swipe_interface(Swipe_interfaceTemplate):
     if self.audio_disabled:
       self.audio_recording_example = Audio()
       self.audio_recording_example.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-      self.audio_recording_example.autoplay=True
-      self.audio_recording_example.autoplay=False
+      
+      self.audioElement = document.createElement('audio')
+      self.sourceElement = document.createElement("source")
+      self.audioElement.appendChild(self.sourceElement)
+      
       self.audio_recording = Audio()
-      self.audio_recording.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-      self.audio_recording.autoplay=True
-      self.audio_recording.autoplay=False
+      # self.audio_recording.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
       self.background_music = Audio()
       self.background_music.src = r"data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-      # self.background_music.autoplay=True
       
       self.audio_disabled = True
       
@@ -733,8 +733,10 @@ class Swipe_interface(Swipe_interfaceTemplate):
     else:
       if self.playing_recorded:
         self.playing_recorded = False
-        self.audio_recording.pause()
-        self.audio_recording.currentTime = 0
+        self.audioElement.pause()
+        self.audioElement.currentTime= 0
+        # self.audio_recording.pause()
+        # self.audio_recording.currentTime = 0
         self.play_recorded.font_size = 30
         self.play_recorded.foreground = "#2C3673"
         self.play_recorded.icon = "fa:play-circle"
@@ -745,11 +747,18 @@ class Swipe_interface(Swipe_interfaceTemplate):
           self.play_recorded.foreground = "#05cc2d"
           self.play_recorded.icon = "fa:square"
           # try:
-          self.audio_recording.src = self.audio_url
-          self.audio_recording.load()
-          self.audio_recording.currentTime = 0
-          self.audio_recording.play()
-          print(self.rec_finish_time, self.rec_start_time, self.rec_finish_time-self.rec_start_time)
+###
+          print(self.audio_url)
+          self.sourceElement.src = self.audio_url
+          self.sourceElement.type = 'audio/wav'
+          self.audioElement.load()
+          self.audioElement.currentTime = 0
+          self.audioElement.play()
+          
+          # self.audio_recording.src = self.audio_url
+          # self.audio_recording.load()
+          # self.audio_recording.currentTime = 0
+          # self.audio_recording.play()
           time.sleep(self.rec_finish_time-self.rec_start_time+1)
           print("playback complete")          
           # except:
