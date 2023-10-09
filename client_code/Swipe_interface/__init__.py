@@ -724,9 +724,10 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
   def save_audio(self,e):
     self.audio_chunks.append(e.data)
-    js_blob = Blob(self.audio_chunks, {type: 'audio/wav'})
+    js_blob = Blob(self.audio_chunks, {type: 'audio/mp3'})
     self.audio_url = URL.createObjectURL(js_blob)
     self.sourceElement.src = self.audio_url
+    self.sourceElement.type = "audio/mp3"
     self.sourceElement.duration = self.rec_finish_time-self.rec_start_time
     
     
