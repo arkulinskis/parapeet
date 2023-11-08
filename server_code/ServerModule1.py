@@ -8,6 +8,13 @@ from anvil.tables import app_tables
 import anvil.server
 from datetime import datetime, timezone, timedelta
 
+@anvil.server.wellknown_endpoint("/assetlinks.json")
+def assetlinks():
+  return [{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.parapeet.com",
+               "sha256_cert_fingerprints": ["FA:72:9E:39:22:F0:86:2E:99:33:4F:0C:C1:51:C8:1F:1B:56:6D:BB:01:97:53:ED:61:37:63:98:82:C5:93:1E"] } }]
+
 
 @anvil.server.callable
 def save_note(word, explanation):
