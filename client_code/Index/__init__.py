@@ -21,44 +21,44 @@ class Index(IndexTemplate):
     self.starting.visible = True
     open_form("Swipe_interface")
 
-  def play_promo_click(self, **event_args):
-    anvil.js.call("lockWakeState")
-    self.playpromo()
+  # def play_promo_click(self, **event_args):
+  #   anvil.js.call("lockWakeState")
+  #   self.playpromo()
 
   def form_show(self, **event_args):
     self.get_started.visible = True
-    self.newVideo = document.createElement("video")
-    self.newVideo.classList.add("invisible")
-    self.newVideo.type = r"video/mp4"
-    self.newVideo.src = "tbd"
-    self.played = False
-    document.getElementById("appGoesHere").appendChild(self.newVideo)
-    # anvil.js.get_dom_node(self.newVideo).addEventListener("click", self.stopplayback)    
-    self.newVideo.addEventListener("click", self.stopplayback)
+    # self.newVideo = document.createElement("video")
+    # self.newVideo.classList.add("invisible")
+    # self.newVideo.type = r"video/mp4"
+    # self.newVideo.src = "tbd"
+    # self.played = False
+    # document.getElementById("appGoesHere").appendChild(self.newVideo)
+    # # anvil.js.get_dom_node(self.newVideo).addEventListener("click", self.stopplayback)    
+    # self.newVideo.addEventListener("click", self.stopplayback)
 
-  def playpromo(self, **args):
-    if self.played == False:
-      tmpblob = anvil.server.call("get_video", "promo")
-      print(tmpblob)
-      self.newVideo.src = tmpblob
-      self.played = True
-    self.newVideo.classList.remove("invisible");
-    self.newVideo.classList.add("on_top");
-    self.newVideo.poster = "_/theme/logo-color.png"
-    try:
-      self.newVideo.play();
-      self.myTimeout = setTimeout(self.stopplayback, 43000 - self.newVideo.currentTime * 1000);
-    except:
-      print("no video loaded yet")
+  # def playpromo(self, **args):
+  #   if self.played == False:
+  #     tmpblob = anvil.server.call("get_video", "promo")
+  #     print(tmpblob)
+  #     self.newVideo.src = tmpblob
+  #     self.played = True
+  #   self.newVideo.classList.remove("invisible");
+  #   self.newVideo.classList.add("on_top");
+  #   self.newVideo.poster = "_/theme/logo-color.png"
+  #   try:
+  #     self.newVideo.play();
+  #     self.myTimeout = setTimeout(self.stopplayback, 43000 - self.newVideo.currentTime * 1000);
+  #   except:
+  #     print("no video loaded yet")
 
-  def stopplayback(self, event=True, **args):
-    self.newVideo.classList.remove("on_top");
-    self.newVideo.classList.add("invisible");
-    self.newVideo.pause();
-    clearTimeout(self.myTimeout);
-    if self.newVideo.currentTime * 1000 > 42888:
-      self.newVideo.currentTime = 0
-    anvil.js.call("releaseWakeState")
+  # def stopplayback(self, event=True, **args):
+  #   self.newVideo.classList.remove("on_top");
+  #   self.newVideo.classList.add("invisible");
+  #   self.newVideo.pause();
+  #   clearTimeout(self.myTimeout);
+  #   if self.newVideo.currentTime * 1000 > 42888:
+  #     self.newVideo.currentTime = 0
+  #   anvil.js.call("releaseWakeState")
 
   def showstory_click(self, **event_args):
     result = alert(self.parapeet_story, large=True)

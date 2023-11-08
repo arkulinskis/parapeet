@@ -20,7 +20,7 @@ services:
 - source: /runtime/services/stripe.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: Startup}
+startup: {type: form, module: Index}
 package_name: Situation_French_
 allow_embedding: true
 name: Parapeet
@@ -30,8 +30,7 @@ runtime_options:
   server_version: python3-sandbox
   server_spec: {base: python310-standard}
   server_spec_disabled: {base: python310-standard, requirements: ''}
-metadata: {title: Parapeet!, description: Meet Parapeet - language stealing parakeet!,
-  logo_img: 'asset:Parapeet-super-zoom.png'}
+metadata: {title: Catch the lingo - Parapeet, description: Catch the lingo, logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
 native_deps: {head_html: "\n  <meta name=\"google-site-verification\" content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\"\
     \ />\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width,\

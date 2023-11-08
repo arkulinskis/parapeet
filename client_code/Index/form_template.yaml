@@ -6,15 +6,16 @@ container:
   event_bindings: {show: form_show}
 components:
 - type: FlowPanel
-  properties: {role: howtozone, spacing: none, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: medium, spacing_below: none, background: ''}
+  properties: {role: swipezone, vertical_align: full, spacing: none, align: center,
+    tooltip: '', border: '', foreground: '', visible: true, spacing_above: none, spacing_below: none,
+    background: ''}
   name: flow_panel_1
-  layout_properties: {grid_position: 'AWHGAJ,FGHUKW', full_width_row: true}
+  layout_properties: {grid_position: 'AWHGAJ,FGHUKW', full_width_row: false}
   components:
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: medium,
-      background: ''}
+      wrap_on: mobile, col_spacing: none, spacing_above: medium, col_widths: '{}',
+      spacing_below: small, background: ''}
     name: column_panel_1
     layout_properties: {width: null, expand: false}
     components:
@@ -38,54 +39,31 @@ components:
           underline: false, icon: ''}
         name: label_2
         layout_properties: {grid_position: 'UZHQKN,IXRDCI'}
-    - type: RichText
-      properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
-        foreground: '', visible: true, font_size: 22, content: '<p><strong><u>Catch
-          the language parakeet!</u></strong><br />
+    - name: label_3
+      properties: {text: 'Last year a magic parakeet got loose.
 
-          <br />
+          This klepto stole everyone''s knowledge of French.', font: Garamond, align: center,
+        font_size: 22, spacing_above: none, bold: false}
+      type: Label
+      layout_properties: {grid_position: 'CDDVWA,OMESTF'}
+    - name: label_3_copy_1
+      properties: {text: 'After months of prep and grind..
 
-          <strong>An app to finally achieve fluency.</strong><br />
-
-          We have&nbsp;<u>thousands of phrases</u> for you.<br />
-
-          Hands-free personalized <u>audio lessons</u>.<br />
-
-          Even AI supported&nbsp;<u>accent improvement</u>.<br />
-
-          <strong>Safely find your knowledge gaps..</strong></p>
-
-
-          <p><strong>..and fill them with Parapeet phrases.</strong></p>
-
-          ', font: Garamond, spacing_above: none, spacing_below: none, data: null,
-        background: '', format: restricted_html}
-      name: rich_text_1
-      layout_properties: {grid_position: 'QSKSAV,EIPIKN'}
-      components: []
-    - type: FlowPanel
-      properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-        foreground: '', visible: true, spacing_above: small, spacing_below: medium,
-        background: ''}
-      name: flow_panel_2
-      layout_properties: {grid_position: 'YFIFYN,MDOJQX', full_width_row: true}
-      components:
-      - type: Link
-        properties: {role: null, url: '', align: center, tooltip: '', border: '',
-          foreground: '', visible: true, text: The story of Parapeet, font_size: 30,
-          wrap_on: mobile, font: Garamond, col_spacing: medium, spacing_above: small,
-          icon_align: top, col_widths: '{}', spacing_below: small, italic: true, background: '',
-          bold: true, underline: false, icon: 'fa:book'}
-        name: showstory
-        layout_properties: {grid_position: 'CTKXIS,SDHCLW'}
-        event_bindings: {click: showstory_click}
-        components: []
+          we are finally ready. ', font: Garamond, align: center, font_size: 22, spacing_above: none}
+      type: Label
+      layout_properties: {grid_position: 'OGKLHQ,BZQTEX'}
+    - name: label_3_copy_1_copy_1
+      properties: {text: "We want swipers, actors, haters, lovers.. \npassion is what\
+          \ this will take.\n", font: Garamond, align: center, font_size: 22, spacing_above: none,
+        spacing_below: medium}
+      type: Label
+      layout_properties: {grid_position: 'QJTYWP,RCQKTH'}
     - type: Link
       properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
         foreground: '', visible: false, text: Starting..., font_size: 32, wrap_on: mobile,
         font: Garamond, col_spacing: medium, spacing_above: medium, icon_align: left,
         col_widths: '{}', spacing_below: medium, italic: false, background: '', bold: true,
-        underline: false, icon: 'fa:leanpub'}
+        underline: false, icon: ''}
       name: starting
       layout_properties:
         col_widths: {}
@@ -94,22 +72,33 @@ components:
       components: []
     - type: Link
       properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-        foreground: '', visible: true, text: Get started!, font_size: 32, wrap_on: mobile,
+        foreground: '', visible: true, text: Catch Parapeet!, font_size: 32, wrap_on: mobile,
         font: Garamond, col_spacing: medium, spacing_above: medium, icon_align: left,
         col_widths: '{}', spacing_below: medium, italic: false, background: '', bold: true,
-        underline: false, icon: 'fa:leanpub'}
+        underline: false, icon: ''}
       name: get_started
       layout_properties: {grid_position: 'NPALGN,JAPLOK', full_width_row: false}
       event_bindings: {click: get_started_click}
       components: []
+      data_bindings: []
+    - type: Link
+      properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: The story of Parapeet, font_size: 30, wrap_on: mobile,
+        font: Garamond, col_spacing: medium, spacing_above: medium, icon_align: top,
+        col_widths: '{}', spacing_below: small, italic: true, background: '', bold: true,
+        underline: false, icon: 'fa:book'}
+      name: showstory
+      layout_properties: {grid_position: 'WNMBAK,RSZLTV'}
+      event_bindings: {click: showstory_click}
+      components: []
     - type: Link
       properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
         visible: true, text: More information, font_size: 24, wrap_on: mobile, font: Garamond,
-        col_spacing: medium, spacing_above: medium, icon_align: left, col_widths: '',
+        col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
         spacing_below: small, italic: false, background: '', bold: false, underline: true,
         icon: ''}
       name: more_info
-      layout_properties: {grid_position: 'SUGDUT,YNKVTX'}
+      layout_properties: {grid_position: 'SBXBJB,DUAQDA'}
       event_bindings: {click: more_info_click}
 - type: FlowPanel
   properties: {role: null, spacing: none, align: center, tooltip: '', border: '',
