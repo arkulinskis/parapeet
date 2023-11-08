@@ -21,7 +21,7 @@ services:
   client_config: {}
   server_config: {}
 startup: {type: form, module: Index}
-package_name: Situation_French_
+package_name: parapeet
 allow_embedding: true
 name: Parapeet
 runtime_options:
