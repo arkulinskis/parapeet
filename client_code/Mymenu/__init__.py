@@ -110,6 +110,14 @@ class Mymenu(MymenuTemplate):
   def LOGO_click(self, **event_args):
     self.raise_event("x-close-alert", value="Index")
 
+  def closeacc_click(self, **event_args):
+    get_user = anvil.users.get_user()
+    if get_user != None:
+      r = alert("Delete account? WARNING you will lose all your notes in the app.", buttons=[("Delete account", True),("Cancel", False)])
+      if r:
+        anvil.server.call('delete_account')
+  
+
 
 
 
