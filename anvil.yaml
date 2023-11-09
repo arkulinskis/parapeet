@@ -35,17 +35,16 @@ metadata: {title: Catch the lingo - Parapeet, description: 'Last year a magic pa
     of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters,
     lovers.. \npassion is what this will take.\n\nCatch Parapeet!', logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
-native_deps: {head_html: "<head>\n  <link rel=\"manifest\" id=\"my-manifest-placeholder\"\
-    >\n</head>\n<script>\n\nvar myDynamicManifest = {\n  \"start_url\": \"https://parapeet.com/\"\
-    ,\n  \"name\": \"Parapeet\",\n  \"short_name\": \"Parapeet\",\n  \"description\"\
-    : \"Last year a magic parakeet got loose.\\nThis klepto stole everyone's knowledge\
-    \ of French.\\n\\nAfter months of prep and grind..\\nwe are finally ready. \\\
-    n\\nWe want swipers, actors, haters, lovers.. \\npassion is what this will take.\\\
-    n\\nCatch Parapeet!\",\n  \"background_color\": \"#000000\",\n  \"theme_color\"\
-    : \"#2ab1eb\",\n  \"display\": \"fullscreen\",\n  \"icons\": [\n    {\n      \"\
-    src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\",\n      \"sizes\"\
-    : \"192x192\",\n      \"type\": \"image/png\",\n      \"density\": \"2.0\",\n\
-    \      \"purpose\": \"any\"\n    },\n    {\n      \"src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
+native_deps: {head_html: "<script>\nvar myDynamicManifest = {\n  \"start_url\": \"\
+    https://parapeet.com/\",\n  \"name\": \"Parapeet\",\n  \"short_name\": \"Parapeet\"\
+    ,\n  \"description\": \"Last year a magic parakeet got loose.\\nThis klepto stole\
+    \ everyone's knowledge of French.\\n\\nAfter months of prep and grind..\\nwe are\
+    \ finally ready. \\n\\nWe want swipers, actors, haters, lovers.. \\npassion is\
+    \ what this will take.\\n\\nCatch Parapeet!\",\n  \"background_color\": \"#000000\"\
+    ,\n  \"theme_color\": \"#2ab1eb\",\n  \"display\": \"fullscreen\",\n  \"icons\"\
+    : [\n    {\n      \"src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
+    ,\n      \"sizes\": \"192x192\",\n      \"type\": \"image/png\",\n      \"density\"\
+    : \"2.0\",\n      \"purpose\": \"any\"\n    },\n    {\n      \"src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
     ,\n      \"sizes\": \"512x512\",\n      \"type\": \"image/png\",\n      \"density\"\
     : \"2.0\",\n      \"purpose\": \"any\"\n    },\n    {\n      \"src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
     ,\n      \"sizes\": \"512x512\",\n      \"type\": \"image/png\",\n      \"density\"\
