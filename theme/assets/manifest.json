@@ -5,7 +5,7 @@
   "description": "Last year a magic parakeet got loose.\nThis klepto stole everyone's knowledge of French.\n\nAfter months of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters, lovers.. \npassion is what this will take.\n\nCatch Parapeet!",
   "background_color": "#000000",
   "theme_color": "#2ab1eb",
-  "display": "fullscreen",
+  "display": "standalone",
   "icons": [
     {
       "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",

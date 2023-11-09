@@ -15,7 +15,7 @@ def assetlinks():
       "target": {
         "namespace": "android_app",
         "package_name": "com.parapeet.twa",
-        "sha256_cert_fingerprints": ["CE:81:49:7F:AE:F1:EA:9B:E5:E4:03:E8:48:3C:C8:D1:62:06:43:FC:E3:62:08:1D:AC:80:3A:26:86:38:6D:6E"]
+        "sha256_cert_fingerprints": ["02:82:A2:D6:EF:22:90:F4:D2:3C:F4:4C:FA:0C:96:28:10:58:CF:AA:95:BC:62:3F:1E:05:E7:A6:31:C3:CB:84"]
       }
     }]
 
