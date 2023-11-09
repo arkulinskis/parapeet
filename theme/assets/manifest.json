@@ -32,7 +32,7 @@
   "id": "parapeet",
   "dir": "rtl",
   "lang": "en",
-  "scope": "parapeet.com",
+  "scope": "https://parapeet.com",
   "orientation": "portrait",
   "related_applications": [
     {
