@@ -1,0 +1,50 @@
+{
+  "start_url": "https://parapeet.com/",
+  "name": "Parapeet",
+  "short_name": "Parapeet",
+  "description": "Last year a magic parakeet got loose.\nThis klepto stole everyone's knowledge of French.\n\nAfter months of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters, lovers.. \npassion is what this will take.\n\nCatch Parapeet!",
+  "background_color": "#000000",
+  "theme_color": "#2ab1eb",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": "2.0",
+      "purpose": "any"
+    },
+    {
+      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "density": "2.0",
+      "purpose": "any"
+    },
+    {
+      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "density": "2.0",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "parapeet",
+  "dir": "rtl",
+  "lang": "en",
+  "scope": "parapeet.com",
+  "orientation": "portrait",
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.duolingo&amp;pcampaignid=web_share",
+      "id": ""
+    }
+  ],
+  "categories": [
+    "education",
+    "games",
+    "kids",
+    "music"
+  ]
+}

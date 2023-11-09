@@ -30,3 +30,6 @@ roles:
 - {name: jungle_BR}
 - {name: notezone}
 - {name: unscrollable}
+color_scheme:
+  colors:
+  - {name: background_color, color: '#ffffff'}
