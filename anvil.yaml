@@ -37,7 +37,7 @@ metadata: {title: Catch the lingo - Parapeet, description: 'Last year a magic pa
 startup_form: null
 native_deps: {head_html: "<head>\n  <link rel=\"manifest\" id=\"my-manifest-placeholder\"\
     >\n</head>\n<script>\n  document.querySelector('#my-manifest-placeholder').setAttribute('href',\
-    \ '_/theme/manifest.json');\n</script>\n\n<meta name=\"google-site-verification\"\
+    \ '_/theme/manifest1.json');\n</script>\n\n<meta name=\"google-site-verification\"\
     \ content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\" />\n  <meta charset=\"\
     UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"\
     >\n  <meta name=\"description\" content=\"Parapeet: Perfect Your Advanced French\
