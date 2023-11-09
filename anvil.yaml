@@ -36,31 +36,30 @@ metadata: {title: Catch the lingo - Parapeet, description: 'Last year a magic pa
     lovers.. \npassion is what this will take.\n\nCatch Parapeet!', logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
 native_deps: {head_html: "<head>\n  <link rel=\"manifest\" id=\"my-manifest-placeholder\"\
-    >\n</head>\n<script>\n  document.querySelector('#my-manifest-placeholder').setAttribute('href',\
-    \ '_/theme/manifest.json');\n</script>\n\n<meta name=\"google-site-verification\"\
-    \ content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\" />\n  <meta charset=\"\
-    UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"\
-    >\n  <meta name=\"description\" content=\"Parapeet: Perfect Your Advanced French\
-    \ Language Skills\">\n  <meta name=\"keywords\" content=\"advanced French learning,\
-    \ language learning app, perfect French, Parapeet\n  , Advanced French language\
-    \ learning, Expert French phrases, Perfecting French skills, Advanced French vocabulary\n\
-    \  , Fluent French conversation, French idioms and expressions, Enhance French\
-    \ pronunciation, Mastering complex French\n  , French language proficiency, Expert\
-    \ French communication, Advanced language practice, Elevate your French\n  , Parapeet\
-    \ language app, Parapeet advanced French, French language fluency, Polishing French\
-    \ skills, Advanced language resources\n  , Professional French communication,\
-    \ Expertise in French language, Complex French grammar, Advanced language exercises\n\
-    \  , Fine-tuning French accent, Specialized French phrases, Advanced French fluency,\
-    \ High-level French practice\n  , Expertise in advanced French, Complex French\
-    \ conversations, Advanced French learning techniques, Profound French vocabulary\n\
-    \  , Fluent communication in French, Mastery of French language, Advanced French\
-    \ writing skills, Advanced French learning journey\n  , Perfecting French grammar,\
-    \ Proficiency in advanced French, Advanced French language challenges, French\
-    \ language mastery program\n  , Advanced French conversation practice, Expert-level\
-    \ French proficiency, Advanced French learning platform\">\n  <meta name=\"author\"\
-    \ content=\"Arkvital\">\n    \n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"\
-    >\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\
-    \  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
+    >\n</head>\n\n<meta name=\"google-site-verification\" content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\"\
+    \ />\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width,\
+    \ initial-scale=1.0\">\n  <meta name=\"description\" content=\"Parapeet: Perfect\
+    \ Your Advanced French Language Skills\">\n  <meta name=\"keywords\" content=\"\
+    advanced French learning, language learning app, perfect French, Parapeet\n  ,\
+    \ Advanced French language learning, Expert French phrases, Perfecting French\
+    \ skills, Advanced French vocabulary\n  , Fluent French conversation, French idioms\
+    \ and expressions, Enhance French pronunciation, Mastering complex French\n  ,\
+    \ French language proficiency, Expert French communication, Advanced language\
+    \ practice, Elevate your French\n  , Parapeet language app, Parapeet advanced\
+    \ French, French language fluency, Polishing French skills, Advanced language\
+    \ resources\n  , Professional French communication, Expertise in French language,\
+    \ Complex French grammar, Advanced language exercises\n  , Fine-tuning French\
+    \ accent, Specialized French phrases, Advanced French fluency, High-level French\
+    \ practice\n  , Expertise in advanced French, Complex French conversations, Advanced\
+    \ French learning techniques, Profound French vocabulary\n  , Fluent communication\
+    \ in French, Mastery of French language, Advanced French writing skills, Advanced\
+    \ French learning journey\n  , Perfecting French grammar, Proficiency in advanced\
+    \ French, Advanced French language challenges, French language mastery program\n\
+    \  , Advanced French conversation practice, Expert-level French proficiency, Advanced\
+    \ French learning platform\">\n  <meta name=\"author\" content=\"Arkvital\">\n\
+    \    \n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link\
+    \ rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link\
+    \ href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
     \ rel=\"stylesheet\">\n  \n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\"\
     \ crossorigin=\"anonymous\"></script>\n\n  <meta name=\"msapplication-TileColor\"\
     \ content=\"#ffffff\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
@@ -90,7 +89,9 @@ native_deps: {head_html: "<head>\n  <link rel=\"manifest\" id=\"my-manifest-plac
     \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\
     \n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100vh;\
     \ opacity:0.2; position: fixed; top:0; left: 0; width: 100vw; margin:0px; padding:0px;\"\
-    ></div>\n\n<audio id=\"myaudio\"><source id=\"mysource\"></source></audio>\n"}
+    ></div>\n\n<audio id=\"myaudio\"><source id=\"mysource\"></source></audio>\n\n\
+    <script>\n  document.querySelector('#my-manifest-placeholder').setAttribute('href',\
+    \ '_/theme/manifest1.json');\n</script>"}
 db_schema:
   voicefiles:
     client: none

@@ -1,0 +1,44 @@
+{
+  "start_url": "https://parapeet.com/",
+  "name": "Parapeet",
+  "short_name": "Parapeet",
+  "description": "Last year a magic parakeet got loose.\nThis klepto stole everyone's knowledge of French.\n\nAfter months of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters, lovers.. \npassion is what this will take.\n\nCatch Parapeet!",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": "2.0",
+      "purpose": "any"
+    },
+    {
+      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "density": "2.0",
+      "purpose": "any"
+    },
+    {
+      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "density": "2.0",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "PARAPEET",
+  "dir": "ltr",
+  "lang": "en",
+  "scope": "parapeet.com",
+  "orientation": "portrait",
+  "categories": [
+    "education",
+    "games",
+    "lifestyle",
+    "music",
+    "productivity"
+  ]
+}
