@@ -63,7 +63,7 @@ native_deps: {head_html: "\n  <meta name=\"google-site-verification\" content=\"
     \ crossorigin=\"anonymous\"></script>\n\n  <meta name=\"msapplication-TileColor\"\
     \ content=\"#ffffff\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
     >\n  <meta name=\"theme-color\" content=\"#ffffff\">\n\n<script>\n  \ndocument.querySelector('meta[name=\"\
-    theme-color\"]').setAttribute(\"content\", \"#FFFFFF\");\n  \nfunction isScreenLockSupported()\
+    theme-color\"]').setAttribute(\"content\", \"#ffffff\");\n  \nfunction isScreenLockSupported()\
     \ {\n  return ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState()\
     \ {\n  console.log(\"asked to keep awake\");\n  if(isScreenLockSupported()){\n\
     \    try {\n       screenLock = await navigator.wakeLock.request('screen');\n\
