@@ -272,7 +272,7 @@ body.anvil-show-banner {
   padding: 12px;
   border: 2px solid var(--button_border);
   box-shadow: 2px 2px 2px #888888;
-  background: white;
+  background: #ffffff;
 }
 .anvil-role-noscbar_inner > p, .anvil-role-noscbar_inner  {
   overflow: hidden;
@@ -286,7 +286,7 @@ body.anvil-show-banner {
   padding: 12px;
   border: 2px solid var(--appborders);
   box-shadow: inset 4px 4px 16px -2px #888888;
-  background: white;
+  background: #ffffff;
 }
 
 .anvil-role-noscbar_inner_inv > p, .anvil-role-noscbar_inner_inv  {
@@ -309,7 +309,7 @@ body.anvil-show-banner {
   border: 2px solid var(--button_border);
   margin: 2px 2px 3px 2px;
   box-shadow: 2px 2px 2px #888888;
-  background-image: linear-gradient(to bottom, white , #ffffff00 );
+  background-image: linear-gradient(to bottom, #ffffff , #ffffff00 );
 }
 
 .anvil-role-menubuttons_close {
