@@ -30,7 +30,10 @@ runtime_options:
   server_version: python3-sandbox
   server_spec: {base: python310-standard}
   server_spec_disabled: {base: python310-standard, requirements: ''}
-metadata: {title: Catch the lingo - Parapeet, description: Catch the lingo, logo_img: 'asset:Parapeet-super-zoom.png'}
+metadata: {title: Catch the lingo - Parapeet, description: 'Last year a magic parakeet
+    got loose.\nThis klepto stole everyone''s knowledge of French.\n\nAfter months
+    of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters,
+    lovers.. \npassion is what this will take.\n\nCatch Parapeet!', logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
 native_deps: {head_html: "\n  <meta name=\"google-site-verification\" content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\"\
     \ />\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width,\
