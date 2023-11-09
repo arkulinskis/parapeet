@@ -17,9 +17,6 @@ var todo = [
   'get phrase examples in there fo robots'
   ,
   'try making the video again'
-  ,
-  'robots + seo anvil'
-  ,
-  'submit to google to crawl'
-
+ ,
+  'allow users to remove their accounts'
 ]
