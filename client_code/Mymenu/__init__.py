@@ -11,7 +11,7 @@ class Mymenu(MymenuTemplate):
     self.mymode = "Phrases_French"
     if signed_in:
       self.signed_in = True
-      self.signin.text = "Account"
+      self.signin.text = "Sign out"
     else:
       self.signed_in = False
       self.signin.text = "Sign in"
@@ -29,7 +29,7 @@ class Mymenu(MymenuTemplate):
     else:
       user = anvil.users.login_with_form(allow_cancel=True)
       if anvil.users.get_user() is not None:
-        self.signin.text = "Account"
+        self.signin.text = "Sign out"
         self.signed_in = True
         self.raise_event("x-close-alert", value="True")
       else:
@@ -63,7 +63,7 @@ class Mymenu(MymenuTemplate):
     if anvil.users.get_user() is None:
       self.signin.text = "Sign in"
     else:
-      self.signin.text = "Account"
+      self.signin.text = "Sign out"
 
   def test_word_click(self):
     self.mymode = "Tests_word"
