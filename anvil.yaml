@@ -56,7 +56,7 @@ native_deps: {head_html: "<script>\nvar myDynamicManifest = {\n  \"start_url\": 
     \    \"games\",\n    \"kids\",\n    \"music\"\n  ]\n}\nconst stringManifest =\
     \ JSON.stringify(myDynamicManifest);\nconst blob = new Blob([stringManifest],\
     \ {type: 'application/json'});\nconst manifestURL = URL.createObjectURL(blob);\n\
-    document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);\n\
+    document.querySelector(\"link[rel='manifest']\").setAttribute('href', manifestURL);\n\
     </script>\n\n<meta name=\"google-site-verification\" content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\"\
     \ />\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width,\
     \ initial-scale=1.0\">\n  <meta name=\"description\" content=\"Parapeet: Perfect\
