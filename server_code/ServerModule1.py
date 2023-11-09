@@ -8,12 +8,16 @@ from anvil.tables import app_tables
 import anvil.server
 from datetime import datetime, timezone, timedelta
 
-# @anvil.server.wellknown_endpoint("/assetlinks.json")
-# def assetlinks():
-#   return [{
-#   "relation": ["delegate_permission/common.handle_all_urls"],
-#   "target" : { "namespace": "android_app", "package_name": "com.parapeet.com",
-#                "sha256_cert_fingerprints": ["FA:72:9E:39:22:F0:86:2E:99:33:4F:0C:C1:51:C8:1F:1B:56:6D:BB:01:97:53:ED:61:37:63:98:82:C5:93:1E"] } }]
+@anvil.server.wellknown_endpoint("/assetlinks.json")
+def assetlinks():
+  return [{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.parapeet.twa",
+        "sha256_cert_fingerprints": ["CE:81:49:7F:AE:F1:EA:9B:E5:E4:03:E8:48:3C:C8:D1:62:06:43:FC:E3:62:08:1D:AC:80:3A:26:86:38:6D:6E"]
+      }
+    }]
 
 
 @anvil.server.callable
