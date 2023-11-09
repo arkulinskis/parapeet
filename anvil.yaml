@@ -35,29 +35,7 @@ metadata: {title: Catch the lingo - Parapeet, description: 'Last year a magic pa
     of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters,
     lovers.. \npassion is what this will take.\n\nCatch Parapeet!', logo_img: 'asset:Parapeet-super-zoom.png'}
 startup_form: null
-native_deps: {head_html: "<script>\nvar myDynamicManifest = {\n  \"start_url\": \"\
-    https://parapeet.com/\",\n  \"name\": \"Parapeet\",\n  \"short_name\": \"Parapeet\"\
-    ,\n  \"description\": \"Last year a magic parakeet got loose.\\nThis klepto stole\
-    \ everyone's knowledge of French.\\n\\nAfter months of prep and grind..\\nwe are\
-    \ finally ready. \\n\\nWe want swipers, actors, haters, lovers.. \\npassion is\
-    \ what this will take.\\n\\nCatch Parapeet!\",\n  \"background_color\": \"#000000\"\
-    ,\n  \"theme_color\": \"#2ab1eb\",\n  \"display\": \"fullscreen\",\n  \"icons\"\
-    : [\n    {\n      \"src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
-    ,\n      \"sizes\": \"192x192\",\n      \"type\": \"image/png\",\n      \"density\"\
-    : \"2.0\",\n      \"purpose\": \"any\"\n    },\n    {\n      \"src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
-    ,\n      \"sizes\": \"512x512\",\n      \"type\": \"image/png\",\n      \"density\"\
-    : \"2.0\",\n      \"purpose\": \"any\"\n    },\n    {\n      \"src\": \"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
-    ,\n      \"sizes\": \"512x512\",\n      \"type\": \"image/png\",\n      \"density\"\
-    : \"2.0\",\n      \"purpose\": \"maskable\"\n    }\n  ],\n  \"id\": \"parapeet\"\
-    ,\n  \"dir\": \"rtl\",\n  \"lang\": \"en\",\n  \"scope\": \"parapeet.com\",\n\
-    \  \"orientation\": \"portrait\",\n  \"related_applications\": [\n    {\n    \
-    \  \"platform\": \"play\",\n      \"url\": \"https://play.google.com/store/apps/details?id=com.duolingo&amp;pcampaignid=web_share\"\
-    ,\n      \"id\": \"\"\n    }\n  ],\n  \"categories\": [\n    \"education\",\n\
-    \    \"games\",\n    \"kids\",\n    \"music\"\n  ]\n}\nconst stringManifest =\
-    \ JSON.stringify(myDynamicManifest);\nconst blob = new Blob([stringManifest],\
-    \ {type: 'application/json'});\nconst manifestURL = URL.createObjectURL(blob);\n\
-    document.querySelector(\"link[rel='manifest']\").setAttribute('href', manifestURL);\n\
-    </script>\n\n<meta name=\"google-site-verification\" content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\"\
+native_deps: {head_html: "\n\n<meta name=\"google-site-verification\" content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\"\
     \ />\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width,\
     \ initial-scale=1.0\">\n  <meta name=\"description\" content=\"Parapeet: Perfect\
     \ Your Advanced French Language Skills\">\n  <meta name=\"keywords\" content=\"\
@@ -84,27 +62,28 @@ native_deps: {head_html: "<script>\nvar myDynamicManifest = {\n  \"start_url\": 
     \ rel=\"stylesheet\">\n  \n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\"\
     \ crossorigin=\"anonymous\"></script>\n\n  <meta name=\"msapplication-TileColor\"\
     \ content=\"#ffffff\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
-    >\n  <meta name=\"theme-color\" content=\"#ffffff\">\n\n<script>\n  \ndocument.querySelector('meta[name=\"\
-    theme-color\"]').setAttribute(\"content\", \"#ffffff\");\n  \nfunction isScreenLockSupported()\
-    \ {\n  return ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState()\
-    \ {\n  console.log(\"asked to keep awake\");\n  if(isScreenLockSupported()){\n\
-    \    try {\n       screenLock = await navigator.wakeLock.request('screen');\n\
-    \    } catch(err) {\n       console.log(err.name, err.message);\n    }\n    return\
-    \ screenLock;\n  }\n}\nfunction releaseWakeState() { \n  console.log(\"asked to\
-    \ be able to sleep\");\n  if(typeof screenLock !== \"undefined\" && screenLock\
-    \ != null) {\n    screenLock.release()\n    .then(() => {\n      console.log(\"\
-    Lock released \ud83c\udf88\");\n      screenLock = null;\n    });\n  }\n}  \n\
-    </script>\n\n<div class=\"bg\"></div>\n<div class=\"bg bg2\"></div>\n<div class=\"\
-    bg bg3\"></div>\n\n<script>\n  function similarity(s1, s2) {\n  var longer = s1;\n\
-    \  var shorter = s2;\n  if (s1.length < s2.length) {\n    longer = s2;\n    shorter\
-    \ = s1;\n  }\n  var longerLength = longer.length;\n  if (longerLength == 0) {\n\
-    \    return 1.0;\n  }\n  return (longerLength - editDistance(longer, shorter))\
-    \ / parseFloat(longerLength);\n}\n  function editDistance(s1, s2) {\n  s1 = s1.toLowerCase();\n\
-    \  s2 = s2.toLowerCase();\n\n  var costs = new Array();\n  for (var i = 0; i <=\
-    \ s1.length; i++) {\n    var lastValue = i;\n    for (var j = 0; j <= s2.length;\
-    \ j++) {\n      if (i == 0)\n        costs[j] = j;\n      else {\n        if (j\
-    \ > 0) {\n          var newValue = costs[j - 1];\n          if (s1.charAt(i -\
-    \ 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
+    >\n  <meta name=\"theme-color\" content=\"#ffffff\">\n\n<script>\ndocument.querySelector('meta[name=\"\
+    theme-color\"]').setAttribute(\"content\", \"#ffffff\");\ndocument.querySelector(\"\
+    link[rel='manifest']\").setAttribute('href', '_/theme/manifest.json');\n</script>\n\
+    \n\n\n<script>\n\n  \nfunction isScreenLockSupported() {\n  return ('wakeLock'\
+    \ in navigator);\n}\nvar screenLock;\nasync function lockWakeState() {\n  console.log(\"\
+    asked to keep awake\");\n  if(isScreenLockSupported()){\n    try {\n       screenLock\
+    \ = await navigator.wakeLock.request('screen');\n    } catch(err) {\n       console.log(err.name,\
+    \ err.message);\n    }\n    return screenLock;\n  }\n}\nfunction releaseWakeState()\
+    \ { \n  console.log(\"asked to be able to sleep\");\n  if(typeof screenLock !==\
+    \ \"undefined\" && screenLock != null) {\n    screenLock.release()\n    .then(()\
+    \ => {\n      console.log(\"Lock released \ud83c\udf88\");\n      screenLock =\
+    \ null;\n    });\n  }\n}  \n</script>\n\n<div class=\"bg\"></div>\n<div class=\"\
+    bg bg2\"></div>\n<div class=\"bg bg3\"></div>\n\n<script>\n  function similarity(s1,\
+    \ s2) {\n  var longer = s1;\n  var shorter = s2;\n  if (s1.length < s2.length)\
+    \ {\n    longer = s2;\n    shorter = s1;\n  }\n  var longerLength = longer.length;\n\
+    \  if (longerLength == 0) {\n    return 1.0;\n  }\n  return (longerLength - editDistance(longer,\
+    \ shorter)) / parseFloat(longerLength);\n}\n  function editDistance(s1, s2) {\n\
+    \  s1 = s1.toLowerCase();\n  s2 = s2.toLowerCase();\n\n  var costs = new Array();\n\
+    \  for (var i = 0; i <= s1.length; i++) {\n    var lastValue = i;\n    for (var\
+    \ j = 0; j <= s2.length; j++) {\n      if (i == 0)\n        costs[j] = j;\n  \
+    \    else {\n        if (j > 0) {\n          var newValue = costs[j - 1];\n  \
+    \        if (s1.charAt(i - 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
     \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
     \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
     \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\
