@@ -157,12 +157,12 @@ class Swipe_interface(Swipe_interfaceTemplate):
     if fresh_launch:
       if "user_data_date" in sentences_store:
         if sentences_store["user_data_date"] < latest_data_date:
-          print("A")
-        
-        if "user_data_type" in sentences_store:
-          responsev = anvil.server.call('update_local_storage',sentences_store["user_data_date"],sentences_store["user_data_type"])
+          if "user_data_type" in sentences_store:
+            responsev = anvil.server.call('update_local_storage',sentences_store["user_data_date"],sentences_store["user_data_type"])
+          else:
+            responsev = anvil.server.call('update_local_storage',sentences_store["user_data_date"],"free")
         else:
-          responsev = anvil.server.call('update_local_storage',sentences_store["user_data_date"],"free")
+          responsev = 'yougood'
       else:
         responsev = anvil.server.call('update_local_storage', datetime(2022,7,1,0,0,0),"free")
       

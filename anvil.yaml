@@ -232,9 +232,6 @@ db_schema:
     - name: signed_up
       type: datetime
       admin_ui: {order: 7, width: 200}
-    - name: name
-      admin_ui: {order: 8, width: 200}
-      type: string
     - name: customer_type
       admin_ui: {order: 9, width: 200}
       type: string
