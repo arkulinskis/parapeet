@@ -1,8 +1,5 @@
 from ._anvil_designer import Swipe_interfaceTemplate
-# from anvil import *
-import anvil.server
-import anvil.users
-from anvil import open_form, alert
+from anvil import open_form, alert, users, server
 from datetime import datetime, timezone, timedelta
 from anvil.js.window import similarity, document, navigator, MediaRecorder, Audio, Blob, URL, location
 import anvil.js
@@ -126,6 +123,30 @@ class Swipe_interface(Swipe_interfaceTemplate):
 
     self.notes_showing_item = 0
 
+  def form_show(self, **event_args):
+    anvil.js.call("lockWakeState")
+    if self._setup:
+      return
+      
+    document.addEventListener("keydown", self.on_keydown)
+    anvil.js.window.addEventListener("focus", self.on_refocus)
+    anvil.js.window.addEventListener("blur", self.on_blur)
+
+    self.current_user = users.get_user()
+    if self.current_user is None:
+      self.getaccount.visible = True
+      self.mymenuv = Mymenu(signed_in=False)
+    else:
+      self.getaccount.visible = False
+      self.mymenuv = Mymenu(signed_in=True)
+
+    if self.mymenuv.signed_in == False:
+      self.face_click()
+      animate(self.how_to_panel, pulse, duration=500)
+      
+    self.launch_user_app()
+    
+  
   def face_click(self, **event_args):
     self.noalert = False
     result = alert(self.myhowto, buttons=[], large = True)#, title="How to get around the app?")
@@ -154,17 +175,34 @@ class Swipe_interface(Swipe_interfaceTemplate):
   def launch_user_app(self, fresh_launch=True):
     global sentences_store
     
-    if fresh_launch:
-      if "user_data_date" in sentences_store:
-        if sentences_store["user_data_date"] < latest_data_date:
-          if "user_data_type" in sentences_store:
-            responsev = anvil.server.call('update_local_storage',sentences_store["user_data_date"],sentences_store["user_data_type"])
-          else:
-            responsev = anvil.server.call('update_local_storage',sentences_store["user_data_date"],"free")
-        else:
-          responsev = 'yougood'
+    if fresh_launch: #get data if you need to get data.
+#Member can be free or premium.
+#Visitor is only basic.
+#Get data if you don't have it, it<s out of date, or user is advanced and you dont have data.
+
+      
+      if "user_data_date" not in sentences_store or \
+      sentences_store["user_data_date"] < latest_data_date or \
+      "user_data_type" not in sentences_store or \
+      sentences_store["user_data_type"] != self.current_user["customer_type"]: 
+        responsev = server.call('update_local_storage', datetime(2022,7,1,0,0,0),"free")
       else:
-        responsev = anvil.server.call('update_local_storage', datetime(2022,7,1,0,0,0),"free")
+        responsev = 'yougood'
+
+
+
+
+      
+      # if "user_data_date" in sentences_store:
+      #   if sentences_store["user_data_date"] < latest_data_date:
+      #     if "user_data_type" in sentences_store:
+      #       responsev = server.call('update_local_storage',sentences_store["user_data_date"],sentences_store["user_data_type"])
+      #     else:
+      #       responsev = server.call('update_local_storage',sentences_store["user_data_date"],"free")
+      #   else:
+      #     responsev = 'yougood'
+      # else:
+      #   responsev = server.call('update_local_storage', datetime(2022,7,1,0,0,0),"free")
       
       if responsev != "yougood":
         sentences_store["user_data_date"] = responsev["user_data_date"]
@@ -183,7 +221,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.sentence_count = len(self.usable_sentences)
 
     if self.mymenuv.signed_in:
-      self.mylikes = anvil.server.call("get_points")
+      self.mylikes = server.call("get_points")
     else:
       print("not logged-in 1")
       self.mylikes = False
@@ -201,7 +239,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     # elif self.mymenuv.mymode[0:5] == "Notes" or self.mymenuv.mymode[0:5] == "Tests":
     #   self.update_notes_visual()
     
-    anvil.server.call_s('send_interest', "launched")
+    server.call_s('send_interest', "launched")
     
     self.app_ready = True
     self.like_button.foreground = "#2C3673"
@@ -569,7 +607,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
         self.launch_level_select.visible = True
         
       if result == "Notes" or result == "Tests":
-        self.mynotes = anvil.server.call('get_notes')
+        self.mynotes = server.call('get_notes')
         self.notes_count = len(self.mynotes)
         self.word_or_meaning = self.mymenuv.mymode[6:]
         if self.notes_count != 0:
@@ -601,47 +639,24 @@ class Swipe_interface(Swipe_interfaceTemplate):
   def on_refocus(self, event):
     anvil.js.call("lockWakeState")
     try:
-      anvil.server.call_s("is_alive_check")
+      server.call_s("is_alive_check")
     except:
       location.reload()
 
   def on_blur(self, event):
     anvil.js.call("releaseWakeState")
       
-  def form_show(self, **event_args):
-    anvil.js.call("lockWakeState")
-    if self._setup:
-      return
-    # dom_node = anvil.js.get_dom_node(self.swipezone)
-    document.addEventListener("keydown", self.on_keydown)
-    anvil.js.window.addEventListener("focus", self.on_refocus)
-    anvil.js.window.addEventListener("blur", self.on_blur)
-    # print("onkeydown assigned")
-    
-    if anvil.users.get_user() is None:
-      self.getaccount.visible = True
-      self.mymenuv = Mymenu(signed_in=False)
-    else:
-      self.getaccount.visible = False
-      self.mymenuv = Mymenu(signed_in=True)
-    self.launch_user_app()
-    
-    if self.mymenuv.signed_in == False:
-      self.face_click()
-      animate(self.how_to_panel, pulse, duration=500)
-  
   def getaccount_click(self, **event_args):
     if self.app_ready == False:
       self.noalert = False
       alert("Still loading the app...")
       self.noalert = True
     else:
-      user = anvil.users.login_with_form(allow_cancel=True)
-      if anvil.users.get_user() is not None:
+      user = users.login_with_form(allow_cancel=True)
+      if users.get_user() is not None:
         self.getaccount.visible = False
         self.mymenuv.signed_in = True
-        self.launch_user_app()
-        
+        self.launch_user_app()     
 
   def play_example_click(self, **event_args):
     if self.looping or (self.app_ready == False):
@@ -670,7 +685,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     else:
       tmp0 = self.row_showing_order[self.row_showing_item]
       tmp = self.usable_sentences[tmp0]
-      tmpblob = anvil.server.call("get_voice", tmp["LineID"],  self.ccols[self.active_column], language)
+      tmpblob = server.call("get_voice", tmp["LineID"],  self.ccols[self.active_column], language)
       
       ###
       
@@ -735,8 +750,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.sourceElement.src = self.audio_url
     self.sourceElement.type = "audio/mp3"
     self.sourceElement.duration = self.rec_finish_time-self.rec_start_time
-    
-    
+      
   def play_recorded_click(self, **event_args):  
     if self.looping or self.app_ready == False:
       pass
@@ -878,7 +892,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
               self.noalert = True
             else:
               if self.mymenuv.signed_in:
-                anvil.server.call('save_note',mynotev.french_area.text,mynotev.explanation_area.text)
+                server.call('save_note',mynotev.french_area.text,mynotev.explanation_area.text)
               else:
                 self.noalert = False
                 alert("Sign in to use this feature!", buttons=[("Sounds good!", "Sounds good!")])
@@ -906,7 +920,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
               else:
                 if tmpword != mynotev.french_area.text or tmpexplanation != mynotev.explanation_area.text:
                   if self.mymenuv.signed_in:
-                    result2 = anvil.server.call('update_note',tmpword, tmpexplanation, mynotev.french_area.text, mynotev.explanation_area.text)
+                    result2 = server.call('update_note',tmpword, tmpexplanation, mynotev.french_area.text, mynotev.explanation_area.text)
                     if result2 == "worked":
                       self.mynotes[self.notes_showing_order[self.notes_showing_item]]["French"] = mynotev.french_area.text
                       self.mynotes[self.notes_showing_order[self.notes_showing_item]]["Comment"] = mynotev.explanation_area.text
@@ -924,7 +938,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
               self.noalert = True
               if result2 == "Yes":
                 if self.mymenuv.signed_in:
-                  anvil.server.call('delete_note', tmpword, tmpexplanation)
+                  server.call('delete_note', tmpword, tmpexplanation)
                   # print("needs a refresh here")
                   adjuster = self.notes_showing_order[self.notes_showing_item]
                   self.mynotes.pop(adjuster)
@@ -1042,25 +1056,25 @@ class Swipe_interface(Swipe_interfaceTemplate):
   
         if col0[col_to_like] == "0": #no like no spoken - want to like
           self.mylikes[self.ccols[self.active_column]] = col0[:col_to_like] + "1" + col0[col_to_like+1:]
-          anvil.server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="1")
+          server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="1")
           self.like_button.icon = "fa:thumbs-up"
           self.catch_button.text = "Test yourself!"
           self.catch_button.background = "#ffffff"
         elif col0[col_to_like] == "1": #like no spoken - want to dislike
           self.mylikes[self.ccols[self.active_column]] = col0[:col_to_like] + "0" + col0[col_to_like+1:]
-          anvil.server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="0")
+          server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="0")
           self.like_button.icon = "fa:thumbs-o-up"
           self.catch_button.text = "Test yourself!"
           self.catch_button.background = "#ffffff"
         elif col0[col_to_like] == "2": #no like spoken - want to like
           self.mylikes[self.ccols[self.active_column]] = col0[:col_to_like] + "3" + col0[col_to_like+1:]
-          anvil.server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="3")
+          server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="3")
           self.like_button.icon = "fa:thumbs-up"
           self.catch_button.text = "You got it!"
           self.catch_button.background = "#96ff96"
         elif col0[col_to_like] == "3": #like spoken - want to dislike
           self.mylikes[self.ccols[self.active_column]] = col0[:col_to_like] + "2" + col0[col_to_like+1:]
-          anvil.server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="2")
+          server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="2")
           self.like_button.icon = "fa:thumbs-o-up"
           self.catch_button.text = "You got it!"
           self.catch_button.background = "#96ff96"
@@ -1078,12 +1092,12 @@ class Swipe_interface(Swipe_interfaceTemplate):
       col0 = self.mylikes[self.ccols[self.active_column]][:]
       if col0[col_to_like] == "0":
         self.mylikes[self.ccols[self.active_column]] = col0[:col_to_like] + "2" + col0[col_to_like+1:]
-        anvil.server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="2")
+        server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="2")
         self.catch_button.text = "You got it!"
         self.catch_button.background = "#96ff96"
       elif col0[col_to_like] == "1":
         self.mylikes[self.ccols[self.active_column]] = col0[:col_to_like] + "3" + col0[col_to_like+1:]
-        anvil.server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="3")
+        server.call("set_points", id=col_to_like, type=self.ccols[self.active_column], status="3")
         self.catch_button.text = "You got it!"
         self.catch_button.background = "#96ff96"
       self.update_points()
@@ -1174,7 +1188,7 @@ That's the challenge - good luck!
   def play_bga1(self, event=False):
     if self.keepplaying:
       if self.music_1 == None:
-        self.music_1 = anvil.server.call("get_music", "1")
+        self.music_1 = server.call("get_music", "1")
       # self.bga1 = Audio(self.music_1)
       # self.bga1.play()
       # self.bga1.addEventListener("ended", self.play_bga2)
@@ -1186,7 +1200,7 @@ That's the challenge - good luck!
   def play_bga2(self, event=False):
     if self.keepplaying:
       if self.music_2 == None:
-        self.music_2 = anvil.server.call("get_music", "2")
+        self.music_2 = server.call("get_music", "2")
       # self.bga2 = Audio(self.music_2)
       # self.bga2.play()
       # self.bga2.addEventListener("ended", self.play_bga3)
@@ -1198,7 +1212,7 @@ That's the challenge - good luck!
   def play_bga3(self, event=False):
     if self.keepplaying:
       if self.music_3 == None:
-        self.music_3 = anvil.server.call("get_music", "3")
+        self.music_3 = server.call("get_music", "3")
       # self.bga3 = Audio(self.music_3)
       # self.bga3.play()
       # self.bga3.addEventListener("ended", self.play_bga1)
