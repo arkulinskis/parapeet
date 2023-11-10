@@ -116,6 +116,10 @@ class Mymenu(MymenuTemplate):
       r = alert("Delete account? WARNING you will lose all your notes in the app.", buttons=[("Delete account", True),("Cancel", False)])
       if r:
         anvil.server.call('delete_account')
+        anvil.users.logout()
+        self.signed_in = False
+        self.signin.text = "Sign in"
+        self.raise_event("x-close-alert", value="Index")
   
 
 

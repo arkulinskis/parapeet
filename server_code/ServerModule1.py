@@ -10,7 +10,7 @@ def delete_account():
     row.delete()
     row = tables.app_tables.userpoints.get(user=get_user)
     row.delete()
-    for row in app_tables.usernotes.search(user=get_user):
+    for row in tables.app_tables.usernotes.search(User=get_user):
       row.delete()
 
 
