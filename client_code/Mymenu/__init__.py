@@ -1,7 +1,6 @@
 from ._anvil_designer import MymenuTemplate
-import anvil.users
-import anvil.server
-from anvil import alert
+from anvil import users, server, alert
+import anvil.js.window
 from ..suggestion_box import suggestion_box
 
 class Mymenu(MymenuTemplate):
@@ -18,17 +17,17 @@ class Mymenu(MymenuTemplate):
 
       
   def signin_click(self, **event_args):
-    # if anvil.users.get_user() is not None:
+    # if users.get_user() is not None:
     if self.signed_in:
       r = alert("Sign out?", buttons=[("Yes", True),("No", False)])
       if r:
-        anvil.users.logout()
+        users.logout()
         self.signed_in = False
         self.signin.text = "Sign in"
         self.raise_event("x-close-alert", value="Index")
     else:
-      user = anvil.users.login_with_form(allow_cancel=True)
-      if anvil.users.get_user() is not None:
+      user = users.login_with_form(allow_cancel=True)
+      if users.get_user() is not None:
         self.signin.text = "Sign out"
         self.signed_in = True
         self.raise_event("x-close-alert", value="True")
@@ -60,7 +59,7 @@ class Mymenu(MymenuTemplate):
     self.raise_event("x-close-alert", value="Notes")
 
   def form_show(self, **event_args):
-    if anvil.users.get_user() is None:
+    if users.get_user() is None:
       self.signin.text = "Sign in"
     else:
       self.signin.text = "Sign out"
@@ -80,7 +79,7 @@ class Mymenu(MymenuTemplate):
     tmp = suggestion_box()
     result = alert(tmp, buttons=[("Submit","Submit"),("Cancel","Cancel")], title="Feedback helps us improve")
     if result == "Submit":
-      anvil.server.call("send_interest",tmp.suggestion_text.text)
+      server.call("send_interest",tmp.suggestion_text.text)
       alert("Thank you!")
 
   def testing_click(self, **event_args):
@@ -105,18 +104,22 @@ class Mymenu(MymenuTemplate):
     self.raise_event("x-close-alert", value="True")
 
   def ackno_click(self, **event_args):
-    self.raise_event("x-close-alert", value="ackno")
+    r = alert("Choose info", buttons=[("Ackowledgements", "A"),("Privacy Policy", "P"),("Cancel", "C")])
+    if r == "A":
+      self.raise_event("x-close-alert", value="ackno")
+    elif r == "P":
+      anvil.js.window.open("_/theme/privacy_policy.html");
 
   def LOGO_click(self, **event_args):
     self.raise_event("x-close-alert", value="Index")
 
   def closeacc_click(self, **event_args):
-    get_user = anvil.users.get_user()
+    get_user = users.get_user()
     if get_user != None:
       r = alert("Delete account? WARNING you will lose all your notes in the app.", buttons=[("Delete account", True),("Cancel", False)])
       if r:
-        anvil.server.call('delete_account')
-        anvil.users.logout()
+        server.call('delete_account')
+        users.logout()
         self.signed_in = False
         self.signin.text = "Sign in"
         self.raise_event("x-close-alert", value="Index")
