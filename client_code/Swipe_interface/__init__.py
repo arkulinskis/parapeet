@@ -153,14 +153,10 @@ class Swipe_interface(Swipe_interfaceTemplate):
     
   def launch_user_app(self, fresh_launch=True):
     global sentences_store
-
-    print("fresh or not ", fresh_launch)
-
-
     
     if fresh_launch:
       if "user_data_date" in sentences_store:
-        if sentences_store["user_data_date"] > latest_data_date:
+        if sentences_store["user_data_date"] < latest_data_date:
           print("A")
         
         if "user_data_type" in sentences_store:
