@@ -141,13 +141,22 @@ components:
     components:
     - type: Link
       properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-        foreground: '', visible: true, text: Acknowledgements, font_size: 26, wrap_on: mobile,
+        foreground: '', visible: true, text: App info, font_size: 26, wrap_on: mobile,
         font: Garamond, col_spacing: medium, spacing_above: none, icon_align: right,
         col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       name: ackno
       layout_properties: {grid_position: 'GTIPJB,BFGAYA', expand: false, width: null}
       event_bindings: {click: ackno_click}
+    - name: closeacc
+      properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
+        foreground: '', visible: true, text: Account, font_size: 26, wrap_on: mobile,
+        font: Garamond, col_spacing: medium, spacing_above: none, icon_align: right,
+        col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      type: Link
+      layout_properties: {}
+      event_bindings: {click: closeacc_click}
   - type: FlowPanel
     properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
       foreground: '', visible: true, spacing_above: medium, spacing_below: medium,

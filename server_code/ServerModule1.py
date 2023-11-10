@@ -1,14 +1,20 @@
-# import anvil.stripe
-# import anvil.google.auth, anvil.google.drive, anvil.google.mail
-# from anvil.google.drive import app_files
-import anvil.users
-import anvil.tables as tables
-# import anvil.tables.query as q
-from anvil.tables import app_tables
-import anvil.server
+from anvil import users, server, tables
 from datetime import datetime, timezone, timedelta
 
-@anvil.server.wellknown_endpoint("/assetlinks.json")
+
+@server.callable
+def delete_account():
+  get_user = users.get_user()['email']
+  if get_user != None and get_user != "":
+    row = tables.app_tables.users.get(email=get_user)
+    row.delete()
+    row = tables.app_tables.userpoints.get(user=get_user)
+    row.delete()
+    for row in tables.app_tables.usernotes.search(User=get_user):
+      row.delete()
+
+
+@server.wellknown_endpoint("/assetlinks.json")
 def assetlinks():
   return [{
       "relation": ["delegate_permission/common.handle_all_urls"],
@@ -20,32 +26,32 @@ def assetlinks():
     }]
 
 
-@anvil.server.callable
+@server.callable
 def save_note(word, explanation):
-  if anvil.users.get_user() is not None:
-    user = anvil.users.get_user()['email']
-    app_tables.usernotes.add_row(French=word,Comment=explanation, User=user)
+  if users.get_user() is not None:
+    user = users.get_user()['email']
+    tables.app_tables.usernotes.add_row(French=word,Comment=explanation, User=user)
     return "Success"
   else:
     return "Sign in first"
     
   
-@anvil.server.callable
+@server.callable
 def delete_note(word, explanation):
-  if anvil.users.get_user() is not None:
-    user = anvil.users.get_user()['email']
-    row = app_tables.usernotes.get(French=word,Comment=explanation, User=user)
+  if users.get_user() is not None:
+    user = users.get_user()['email']
+    row = tables.app_tables.usernotes.get(French=word,Comment=explanation, User=user)
     row.delete()
     return "Success"
   else:
     return "Sign in first"
   
 
-@anvil.server.callable
+@server.callable
 def update_note(word, explanation, new_word, new_explanation):
   # check that the article given is really a row in the ‘articles’ table
-  if anvil.users.get_user() is not None:
-    row = app_tables.usernotes.get(Comment=explanation, French=word)
+  if users.get_user() is not None:
+    row = tables.app_tables.usernotes.get(Comment=explanation, French=word)
     if row:
       row['Comment']=new_explanation
       row['French']=new_word
@@ -55,24 +61,24 @@ def update_note(word, explanation, new_word, new_explanation):
   else:
     return "Sign in first"
 
-@anvil.server.callable
+@server.callable
 def get_notes():
-  user = anvil.users.get_user()
+  user = users.get_user()
   if user is not None:
-    mylist = app_tables.usernotes.search(User=user['email'])
+    mylist = tables.app_tables.usernotes.search(User=user['email'])
   else:
-    mylist = app_tables.usernotes.search(User='demo')
+    mylist = tables.app_tables.usernotes.search(User='demo')
   returnlist = []
   for row in mylist:
     returnlist.append(dict(row))
   return returnlist
 
-@anvil.server.callable
+@server.callable
 def update_local_storage(user_data_date,user_data_type):
-  user = anvil.users.get_user()
+  user = users.get_user()
   print("logged in user is", user)
   if user is not None:
-    customer_type = app_tables.users.get(email=user['email'])['customer_type']
+    customer_type = tables.app_tables.users.get(email=user['email'])['customer_type']
     if customer_type == "" or customer_type == None or customer_type is None:
       customer_type = "free"
     recently_upgraded = False
@@ -88,25 +94,25 @@ def update_local_storage(user_data_date,user_data_type):
       return_json['user_data_date'] = datetime.now()
       return_json['rows'] = []
       return_json['rows_english'] = []
-      allowed_rows = app_tables.frenchsentences.search(Availability=customer_type)
+      allowed_rows = tables.app_tables.frenchsentences.search(Availability=customer_type)
       for row in allowed_rows:
         return_json['rows'].append(dict(row))
       if customer_type == "premium":
-        allowed_rows3 = app_tables.frenchsentences.search(Availability=customer_type)
+        allowed_rows3 = tables.app_tables.frenchsentences.search(Availability=customer_type)
         for row in allowed_rows3:
           return_json['rows'].append(dict(row))
-      allowed_rows2 = app_tables.frenchsentences.search(Availability="basic")
+      allowed_rows2 = tables.app_tables.frenchsentences.search(Availability="basic")
       for row in allowed_rows2:
         return_json['rows'].append(dict(row))
 
-      allowed_rows_english = app_tables.frenchsentences_translation.search(Availability=customer_type)
+      allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
       for row in allowed_rows_english:
         return_json['rows_english'].append(dict(row))
       if customer_type == "premium":
-        allowed_rows_english3 = app_tables.frenchsentences_translation.search(Availability=customer_type)
+        allowed_rows_english3 = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
         for row in allowed_rows_english3:
           return_json['rows_english'].append(dict(row))
-      allowed_rows_english2 = app_tables.frenchsentences_translation.search(Availability="basic")
+      allowed_rows_english2 = tables.app_tables.frenchsentences_translation.search(Availability="basic")
       for row in allowed_rows_english2:
         return_json['rows_english'].append(dict(row))
         
@@ -117,8 +123,8 @@ def update_local_storage(user_data_date,user_data_type):
       return("yougood")
       
   else:
-    allowed_rows = app_tables.frenchsentences.search(Availability="basic")
-    allowed_rows_english = app_tables.frenchsentences_translation.search(Availability="basic")
+    allowed_rows = tables.app_tables.frenchsentences.search(Availability="basic")
+    allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="basic")
     return_json = {}
     return_json['user_data_type'] = "basic"
     return_json['user_data_date'] = datetime.now()
@@ -132,20 +138,20 @@ def update_local_storage(user_data_date,user_data_type):
     print("Call made")
     return return_json
     
-@anvil.server.callable
+@server.callable
 def get_music(id):
-  music_db_line = app_tables.music.get(music_id=str(id))
+  music_db_line = tables.app_tables.music.get(music_id=str(id))
   return music_db_line["Music_file"].get_url()
   
-@anvil.server.callable
+@server.callable
 def get_video(id):
-  video_db_line = app_tables.videos.get(Video_id=str(id))
+  video_db_line = tables.app_tables.videos.get(Video_id=str(id))
   return video_db_line["Video_file"].get_url()
   
-@anvil.server.callable
+@server.callable
 def get_voice(id, type, language):
-  user = anvil.users.get_user()
-  sentence_db_line = app_tables.frenchsentences.get(LineID=id)
+  user = users.get_user()
+  sentence_db_line = tables.app_tables.frenchsentences.get(LineID=id)
   play_it = False
   if sentence_db_line["Availability"] == "basic":
     play_it = True
@@ -159,36 +165,36 @@ def get_voice(id, type, language):
 
   if play_it:
     if language == "french":
-      media_db_line = app_tables.voicefiles.get(LineID=str(id), Type=type)
+      media_db_line = tables.app_tables.voicefiles.get(LineID=str(id), Type=type)
     else:
-      media_db_line = app_tables.voicefiles_english.get(LineID=str(id), Type=type)
+      media_db_line = tables.app_tables.voicefiles_english.get(LineID=str(id), Type=type)
 
   return media_db_line["VoiceFile"].get_url()
 
-@anvil.server.callable
+@server.callable
 def send_interest(customer_interest):
-  user = anvil.users.get_user()
+  user = users.get_user()
   if user is not None:
     text = user['email']
   else:
-    text = str(anvil.server.context.client.ip)
-  app_tables.interest.add_row(showed_interest=text, mydatetime=datetime.now(), interested=customer_interest)
+    text = str(server.context.client.ip)
+  tables.app_tables.interest.add_row(showed_interest=text, mydatetime=datetime.now(), interested=customer_interest)
 
-@anvil.server.callable
+@server.callable
 def is_alive_check():
   return True
 
-@anvil.server.callable
+@server.callable
 def set_points(id, type, status):
   # print("got the request")
-  user = anvil.users.get_user()
+  user = users.get_user()
   # print(user)
   if user is None:
     return False
   else:
     useremail = user['email']
     # print("user exists")
-    points_db_line = app_tables.userpoints.get(user=useremail)
+    points_db_line = tables.app_tables.userpoints.get(user=useremail)
     # print(points_db_line)
     a = points_db_line[type]
     # print("k", a)
@@ -197,16 +203,16 @@ def set_points(id, type, status):
 
 #add handling if user is new (create the zeros))
 
-@anvil.server.callable
+@server.callable
 def get_points():
-  user = anvil.users.get_user()
+  user = users.get_user()
   if user is None:
     return False
   else:
     useremail = user['email']
-    points_db_line = app_tables.userpoints.get(user=useremail)
+    points_db_line = tables.app_tables.userpoints.get(user=useremail)
     if points_db_line == None:
       zeros = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-      app_tables.userpoints.add_row(user=useremail, Agressive=zeros, Basic=zeros, Boss=zeros, Client=zeros, Colleague=zeros, Frustrated=zeros, Impressed=zeros, Lover=zeros, Sad=zeros, Stupid=zeros)
-      points_db_line = app_tables.userpoints.get(user=useremail)
+      tables.app_tables.userpoints.add_row(user=useremail, Agressive=zeros, Basic=zeros, Boss=zeros, Client=zeros, Colleague=zeros, Frustrated=zeros, Impressed=zeros, Lover=zeros, Sad=zeros, Stupid=zeros)
+      points_db_line = tables.app_tables.userpoints.get(user=useremail)
     return dict(points_db_line)
