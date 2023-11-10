@@ -19,6 +19,7 @@ from ..Acknowledgements import Acknowledgements
 import time
 import re
 
+latest_data_date = datetime(2023,7,28,0,0,0,tzinfo=timezone(timedelta(0, -14400)))
 
 if 1:
   slide_in_up = Transition(translateY=["100%", 0])
@@ -151,6 +152,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
             self.play_example_click()
     
   def launch_user_app(self, fresh_launch=True):
+    global sentences_store
+   
     if fresh_launch:
       if "user_data_date" in sentences_store:
         if "user_data_type" in sentences_store:
@@ -495,7 +498,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       result = use_to_log_in
       
     if result == "Index":
-      open_form("Index")
+      open_form("Index", ignore_login = True)
     else:
       if self.mymenuv.signed_in:
         self.getaccount.visible = False
