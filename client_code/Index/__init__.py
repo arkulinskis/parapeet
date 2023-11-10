@@ -16,6 +16,7 @@ class Index(IndexTemplate):
     self.more_info_form = more_info()
     self.parapeet_story = Parapeet_story()
     
+    
   def get_started_click(self, **event_args):
     self.get_started.visible = False
     self.starting.visible = True
