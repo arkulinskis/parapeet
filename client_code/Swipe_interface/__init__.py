@@ -52,12 +52,11 @@ if 1:
 
 class Swipe_interface(Swipe_interfaceTemplate):
   def __init__(self, **properties):
-    global sentences_store
     self.init_components(**properties)
-
+    global sentences_store    
+    server.call_s('send_interest', "launched")
     self.audio_disabled = True
     self.stream=None
-    
     self.audioElement = document.getElementById('myaudio')
     self.sourceElement = document.getElementById("mysource")
       
@@ -172,43 +171,32 @@ class Swipe_interface(Swipe_interfaceTemplate):
           if self.mymenuv.mymode[0:7] == "Phrases" and self.noalert:
             self.play_example_click()
     
-  def launch_user_app(self, fresh_launch=True):
+  def launch_user_app(self):
     global sentences_store
-    
-    if fresh_launch: #get data if you need to get data.
-#Member can be free or premium.
-#Visitor is only basic.
-#Get data if you don't have it, it<s out of date, or user is advanced and you dont have data.
 
-      
-      if "user_data_date" not in sentences_store or \
-      sentences_store["user_data_date"] < latest_data_date or \
-      "user_data_type" not in sentences_store or \
-      sentences_store["user_data_type"] != self.current_user["customer_type"]: 
-        responsev = server.call('update_local_storage', datetime(2022,7,1,0,0,0),"free")
+    cus_type = ""
+    if self.current_user is None:
+      cus_type = "basic"
+    else:
+      if str(self.current_user["customer_type"] or "") == "":
+        cus_type = "free"
       else:
-        responsev = 'yougood'
+        cus_type = "premium"
 
-
-
-
-      
-      # if "user_data_date" in sentences_store:
-      #   if sentences_store["user_data_date"] < latest_data_date:
-      #     if "user_data_type" in sentences_store:
-      #       responsev = server.call('update_local_storage',sentences_store["user_data_date"],sentences_store["user_data_type"])
-      #     else:
-      #       responsev = server.call('update_local_storage',sentences_store["user_data_date"],"free")
-      #   else:
-      #     responsev = 'yougood'
-      # else:
-      #   responsev = server.call('update_local_storage', datetime(2022,7,1,0,0,0),"free")
-      
-      if responsev != "yougood":
-        sentences_store["user_data_date"] = responsev["user_data_date"]
-        sentences_store["user_data_type"] = responsev["user_data_type"]
-        sentences_store["rows"] = responsev["rows"]
-        sentences_store["rows_english"] = responsev["rows_english"]
+    print("AAA", sentences_store["user_data_type"], cus_type )
+    if "user_data_date" not in sentences_store or \
+    sentences_store["user_data_date"] < latest_data_date or \
+    "user_data_type" not in sentences_store or \
+    sentences_store["user_data_type"] != cus_type: 
+      responsev = server.call('update_local_storage')
+    else:
+      responsev = 'yougood'
+    
+    if responsev != "yougood":
+      sentences_store["user_data_date"] = responsev["user_data_date"]
+      sentences_store["user_data_type"] = responsev["user_data_type"]
+      sentences_store["rows"] = responsev["rows"]
+      sentences_store["rows_english"] = responsev["rows_english"]
 
 
     self.usable_sentences = []
@@ -234,12 +222,6 @@ class Swipe_interface(Swipe_interfaceTemplate):
     self.active_column = 0
 
     self.menulaunch_click(use_to_log_in = self.mymenuv.mymode.split("_")[0])
-    # if self.mymenuv.mymode[0:7] == "Phrases":
-    #   self.update_visual()
-    # elif self.mymenuv.mymode[0:5] == "Notes" or self.mymenuv.mymode[0:5] == "Tests":
-    #   self.update_notes_visual()
-    
-    server.call_s('send_interest', "launched")
     
     self.app_ready = True
     self.like_button.foreground = "#2C3673"
@@ -547,6 +529,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
         self.getaccount.visible = True
         
       if current_log_in_state != self.mymenuv.signed_in:
+        print("launching user app")
         self.launch_user_app()
 
       if result == "Help":
@@ -656,7 +639,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       if users.get_user() is not None:
         self.getaccount.visible = False
         self.mymenuv.signed_in = True
-        self.launch_user_app()     
+        self.launch_user_app()
 
   def play_example_click(self, **event_args):
     if self.looping or (self.app_ready == False):
