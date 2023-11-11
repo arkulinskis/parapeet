@@ -183,7 +183,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
       else:
         cus_type = "premium"
 
-    print("AAA", sentences_store["user_data_type"], cus_type )
+    # print("AAA", sentences_store["user_data_type"], cus_type )
     if "user_data_date" not in sentences_store or \
     sentences_store["user_data_date"] < latest_data_date or \
     "user_data_type" not in sentences_store or \
@@ -211,7 +211,7 @@ class Swipe_interface(Swipe_interfaceTemplate):
     if self.mymenuv.signed_in:
       self.mylikes = server.call("get_points")
     else:
-      print("not logged-in 1")
+      # print("not logged-in 1")
       self.mylikes = False
     self.update_points() 
     
@@ -529,7 +529,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
         self.getaccount.visible = True
         
       if current_log_in_state != self.mymenuv.signed_in:
-        print("launching user app")
+        self.current_user = users.get_user()
+        # print("launching user app")
         self.launch_user_app()
 
       if result == "Help":
@@ -636,7 +637,8 @@ class Swipe_interface(Swipe_interfaceTemplate):
       self.noalert = True
     else:
       user = users.login_with_form(allow_cancel=True)
-      if users.get_user() is not None:
+      self.current_user = users.get_user()
+      if self.current_user is not None:
         self.getaccount.visible = False
         self.mymenuv.signed_in = True
         self.launch_user_app()
