@@ -1,20 +1,21 @@
 from ._anvil_designer import IndexTemplate
-from anvil import open_form, alert
-import anvil.server
-from anvil.js.window import document, setTimeout, clearTimeout
+from anvil import open_form, alert, users
+from anvil.js.window import document #, setTimeout, clearTimeout
 import anvil.js
 from ..Parapeet_story import Parapeet_story
 from ..more_info import more_info
 
 class Index(IndexTemplate):
-  def __init__(self, **properties):
+  def __init__(self, ignore_login = False, **properties):
     # Set Form properties and Data Bindings.
+    self.ignore_login = ignore_login
     self.init_components(**properties)
     self.myTimeout = 0
     document.getElementsByTagName("body")[0].classList.remove("unscrollable")
     
     self.more_info_form = more_info()
     self.parapeet_story = Parapeet_story()
+    
     
   def get_started_click(self, **event_args):
     self.get_started.visible = False
@@ -27,6 +28,13 @@ class Index(IndexTemplate):
 
   def form_show(self, **event_args):
     self.get_started.visible = True
+    if not self.ignore_login:
+      get_user = users.get_user()
+      if get_user != None:
+        self.get_started.visible = False
+        self.starting.visible = True
+        open_form("Swipe_interface")
+  
     # self.newVideo = document.createElement("video")
     # self.newVideo.classList.add("invisible")
     # self.newVideo.type = r"video/mp4"
@@ -38,7 +46,7 @@ class Index(IndexTemplate):
 
   # def playpromo(self, **args):
   #   if self.played == False:
-  #     tmpblob = anvil.server.call("get_video", "promo")
+  #     tmpblob = server.call("get_video", "promo")
   #     print(tmpblob)
   #     self.newVideo.src = tmpblob
   #     self.played = True

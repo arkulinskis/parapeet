@@ -73,70 +73,117 @@ def get_notes():
     returnlist.append(dict(row))
   return returnlist
 
+
 @server.callable
-def update_local_storage(user_data_date,user_data_type):
+def update_local_storage():
   user = users.get_user()
-  print("logged in user is", user)
-  if user is not None:
-    customer_type = tables.app_tables.users.get(email=user['email'])['customer_type']
+  if user is None:
+    customer_type = "basic"
+  else:
+    user_entry = tables.app_tables.users.get(email=user['email'])
+    customer_type = user_entry['customer_type']
     if customer_type == "" or customer_type == None or customer_type is None:
       customer_type = "free"
-    recently_upgraded = False
-    print("bg", user_data_type, customer_type)
-    if user_data_type == "free" and customer_type == "premium": recently_upgraded = True
-    mydate = datetime(2023,7,28,0,0,0,tzinfo=timezone(timedelta(0, -14400)))
-    print(mydate)
-    print(user_data_date)
-    if user_data_date < mydate or (user_data_type != "premium" and user_data_type != "free"):
-      print(customer_type)
-      return_json = {}
-      return_json['user_data_type'] = customer_type
-      return_json['user_data_date'] = datetime.now()
-      return_json['rows'] = []
-      return_json['rows_english'] = []
-      allowed_rows = tables.app_tables.frenchsentences.search(Availability=customer_type)
-      for row in allowed_rows:
-        return_json['rows'].append(dict(row))
-      if customer_type == "premium":
-        allowed_rows3 = tables.app_tables.frenchsentences.search(Availability=customer_type)
-        for row in allowed_rows3:
-          return_json['rows'].append(dict(row))
-      allowed_rows2 = tables.app_tables.frenchsentences.search(Availability="basic")
-      for row in allowed_rows2:
-        return_json['rows'].append(dict(row))
 
-      allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
-      for row in allowed_rows_english:
-        return_json['rows_english'].append(dict(row))
-      if customer_type == "premium":
-        allowed_rows_english3 = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
-        for row in allowed_rows_english3:
-          return_json['rows_english'].append(dict(row))
-      allowed_rows_english2 = tables.app_tables.frenchsentences_translation.search(Availability="basic")
-      for row in allowed_rows_english2:
-        return_json['rows_english'].append(dict(row))
-        
-      print("Call made")
-      return return_json
-        
-    else:
-      return("yougood")
-      
-  else:
-    allowed_rows = tables.app_tables.frenchsentences.search(Availability="basic")
-    allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="basic")
-    return_json = {}
-    return_json['user_data_type'] = "basic"
-    return_json['user_data_date'] = datetime.now()
-    return_json['rows'] = []
-    return_json['rows_english'] = []
+  return_json = {}
+  return_json['user_data_type'] = customer_type
+  return_json['user_data_date'] = datetime.now()
+  return_json['rows'] = []
+  return_json['rows_english'] = []
+
+  allowed_rows = tables.app_tables.frenchsentences.search(Availability="basic")
+  for row in allowed_rows:
+    return_json['rows'].append(dict(row))
+  allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="basic")
+  for row in allowed_rows_english:
+    return_json['rows_english'].append(dict(row))
+
+  if customer_type != "basic":
+    allowed_rows = tables.app_tables.frenchsentences.search(Availability="free")
     for row in allowed_rows:
       return_json['rows'].append(dict(row))
+    allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="free")
     for row in allowed_rows_english:
       return_json['rows_english'].append(dict(row))
 
-    print("Call made")
-    return return_json
+  if customer_type == "premium":
+    allowed_rows = tables.app_tables.frenchsentences.search(Availability="premium")
+    for row in allowed_rows:
+      return_json['rows'].append(dict(row))
+    allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="premium")
+    for row in allowed_rows_english:
+      return_json['rows_english'].append(dict(row))
+
+  print("Call made")
+  return return_json
+
+    
+
+  
+  # @server.callable
+# def update_local_storage(user_data_date,user_data_type):
+#   user = users.get_user()
+#   print("logged in user is", user)
+#   if user is not None:
+#     customer_type = tables.app_tables.users.get(email=user['email'])['customer_type']
+#     if customer_type == "" or customer_type == None or customer_type is None:
+#       customer_type = "free"
+#     recently_upgraded = False
+#     print("bg", user_data_type, customer_type)
+#     if user_data_type == "free" and customer_type == "premium": recently_upgraded = True
+#     mydate = datetime(2023,7,28,0,0,0,tzinfo=timezone(timedelta(0, -14400)))
+#     print(mydate)
+#     print(user_data_date)
+#     if user_data_date < mydate or (user_data_type != "premium" and user_data_type != "free"):
+#       print(customer_type)
+#       return_json = {}
+#       return_json['user_data_type'] = customer_type
+#       return_json['user_data_date'] = datetime.now()
+#       return_json['rows'] = []
+#       return_json['rows_english'] = []
+#       allowed_rows = tables.app_tables.frenchsentences.search(Availability=customer_type)
+#       for row in allowed_rows:
+#         return_json['rows'].append(dict(row))
+#       if customer_type == "premium":
+#         allowed_rows3 = tables.app_tables.frenchsentences.search(Availability=customer_type)
+#         for row in allowed_rows3:
+#           return_json['rows'].append(dict(row))
+#       allowed_rows2 = tables.app_tables.frenchsentences.search(Availability="basic")
+#       for row in allowed_rows2:
+#         return_json['rows'].append(dict(row))
+
+#       allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
+#       for row in allowed_rows_english:
+#         return_json['rows_english'].append(dict(row))
+#       if customer_type == "premium":
+#         allowed_rows_english3 = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
+#         for row in allowed_rows_english3:
+#           return_json['rows_english'].append(dict(row))
+#       allowed_rows_english2 = tables.app_tables.frenchsentences_translation.search(Availability="basic")
+#       for row in allowed_rows_english2:
+#         return_json['rows_english'].append(dict(row))
+        
+#       print("Call made")
+#       return return_json
+        
+#     else:
+#       return("yougood")
+      
+#   else:
+#     allowed_rows = tables.app_tables.frenchsentences.search(Availability="basic")
+#     allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="basic")
+#     return_json = {}
+#     return_json['user_data_type'] = "basic"
+#     return_json['user_data_date'] = datetime.now()
+#     return_json['rows'] = []
+#     return_json['rows_english'] = []
+#     for row in allowed_rows:
+#       return_json['rows'].append(dict(row))
+#     for row in allowed_rows_english:
+#       return_json['rows_english'].append(dict(row))
+
+#     print("Call made")
+#     return return_json
     
 @server.callable
 def get_music(id):
