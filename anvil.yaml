@@ -62,9 +62,9 @@ native_deps: {head_html: "<meta content='yes' name='apple-mobile-web-app-capable
     \  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
     \ rel=\"stylesheet\">\n  \n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\"\
     \ crossorigin=\"anonymous\"></script>\n\n  <meta name=\"msapplication-TileColor\"\
-    \ content=\"#ffffff\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
-    >\n  <meta name=\"theme-color\" content=\"#ffffff\">\n\n<script>\ndocument.querySelector('meta[name=\"\
-    theme-color\"]').setAttribute(\"content\", \"#fffffa\");\ndocument.querySelector(\"\
+    \ content=\"#2e7d32\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
+    >\n  <meta name=\"theme-color\" content=\"#2e7d32\">\n\n<script>\ndocument.querySelector('meta[name=\"\
+    theme-color\"]').setAttribute(\"content\", \"#2e7d32\");\ndocument.querySelector(\"\
     link[rel='manifest']\").setAttribute('href', '_/theme/manifest.json');\n</script>\n\
     \n\n\n<script>\n\n  \nfunction isScreenLockSupported() {\n  return ('wakeLock'\
     \ in navigator);\n}\nvar screenLock;\nasync function lockWakeState() {\n  console.log(\"\
