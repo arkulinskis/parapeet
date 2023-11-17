@@ -53,8 +53,11 @@ if 1:
 class Swipe_interface(Swipe_interfaceTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
-    global sentences_store    
-    server.call_s('send_interest', "launched")
+    global sentences_store
+    try:
+      server.call_s('send_interest', "launched")
+    except:
+      pass
     self.audio_disabled = True
     self.stream=None
     self.audioElement = document.getElementById('myaudio')
@@ -670,37 +673,45 @@ class Swipe_interface(Swipe_interfaceTemplate):
     else:
       tmp0 = self.row_showing_order[self.row_showing_item]
       tmp = self.usable_sentences[tmp0]
-      tmpblob = server.call("get_voice", tmp["LineID"],  self.ccols[self.active_column], language)
-      
-      ###
-      
-      self.audio_recording_example.src = tmpblob # self.audio_recording_example = Audio(tmpblob)
-      
-      if language == "english":
-        self.audio_recording_example.volume = 0.3
-      else:
-        self.audio_recording_example.volume = 1
+
+      playsound = True
       try:
-        if self.playing_example or self.looping:
-          self.audio_recording_example.play()
-          print("playing audio", tmp0, language)
-          audio_length = self.audio_recording_example.duration
-          time.sleep(audio_length)
-          if pause_after_first:
-            time.sleep(audio_length)
-          
-          if twice and self.looping:
-            time.sleep(0.5)
+        tmpblob = server.call("get_voice", tmp["LineID"],  self.ccols[self.active_column], language)
+      except anvil.server.AppOfflineError:
+        alert("Internet access required to function")
+        playsound = False
+      ###
+
+      if playsound:
+        self.audio_recording_example.src = tmpblob
+        
+        if language == "english":
+          self.audio_recording_example.volume = 0.3
+        else:
+          self.audio_recording_example.volume = 1
+        try:
+          if self.playing_example or self.looping:
             self.audio_recording_example.play()
+            print("playing audio", tmp0, language)
             audio_length = self.audio_recording_example.duration
             time.sleep(audio_length)
-            if pause_after_second:
+            if pause_after_first:
               time.sleep(audio_length)
-      except:
-        print("error 1")
-        
-      return "done"
- 
+            
+            if twice and self.looping:
+              time.sleep(0.5)
+              self.audio_recording_example.play()
+              audio_length = self.audio_recording_example.duration
+              time.sleep(audio_length)
+              if pause_after_second:
+                time.sleep(audio_length)
+        except:
+          print("error 1")
+          
+        return "done"
+      else:
+        return "notdone"
+  
   def record_click(self, **event_args):
     if self.looping or self.app_ready == False:
       pass
