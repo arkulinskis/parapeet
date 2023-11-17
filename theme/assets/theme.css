@@ -17,6 +17,7 @@
 body {
 /*   overflow: hidden; */
   overscroll-behavior: none;
+  background-color: #0D0D0D;
 }
 
 .unscrollable {
