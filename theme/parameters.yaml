@@ -32,4 +32,4 @@ roles:
 - {name: unscrollable}
 color_scheme:
   colors:
-  - {name: background_color, color: '#ffffff'}
+  - {name: background_color, color: '#2e7d32'}
