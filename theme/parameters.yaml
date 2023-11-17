@@ -31,5 +31,4 @@ roles:
 - {name: notezone}
 - {name: unscrollable}
 color_scheme:
-  colors:
-  - {name: background_color, color: '#2e7d32'}
+  colors: []
