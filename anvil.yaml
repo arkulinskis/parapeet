@@ -1,334 +1,273 @@
+allow_embedding: true
 correct_dependency_ids: {C6ZZPAPN4YYF5NVJ: C6ZZPAPN4YYF5NVJ}
+db_schema:
+  frenchsentences:
+    client: none
+    columns:
+    - admin_ui: {order: 2, width: 200}
+      name: Basic
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: Boss
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      name: Colleague
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      name: Client
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      name: Lover
+      type: string
+    - admin_ui: {order: 7, width: 200}
+      name: Agressive
+      type: string
+    - admin_ui: {order: 8, width: 200}
+      name: Frustrated
+      type: string
+    - admin_ui: {order: 9, width: 200}
+      name: Sad
+      type: string
+    - admin_ui: {order: 10, width: 200}
+      name: Impressed
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: CategoryID
+      type: number
+    - admin_ui: {order: 1.5, width: 200}
+      name: LineID
+      type: number
+    - admin_ui: {order: 1.75, width: 200}
+      name: Availability
+      type: string
+    - {admin_ui: null, name: Stupid, type: string}
+    server: full
+    title: FrenchSentences
+  frenchsentences_translation:
+    client: none
+    columns:
+    - admin_ui: {}
+      name: Agressive
+      type: string
+    - admin_ui: {}
+      name: Availability
+      type: string
+    - admin_ui: {}
+      name: Boss
+      type: string
+    - admin_ui: {}
+      name: Basic
+      type: string
+    - admin_ui: {}
+      name: CategoryID
+      type: number
+    - admin_ui: {}
+      name: Colleague
+      type: string
+    - admin_ui: {}
+      name: Frustrated
+      type: string
+    - admin_ui: {}
+      name: LineID
+      type: number
+    - admin_ui: {}
+      name: Lover
+      type: string
+    - admin_ui: {}
+      name: Sad
+      type: string
+    - admin_ui: {}
+      name: Impressed
+      type: string
+    - admin_ui: {}
+      name: Stupid
+      type: string
+    - admin_ui: {}
+      name: Client
+      type: string
+    server: full
+    title: FrenchSentences_translation
+  interest:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: showed_interest
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: mydatetime
+      type: datetime
+    - admin_ui: {order: 2, width: 200}
+      name: interested
+      type: string
+    server: full
+    title: interest
+  music:
+    client: search
+    columns:
+    - admin_ui: {order: 0, width: 380}
+      name: Music_file
+      type: media
+    - admin_ui: {order: 1, width: 200}
+      name: music_id
+      type: string
+    server: full
+    title: music
+  usernotes:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: French
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Comment
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      name: Level
+      type: number
+    - admin_ui: {order: 7, width: 200}
+      name: User
+      type: string
+    server: full
+    title: UserNotes
+  userpoints:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: user
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Basic
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: Boss
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: Client
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      name: Colleague
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      name: Lover
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      name: Sad
+      type: string
+    - admin_ui: {order: 7, width: 200}
+      name: Frustrated
+      type: string
+    - admin_ui: {order: 8, width: 200}
+      name: Agressive
+      type: string
+    - admin_ui: {order: 9, width: 200}
+      name: Impressed
+      type: string
+    - admin_ui: {order: 10, width: 200}
+      name: Stupid
+      type: string
+    server: full
+    title: UserPoints
+  users:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: email
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: enabled
+      type: bool
+    - admin_ui: {order: 2, width: 200}
+      name: last_login
+      type: datetime
+    - admin_ui: {order: 3, width: 200}
+      name: password_hash
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      name: n_password_failures
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      name: confirmed_email
+      type: bool
+    - admin_ui: {order: 6, width: 200}
+      name: remembered_logins
+      type: simpleObject
+    - admin_ui: {order: 7, width: 200}
+      name: signed_up
+      type: datetime
+    - admin_ui: {order: 9, width: 200}
+      name: customer_type
+      type: string
+    server: full
+    title: Users
+  videos:
+    client: search
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: Video_id
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Video_file
+      type: media
+    server: full
+    title: videos
+  voicefiles:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: LineID
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Type
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: VoiceFile
+      type: media
+    server: full
+    title: VoiceFiles
+  voicefiles_english:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: LineID
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: Type
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: VoiceFile
+      type: media
+    server: full
+    title: VoiceFiles_english
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
   version: {dev: false}
-services:
-- source: /runtime/services/tables.yml
-  client_config: {enable_v2: true}
-  server_config: {}
-- source: /runtime/services/anvil/files.yml
-  client_config: {}
-  server_config: {}
-- source: /runtime/services/anvil/users.yml
-  client_config: {allow_signup: true, enable_automatically: true, use_email: true,
-    confirm_email: false, use_google: true, allow_remember_me: true, remember_me_days: 30,
-    share_login_status: true}
-  server_config: {user_table: users}
-- source: /runtime/services/google.yml
-  client_config: {}
-  server_config: {}
-- source: /runtime/services/stripe.yml
-  client_config: {}
-  server_config: {}
-startup: {type: form, module: Index}
-package_name: parapeet
-allow_embedding: true
+metadata: {description: 'Last year a magic parakeet got loose.\nThis klepto stole everyone''s knowledge of French.\n\nAfter months of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters, lovers.. \npassion is what this will take.\n\nCatch Parapeet!', logo_img: 'asset:Parapeet-super-zoom.png', title: Catch the lingo - Parapeet}
 name: Parapeet
+native_deps:
+  head_html: "<meta content='yes' name='apple-mobile-web-app-capable'/>\n<meta content='yes' name='mobile-web-app-capable'/>\n\n<meta name=\"google-site-verification\" content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\" />\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta name=\"description\" content=\"Parapeet: Perfect Your Advanced French Language Skills\">\n  <meta name=\"keywords\" content=\"advanced French learning, language learning app, perfect French, Parapeet\n  , Advanced French language learning, Expert French phrases, Perfecting French skills, Advanced French vocabulary\n  , Fluent French conversation, French idioms and expressions, Enhance French pronunciation, Mastering complex French\n  , French language proficiency, Expert French communication, Advanced language practice, Elevate your French\n  , Parapeet language app, Parapeet advanced French, French language fluency, Polishing French skills, Advanced language resources\n  , Professional French communication, Expertise in French language, Complex French grammar, Advanced language exercises\n  , Fine-tuning French accent, Specialized French phrases, Advanced French fluency, High-level French practice\n  , Expertise in advanced French, Complex French conversations, Advanced French learning techniques, Profound French vocabulary\n  , Fluent communication in French, Mastery of French language, Advanced French writing skills, Advanced French learning journey\n  , Perfecting French grammar, Proficiency in advanced French, Advanced French language challenges, French language mastery program\n  , Advanced French conversation practice, Expert-level French proficiency, Advanced French learning platform\">\n  <meta name=\"author\" content=\"Arkvital\">\n    \n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\" rel=\"stylesheet\">\n  \n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\" crossorigin=\"anonymous\"></script>\n\n  <meta name=\"msapplication-TileColor\" content=\"#2e7d32\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\">\n  <meta name=\"theme-color\" content=\"#2e7d32\">\n  <meta name=\"background-color\" content=\"#b5e655\">\n\n<script>\ndocument.querySelector('meta[name=\"theme-color\"]').setAttribute(\"content\", \"#2e7d32\");\ndocument.querySelector('meta[name=\"background-color\"]').setAttribute(\"content\", \"#b5e655\");\ndocument.querySelector(\"link[rel='manifest']\").setAttribute('href', '_/theme/manifest.json');\n</script>\n\n\n\n<script>\n\n  \nfunction isScreenLockSupported() {\n  return ('wakeLock' in navigator);\n}\nvar screenLock;\nasync function lockWakeState() {\n  console.log(\"asked to keep awake\");\n  if(isScreenLockSupported()){\n    try {\n       screenLock = await navigator.wakeLock.request('screen');\n    } catch(err) {\n       console.log(err.name, err.message);\n    }\n    return screenLock;\n  }\n}\nfunction releaseWakeState() { \n  console.log(\"asked to be able to sleep\");\n  if(typeof screenLock !== \"undefined\" && screenLock != null) {\n    screenLock.release()\n    .then(() => {\n      console.log(\"Lock released 🎈\");\n      screenLock = null;\n    });\n  }\n}  \n</script>\n\n<div class=\"bg\"></div>\n<!-- <div class=\"bg bg2\"></div>\n<div class=\"bg bg3\"></div> -->\n\n<script>\n  function similarity(s1, s2) {\n  var longer = s1;\n  var shorter = s2;\n  if (s1.length < s2.length) {\n    longer = s2;\n    shorter = s1;\n  }\n  var longerLength = longer.length;\n  if (longerLength == 0) {\n    return 1.0;\n  }\n  return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);\n}\n  function editDistance(s1, s2) {\n  s1 = s1.toLowerCase();\n  s2 = s2.toLowerCase();\n\n  var costs = new Array();\n  for (var i = 0; i <= s1.length; i++) {\n    var lastValue = i;\n    for (var j = 0; j <= s2.length; j++) {\n      if (i == 0)\n        costs[j] = j;\n      else {\n        if (j > 0) {\n          var newValue = costs[j - 1];\n          if (s1.charAt(i - 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue, lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100vh; opacity:0.2; position: fixed; top:0; left: 0; width: 100vw; margin:0px; padding:0px;\"></div>\n\n<audio id=\"myaudio\"><source id=\"mysource\"></source></audio>\n"
+package_name: parapeet
 runtime_options:
-  version: 2
   client_version: '3'
-  server_version: python3-sandbox
   server_spec: {base: python310-standard}
   server_spec_disabled: {base: python310-standard, requirements: ''}
-metadata: {title: Catch the lingo - Parapeet, description: 'Last year a magic parakeet
-    got loose.\nThis klepto stole everyone''s knowledge of French.\n\nAfter months
-    of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters,
-    lovers.. \npassion is what this will take.\n\nCatch Parapeet!', logo_img: 'asset:Parapeet-super-zoom.png'}
+  server_version: python3-sandbox
+  version: 2
+services:
+- client_config: {enable_v2: true}
+  server_config: {}
+  source: /runtime/services/tables.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/anvil/files.yml
+- client_config: {allow_remember_me: true, allow_signup: true, confirm_email: false, enable_automatically: true, remember_me_days: 30, share_login_status: true, use_email: true, use_google: true}
+  server_config: {user_table: users}
+  source: /runtime/services/anvil/users.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/google.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/stripe.yml
+startup: {module: Index, type: form}
 startup_form: null
-native_deps: {head_html: "<meta content='yes' name='apple-mobile-web-app-capable'/>\n\
-    <meta content='yes' name='mobile-web-app-capable'/>\n\n<meta name=\"google-site-verification\"\
-    \ content=\"At5SeHH35hDUlQkpygEDLmSBHiDtVGt20twoJSzOYOs\" />\n  <meta charset=\"\
-    UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"\
-    >\n  <meta name=\"description\" content=\"Parapeet: Perfect Your Advanced French\
-    \ Language Skills\">\n  <meta name=\"keywords\" content=\"advanced French learning,\
-    \ language learning app, perfect French, Parapeet\n  , Advanced French language\
-    \ learning, Expert French phrases, Perfecting French skills, Advanced French vocabulary\n\
-    \  , Fluent French conversation, French idioms and expressions, Enhance French\
-    \ pronunciation, Mastering complex French\n  , French language proficiency, Expert\
-    \ French communication, Advanced language practice, Elevate your French\n  , Parapeet\
-    \ language app, Parapeet advanced French, French language fluency, Polishing French\
-    \ skills, Advanced language resources\n  , Professional French communication,\
-    \ Expertise in French language, Complex French grammar, Advanced language exercises\n\
-    \  , Fine-tuning French accent, Specialized French phrases, Advanced French fluency,\
-    \ High-level French practice\n  , Expertise in advanced French, Complex French\
-    \ conversations, Advanced French learning techniques, Profound French vocabulary\n\
-    \  , Fluent communication in French, Mastery of French language, Advanced French\
-    \ writing skills, Advanced French learning journey\n  , Perfecting French grammar,\
-    \ Proficiency in advanced French, Advanced French language challenges, French\
-    \ language mastery program\n  , Advanced French conversation practice, Expert-level\
-    \ French proficiency, Advanced French learning platform\">\n  <meta name=\"author\"\
-    \ content=\"Arkvital\">\n    \n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"\
-    >\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n\
-    \  <link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans&display=swap\"\
-    \ rel=\"stylesheet\">\n  \n  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3860896077231195\"\
-    \ crossorigin=\"anonymous\"></script>\n\n  <meta name=\"msapplication-TileColor\"\
-    \ content=\"#2e7d32\">\n  <meta name=\"msapplication-TileImage\" content=\"https://parapeet.com/_/theme/Parapeet-super-zoom.png\"\
-    >\n  <meta name=\"theme-color\" content=\"#2e7d32\">\n  <meta name=\"background-color\"\
-    \ content=\"#b5e655\">\n\n<script>\ndocument.querySelector('meta[name=\"theme-color\"\
-    ]').setAttribute(\"content\", \"#2e7d32\");\ndocument.querySelector('meta[name=\"\
-    background-color\"]').setAttribute(\"content\", \"#b5e655\");\ndocument.querySelector(\"\
-    link[rel='manifest']\").setAttribute('href', '_/theme/manifest.json');\n</script>\n\
-    \n\n\n<script>\n\n  \nfunction isScreenLockSupported() {\n  return ('wakeLock'\
-    \ in navigator);\n}\nvar screenLock;\nasync function lockWakeState() {\n  console.log(\"\
-    asked to keep awake\");\n  if(isScreenLockSupported()){\n    try {\n       screenLock\
-    \ = await navigator.wakeLock.request('screen');\n    } catch(err) {\n       console.log(err.name,\
-    \ err.message);\n    }\n    return screenLock;\n  }\n}\nfunction releaseWakeState()\
-    \ { \n  console.log(\"asked to be able to sleep\");\n  if(typeof screenLock !==\
-    \ \"undefined\" && screenLock != null) {\n    screenLock.release()\n    .then(()\
-    \ => {\n      console.log(\"Lock released \ud83c\udf88\");\n      screenLock =\
-    \ null;\n    });\n  }\n}  \n</script>\n\n<div class=\"bg\"></div>\n<div class=\"\
-    bg bg2\"></div>\n<div class=\"bg bg3\"></div>\n\n<script>\n  function similarity(s1,\
-    \ s2) {\n  var longer = s1;\n  var shorter = s2;\n  if (s1.length < s2.length)\
-    \ {\n    longer = s2;\n    shorter = s1;\n  }\n  var longerLength = longer.length;\n\
-    \  if (longerLength == 0) {\n    return 1.0;\n  }\n  return (longerLength - editDistance(longer,\
-    \ shorter)) / parseFloat(longerLength);\n}\n  function editDistance(s1, s2) {\n\
-    \  s1 = s1.toLowerCase();\n  s2 = s2.toLowerCase();\n\n  var costs = new Array();\n\
-    \  for (var i = 0; i <= s1.length; i++) {\n    var lastValue = i;\n    for (var\
-    \ j = 0; j <= s2.length; j++) {\n      if (i == 0)\n        costs[j] = j;\n  \
-    \    else {\n        if (j > 0) {\n          var newValue = costs[j - 1];\n  \
-    \        if (s1.charAt(i - 1) != s2.charAt(j - 1))\n            newValue = Math.min(Math.min(newValue,\
-    \ lastValue),\n              costs[j]) + 1;\n          costs[j - 1] = lastValue;\n\
-    \          lastValue = newValue;\n        }\n      }\n    }\n    if (i > 0)\n\
-    \      costs[s2.length] = lastValue;\n  }\n  return costs[s2.length];\n}\n</script>\n\
-    \n<div style=\"background: url('_/theme/tallbush.png') no-repeat;  height: 100vh;\
-    \ opacity:0.2; position: fixed; top:0; left: 0; width: 100vw; margin:0px; padding:0px;\"\
-    ></div>\n\n<audio id=\"myaudio\"><source id=\"mysource\"></source></audio>\n"}
-db_schema:
-  voicefiles:
-    client: none
-    server: full
-    columns:
-    - name: LineID
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: Type
-      admin_ui: {order: 1, width: 200}
-      type: string
-    - name: VoiceFile
-      admin_ui: {order: 2, width: 200}
-      type: media
-    title: VoiceFiles
-  userpoints:
-    client: none
-    server: full
-    columns:
-    - name: user
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: Basic
-      admin_ui: {order: 1, width: 200}
-      type: string
-    - name: Boss
-      admin_ui: {order: 2, width: 200}
-      type: string
-    - name: Client
-      admin_ui: {order: 3, width: 200}
-      type: string
-    - name: Colleague
-      admin_ui: {order: 4, width: 200}
-      type: string
-    - name: Lover
-      admin_ui: {order: 5, width: 200}
-      type: string
-    - name: Sad
-      admin_ui: {order: 6, width: 200}
-      type: string
-    - name: Frustrated
-      admin_ui: {order: 7, width: 200}
-      type: string
-    - name: Agressive
-      admin_ui: {order: 8, width: 200}
-      type: string
-    - name: Impressed
-      admin_ui: {order: 9, width: 200}
-      type: string
-    - name: Stupid
-      admin_ui: {order: 10, width: 200}
-      type: string
-    title: UserPoints
-  usernotes:
-    client: none
-    server: full
-    columns:
-    - name: French
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: Comment
-      admin_ui: {order: 1, width: 200}
-      type: string
-    - name: Level
-      admin_ui: {order: 5, width: 200}
-      type: number
-    - name: User
-      admin_ui: {order: 7, width: 200}
-      type: string
-    title: UserNotes
-  frenchsentences_translation:
-    client: none
-    server: full
-    columns:
-    - name: Agressive
-      admin_ui: {}
-      type: string
-    - name: Availability
-      admin_ui: {}
-      type: string
-    - name: Boss
-      admin_ui: {}
-      type: string
-    - name: Basic
-      admin_ui: {}
-      type: string
-    - name: CategoryID
-      admin_ui: {}
-      type: number
-    - name: Colleague
-      admin_ui: {}
-      type: string
-    - name: Frustrated
-      admin_ui: {}
-      type: string
-    - name: LineID
-      admin_ui: {}
-      type: number
-    - name: Lover
-      admin_ui: {}
-      type: string
-    - name: Sad
-      admin_ui: {}
-      type: string
-    - name: Impressed
-      admin_ui: {}
-      type: string
-    - name: Stupid
-      admin_ui: {}
-      type: string
-    - name: Client
-      admin_ui: {}
-      type: string
-    title: FrenchSentences_translation
-  users:
-    client: none
-    server: full
-    columns:
-    - name: email
-      type: string
-      admin_ui: {order: 0, width: 200}
-    - name: enabled
-      type: bool
-      admin_ui: {order: 1, width: 200}
-    - name: last_login
-      type: datetime
-      admin_ui: {order: 2, width: 200}
-    - name: password_hash
-      type: string
-      admin_ui: {order: 3, width: 200}
-    - name: n_password_failures
-      type: number
-      admin_ui: {order: 4, width: 200}
-    - name: confirmed_email
-      type: bool
-      admin_ui: {order: 5, width: 200}
-    - name: remembered_logins
-      type: simpleObject
-      admin_ui: {order: 6, width: 200}
-    - name: signed_up
-      type: datetime
-      admin_ui: {order: 7, width: 200}
-    - name: customer_type
-      admin_ui: {order: 9, width: 200}
-      type: string
-    title: Users
-  music:
-    client: search
-    server: full
-    columns:
-    - name: Music_file
-      admin_ui: {order: 0, width: 380}
-      type: media
-    - name: music_id
-      admin_ui: {order: 1, width: 200}
-      type: string
-    title: music
-  voicefiles_english:
-    client: none
-    server: full
-    columns:
-    - name: LineID
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: Type
-      admin_ui: {order: 1, width: 200}
-      type: string
-    - name: VoiceFile
-      admin_ui: {order: 2, width: 200}
-      type: media
-    title: VoiceFiles_english
-  frenchsentences:
-    client: none
-    server: full
-    columns:
-    - name: Basic
-      admin_ui: {order: 2, width: 200}
-      type: string
-    - name: Boss
-      admin_ui: {order: 3, width: 200}
-      type: string
-    - name: Colleague
-      admin_ui: {order: 4, width: 200}
-      type: string
-    - name: Client
-      admin_ui: {order: 5, width: 200}
-      type: string
-    - name: Lover
-      admin_ui: {order: 6, width: 200}
-      type: string
-    - name: Agressive
-      admin_ui: {order: 7, width: 200}
-      type: string
-    - name: Frustrated
-      admin_ui: {order: 8, width: 200}
-      type: string
-    - name: Sad
-      admin_ui: {order: 9, width: 200}
-      type: string
-    - name: Impressed
-      admin_ui: {order: 10, width: 200}
-      type: string
-    - name: CategoryID
-      admin_ui: {order: 1, width: 200}
-      type: number
-    - name: LineID
-      admin_ui: {order: 1.5, width: 200}
-      type: number
-    - name: Availability
-      admin_ui: {order: 1.75, width: 200}
-      type: string
-    - {name: Stupid, admin_ui: null, type: string}
-    title: FrenchSentences
-  interest:
-    client: none
-    server: full
-    columns:
-    - name: showed_interest
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: mydatetime
-      admin_ui: {order: 1, width: 200}
-      type: datetime
-    - name: interested
-      admin_ui: {order: 2, width: 200}
-      type: string
-    title: interest
-  videos:
-    client: search
-    server: full
-    columns:
-    - name: Video_id
-      admin_ui: {order: 0, width: 200}
-      type: string
-    - name: Video_file
-      admin_ui: {order: 1, width: 200}
-      type: media
-    title: videos
 uplink_visible: true

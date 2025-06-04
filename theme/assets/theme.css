@@ -343,14 +343,15 @@ body.anvil-show-banner {
 
 /* ........................ BG ANIMATION .................. */
 .bg {
-  animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #b5e655 50%, #2e7d32 50%);
+  /* animation:slide 3s ease-in-out infinite alternate; */
+  background-image: linear-gradient(-60deg, #2e7d32 0%,  #b5e655 100%);
+  /* background-image: linear-gradient(-60deg, #b5e655 50%, #2e7d32 50%); this is the animated one */
 /*   background-image: linear-gradient(-60deg, #C0C0C0 50%, #E8E8E8 50%); */
 /*   background-image: linear-gradient(-60deg, #EFEA5A 50%, #16DB93 50%); */
 /*   background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%); */
   bottom:0;
   left:-50%;
-  opacity:.5;
+  /* opacity:.5; */
   position:fixed;
   right:-50%;
   top:0;
@@ -358,12 +359,12 @@ body.anvil-show-banner {
 }
 
 .bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:4s;
+  /* animation-direction:alternate-reverse; */
+  /* animation-duration:4s; */
 }
 
 .bg3 {
-  animation-duration:5s;
+  /* animation-duration:5s; */
 }
 
 @keyframes slide {
