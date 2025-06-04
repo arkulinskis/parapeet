@@ -1,224 +1,159 @@
-container:
-  type: ColumnPanel
-  properties: {role: howtozone, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
 components:
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: Select phrases to practice, font_size: 30, font: Garamond,
-    spacing_above: medium, icon_align: left, spacing_below: medium, italic: false,
-    background: '', bold: true, underline: false, icon: ''}
+- layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
   name: label_1
-  layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
-  name: flow_panel_5
-  layout_properties: {expand: true, width: null, grid_position: 'WDKYKP,EVGMLZ'}
-  components:
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: Spoken, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: true, icon: ''}
+  properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: medium, spacing_below: medium, text: Select phrases to practice, tooltip: '', underline: false, visible: true}
+  type: Label
+- components:
+  - layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
     name: label_1_copy_3
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: Liked, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: true, icon: ''}
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: Spoken, tooltip: '', underline: true, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
     name: label_1_copy_4
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
-- type: FlowPanel
-  properties: {role: null, spacing: small, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-  name: flow_panel_1
-  layout_properties: {grid_position: 'NGVSYU,UVLHRE'}
-  components:
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: right, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: flow_panel_7
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: Liked, tooltip: '', underline: true, visible: true}
+    type: Label
+  layout_properties: {expand: true, grid_position: 'WDKYKP,EVGMLZ', width: null}
+  name: flow_panel_5
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: medium, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - components: []
     layout_properties: {expand: true, width: null}
-    components: []
-  - type: Link
-    properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '', visible: true, text: Water cooler, font_size: 30, wrap_on: mobile,
-      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    name: water_cooler
+    name: flow_panel_7
+    properties: {align: right, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
+  - event_bindings: {click: water_cooler_click}
     layout_properties:
       col_widths: {}
       grid_position: TOUAWC,JSYUON
-    event_bindings: {click: water_cooler_click}
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
+    name: water_cooler
+    properties: {align: center, background: '', bold: true, border: '', col_spacing: medium, col_widths: '', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: menubuttons, spacing_above: small, spacing_below: small, text: Water cooler, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - layout_properties: {expand: true, width: null}
     name: flow_panel_12
-    layout_properties: {expand: true, width: null}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
-  name: flow_panel_4
-  layout_properties: {expand: true, width: null, grid_position: 'FUOYVD,CKJKZC'}
-  components:
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 0 / 170, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
+    properties: {align: left, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
+  layout_properties: {grid_position: 'NGVSYU,UVLHRE'}
+  name: flow_panel_1
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: small, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
     name: l_wcs
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 0 / 170, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: 0 / 170, tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
     name: l_wcl
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
-- type: FlowPanel
-  properties: {role: null, spacing: small, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-  name: flow_panel_1_copy
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: 0 / 170, tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {expand: true, grid_position: 'FUOYVD,CKJKZC', width: null}
+  name: flow_panel_4
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: medium, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - components: []
+    layout_properties: {expand: true, width: null}
+    name: flow_panel_8
+    properties: {align: right, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
+  - components: []
+    event_bindings: {click: presentation_click}
+    layout_properties:
+      col_widths: {}
+      grid_position: TOUAWC,JSYUON
+    name: presentation
+    properties: {align: center, background: '', bold: true, border: '', col_spacing: medium, col_widths: '{}', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: menubuttons, spacing_above: small, spacing_below: small, text: Presentation, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - layout_properties: {expand: true, grid_position: 'XERRFU,YRHXOK', width: null}
+    name: flow_panel_11
+    properties: {align: left, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
   layout_properties:
     col_widths: {}
     grid_position: XELVEZ,TNLBKU
-  components:
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: right, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: flow_panel_8
+  name: flow_panel_1_copy
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: small, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
+    name: l_ps
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: 0 / 170, tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
+    name: l_pl
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: 0 / 170, tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {expand: true, grid_position: 'EXJIKM,OSDZRI', width: null}
+  name: flow_panel_3
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: medium, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - components: []
     layout_properties: {expand: true, width: null}
-    components: []
-  - type: Link
-    properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '', visible: true, text: Presentation, font_size: 30, wrap_on: mobile,
-      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-      col_widths: '{}', spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    name: presentation
+    name: flow_panel_9
+    properties: {align: right, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
+  - components: []
+    event_bindings: {click: board_room_click}
     layout_properties:
       col_widths: {}
+      expand: false
       grid_position: TOUAWC,JSYUON
-    event_bindings: {click: presentation_click}
-    components: []
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: flow_panel_11
-    layout_properties: {grid_position: 'XERRFU,YRHXOK', expand: true, width: null}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
-  name: flow_panel_3
-  layout_properties: {expand: true, width: null, grid_position: 'EXJIKM,OSDZRI'}
-  components:
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 0 / 170, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    name: l_ps
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 0 / 170, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    name: l_pl
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH'}
-- type: FlowPanel
-  properties: {role: null, spacing: small, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-  name: flow_panel_1_copy_2
+      width: null
+    name: board_room
+    properties: {align: center, background: '', bold: true, border: '', col_spacing: medium, col_widths: '{}', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: menubuttons, spacing_above: small, spacing_below: small, text: Board room, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - layout_properties: {expand: true, full_width_row: false, grid_position: 'VVIGQQ,VSCVLE', width: null}
+    name: flow_panel_10
+    properties: {align: left, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
   layout_properties:
     col_widths: {}
-    grid_position: DNHWUK,MOIDFX
     full_width_row: false
-  components:
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: right, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: flow_panel_9
-    layout_properties: {expand: true, width: null}
-    components: []
-  - type: Link
-    properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '', visible: true, text: Board room, font_size: 30, wrap_on: mobile,
-      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-      col_widths: '{}', spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    name: board_room
-    layout_properties:
-      col_widths: {}
-      grid_position: TOUAWC,JSYUON
-      expand: false
-      width: null
-    event_bindings: {click: board_room_click}
-    components: []
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: flow_panel_10
-    layout_properties: {grid_position: 'VVIGQQ,VSCVLE', full_width_row: false, expand: true,
-      width: null}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
-  name: flow_panel_2
-  layout_properties: {expand: true, width: null, grid_position: 'LLKXDP,JDCXZE'}
-  components:
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 0 / 170, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
+    grid_position: DNHWUK,MOIDFX
+  name: flow_panel_1_copy_2
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: small, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - layout_properties: {expand: false, grid_position: 'SCIUNS,OQXMTH', width: null}
     name: l_brs
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH', expand: false, width: null}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 0 / 170, font_size: 26, font: Garamond, spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: 0 / 170, tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {expand: false, grid_position: 'SCIUNS,OQXMTH', width: null}
     name: l_brl
-    layout_properties: {grid_position: 'SCIUNS,OQXMTH', expand: false, width: null}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-  name: flow_panel_4_copy_2
+    properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: 0 / 170, tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {expand: true, grid_position: 'LLKXDP,JDCXZE', width: null}
+  name: flow_panel_2
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: medium, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - event_bindings: {click: premium_click}
+    layout_properties: {grid_position: 'ZSZIEG,IRAJGV'}
+    name: premium
+    properties: {align: center, background: '', bold: true, border: '', col_spacing: medium, col_widths: '', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: right, italic: false, role: menubuttons, spacing_above: none, spacing_below: small, text: ' Get more phrases! ', tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
   layout_properties:
     col_widths: {}
     grid_position: QPSXPA,OVLACH
-  components:
-  - type: Link
-    properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '', visible: true, text: ' Get more phrases! ', font_size: 30, wrap_on: mobile,
-      font: Garamond, col_spacing: medium, spacing_above: none, icon_align: right,
-      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    name: premium
-    layout_properties: {grid_position: 'ZSZIEG,IRAJGV'}
-    event_bindings: {click: premium_click}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: medium, spacing_below: large, background: ''}
-  name: flow_panel_1_copy_3
-  layout_properties:
-    col_widths: {}
-    grid_position: CWTHPN,LIFAVM
-  components:
-  - type: Link
-    properties: {role: menubuttons_close, url: '', align: center, tooltip: '', border: '',
-      foreground: '', visible: true, text: Close, font_size: 30, wrap_on: mobile,
-      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    name: close
+  name: flow_panel_4_copy_2
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - event_bindings: {click: close_click}
     layout_properties:
       col_widths: {}
       grid_position: TOUAWC,JSYUON
-    event_bindings: {click: close_click}
+    name: close
+    properties: {align: center, background: '', bold: true, border: '', col_spacing: medium, col_widths: '', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: menubuttons_close, spacing_above: small, spacing_below: small, text: Close, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  layout_properties:
+    col_widths: {}
+    grid_position: CWTHPN,LIFAVM
+  name: flow_panel_1_copy_3
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: medium, spacing_below: large, tooltip: '', visible: true}
+  type: FlowPanel
+container:
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: howtozone, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
 is_package: true

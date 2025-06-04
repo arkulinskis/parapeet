@@ -1,224 +1,140 @@
-container:
-  type: ColumnPanel
-  properties: {role: howtozone, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: none, background: ''}
 components:
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: Create a lesson plan, font_size: 30, font: Garamond, spacing_above: medium,
-    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-    underline: false, icon: ''}
-  name: lesson_minutes_copy
-  layout_properties:
+- layout_properties:
     col_widths: {}
     grid_position: TMHOXB,EUADUM
-- type: FlowPanel
-  properties: {role: null, spacing: large, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-  name: flow_panel_1
-  layout_properties: {grid_position: 'MNXUPK,GIIEPR', full_width_row: false}
-  components:
-  - type: RadioButton
-    properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '', value: EF, visible: true, text: English-French,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: true, group_name: lesson_type, underline: false}
+  name: lesson_minutes_copy
+  properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: medium, spacing_below: small, text: Create a lesson plan, tooltip: '', underline: false, visible: true}
+  type: Label
+- components:
+  - layout_properties: {grid_position: 'BWEORU,OQKVHA'}
     name: ref
-    layout_properties: {grid_position: 'BWEORU,OQKVHA'}
-  - type: RadioButton
-    properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '', value: EFP, visible: true, text: English-French-Pause,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: true, group_name: lesson_type, underline: false}
+    properties: {align: center, background: '', bold: true, border: '', enabled: true, font: Garamond, font_size: 18, foreground: '', group_name: lesson_type, italic: false, role: null, selected: false, spacing_above: small, spacing_below: small, text: English-French, tooltip: '', underline: false, value: EF, visible: true}
+    type: RadioButton
+  - layout_properties: {grid_position: 'BWEORU,CGLMJR'}
     name: refp
-    layout_properties: {grid_position: 'BWEORU,CGLMJR'}
-  - type: RadioButton
-    properties: {role: null, selected: true, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '', value: EPFP, visible: true, text: English-pause-French-Pause,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: true, group_name: lesson_type, underline: false}
+    properties: {align: center, background: '', bold: true, border: '', enabled: true, font: Garamond, font_size: 18, foreground: '', group_name: lesson_type, italic: false, role: null, selected: false, spacing_above: small, spacing_below: small, text: English-French-Pause, tooltip: '', underline: false, value: EFP, visible: true}
+    type: RadioButton
+  - layout_properties: {grid_position: 'BWEORU,HRIUUP'}
     name: repfp
-    layout_properties: {grid_position: 'BWEORU,HRIUUP'}
-- type: FlowPanel
-  properties: {role: null, spacing: large, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
-  name: flow_panel_3
-  layout_properties: {grid_position: 'ITRHDA,BVXJKX'}
-  components:
-  - type: RadioButton
-    properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '', value: FE, visible: true, text: French-English,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: true, group_name: lesson_type, underline: false}
-    name: rfe
+    properties: {align: center, background: '', bold: true, border: '', enabled: true, font: Garamond, font_size: 18, foreground: '', group_name: lesson_type, italic: false, role: null, selected: true, spacing_above: small, spacing_below: small, text: English-pause-French-Pause, tooltip: '', underline: false, value: EPFP, visible: true}
+    type: RadioButton
+  layout_properties: {full_width_row: false, grid_position: 'MNXUPK,GIIEPR'}
+  name: flow_panel_1
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: large, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+  type: FlowPanel
+- components:
+  - event_bindings: {}
     layout_properties: {grid_position: 'VONKJJ,NAYVJB'}
-    event_bindings: {}
-  - type: RadioButton
-    properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '', value: FFP, visible: true, text: French-French-Pause,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: true, group_name: lesson_type, underline: false}
+    name: rfe
+    properties: {align: center, background: '', bold: true, border: '', enabled: true, font: Garamond, font_size: 18, foreground: '', group_name: lesson_type, italic: false, role: null, selected: false, spacing_above: small, spacing_below: small, text: French-English, tooltip: '', underline: false, value: FE, visible: true}
+    type: RadioButton
+  - layout_properties: {grid_position: 'VCCKNM,VGBCYJ'}
     name: ffp
-    layout_properties: {grid_position: 'VCCKNM,VGBCYJ'}
-  - type: RadioButton
-    properties: {role: null, selected: false, align: center, tooltip: '', border: '',
-      enabled: true, foreground: '', value: FPEP, visible: true, text: French-Pause-English-Pause,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: true, group_name: lesson_type, underline: false}
+    properties: {align: center, background: '', bold: true, border: '', enabled: true, font: Garamond, font_size: 18, foreground: '', group_name: lesson_type, italic: false, role: null, selected: false, spacing_above: small, spacing_below: small, text: French-French-Pause, tooltip: '', underline: false, value: FFP, visible: true}
+    type: RadioButton
+  - layout_properties: {grid_position: 'VONKJJ,SBYFPQ'}
     name: rfpep
-    layout_properties: {grid_position: 'VONKJJ,SBYFPQ'}
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: 'Duration: 5 minutes', font_size: 26, font: Garamond, spacing_above: none,
-    icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-    underline: false, icon: ''}
+    properties: {align: center, background: '', bold: true, border: '', enabled: true, font: Garamond, font_size: 18, foreground: '', group_name: lesson_type, italic: false, role: null, selected: false, spacing_above: small, spacing_below: small, text: French-Pause-English-Pause, tooltip: '', underline: false, value: FPEP, visible: true}
+    type: RadioButton
+  layout_properties: {grid_position: 'ITRHDA,BVXJKX'}
+  name: flow_panel_3
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: large, spacing_above: small, spacing_below: medium, tooltip: '', visible: true}
+  type: FlowPanel
+- layout_properties: {grid_position: 'FRBPCR,SDCARL'}
   name: lesson_minutes
-  layout_properties: {grid_position: 'FRBPCR,SDCARL'}
-- type: form:C6ZZPAPN4YYF5NVJ:Slider
-  properties: {role: margin_sides_5, pips_mode: '', min: 0, tooltips: null, margin: '',
-    pips_stepped: true, pips: false, pips_values: '', max: 30, padding: '', enabled: true,
-    pips_density: null, limit: null, animate: true, visible: true, connect: 'True,
-      False', start: '5', behaviour: tap, handle_size: '40', spacing_above: small,
-    spacing_below: small, bar_height: '20', color: '', format: .2f, step: 5}
-  name: time_slider
+  properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 26, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: 'Duration: 5 minutes', tooltip: '', underline: false, visible: true}
+  type: Label
+- event_bindings: {slide: time_slider_slide}
   layout_properties:
     col_widths: {}
+    expand: true
     grid_position: DKKWON,NGTYTY
     width: null
-    expand: true
-  event_bindings: {slide: time_slider_slide}
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: Emotional and situational context, font_size: 22, font: Garamond,
-    spacing_above: small, icon_align: left, spacing_below: none, italic: false, background: '',
-    bold: true, underline: false, icon: ''}
+  name: time_slider
+  properties: {animate: true, bar_height: '20', behaviour: tap, color: '', connect: 'True, False', enabled: true, format: .2f, handle_size: '40', limit: null, margin: '', max: 30, min: 0, padding: '', pips: false, pips_density: null, pips_mode: '', pips_stepped: true, pips_values: '', role: margin_sides_5, spacing_above: small, spacing_below: small, start: '5', step: 5, tooltips: null, visible: true}
+  type: form:C6ZZPAPN4YYF5NVJ:Slider
+- layout_properties: {grid_position: 'XACDBD,PYCQEY'}
   name: label_2
-  layout_properties: {grid_position: 'XACDBD,PYCQEY'}
-- type: FlowPanel
-  properties: {role: null, spacing: huge, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
-  name: flow_panel_4
-  layout_properties: {grid_position: 'PGAVOO,MEJMLQ'}
-  components:
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Basic, font_size: 18,
-      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
-      bold: false, checked: true, underline: false}
-    name: basic
+  properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 22, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: none, text: Emotional and situational context, tooltip: '', underline: false, visible: true}
+  type: Label
+- components:
+  - event_bindings: {}
     layout_properties: {grid_position: 'MUHQXR,GHRAWF'}
-    event_bindings: {}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Colleague,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+    name: basic
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Basic, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'MUHQXR,PYSWYN'}
     name: colleague
-    layout_properties: {grid_position: 'MUHQXR,PYSWYN'}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Client, font_size: 18,
-      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
-      bold: false, checked: true, underline: false}
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Colleague, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'PGAVOO,QAVQRS'}
     name: client
-    layout_properties: {grid_position: 'PGAVOO,QAVQRS'}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Boss, font_size: 18,
-      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
-      bold: false, checked: true, underline: false}
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Client, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'MUHQXR,KAMMYL'}
     name: boss
-    layout_properties: {grid_position: 'MUHQXR,KAMMYL'}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Agressive,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Boss, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'MUHQXR,GDJVCN'}
     name: agressive
-    layout_properties: {grid_position: 'MUHQXR,GDJVCN'}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Frustrated,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Agressive, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'ZBDDUW,ZDPRRC'}
     name: frustrated
-    layout_properties: {grid_position: 'ZBDDUW,ZDPRRC'}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Sad, font_size: 18,
-      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
-      bold: false, checked: true, underline: false}
-    name: sad
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Frustrated, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - event_bindings: {}
     layout_properties: {grid_position: 'ZBDDUW,DAFFOT'}
-    event_bindings: {}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Lover, font_size: 18,
-      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
-      bold: false, checked: true, underline: false}
+    name: sad
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Sad, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'ZBDDUW,NJSFRL'}
     name: lover
-    layout_properties: {grid_position: 'ZBDDUW,NJSFRL'}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Impressed,
-      font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, checked: true, underline: false}
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Lover, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'ZBDDUW,VPQEVM'}
     name: impressed
-    layout_properties: {grid_position: 'ZBDDUW,VPQEVM'}
-  - type: CheckBox
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', allow_indeterminate: false, visible: true, text: Stupid, font_size: 18,
-      font: Garamond, spacing_above: small, spacing_below: small, italic: false, background: '',
-      bold: false, checked: true, underline: false}
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Impressed, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  - layout_properties: {grid_position: 'ZBDDUW,ANDJVX'}
     name: stupid
-    layout_properties: {grid_position: 'ZBDDUW,ANDJVX'}
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: Additional options, font_size: 24, font: Garamond, spacing_above: small,
-    icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-    underline: false, icon: ''}
-  name: label_2_copy
-  layout_properties:
+    properties: {align: center, allow_indeterminate: false, background: '', bold: false, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Stupid, tooltip: '', underline: false, visible: true}
+    type: CheckBox
+  layout_properties: {grid_position: 'PGAVOO,MEJMLQ'}
+  name: flow_panel_4
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: huge, spacing_above: small, spacing_below: medium, tooltip: '', visible: true}
+  type: FlowPanel
+- layout_properties:
     col_widths: {}
     grid_position: XEZMAG,GHIKCB
-- type: CheckBox
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', allow_indeterminate: false, visible: true, text: Cards are spoken out loud,
-    font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-    background: '', bold: true, checked: true, underline: false}
-  name: playsound
+  name: label_2_copy
+  properties: {align: center, background: '', bold: true, border: '', font: Garamond, font_size: 24, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: none, text: Additional options, tooltip: '', underline: false, visible: true}
+  type: Label
+- event_bindings: {}
   layout_properties: {grid_position: 'LITSTM,BYNPQO'}
-  event_bindings: {}
-- type: CheckBox
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', allow_indeterminate: false, visible: true, text: Background music,
-    font_size: 18, font: Garamond, spacing_above: small, spacing_below: small, italic: false,
-    background: '', bold: true, checked: false, underline: false}
+  name: playsound
+  properties: {align: center, allow_indeterminate: false, background: '', bold: true, border: '', checked: true, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Cards are spoken out loud, tooltip: '', underline: false, visible: true}
+  type: CheckBox
+- layout_properties: {grid_position: 'LITSTM,WLIBUQ'}
   name: background_music
-  layout_properties: {grid_position: 'LITSTM,WLIBUQ'}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: medium, background: ''}
-  name: flow_panel_2
-  layout_properties: {grid_position: 'NOMMTJ,MPAXKS'}
-  components:
-  - type: Link
-    properties: {role: menubuttons, url: '', align: center, tooltip: '', border: '',
-      foreground: '', visible: true, text: ' Begin your lesson ', font_size: 30, wrap_on: mobile,
-      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
+  properties: {align: center, allow_indeterminate: false, background: '', bold: true, border: '', checked: false, enabled: true, font: Garamond, font_size: 18, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: Background music, tooltip: '', underline: false, visible: true}
+  type: CheckBox
+- components:
+  - event_bindings: {click: begin_loop_click}
+    layout_properties: {grid_position: 'HRELAS,QZLCQQ'}
     name: begin_loop
+    properties: {align: center, background: '', bold: true, border: '', col_spacing: medium, col_widths: '', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: menubuttons, spacing_above: small, spacing_below: small, text: ' Begin your lesson ', tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - event_bindings: {click: Later_click}
     layout_properties: {grid_position: 'HRELAS,QZLCQQ'}
-    event_bindings: {click: begin_loop_click}
-  - type: Link
-    properties: {role: menubuttons_close, url: '', align: center, tooltip: '', border: '',
-      foreground: '', visible: true, text: Later, font_size: 30, wrap_on: mobile,
-      font: Garamond, col_spacing: medium, spacing_above: small, icon_align: left,
-      col_widths: '', spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
     name: Later
-    layout_properties: {grid_position: 'HRELAS,QZLCQQ'}
-    event_bindings: {click: Later_click}
+    properties: {align: center, background: '', bold: true, border: '', col_spacing: medium, col_widths: '', font: Garamond, font_size: 30, foreground: '', icon: '', icon_align: left, italic: false, role: menubuttons_close, spacing_above: small, spacing_below: small, text: Later, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  layout_properties: {grid_position: 'NOMMTJ,MPAXKS'}
+  name: flow_panel_2
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: medium, tooltip: '', visible: true}
+  type: FlowPanel
+container:
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: howtozone, spacing_above: small, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
 is_package: true
