@@ -1,0 +1,54 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap pl-wrap">
+      <section class="pl-hero">
+        <div class="pl-hero-bird"><anvil-component type="parapeet.Components.Bird" name="bird" prop:mood="happy" prop:size="132"></anvil-component></div>
+        <div class="pl-hero-text">
+          <anvil-component type="Label" name="hello" prop:role='["pl-hello"]' prop:text="Bonjour !"></anvil-component>
+          <anvil-component type="Label" name="stage_line" prop:role='["pl-stage-line"]'></anvil-component>
+          <div class="pl-chase">
+            <div class="pl-chase-head">
+              <anvil-component type="Label" name="stage_name" prop:role='["strong"]'></anvil-component>
+              <anvil-component type="Label" name="chase_text" prop:role='["fine-print"]'></anvil-component>
+            </div>
+            <div class="pl-chase-bar"><div class="pl-chase-fill" anvil:dom-node="chase_fill"></div><span class="pl-chase-bird" anvil:dom-node="chase_bird"></span></div>
+          </div>
+        </div>
+        <div class="pl-hero-stats">
+          <a class="pl-stat streak" href="#progress" anvil:name="streak_card"><i class="ic ic-flame"></i><anvil-component type="Label" name="streak_num" prop:role='["pl-stat-num"]'></anvil-component><span>day streak</span></a>
+          <a class="pl-stat seeds" href="#progress"><i class="ic ic-seed"></i><anvil-component type="Label" name="seeds_num" prop:role='["pl-stat-num"]'></anvil-component><span>seeds</span></a>
+          <a class="pl-stat goal" href="#progress"><anvil-component type="parapeet.Components.Ring" name="goal_ring"></anvil-component><span>daily goal</span></a>
+        </div>
+      </section>
+
+      <div class="pl-guest" anvil:name="guest_note">
+        <i class="ic ic-info"></i>
+        <anvil-component type="Label" name="guest_text" prop:role='["pl-guest-text"]'></anvil-component>
+        <a class="ui-btn primary sm" href="#auth/signup">Join free</a>
+      </div>
+
+      <div class="pl-grid">
+        <div class="pl-units">
+          <anvil-component type="RepeatingPanel" name="units_panel" prop:item_template="parapeet.Items.UnitPath" prop:role='["pl-unit-list"]'></anvil-component>
+        </div>
+        <aside class="pl-side">
+          <div class="ui-card pl-card">
+            <h3><i class="ic ic-target"></i> Weak spots</h3>
+            <anvil-component type="Label" name="review_text" prop:role='["fine-print"]'></anvil-component>
+            <anvil-component type="Button" name="review_button" prop:text="Practise weak spots" prop:role='["btn", "btn-block", "ic-bolt"]'></anvil-component>
+          </div>
+          <div class="ui-card pl-card">
+            <h3><i class="ic ic-cards"></i> Swipe the phrasebook</h3>
+            <p class="small muted">Every phrase in ten moods. Swipe sideways to change the mood, up for the next phrase.</p>
+            <a class="ui-btn block" href="#practice">Open the phrasebook <i class="ic ic-arrow"></i></a>
+          </div>
+          <div class="ui-card pl-card">
+            <h3><i class="ic ic-trophy"></i> Badges</h3>
+            <anvil-component type="Label" name="badges_text" prop:role='["fine-print"]'></anvil-component>
+            <a class="small" href="#progress">See them all <i class="ic ic-arrow"></i></a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

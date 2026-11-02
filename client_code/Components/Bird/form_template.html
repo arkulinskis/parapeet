@@ -1,0 +1,54 @@
+---
+custom_component: true
+properties:
+  - name: mood
+    type: string
+    default_value: happy
+    description: "happy, wow, oops, sleepy or talk"
+    default_binding_prop: true
+  - name: size
+    type: number
+    default_value: 120
+    description: Width and height in pixels
+toolbox_item:
+  title: Parapeet (mascot)
+  group: Parapeet
+help_text: |
+  Parapeet the budgie, drawn in SVG, with moods: happy (eyes smiling), wow (big eyes, beak open, hops),
+  oops (worried, a drop of sweat), sleepy (eyes closed, zzz) and talk (beak moving).
+---
+<div class="ix bird-host">
+<div class="bird bird-happy" anvil:name="box" role="img" aria-label="Parapeet the budgie">
+  <svg viewBox="0 0 160 160" aria-hidden="true">
+    <g class="b-perch">
+      <path d="M18 146 C60 140 110 142 150 148" stroke="#7a5a32" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <ellipse cx="34" cy="138" rx="12" ry="5" fill="#46b35d" transform="rotate(-24 34 138)"/>
+      <ellipse cx="140" cy="140" rx="11" ry="4.5" fill="#2e9e4f" transform="rotate(20 140 140)"/>
+    </g>
+    <g class="b-body">
+      <path d="M100 116 L136 156 L122 158 L92 124 Z" fill="#1c7fa3"/>
+      <path d="M96 118 L118 158 L106 158 L88 124 Z" fill="#2a95ba"/>
+      <ellipse cx="86" cy="96" rx="40" ry="44" fill="#36bfda"/>
+      <ellipse cx="76" cy="106" rx="25" ry="30" fill="#93e4f3"/>
+      <path d="M100 70 C128 76 134 110 118 134 C104 126 94 100 100 70 Z" fill="#1f9cc0"/>
+      <path d="M106 86 q8 4 13 -1 M104 99 q9 4 15 -1 M106 112 q8 4 12 -1" stroke="#137a99" fill="none" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M78 136 v9 M92 136 v9" stroke="#f0a35e" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="68" cy="50" r="33" fill="#f6f3e8"/>
+      <path d="M62 22 q18 -7 34 4 M58 29 q22 -8 40 6 M66 17 q12 -4 22 1" stroke="#c4ccd6" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="56" cy="69" rx="6.5" ry="5" fill="#6a7be0"/>
+      <circle cx="49" cy="80" r="2.6" fill="#1e2a5a"/><circle cx="60" cy="82" r="2.6" fill="#1e2a5a"/><circle cx="70" cy="80" r="2.4" fill="#1e2a5a"/>
+      <ellipse class="b-blush" cx="70" cy="64" rx="7" ry="4" fill="#ff8fb3" opacity=".55"/>
+      <path d="M45 44 q-8 0 -10 7 q5 2.5 12 0 z" fill="#9b8ae6"/>
+      <path class="b-beak" d="M37 52 C28 54 26 66 33 72 C35 65 40 61 45 59 Z" fill="#ffc83d" stroke="#e3a514" stroke-width="1.5" stroke-linejoin="round"/>
+      <path class="b-beak-low" d="M36 68 q3 9 12 6 q-2 -6 -6 -8 z" fill="#ffb020"/>
+      <g class="b-eyes-open"><circle cx="61" cy="45" r="6.2" fill="#1e2a5a"/><circle cx="63.2" cy="42.8" r="2.1" fill="#fff"/></g>
+      <g class="b-eyes-wow"><circle cx="61" cy="45" r="8.5" fill="#fff" stroke="#1e2a5a" stroke-width="2"/><circle cx="60" cy="45" r="5.2" fill="#1e2a5a"/><circle cx="62" cy="43" r="1.8" fill="#fff"/></g>
+      <path class="b-eyes-happy" d="M53 47 q8 -9 16 0" stroke="#1e2a5a" stroke-width="3.8" fill="none" stroke-linecap="round"/>
+      <path class="b-eyes-closed" d="M53 45 q8 6 16 0" stroke="#1e2a5a" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      <path class="b-brow" d="M51 33 l15 5" stroke="#1e2a5a" stroke-width="3" stroke-linecap="round"/>
+      <path class="b-drop" d="M98 22 q6 8 0 12 q-6 -4 0 -12 z" fill="#7fd3f0"/>
+      <g class="b-zzz" fill="#56607f"><text x="98" y="26" font-size="16" font-family="Fredoka, sans-serif" font-weight="700">z</text><text x="110" y="14" font-size="12" font-family="Fredoka, sans-serif" font-weight="700">z</text></g>
+    </g>
+  </svg>
+</div>
+</div>

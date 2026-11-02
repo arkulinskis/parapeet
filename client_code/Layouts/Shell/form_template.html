@@ -1,0 +1,77 @@
+---
+layout_metadata:
+  title: App frame
+  description: Header (menu, streak and seeds, account), the page in the middle, the footer and the phone tab bar
+---
+<div class="ui ui-shell">
+  <header class="ui-header">
+    <div class="ui-header-in">
+      <a class="ui-brand" anvil:name="brand" href="#landing" aria-label="Parapeet home">
+        <img src="_/theme/icon.svg" alt="" width="34" height="34"><span>Parapeet</span>
+      </a>
+      <nav class="ui-nav" aria-label="Main">
+        <anvil-component type="RepeatingPanel" name="nav_panel" prop:item_template="parapeet.Items.NavLink" prop:role='["contents"]'></anvil-component>
+      </nav>
+      <div class="ui-header-right">
+        <a class="pp-stats" href="#progress" anvil:name="stats_chip" aria-label="Your streak and seeds">
+          <span class="pp-stat-streak" anvil:name="streak_box"><i class="ic ic-flame"></i><anvil-component type="Label" name="streak_label" prop:text="0"></anvil-component></span>
+          <span class="pp-stat-seeds"><i class="ic ic-seed"></i><anvil-component type="Label" name="seeds_label" prop:text="0"></anvil-component></span>
+        </a>
+        <div class="ui-row" anvil:name="guest_actions">
+          <a class="ui-btn ghost" href="#auth">Sign in</a>
+          <a class="ui-btn primary pp-start" href="#auth/signup">Join free</a>
+        </div>
+        <div anvil:name="member_actions">
+          <anvil-component type="Button" name="avatar_button" prop:role='["avatar"]' prop:tooltip="Your account"></anvil-component>
+          <div class="ui-menu" anvil:name="menu">
+            <div class="ui-menu-head">
+              <anvil-component type="Label" name="menu_name" prop:role='["menu-name"]'></anvil-component>
+              <anvil-component type="Label" name="menu_email" prop:role='["menu-email"]'></anvil-component>
+            </div>
+            <a href="#progress"><i class="ic ic-chart"></i>Your progress</a>
+            <a href="#profile"><i class="ic ic-user"></i>Your profile</a>
+            <a href="#admin" anvil:name="admin_link"><i class="ic ic-shield"></i>Admin</a>
+            <div class="ui-menu-block"><span class="small muted">Appearance</span>
+              <div class="ui-seg" role="group" aria-label="Appearance">
+                <button type="button" data-theme-set="auto" anvil:name="theme_auto" anvil:on-dom:click="self.theme_click">Auto</button>
+                <button type="button" data-theme-set="light" anvil:name="theme_light" anvil:on-dom:click="self.theme_click">Light</button>
+                <button type="button" data-theme-set="dark" anvil:name="theme_dark" anvil:on-dom:click="self.theme_click">Dark</button>
+              </div>
+            </div>
+            <button type="button" anvil:on-dom:click="self.feedback_click"><i class="ic ic-chat"></i>Submit feedback</button>
+            <button type="button" data-lk-open="overview"><i class="ic ic-lock"></i>Privacy &amp; Terms</button>
+            <button type="button" anvil:on-dom:click="self.sign_out_click"><i class="ic ic-logout"></i>Sign out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="ui-main">
+    <anvil-slot name="content"></anvil-slot>
+  </main>
+
+  <footer class="ui-footer">
+    <div class="ui-footer-in">
+      <div class="ui-footer-brand">
+        <a class="ui-brand" href="#landing"><img src="_/theme/icon.svg" alt="" width="34" height="34"><span>Parapeet</span></a>
+        <p class="muted small">French phrases in ten moods. Say it like you mean it.</p>
+      </div>
+      <div class="ui-footer-links">
+        <a href="#landing">About</a>
+        <a href="#play">Play</a>
+        <a href="#practice">Phrasebook</a>
+        <a href="https://prepsto.com/#f/akzr8cp" target="_blank" rel="noopener" data-prepsto-open>Submit feedback</a>
+        <button type="button" data-lk-open="overview">Privacy &amp; Terms</button>
+      </div>
+      <div class="ui-footer-legal">
+        <anvil-component type="Label" name="copyright_label" prop:text="© Parapeet by Arkvital" prop:role='["fine-print"]'></anvil-component>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="ui-tabbar" aria-label="Main" anvil:name="tabbar">
+    <anvil-component type="RepeatingPanel" name="tab_panel" prop:item_template="parapeet.Items.NavLink" prop:role='["contents"]'></anvil-component>
+    <a href="#profile" anvil:name="tab_profile"><i class="ic ic-user"></i><span>You</span></a>
+  </nav>
+</div>

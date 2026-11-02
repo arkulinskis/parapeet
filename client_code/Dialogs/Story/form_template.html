@@ -1,0 +1,21 @@
+<div class="ui st">
+  <div class="st-bird"><anvil-component type="parapeet.Components.Bird" name="bird" prop:mood="talk" prop:size="120"></anvil-component></div>
+  <div anvil:name="part_one">
+    <h2 class="dlg-h">The story of Parapeet</h2>
+    <p>Once upon a time, in a quaint little town, lived a mischievous blue parakeet named <b>Parapeet</b>. He was known for his bright feathers and his tricks, but nobody knew his secret: <u>he could steal knowledge</u>.</p>
+    <p><b>Before I go on... what's your name?</b></p>
+    <anvil-component type="TextBox" name="name_box" prop:placeholder="Your name, adventurer"></anvil-component>
+    <anvil-component type="Label" name="message" prop:role='["msg-error"]' prop:visible="false"></anvil-component>
+    <div class="ui-row end">
+      <anvil-component type="Button" name="skip_button" prop:text="Skip the story" prop:role='["btn", "btn-ghost"]'></anvil-component>
+      <anvil-component type="Button" name="next_button" prop:text="Continue the story" prop:role='["btn", "btn-primary", "ic-arrow"]'></anvil-component>
+    </div>
+  </div>
+  <div anvil:name="part_two">
+    <anvil-component type="Label" name="story_two" prop:role='["st-text"]'></anvil-component>
+    <anvil-component type="Label" name="story_three" prop:role='["st-text"]'></anvil-component>
+    <div class="ui-row end">
+      <anvil-component type="Button" name="start_button" prop:text="Get my French back!" prop:role='["btn", "btn-primary", "btn-lg", "ic-feather"]'></anvil-component>
+    </div>
+  </div>
+</div>

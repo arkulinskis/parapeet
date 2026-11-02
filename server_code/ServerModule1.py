@@ -1,265 +1,177 @@
-from anvil import users, server, tables
-from datetime import datetime, timezone, timedelta
+"""The original Parapeet server functions (2023-2025), kept so nothing that still calls them breaks, plus the Android
+app link (/.well-known/assetlinks.json for the com.parapeet.twa Play Store wrapper) and account deletion.
+
+The new app uses Phrases.py, Progress.py and Notes.py. Fixed here in Nov 2026: update_note only changes the caller's
+own note; get_voice no longer crashes on a locked phrase; send_interest no longer stores visitors' IP addresses;
+delete_account also removes the new progress row and copes with a missing points row.
+"""
+from datetime import datetime
+
+import anvil.server
+import anvil.users
+from anvil.tables import app_tables
 
 
-@server.callable
+def _email():
+    user = anvil.users.get_user()
+    return user["email"] if user is not None else None
+
+
+@anvil.server.callable(require_user=True)
 def delete_account():
-  get_user = users.get_user()['email']
-  if get_user != None and get_user != "":
-    row = tables.app_tables.users.get(email=get_user)
-    row.delete()
-    row = tables.app_tables.userpoints.get(user=get_user)
-    row.delete()
-    for row in tables.app_tables.usernotes.search(User=get_user):
-      row.delete()
+    """Delete the signed-in account and everything stored for it (Play Store rule: deletion inside the app)."""
+    user = anvil.users.get_user()
+    if user is None:
+        return {"ok": False}
+    email = user["email"]
+    for row in app_tables.progress.search(user=user):
+        row.delete()
+    for row in app_tables.usernotes.search(User=email):
+        row.delete()
+    for row in app_tables.userpoints.search(user=email):
+        row.delete()
+    for row in app_tables.feedback.search(user=user):
+        row["user"] = None
+    anvil.users.logout()
+    user.delete()
+    return {"ok": True}
 
 
-@server.wellknown_endpoint("/assetlinks.json")
 def assetlinks():
-  return [{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.parapeet.twa",
-        "sha256_cert_fingerprints": ["E0:30:11:D4:01:D2:DF:40:93:4C:1A:1E:4A:EE:FC:58:62:79:28:8C:86:35:26:CC:87:67:40:5A:5D:DA:7F:1D"]
-      }
+    return [{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.parapeet.twa",
+            "sha256_cert_fingerprints": ["E0:30:11:D4:01:D2:DF:40:93:4C:1A:1E:4A:EE:FC:58:62:79:28:8C:86:35:26:CC:87:67:40:5A:5D:DA:7F:1D"]
+        }
     }]
 
 
-@server.callable
+_wellknown = getattr(anvil.server, "wellknown_endpoint", None)  # hosted Anvil has it; the local App Server may not
+if _wellknown is not None:
+    assetlinks = _wellknown("/assetlinks.json")(assetlinks)
+
+
+@anvil.server.callable
 def save_note(word, explanation):
-  if users.get_user() is not None:
-    user = users.get_user()['email']
-    tables.app_tables.usernotes.add_row(French=word,Comment=explanation, User=user)
+    email = _email()
+    if email is None:
+        return "Sign in first"
+    app_tables.usernotes.add_row(French=str(word or "")[:400], Comment=str(explanation or "")[:600], User=email)
     return "Success"
-  else:
-    return "Sign in first"
-    
-  
-@server.callable
+
+
+@anvil.server.callable
 def delete_note(word, explanation):
-  if users.get_user() is not None:
-    user = users.get_user()['email']
-    row = tables.app_tables.usernotes.get(French=word,Comment=explanation, User=user)
-    row.delete()
+    email = _email()
+    if email is None:
+        return "Sign in first"
+    for row in app_tables.usernotes.search(French=word, Comment=explanation, User=email):
+        row.delete()
+        break
     return "Success"
-  else:
-    return "Sign in first"
-  
 
-@server.callable
+
+@anvil.server.callable
 def update_note(word, explanation, new_word, new_explanation):
-  # check that the article given is really a row in the ‘articles’ table
-  if users.get_user() is not None:
-    row = tables.app_tables.usernotes.get(Comment=explanation, French=word)
-    if row:
-      row['Comment']=new_explanation
-      row['French']=new_word
-      return "worked"
-    else:
-      return "no row"
-  else:
-    return "Sign in first"
+    email = _email()
+    if email is None:
+        return "Sign in first"
+    for row in app_tables.usernotes.search(Comment=explanation, French=word, User=email):
+        row["Comment"] = str(new_explanation or "")[:600]
+        row["French"] = str(new_word or "")[:400]
+        return "worked"
+    return "no row"
 
-@server.callable
+
+@anvil.server.callable
 def get_notes():
-  user = users.get_user()
-  if user is not None:
-    mylist = tables.app_tables.usernotes.search(User=user['email'])
-  else:
-    mylist = tables.app_tables.usernotes.search(User='demo')
-  returnlist = []
-  for row in mylist:
-    returnlist.append(dict(row))
-  return returnlist
+    email = _email()
+    return [dict(row) for row in app_tables.usernotes.search(User=email or "demo")]
 
 
-@server.callable
+def _customer_type():
+    user = anvil.users.get_user()
+    if user is None:
+        return "basic"
+    return user["customer_type"] or "free"
+
+
+@anvil.server.callable
 def update_local_storage():
-  user = users.get_user()
-  if user is None:
-    customer_type = "basic"
-  else:
-    user_entry = tables.app_tables.users.get(email=user['email'])
-    customer_type = user_entry['customer_type']
-    if customer_type == "" or customer_type == None or customer_type is None:
-      customer_type = "free"
+    customer_type = _customer_type()
+    levels = ["basic"] + (["free"] if customer_type != "basic" else []) + (["premium"] if customer_type == "premium" else [])
+    out = {"user_data_type": customer_type, "user_data_date": datetime.now(), "rows": [], "rows_english": []}
+    for level in levels:
+        out["rows"] += [dict(r) for r in app_tables.frenchsentences.search(Availability=level)]
+        out["rows_english"] += [dict(r) for r in app_tables.frenchsentences_translation.search(Availability=level)]
+    return out
 
-  return_json = {}
-  return_json['user_data_type'] = customer_type
-  return_json['user_data_date'] = datetime.now()
-  return_json['rows'] = []
-  return_json['rows_english'] = []
 
-  allowed_rows = tables.app_tables.frenchsentences.search(Availability="basic")
-  for row in allowed_rows:
-    return_json['rows'].append(dict(row))
-  allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="basic")
-  for row in allowed_rows_english:
-    return_json['rows_english'].append(dict(row))
-
-  if customer_type != "basic":
-    allowed_rows = tables.app_tables.frenchsentences.search(Availability="free")
-    for row in allowed_rows:
-      return_json['rows'].append(dict(row))
-    allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="free")
-    for row in allowed_rows_english:
-      return_json['rows_english'].append(dict(row))
-
-  if customer_type == "premium":
-    allowed_rows = tables.app_tables.frenchsentences.search(Availability="premium")
-    for row in allowed_rows:
-      return_json['rows'].append(dict(row))
-    allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="premium")
-    for row in allowed_rows_english:
-      return_json['rows_english'].append(dict(row))
-
-  print("Call made")
-  return return_json
-
-    
-
-  
-  # @server.callable
-# def update_local_storage(user_data_date,user_data_type):
-#   user = users.get_user()
-#   print("logged in user is", user)
-#   if user is not None:
-#     customer_type = tables.app_tables.users.get(email=user['email'])['customer_type']
-#     if customer_type == "" or customer_type == None or customer_type is None:
-#       customer_type = "free"
-#     recently_upgraded = False
-#     print("bg", user_data_type, customer_type)
-#     if user_data_type == "free" and customer_type == "premium": recently_upgraded = True
-#     mydate = datetime(2023,7,28,0,0,0,tzinfo=timezone(timedelta(0, -14400)))
-#     print(mydate)
-#     print(user_data_date)
-#     if user_data_date < mydate or (user_data_type != "premium" and user_data_type != "free"):
-#       print(customer_type)
-#       return_json = {}
-#       return_json['user_data_type'] = customer_type
-#       return_json['user_data_date'] = datetime.now()
-#       return_json['rows'] = []
-#       return_json['rows_english'] = []
-#       allowed_rows = tables.app_tables.frenchsentences.search(Availability=customer_type)
-#       for row in allowed_rows:
-#         return_json['rows'].append(dict(row))
-#       if customer_type == "premium":
-#         allowed_rows3 = tables.app_tables.frenchsentences.search(Availability=customer_type)
-#         for row in allowed_rows3:
-#           return_json['rows'].append(dict(row))
-#       allowed_rows2 = tables.app_tables.frenchsentences.search(Availability="basic")
-#       for row in allowed_rows2:
-#         return_json['rows'].append(dict(row))
-
-#       allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
-#       for row in allowed_rows_english:
-#         return_json['rows_english'].append(dict(row))
-#       if customer_type == "premium":
-#         allowed_rows_english3 = tables.app_tables.frenchsentences_translation.search(Availability=customer_type)
-#         for row in allowed_rows_english3:
-#           return_json['rows_english'].append(dict(row))
-#       allowed_rows_english2 = tables.app_tables.frenchsentences_translation.search(Availability="basic")
-#       for row in allowed_rows_english2:
-#         return_json['rows_english'].append(dict(row))
-        
-#       print("Call made")
-#       return return_json
-        
-#     else:
-#       return("yougood")
-      
-#   else:
-#     allowed_rows = tables.app_tables.frenchsentences.search(Availability="basic")
-#     allowed_rows_english = tables.app_tables.frenchsentences_translation.search(Availability="basic")
-#     return_json = {}
-#     return_json['user_data_type'] = "basic"
-#     return_json['user_data_date'] = datetime.now()
-#     return_json['rows'] = []
-#     return_json['rows_english'] = []
-#     for row in allowed_rows:
-#       return_json['rows'].append(dict(row))
-#     for row in allowed_rows_english:
-#       return_json['rows_english'].append(dict(row))
-
-#     print("Call made")
-#     return return_json
-    
-@server.callable
+@anvil.server.callable
 def get_music(id):
-  music_db_line = tables.app_tables.music.get(music_id=str(id))
-  return music_db_line["Music_file"].get_url()
-  
-@server.callable
+    for row in app_tables.music.search(music_id=str(id)):
+        return row["Music_file"].get_url()
+    return None
+
+
+@anvil.server.callable
 def get_video(id):
-  video_db_line = tables.app_tables.videos.get(Video_id=str(id))
-  return video_db_line["Video_file"].get_url()
-  
-@server.callable
+    for row in app_tables.videos.search(Video_id=str(id)):
+        return row["Video_file"].get_url()
+    return None
+
+
+@anvil.server.callable
 def get_voice(id, type, language):
-  user = users.get_user()
-  sentence_db_line = tables.app_tables.frenchsentences.get(LineID=id)
-  play_it = False
-  if sentence_db_line["Availability"] == "basic":
-    play_it = True
-  elif sentence_db_line["Availability"] == "free":
-    if user is not None:
-      play_it = True
-  elif sentence_db_line["Availability"] == "premium":
-    if user is not None:
-      if user["customer_type"] == "premium":
-        play_it = True
+    customer_type = _customer_type()
+    allowed = ["basic"] + (["free"] if customer_type != "basic" else []) + (["premium"] if customer_type == "premium" else [])
+    for sentence in app_tables.frenchsentences.search(LineID=id):
+        if (sentence["Availability"] or "") not in allowed:
+            return None
+        table = app_tables.voicefiles if language == "french" else app_tables.voicefiles_english
+        for media in table.search(LineID=str(id), Type=type):
+            return media["VoiceFile"].get_url()
+    return None
 
-  if play_it:
-    if language == "french":
-      media_db_line = tables.app_tables.voicefiles.get(LineID=str(id), Type=type)
-    else:
-      media_db_line = tables.app_tables.voicefiles_english.get(LineID=str(id), Type=type)
 
-  return media_db_line["VoiceFile"].get_url()
-
-@server.callable
+@anvil.server.callable
 def send_interest(customer_interest):
-  user = users.get_user()
-  if user is not None:
-    text = user['email']
-  else:
-    text = str(server.context.client.ip)
-  tables.app_tables.interest.add_row(showed_interest=text, mydatetime=datetime.now(), interested=customer_interest)
+    """Signed-in people are noted by email; visitors just as "guest" (no IP addresses)."""
+    email = _email()
+    app_tables.interest.add_row(showed_interest=email or "guest", mydatetime=datetime.now(),
+                                interested=str(customer_interest or "")[:200])
 
-@server.callable
+
+@anvil.server.callable
 def is_alive_check():
-  return True
+    return True
 
-@server.callable
+
+@anvil.server.callable
 def set_points(id, type, status):
-  # print("got the request")
-  user = users.get_user()
-  # print(user)
-  if user is None:
-    return False
-  else:
-    useremail = user['email']
-    # print("user exists")
-    points_db_line = tables.app_tables.userpoints.get(user=useremail)
-    # print(points_db_line)
-    a = points_db_line[type]
-    # print("k", a)
-    points_db_line[type] = a[:id] + status + a[id+1:]
-    
+    email = _email()
+    if email is None or type not in ("Basic", "Boss", "Client", "Colleague", "Lover", "Sad", "Frustrated", "Agressive",
+                                       "Impressed", "Stupid") or status not in ("0", "1", "2", "3"):
+        return False
+    row = app_tables.userpoints.get(user=email)
+    if row is None:
+        return False
+    digits = (row[type] or "").ljust(int(id) + 1, "0")
+    row[type] = digits[:int(id)] + status + digits[int(id) + 1:]
+    return True
 
-#add handling if user is new (create the zeros))
 
-@server.callable
+@anvil.server.callable
 def get_points():
-  user = users.get_user()
-  if user is None:
-    return False
-  else:
-    useremail = user['email']
-    points_db_line = tables.app_tables.userpoints.get(user=useremail)
-    if points_db_line == None:
-      zeros = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-      tables.app_tables.userpoints.add_row(user=useremail, Agressive=zeros, Basic=zeros, Boss=zeros, Client=zeros, Colleague=zeros, Frustrated=zeros, Impressed=zeros, Lover=zeros, Sad=zeros, Stupid=zeros)
-      points_db_line = tables.app_tables.userpoints.get(user=useremail)
-    return dict(points_db_line)
+    email = _email()
+    if email is None:
+        return False
+    row = app_tables.userpoints.get(user=email)
+    if row is None:
+        zeros = "0" * 167
+        row = app_tables.userpoints.add_row(user=email, Agressive=zeros, Basic=zeros, Boss=zeros, Client=zeros,
+                                            Colleague=zeros, Frustrated=zeros, Impressed=zeros, Lover=zeros, Sad=zeros,
+                                            Stupid=zeros)
+    return dict(row)

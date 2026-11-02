@@ -1,0 +1,102 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="pr-wrap">
+      <div class="pr-top">
+        <div class="pr-unit">
+          <anvil-component type="DropDown" name="unit_drop" prop:role='["pr-unit-drop"]'></anvil-component>
+          <anvil-component type="Label" name="counter" prop:role='["pr-counter"]' prop:text="Phrase 1 of 10"></anvil-component>
+        </div>
+        <div class="pr-top-tools">
+          <anvil-component type="Button" name="front_button" prop:text="French first" prop:role='["btn", "btn-sm", "ic-swap"]' prop:tooltip="Show the French or the English side first"></anvil-component>
+          <anvil-component type="Button" name="help_button" prop:text="How to swipe" prop:role='["btn", "btn-sm", "btn-icon", "ic-help"]' prop:tooltip="How to swipe"></anvil-component>
+        </div>
+      </div>
+
+      <div class="pr-grid">
+        <div class="pr-main">
+          <div class="pr-cardrow">
+            <div class="pr-side-nav left">
+              <anvil-component type="Button" name="side_prev" prop:text="Previous mood" prop:role='["moodnav", "ic-left"]' prop:tooltip="Previous mood (←)"></anvil-component>
+              <anvil-component type="Label" name="side_prev_label" prop:role='["moodnav-label"]'></anvil-component>
+            </div>
+            <anvil-component type="parapeet.Components.PhraseCard" name="card" prop:keys="true"></anvil-component>
+            <div class="pr-side-nav right">
+              <anvil-component type="Button" name="side_next" prop:text="Next mood" prop:role='["moodnav", "ic-right"]' prop:tooltip="Next mood (→)"></anvil-component>
+              <anvil-component type="Label" name="side_next_label" prop:role='["moodnav-label"]'></anvil-component>
+            </div>
+          </div>
+
+          <div class="pr-phrase-nav">
+            <anvil-component type="Button" name="prev_phrase" prop:text="Previous phrase" prop:role='["btn", "ic-up"]' prop:tooltip="Previous phrase (↑)"></anvil-component>
+            <div class="pr-keys"><i class="ic ic-keyboard"></i><span><b>←</b> <b>→</b> mood</span><span><b>↑</b> <b>↓</b> phrase</span><span><b>Space</b> flip</span><span><b>Enter</b> listen</span></div>
+            <anvil-component type="Button" name="next_phrase" prop:text="Next phrase" prop:role='["btn", "btn-primary", "ic-down"]' prop:tooltip="Next phrase (↓)"></anvil-component>
+          </div>
+
+          <div class="pr-tools" role="toolbar" aria-label="Phrase tools">
+            <anvil-component type="Button" name="listen_button" prop:text="Listen" prop:role='["tool", "ic-volume"]'></anvil-component>
+            <anvil-component type="Button" name="say_button" prop:text="Say it" prop:role='["tool", "tool-say", "ic-mic"]'></anvil-component>
+            <anvil-component type="Button" name="known_button" prop:text="Got it" prop:role='["tool", "ic-check"]'></anvil-component>
+            <anvil-component type="Button" name="save_button" prop:text="Save" prop:role='["tool", "ic-bookmark"]'></anvil-component>
+            <anvil-component type="Button" name="record_button" prop:text="Record me" prop:role='["tool", "ic-record"]'></anvil-component>
+            <anvil-component type="Button" name="mine_button" prop:text="My voice" prop:role='["tool", "ic-play"]' prop:enabled="false"></anvil-component>
+            <anvil-component type="Button" name="compare_button" prop:text="All moods" prop:role='["tool", "ic-palette"]'></anvil-component>
+            <anvil-component type="Button" name="handsfree_button" prop:text="Hands-free" prop:role='["tool", "ic-headphones"]'></anvil-component>
+          </div>
+
+          <div class="pr-hf" anvil:name="hf_bar">
+            <i class="ic ic-headphones"></i>
+            <anvil-component type="Label" name="hf_label" prop:text="Hands-free lesson" prop:role='["strong"]'></anvil-component>
+            <div class="pr-hf-bar"><div class="pr-hf-fill" anvil:dom-node="hf_fill"></div></div>
+            <anvil-component type="Button" name="hf_stop" prop:text="Stop" prop:role='["btn", "btn-sm", "ic-stop"]'></anvil-component>
+          </div>
+        </div>
+
+        <aside class="pr-aside">
+          <div class="ui-card pr-mood">
+            <div class="pr-mood-head">
+              <span class="pr-mood-dot" anvil:dom-node="mood_dot"></span>
+              <div>
+                <anvil-component type="Label" name="mood_name" prop:role='["pr-mood-name"]'></anvil-component>
+                <anvil-component type="Label" name="mood_who" prop:role='["fine-print"]'></anvil-component>
+              </div>
+              <anvil-component type="Label" name="mood_register" prop:role='["badge", "badge-brand"]'></anvil-component>
+            </div>
+            <anvil-component type="Label" name="mood_blurb" prop:role='["pr-mood-blurb"]'></anvil-component>
+            <div class="pr-mood-listen"><i class="ic ic-ear"></i><anvil-component type="Label" name="mood_listen" prop:role='["fine-print"]'></anvil-component></div>
+            <div class="pr-neutral" anvil:name="neutral_box">
+              <span class="small muted">Neutral version</span>
+              <anvil-component type="Label" name="neutral_text" prop:role='["pr-neutral-text"]'></anvil-component>
+            </div>
+            <div class="pr-card-state">
+              <anvil-component type="Label" name="said_badge" prop:text="Said out loud" prop:role='["badge", "badge-good"]'></anvil-component>
+              <anvil-component type="Label" name="known_badge" prop:text="Marked as got it" prop:role='["badge", "badge-good"]'></anvil-component>
+            </div>
+          </div>
+          <div class="ui-card pr-today">
+            <anvil-component type="parapeet.Components.Ring" name="goal_ring"></anvil-component>
+            <div>
+              <b>Today's seeds</b>
+              <anvil-component type="Label" name="today_label" prop:role='["fine-print"]'></anvil-component>
+              <a href="#play" class="small">Play a lesson <i class="ic ic-arrow"></i></a>
+            </div>
+          </div>
+          <div class="ui-card pr-more" anvil:name="more_box">
+            <i class="ic ic-lock"></i>
+            <div>
+              <anvil-component type="Label" name="more_label" prop:role='["strong"]'></anvil-component>
+              <p class="small muted">A free account unlocks them and keeps your seeds on every device.</p>
+              <a class="ui-btn primary sm" href="#auth/signup">Join free</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="pr-dock" role="toolbar" aria-label="Move between phrases and moods">
+        <anvil-component type="Button" name="dock_prev" prop:text="Previous phrase" prop:role='["dock", "dock-icon", "ic-up"]'></anvil-component>
+        <anvil-component type="Button" name="dock_prev_mood" prop:text="Mood" prop:role='["dock", "dock-mood", "ic-left"]'></anvil-component>
+        <anvil-component type="Button" name="dock_next_mood" prop:text="Mood" prop:role='["dock", "dock-mood", "dock-after", "ic-right"]'></anvil-component>
+        <anvil-component type="Button" name="dock_next" prop:text="Next" prop:role='["dock", "dock-next", "dock-after", "ic-down"]'></anvil-component>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

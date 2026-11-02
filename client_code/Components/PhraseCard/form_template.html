@@ -1,0 +1,26 @@
+---
+custom_component: true
+properties:
+  - name: keys
+    type: boolean
+    default_value: false
+    description: Arrow keys, Space and Enter drive the card (one card per page should have this)
+  - name: diff
+    type: boolean
+    default_value: true
+    description: Highlight the words each mood adds compared with the neutral sentence
+events:
+  - name: change
+    description: The phrase, mood or side changed
+    parameters:
+      - name: state
+  - name: listen
+    description: Enter was pressed on the card (play the sound)
+toolbox_item:
+  title: Phrase card
+  group: Parapeet
+help_text: |
+  The swipe card (theme/assets/pp-card.js). Call load(cards, index, mood_index) with phrases
+  ({id, fr: {mood: text}, en: {mood: text}}). Sideways = mood, up/down = phrase, tap = flip.
+---
+<div class="pc-host" anvil:dom-node="mount"></div>

@@ -1,0 +1,85 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ls-wrap" anvil:name="wrap">
+      <div class="ls-top">
+        <anvil-component type="Button" name="quit_button" prop:text="Leave the lesson" prop:role='["btn", "btn-icon", "btn-ghost", "ic-x"]' prop:tooltip="Leave the lesson"></anvil-component>
+        <div class="ls-bar" aria-hidden="true"><div class="ls-fill" anvil:dom-node="fill"></div></div>
+        <span class="ls-seeds"><i class="ic ic-seed"></i><anvil-component type="Label" name="seeds_label" prop:text="0"></anvil-component></span>
+      </div>
+
+      <div class="ls-ex" anvil:name="ex_part">
+        <anvil-component type="Label" name="ex_title" prop:role='["ls-title"]'></anvil-component>
+        <div class="ls-prompt" anvil:name="prompt_box">
+          <anvil-component type="parapeet.Components.Bird" name="bird" prop:mood="talk" prop:size="96"></anvil-component>
+          <div class="ls-bubble">
+            <div class="ls-bubble-head">
+              <anvil-component type="Label" name="prompt_mood" prop:role='["mood-chip"]'></anvil-component>
+              <anvil-component type="Button" name="speak_button" prop:text="Listen" prop:role='["btn", "btn-sm", "btn-icon", "ic-volume"]' prop:tooltip="Listen again"></anvil-component>
+            </div>
+            <anvil-component type="Label" name="prompt_text" prop:role='["ls-prompt-text"]'></anvil-component>
+            <div class="ls-big-listen" anvil:name="big_listen_box">
+              <anvil-component type="Button" name="big_listen" prop:text="Play again" prop:role='["btn", "btn-primary", "btn-lg", "ic-volume"]'></anvil-component>
+            </div>
+          </div>
+        </div>
+
+        <anvil-component type="RepeatingPanel" name="choices_panel" prop:item_template="parapeet.Items.Choice" prop:role='["ls-choices"]'></anvil-component>
+
+        <div class="ls-build" anvil:name="build_part">
+          <div class="ls-answer"><anvil-component type="RepeatingPanel" name="answer_panel" prop:item_template="parapeet.Items.Tile" prop:role='["ls-tiles"]'></anvil-component></div>
+          <anvil-component type="RepeatingPanel" name="bank_panel" prop:item_template="parapeet.Items.Tile" prop:role='["ls-tiles", "ls-bank"]'></anvil-component>
+        </div>
+
+        <div class="ls-say" anvil:name="say_part">
+          <anvil-component type="Button" name="mic_button" prop:text="Tap and speak" prop:role='["mic", "ic-mic"]'></anvil-component>
+          <anvil-component type="Label" name="heard_label" prop:role='["fine-print"]'></anvil-component>
+          <anvil-component type="Button" name="skip_say" prop:text="I can't speak right now" prop:role='["btn", "btn-ghost", "btn-sm"]'></anvil-component>
+        </div>
+      </div>
+
+      <div class="ls-end" anvil:name="end_part">
+        <anvil-component type="parapeet.Components.Bird" name="end_bird" prop:mood="happy" prop:size="150"></anvil-component>
+        <anvil-component type="Label" name="end_title" prop:role='["ls-end-title"]'></anvil-component>
+        <anvil-component type="Label" name="end_line" prop:role='["ls-end-line"]'></anvil-component>
+        <div class="ls-tiles-row">
+          <div class="ls-stat seeds"><span>Seeds</span><anvil-component type="Label" name="end_seeds" prop:role='["ls-stat-num"]'></anvil-component></div>
+          <div class="ls-stat acc"><span>Right first time</span><anvil-component type="Label" name="end_acc" prop:role='["ls-stat-num"]'></anvil-component></div>
+          <div class="ls-stat streak"><span>Streak</span><anvil-component type="Label" name="end_streak" prop:role='["ls-stat-num"]'></anvil-component></div>
+        </div>
+        <anvil-component type="Label" name="end_stars" prop:role='["ls-stars"]'></anvil-component>
+        <anvil-component type="RepeatingPanel" name="badges_panel" prop:item_template="parapeet.Items.BadgeChip" prop:role='["ls-badges"]'></anvil-component>
+        <div class="ls-guest" anvil:name="guest_note">
+          <i class="ic ic-lock"></i><span>Your seeds are saved in this browser only. <a href="#auth/signup">Join free</a> to keep them everywhere and unlock more phrases.</span>
+        </div>
+        <div class="ls-end-actions">
+          <anvil-component type="Button" name="again_button" prop:text="Practise these phrases" prop:role='["btn", "btn-lg", "ic-cards"]'></anvil-component>
+          <anvil-component type="Button" name="done_button" prop:text="Continue" prop:role='["btn", "btn-primary", "btn-lg", "ic-arrow"]'></anvil-component>
+        </div>
+      </div>
+
+      <div class="ls-missing" anvil:name="missing_part">
+        <anvil-component type="parapeet.Components.Bird" name="missing_bird" prop:mood="oops" prop:size="120"></anvil-component>
+        <h2>This lesson is locked</h2>
+        <anvil-component type="Label" name="missing_text" prop:role='["fine-print"]'></anvil-component>
+        <div class="ui-row">
+          <a class="ui-btn" href="#play">Back to the trail</a>
+          <a class="ui-btn primary" href="#auth/signup" anvil:name="missing_join">Join free</a>
+        </div>
+      </div>
+
+      <div class="ls-foot" anvil:name="foot">
+        <div class="ls-foot-in">
+          <div class="ls-verdict">
+            <span class="ls-verdict-ic"><i class="ic ic-check" anvil:name="verdict_icon"></i></span>
+            <div>
+              <anvil-component type="Label" name="foot_title" prop:role='["ls-foot-title"]'></anvil-component>
+              <anvil-component type="Label" name="foot_text" prop:role='["ls-foot-text"]'></anvil-component>
+            </div>
+          </div>
+          <anvil-component type="Button" name="check_button" prop:text="Check" prop:role='["btn", "btn-primary", "btn-lg", "ls-go"]' prop:enabled="false"></anvil-component>
+          <anvil-component type="Button" name="next_button" prop:text="Continue" prop:role='["btn", "btn-primary", "btn-lg", "ls-go"]'></anvil-component>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

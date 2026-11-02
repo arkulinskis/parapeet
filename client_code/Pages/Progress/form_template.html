@@ -1,0 +1,65 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap pg-wrap">
+      <div class="ui-page-head">
+        <div>
+          <h1>Your progress</h1>
+          <anvil-component type="Label" name="sub" prop:role='["fine-print"]'></anvil-component>
+        </div>
+        <a class="ui-btn primary" href="#play">Play a lesson <i class="ic ic-arrow"></i></a>
+      </div>
+
+      <section class="ui-card pg-chase">
+        <anvil-component type="parapeet.Components.Bird" name="bird" prop:mood="happy" prop:size="110"></anvil-component>
+        <div class="pg-chase-text">
+          <anvil-component type="Label" name="stage_name" prop:role='["pg-stage"]'></anvil-component>
+          <anvil-component type="Label" name="stage_line" prop:role='["fine-print"]'></anvil-component>
+          <div class="pl-chase-bar big"><div class="pl-chase-fill" anvil:dom-node="catch_fill"></div></div>
+          <anvil-component type="Label" name="catch_text" prop:role='["fine-print"]'></anvil-component>
+        </div>
+      </section>
+
+      <div class="pg-stats">
+        <div class="ui-card pg-stat"><i class="ic ic-seed"></i><anvil-component type="Label" name="n_seeds" prop:role='["stat-num"]'></anvil-component><span>seeds</span></div>
+        <div class="ui-card pg-stat flame"><i class="ic ic-flame"></i><anvil-component type="Label" name="n_streak" prop:role='["stat-num"]'></anvil-component><anvil-component type="Label" name="best_streak" prop:role='["fine-print"]'></anvil-component></div>
+        <div class="ui-card pg-stat"><i class="ic ic-star"></i><anvil-component type="Label" name="n_lessons" prop:role='["stat-num"]'></anvil-component><span>lessons finished</span></div>
+        <div class="ui-card pg-stat"><i class="ic ic-mic"></i><anvil-component type="Label" name="n_said" prop:role='["stat-num"]'></anvil-component><span>phrases said out loud</span></div>
+      </div>
+
+      <div class="pg-grid">
+        <section class="ui-card pg-goal">
+          <h3>Daily goal</h3>
+          <div class="pg-goal-row">
+            <anvil-component type="parapeet.Components.Ring" name="goal_ring"></anvil-component>
+            <anvil-component type="Label" name="goal_text" prop:role='["fine-print"]'></anvil-component>
+          </div>
+          <div class="ui-seg pg-goals" role="group" aria-label="Daily goal">
+            <anvil-component type="Button" name="g10" prop:text="Casual · 10" prop:role='["seg"]'></anvil-component>
+            <anvil-component type="Button" name="g20" prop:text="Regular · 20" prop:role='["seg"]'></anvil-component>
+            <anvil-component type="Button" name="g40" prop:text="Serious · 40" prop:role='["seg"]'></anvil-component>
+            <anvil-component type="Button" name="g80" prop:text="Intense · 80" prop:role='["seg"]'></anvil-component>
+          </div>
+          <h4 class="pg-days-h">Last 14 days</h4>
+          <anvil-component type="RepeatingPanel" name="days_panel" prop:item_template="parapeet.Items.DayBar" prop:role='["pg-days"]'></anvil-component>
+        </section>
+
+        <section class="ui-card pg-moods">
+          <h3>Your moods</h3>
+          <p class="small muted">How many phrases you know well in each mood (three right answers in a row, give or take).</p>
+          <anvil-component type="RepeatingPanel" name="moods_panel" prop:item_template="parapeet.Items.MoodBar" prop:role='["pg-mood-list"]'></anvil-component>
+        </section>
+      </div>
+
+      <section class="pg-badges">
+        <h2>Badges</h2>
+        <anvil-component type="RepeatingPanel" name="badges_panel" prop:item_template="parapeet.Items.BadgeChip" prop:role='["pg-badge-grid"]'></anvil-component>
+      </section>
+
+      <div class="pl-guest" anvil:name="guest_note">
+        <i class="ic ic-info"></i>
+        <span class="pl-guest-text">You're playing as a guest, so this progress lives in this browser only. Join free to keep it.</span>
+        <a class="ui-btn primary sm" href="#auth/signup">Join free</a>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

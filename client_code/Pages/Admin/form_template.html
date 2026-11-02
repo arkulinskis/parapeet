@@ -1,0 +1,69 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ui-page-head"><div><h1>Admin</h1><p class="muted">Only admins see this page.</p></div></div>
+      <nav class="ui-tabs">
+        <a href="#admin/overview" anvil:name="tab_overview"><i class="ic ic-grid"></i>Overview</a>
+        <a href="#admin/feedback" anvil:name="tab_feedback"><i class="ic ic-inbox"></i>Feedback</a>
+        <a href="#admin/users" anvil:name="tab_users"><i class="ic ic-users"></i>Users</a>
+        <a href="#admin/content" anvil:name="tab_content"><i class="ic ic-database"></i>Phrases</a>
+      </nav>
+
+      <div anvil:name="overview_part">
+        <div class="ad-stats">
+          <a class="ui-card ui-stat ad-stat" href="#admin/users"><anvil-component type="Label" name="s_users" prop:role='["stat-num"]'></anvil-component><span>people signed up</span></a>
+          <a class="ui-card ui-stat ad-stat" href="#admin/users"><anvil-component type="Label" name="s_admins" prop:role='["stat-num"]'></anvil-component><anvil-component type="Label" name="s_admins_label" prop:role='["fine-print"]'></anvil-component></a>
+          <a class="ui-card ui-stat ad-stat" href="#admin/feedback"><anvil-component type="Label" name="s_feedback" prop:role='["stat-num"]'></anvil-component><span>new feedback</span></a>
+          <a class="ui-card ui-stat ad-stat" href="#admin/content"><anvil-component type="Label" name="s_phrases" prop:role='["stat-num"]'></anvil-component><span>phrases in the library</span></a>
+          <div class="ui-card ui-stat ad-stat"><anvil-component type="Label" name="s_learners" prop:role='["stat-num"]'></anvil-component><span>learners with progress</span></div>
+          <div class="ui-card ui-stat ad-stat"><anvil-component type="Label" name="s_lessons" prop:role='["stat-num"]'></anvil-component><span>lessons finished</span></div>
+          <div class="ui-card ui-stat ad-stat"><anvil-component type="Label" name="s_notes" prop:role='["stat-num"]'></anvil-component><span>saved phrases</span></div>
+        </div>
+      </div>
+
+      <div anvil:name="feedback_part">
+        <div class="ui-row ad-filter">
+          <div class="ui-seg">
+            <anvil-component type="Button" name="f_new" prop:text="New" prop:role='["seg"]'></anvil-component>
+            <anvil-component type="Button" name="f_read" prop:text="Read" prop:role='["seg"]'></anvil-component>
+            <anvil-component type="Button" name="f_done" prop:text="Done" prop:role='["seg"]'></anvil-component>
+            <anvil-component type="Button" name="f_all" prop:text="All" prop:role='["seg"]'></anvil-component>
+          </div>
+        </div>
+        <anvil-component type="RepeatingPanel" name="feedback_panel" prop:item_template="parapeet.Items.FeedbackRow" prop:role='["ad-fb"]'></anvil-component>
+        <div class="ui-empty" anvil:name="no_feedback">
+          <i class="ic ic-inbox"></i>
+          <h3>No messages here</h3>
+          <p>New feedback goes to Prepsto (prepsto.com). Older messages and requests from the app show up here.</p>
+        </div>
+      </div>
+
+      <div anvil:name="users_part">
+        <div class="ui-row ad-search">
+          <anvil-component type="TextBox" name="search_box" prop:placeholder="Search by name or email" prop:role='["ad-search-box"]'></anvil-component>
+          <anvil-component type="Button" name="search_button" prop:text="Search" prop:role='["btn", "ic-search"]'></anvil-component>
+          <anvil-component type="Label" name="users_count" prop:role='["fine-print"]'></anvil-component>
+        </div>
+        <div class="ad-table ad-users-head"><b>Name</b><b>Email</b><b>Joined</b><b>Admin</b><b>Active</b></div>
+        <anvil-component type="RepeatingPanel" name="users_panel" prop:item_template="parapeet.Items.UserRow"></anvil-component>
+      </div>
+
+      <div anvil:name="content_part">
+        <div class="ui-grid two">
+          <div class="ui-card">
+            <h3>Phrase library</h3>
+            <p class="muted small">The phrases live in the FrenchSentences and FrenchSentences_translation tables (edit them in the Anvil editor). Availability: <b>basic</b> = everyone, <b>free</b> = any account, <b>premium</b> = customer_type "premium".</p>
+            <anvil-component type="Label" name="c_access" prop:role='["strong"]'></anvil-component>
+            <anvil-component type="Label" name="c_units" prop:role='["fine-print"]'></anvil-component>
+            <anvil-component type="Label" name="c_voices" prop:role='["fine-print"]'></anvil-component>
+          </div>
+          <div class="ui-card">
+            <h3>Asked for more phrases</h3>
+            <anvil-component type="Label" name="c_interest_count" prop:role='["fine-print"]'></anvil-component>
+            <anvil-component type="Label" name="c_interest" prop:role='["ad-interest"]'></anvil-component>
+          </div>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

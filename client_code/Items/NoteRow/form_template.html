@@ -1,0 +1,12 @@
+<article class="ui-item sv-row">
+  <div class="grow">
+    <anvil-component type="Label" name="fr" prop:role='["sv-fr"]' bind:text="self.item['fr']"></anvil-component>
+    <anvil-component type="Label" name="en" prop:role='["sv-en"]' bind:text="self.item['en']"></anvil-component>
+    <div class="sv-level" anvil:dom-node="level" aria-hidden="true"><i anvil:dom-node="d0"></i><i anvil:dom-node="d1"></i><i anvil:dom-node="d2"></i><i anvil:dom-node="d3"></i><i anvil:dom-node="d4"></i></div>
+  </div>
+  <div class="sv-actions">
+    <anvil-component type="Button" name="listen_button" prop:text="Listen" prop:role='["btn", "btn-icon", "btn-ghost", "ic-volume"]'></anvil-component>
+    <anvil-component type="Button" name="edit_button" prop:text="Edit" prop:role='["btn", "btn-icon", "btn-ghost", "ic-edit"]'></anvil-component>
+    <anvil-component type="Button" name="delete_button" prop:text="Delete" prop:role='["btn", "btn-icon", "btn-ghost", "ic-trash"]'></anvil-component>
+  </div>
+</article>
