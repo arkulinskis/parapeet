@@ -1,50 +1,20 @@
 {
-  "start_url": "https://parapeet.com/",
-  "name": "Parapeet",
-  "short_name": "Parapeet",
-  "description": "Last year a magic parakeet got loose.\nThis klepto stole everyone's knowledge of French.\n\nAfter months of prep and grind..\nwe are finally ready. \n\nWe want swipers, actors, haters, lovers.. \npassion is what this will take.\n\nCatch Parapeet!",
-  "background_color": "#b5e655",
-  "theme_color": "#2e7d32",
-  "display": "standalone",
-  "icons": [
-    {
-      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "density": "2.0",
-      "purpose": "any"
-    },
-    {
-      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "density": "2.0",
-      "purpose": "any"
-    },
-    {
-      "src": "https://parapeet.com/_/theme/Parapeet-super-zoom.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "density": "2.0",
-      "purpose": "maskable"
-    }
-  ],
   "id": "parapeet",
-  "dir": "rtl",
-  "lang": "en",
-  "scope": "https://parapeet.com",
+  "name": "Parapeet: French phrases in 10 moods",
+  "short_name": "Parapeet",
+  "description": "Swipe one French phrase through ten moods, play quick lessons and catch Parapeet, the parakeet who stole your French.",
+  "start_url": "https://parapeet.com/",
+  "scope": "https://parapeet.com/",
+  "display": "standalone",
   "orientation": "portrait",
-  "related_applications": [
-    {
-      "platform": "play",
-      "url": "https://play.google.com/store/apps/details?id=com.duolingo&amp;pcampaignid=web_share",
-      "id": ""
-    }
-  ],
-  "categories": [
-    "education",
-    "games",
-    "kids",
-    "music"
+  "lang": "en",
+  "dir": "ltr",
+  "background_color": "#f3fae9",
+  "theme_color": "#2e9e4f",
+  "categories": ["education", "games"],
+  "icons": [
+    {"src": "https://parapeet.com/_/theme/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "https://parapeet.com/_/theme/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "https://parapeet.com/_/theme/icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any"}
   ]
 }

@@ -1,0 +1,7 @@
+<div class="ix ch-host">
+<button type="button" class="ch" anvil:name="btn" anvil:on-dom:click="self.btn_click">
+  <span class="ch-n" anvil:name="num_box"><anvil-component type="Label" name="num" prop:role='["ch-num"]'></anvil-component></span>
+  <span class="ch-ic" anvil:name="mood_box"><i class="ic" anvil:name="mood_icon"></i></span>
+  <anvil-component type="Label" name="txt" prop:role='["ch-text"]' bind:text="self.item['text']"></anvil-component>
+</button>
+</div>

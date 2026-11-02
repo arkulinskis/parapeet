@@ -1,0 +1,21 @@
+---
+custom_component: true
+properties:
+  - name: value
+    type: number
+    default_value: 0
+    description: 0 to 100 (percent done)
+    default_binding_prop: true
+  - name: text
+    type: string
+    default_value: ""
+    description: Short text in the middle (e.g. 12/20)
+toolbox_item:
+  title: Goal ring
+  group: Parapeet
+help_text: |
+  A round progress ring (the daily goal). Turns gold with a check when it reaches 100.
+---
+<div class="pp-ring" anvil:dom-node="ring">
+  <div class="pp-ring-in"><anvil-component type="Label" name="middle" prop:role='["ring-text"]'></anvil-component></div>
+</div>

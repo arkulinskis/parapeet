@@ -1,0 +1,33 @@
+<div class="ui hf">
+  <h2 class="dlg-h">Hands-free lesson</h2>
+  <p class="muted small">Put your phone down and listen. Parapeet reads the phrases in the rhythm you pick and leaves you time to repeat them out loud.</p>
+  <div class="ui-stack">
+    <label class="ui-field"><span>Rhythm</span>
+      <anvil-component type="DropDown" name="pattern_drop"></anvil-component>
+    </label>
+    <label class="ui-field"><span>How long</span>
+      <anvil-component type="DropDown" name="minutes_drop"></anvil-component>
+    </label>
+    <div class="ui-field"><span>Moods</span>
+      <div class="hf-moods">
+        <anvil-component type="CheckBox" name="m_Basic" prop:text="Neutral" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Colleague" prop:text="Colleague" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Client" prop:text="Client" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Boss" prop:text="Boss" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Agressive" prop:text="Hothead" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Frustrated" prop:text="Frustrated" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Sad" prop:text="Comfort" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Lover" prop:text="Lover" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Impressed" prop:text="Admiring" prop:checked="true"></anvil-component>
+        <anvil-component type="CheckBox" name="m_Stupid" prop:text="Silly" prop:checked="true"></anvil-component>
+      </div>
+    </div>
+    <anvil-component type="CheckBox" name="skip_known" prop:text="Skip cards I marked Got it" prop:checked="true"></anvil-component>
+    <anvil-component type="CheckBox" name="music" prop:text="Soft background music" prop:checked="false"></anvil-component>
+    <anvil-component type="Label" name="message" prop:role='["msg-error"]' prop:visible="false"></anvil-component>
+    <div class="ui-row end">
+      <anvil-component type="Button" name="cancel_button" prop:text="Later" prop:role='["btn", "btn-ghost"]'></anvil-component>
+      <anvil-component type="Button" name="start_button" prop:text="Start listening" prop:role='["btn", "btn-primary", "ic-headphones"]'></anvil-component>
+    </div>
+  </div>
+</div>

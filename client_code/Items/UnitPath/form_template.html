@@ -1,0 +1,14 @@
+<div class="ix un-host">
+<section class="un" anvil:name="box">
+  <div class="un-banner">
+    <span class="un-ic"><i class="ic" anvil:name="icon"></i></span>
+    <div class="un-text">
+      <anvil-component type="Label" name="kicker" prop:role='["un-kicker"]'></anvil-component>
+      <anvil-component type="Label" name="title_label" prop:role='["un-title"]' bind:text="self.item['name']"></anvil-component>
+      <anvil-component type="Label" name="blurb" prop:role='["un-blurb"]' bind:text="self.item['blurb']"></anvil-component>
+    </div>
+    <anvil-component type="Label" name="progress" prop:role='["un-progress"]'></anvil-component>
+  </div>
+  <anvil-component type="RepeatingPanel" name="nodes_panel" prop:item_template="parapeet.Items.LessonNode" prop:role='["un-path"]'></anvil-component>
+</section>
+</div>
