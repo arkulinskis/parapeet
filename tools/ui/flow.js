@@ -115,6 +115,29 @@
     await until(() => !vis($('.pr-hf')), 'hands-free stopped');
     ok(true, 'practice: a hands-free lesson starts and stops');
 
+    // ---- languages: Spanish from the header button, Italian from the landing page, then back to French
+    const front = () => txt($$('.pc-front .pc-text').find(vis));
+    ok(txt($('.pp-lang')) === 'FR', 'header: the language button says FR');
+    $('.pp-lang').click();
+    await until(() => $$('.anvil-modal-content .lc').filter(vis).length === 3, 'language picker');
+    const esBtn = $$('.anvil-modal-content .lc').find((b) => /Español/.test(txt(b)));
+    ok(/Spanish · \d+ phrases/.test(txt(esBtn)), 'picker: three languages, each with its phrase count');
+    esBtn.click();
+    await until(() => window.UI_READY && txt($('.pp-lang')) === 'ES' && /Hola/.test(front()), 'the Spanish phrasebook', 30000);
+    ok(txt($$('.pc-lang').find(vis)) === 'ES' && $$('.anvil-role-btn button').some((b) => txt(b) === 'Spanish first'), 'practice: Spanish cards (ES), "Spanish first"');
+    $$('.pc-chip').find((c) => txt(c) === 'Client').click(); await sleep(800);
+    ok(/usted/.test(txt($('.pr-mood'))) && /ayudarle/.test(front()), 'practice: the Spanish client mood shows "usted · formal"');
+    $$('.pc-chip').find((c) => txt(c) === 'Boss').click(); await sleep(800);
+    ok(!$$('.pc-card.pc-known').find(vis), 'practice: "Got it" in French does not mark the Spanish card');
+    await page('#landing', () => $$('.anvil-role-lp-langs .lc').length === 3, 'landing in Spanish');
+    ok(/Mi amor/.test(front()) && /prestas tu bolígrafo/.test(txt($('.lp-mood p'))), 'landing: the demo card and the ten moods are in Spanish');
+    $$('.anvil-role-lp-langs .lc').find((b) => /Italiano/.test(txt(b))).click();
+    await until(() => /Amore mio/.test(front()) && txt($('.pp-lang')) === 'IT', 'Italian on the landing page');
+    ok(/Lei/.test(txt($$('.lp-mood').find((m) => /Client/.test(txt(m))))), 'landing: Italian tabs switch the whole app (IT), the client mood says "Lei"');
+    $$('.anvil-role-lp-langs .lc').find((b) => /Français/.test(txt(b))).click();
+    await until(() => /Mon amour/.test(front()) && txt($('.pp-lang')) === 'FR', 'back to French');
+    ok(true, 'landing: back to French');
+
     // ---- the trail, the story, a whole lesson
     await page('#play', () => $$('.ln').length >= 2, 'play');
     ok($$('.un').length === 3, 'play: three units on the trail');

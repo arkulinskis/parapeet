@@ -34,13 +34,13 @@ class Progress(ProgressTemplate):
         self.n_said.text = str(s["said"])
         self.goal_ring.value = s["goal_pct"]
         self.goal_ring.text = "%d/%d" % (s["today_seeds"], s["goal"])
-        self.goal_text.text = ("Done for today. Bravo !" if s["goal_done"] else
+        self.goal_text.text = ("Done for today. Bravo!" if s["goal_done"] else
                                "%d more seeds today to reach your goal (and +10 bonus)." % (s["goal"] - s["today_seeds"]))
         for g, btn in ((10, self.g10), (20, self.g20), (40, self.g40), (80, self.g80)):
             btn.role = ["seg", "on"] if s["goal"] == g else ["seg"]
         self.days_panel.items = self._days(p, s["goal"])
         by_mood = dict((k, [ph["id"] for ph in phrases.all_phrases() if ph["fr"].get(k)]) for k in tones.KEYS)
-        pcts = G.mood_mastery(p, by_mood)
+        pcts = G.mood_mastery(p, by_mood, state.lang())
         self.moods_panel.items = [{"key": k, "label": tones.label(k), "colour": tones.TONES[k]["colour"],
                                    "icon": tones.TONES[k]["icon"], "pct": pcts[k],
                                    "right": int(p["stats"].get("c_" + k) or 0)} for k in tones.KEYS]

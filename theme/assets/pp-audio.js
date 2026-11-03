@@ -28,10 +28,17 @@
     var exact = vs.filter(function (v) { return (v.lang || '').toLowerCase().replace('_', '-') === want; });
     var near = vs.filter(function (v) { return (v.lang || '').toLowerCase().slice(0, 2) === base; });
     var list = exact.length ? exact : near;
-    var nice = list.filter(function (v) { return /natural|neural|google|premium|enhanced|amelie|thomas|audrey/i.test(v.name); });
+    var nice = list.filter(function (v) { return /natural|neural|google|premium|enhanced|amelie|thomas|audrey|monica|paulina|jorge|alice|luca|federica/i.test(v.name); });
     return (nice[0] || list[0]) || null;
   }
-  PP.hasVoice = function (lang) { return !!pickVoice(lang === 'en' ? 'en-US' : 'fr-FR'); };
+  /* 'en' = English; 'fr' (the card's learning side) = the language being learned (PP.LANG, pp-card.js);
+     anything else is already a full tag like 'es-ES'. */
+  function ttsTag(lang) {
+    if (lang === 'en') return 'en-US';
+    if (!lang || lang === 'fr') return (PP.LANG && PP.LANG.tts) || 'fr-FR';
+    return lang;
+  }
+  PP.hasVoice = function (lang) { return !!pickVoice(ttsTag(lang)); };
 
   PP.stop = function () {
     var was = current;
@@ -47,7 +54,7 @@
       if (test().silent || !window.speechSynthesis || !text) return setTimeout(function () { fin('silent'); }, test().silent ? 30 : 0);
       PP.stop();
       var u = new SpeechSynthesisUtterance(String(text));
-      u.lang = lang === 'en' ? 'en-US' : 'fr-FR';
+      u.lang = ttsTag(lang);
       var v = pickVoice(u.lang); if (v) u.voice = v;
       var p = PROSODY[mood] || [1, 1];
       u.rate = Math.max(0.5, Math.min(1.6, p[0] * (speed || PP.settings().speed || 1)));
@@ -143,7 +150,7 @@
       if (!C) return resolve({ error: 'unsupported' });
       PP.stop();
       var r = new C(); PP._rec = r;
-      r.lang = lang || 'fr-CA'; r.interimResults = false; r.maxAlternatives = 5; r.continuous = false;
+      r.lang = lang && lang !== 'fr' ? lang : ((PP.LANG && PP.LANG.asr) || 'fr-CA'); r.interimResults = false; r.maxAlternatives = 5; r.continuous = false;
       var done = false, guard = setTimeout(function () { fin({ error: 'timeout' }); }, ms || 9000);
       function fin(v) { if (done) return; done = true; clearTimeout(guard); try { r.abort(); } catch (e) {} PP._rec = null; resolve(v); }
       r.onresult = function (e) {

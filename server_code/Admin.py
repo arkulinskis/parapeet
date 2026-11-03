@@ -69,7 +69,8 @@ def admin_content():
     interest = [{"who": r["showed_interest"] or "", "what": r["interested"] or "", "when": C.iso(r["mydatetime"])}
                 for r in rows[:40]]
     return {"by_access": c["by_access"], "by_unit": c["by_unit"], "voices_fr": c["voices_fr"],
-            "voices_en": c["voices_en"], "interest": interest, "interest_total": len(rows)}
+            "voices_en": c["voices_en"], "languages": c["languages"], "interest": interest,
+            "interest_total": len(rows)}
 
 
 @anvil.server.callable(require_user=True)

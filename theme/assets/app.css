@@ -546,6 +546,35 @@ body { background-image:
 .pp-stats .anvil-label { color: inherit; display: inline; white-space: nowrap; }
 .pp-stats, .pp-stats > span { white-space: nowrap; flex-wrap: nowrap; }
 
+/* the language being learned: a little CSS flag + FR / ES / IT (header button, picker, landing) */
+.pp-flag { display: inline-block; flex: none; width: 22px; height: 15px; border-radius: 4px; box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .14); }
+.pp-lang { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; background: var(--c-surface);
+  border: 2px solid var(--c-line); color: var(--c-ink); font: 600 .95rem/1 var(--font-display); cursor: pointer; box-shadow: 0 3px 0 var(--c-line-2); }
+.pp-lang:hover { border-color: var(--c-brand); }
+.pp-lang:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--c-line-2); }
+.pp-lang .anvil-label { color: inherit; display: inline; }
+.pp-lang .ic { width: 14px; height: 14px; color: var(--c-muted); }
+.anvil-role-lpk-list > div { display: grid; gap: 10px; margin: 14px 0 18px; }
+.lc { width: 100%; display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 18px; background: var(--c-surface);
+  border: 2px solid var(--c-line); box-shadow: 0 4px 0 var(--c-line-2); cursor: pointer; text-align: left; color: var(--c-ink); font: inherit; }
+.lc:hover { border-color: var(--c-brand); }
+.lc:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--c-line-2); }
+.lc.on { border-color: var(--c-brand); background: var(--c-brand-soft); box-shadow: 0 4px 0 var(--c-brand-deep); }
+.lc-flag { width: 42px; height: 28px; border-radius: 7px; }
+.lc-names { display: grid; gap: 3px; flex: 1; min-width: 0; }
+.anvil-role-lc-native { font: 600 1.25rem/1.1 var(--font-display); }
+.anvil-role-lc-english { color: var(--c-muted); font-size: .9rem; }
+.lc-on { color: var(--c-brand); }
+.lc-on .ic { width: 24px; height: 24px; }
+/* landing: three language tabs above the demo card */
+.anvil-role-lp-langs > div { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 18px; }
+.anvil-role-lp-langs .ix { flex: 1 1 0; min-width: 0; }
+.anvil-role-lp-langs .lc { padding: 9px 10px; gap: 8px; border-radius: 14px; justify-content: center; }
+.anvil-role-lp-langs .lc-flag { width: 26px; height: 18px; border-radius: 5px; }
+.anvil-role-lp-langs .anvil-role-lc-native { font-size: 1rem; }
+.anvil-role-lp-langs .anvil-role-lc-english, .anvil-role-lp-langs .lc-on { display: none; }
+.anvil-role-lp-langs .lc-names { flex: none; }
+
 /* the phone tab bar is for everyone (Parapeet works without an account), not on the lesson or sign-in screens */
 @media (max-width: 760px) {
   .ui-shell:not(.no-tabbar):not(.no-chrome) .ui-tabbar { display: flex; position: fixed; z-index: 45; left: 0; right: 0; bottom: 0; background: var(--c-surface);
@@ -1068,3 +1097,8 @@ body { background-image:
   .bird .b-body, .bird .b-beak-low, .ln-start, .pc-card .pc-face { animation: none !important; }
   .pc-inner { transition: none; }
 }
+.ui-field .anvil-role-field-label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+/* landing: the ten moods follow the language picked (Items.MoodSample in a RepeatingPanel) */
+.anvil-role-lp-moods > div { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.lp-mood-host, .lp-mood-host > .lp-mood { height: 100%; box-sizing: border-box; }
+@media (max-width: 400px) { .pp-lang { padding: 6px 8px; gap: 5px; } .pp-lang .ic { display: none; } }

@@ -1,5 +1,6 @@
 """Builds the exercises of a lesson from phrases (plain Python, no Anvil imports, so it's easy to test).
 
+"French" below = the language being learned (French, Spanish or Italian: phrase["lang"], see langs.py).
 Exercise types (each is a dict the Lesson page shows):
   meaning  French in a mood -> pick the English (4 choices)
   mood     French -> which mood is it? (4 moods): the heart of Parapeet, hearing the feeling
@@ -11,7 +12,7 @@ Exercise types (each is a dict the Lesson page shows):
 import random
 
 from . import gamerules as G
-from . import tones
+from . import langs, tones
 
 MAX_BUILD_WORDS = 12
 
@@ -42,7 +43,7 @@ def _pick_moods(p, progress, rnd, n=2):
     """Neutral first (it's the base), then the moods this learner knows least for this phrase."""
     others = [k for k in tones.KEYS[1:] if _fr(p, k)]
     rnd.shuffle(others)
-    others.sort(key=lambda k: G.strength(progress, p["id"], k))
+    others.sort(key=lambda k: G.strength(progress, p["id"], k, p.get("lang") or langs.DEFAULT))
     return (["Basic"] if _fr(p, "Basic") else []) + others[:max(0, n - 1)]
 
 
@@ -70,7 +71,7 @@ def mood_quiz(p, mood, rnd):
     rnd.shuffle(keys)
     opts = [{"text": tones.label(k), "value": k, "mood": k} for k in keys]
     return {"type": "mood", "title": "Which mood is this?", "prompt": _fr(p, mood), "lang": "fr", "options": opts,
-            "answer": mood, "solution": "%s: %s" % (tones.label(mood), tones.TONES[mood]["blurb"]), "hide_mood": True}
+            "answer": mood, "solution": "%s: %s" % (tones.label(mood), tones.blurb(mood, p.get("lang") or langs.DEFAULT)), "hide_mood": True}
 
 
 def build(p, mood, pool, rnd):
@@ -87,7 +88,7 @@ def build(p, mood, pool, rnd):
     rnd.shuffle(extra)
     tiles = [{"word": w, "n": i} for i, w in enumerate(words + extra[:3])]
     rnd.shuffle(tiles)
-    return {"type": "build", "title": "Write this in French", "prompt": _en(p, mood), "lang": "en", "tiles": tiles,
+    return {"type": "build", "title": "Write this in %s" % langs.name(p.get("lang") or langs.DEFAULT), "prompt": _en(p, mood), "lang": "en", "tiles": tiles,
             "answer": " ".join(words), "solution": " ".join(words)}
 
 

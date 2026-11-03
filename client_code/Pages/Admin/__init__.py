@@ -1,7 +1,10 @@
 from anvil import *
 
+import anvil.media
+import anvil.server
+
 from ._anvil_designer import AdminTemplate
-from ... import state
+from ... import phrases, state
 
 TABS = ["overview", "feedback", "users", "content"]
 
@@ -91,3 +94,39 @@ class Admin(AdminTemplate):
         self.c_voices.text = "Recorded voices: %d French, %d English (the browser's voice reads the rest)" % (d["voices_fr"], d["voices_en"])
         self.c_interest_count.text = "%d requests in total (latest 40 below)" % d["interest_total"]
         self.c_interest.text = "\n".join("%s · %s · %s" % (state.short_date(i["when"]), i["who"], i["what"]) for i in d["interest"]) or "Nobody yet."
+        lines = []
+        for x in d.get("languages") or []:
+            if not x["ready"]:
+                lines.append("%s: the table isn't there yet. Open the app in the Anvil editor and accept the Schema "
+                             "Mismatch alert (\"The schema of the source code is correct\")." % x["name"])
+                continue
+            todo = " (%d French phrases still to translate)" % x["missing"] if x["missing"] and x["code"] != "fr" else ""
+            lines.append("%s: %s%s · %s" % (x["name"], state.plural(x["phrases"], "phrase"), todo,
+                                            state.plural(x["voices"], "recorded voice")))
+        self.c_langs.text = "\n".join(lines)
+
+    @handle("download_button", "click")
+    def download_button_click(self, **event_args):
+        anvil.media.download(anvil.server.call("admin_phrases_csv"))
+
+    @handle("upload_loader", "change")
+    def upload_loader_change(self, file, **event_args):
+        """A CSV file with Spanish / Italian rows (see the help text on the Phrases tab and server PhraseFiles.py)."""
+        if file is None:
+            return
+        r = anvil.server.call("admin_upload_phrases", file)
+        self.upload_loader.clear()
+        self.upload_result.visible = True
+        if not r.get("ok"):
+            self.upload_result.text = "Nothing saved. " + "\n".join(r.get("problems") or [r.get("error") or "That didn't work."])
+            state.toast(r.get("error") or "That didn't work.", "error")
+            return
+        done = ", ".join("%d %s" % (n, {"es": "Spanish", "it": "Italian"}.get(c, c)) for c, n in sorted(r["by_lang"].items()))
+        text = "Saved: %d added, %d updated (%s). %d French / English rows skipped." % (
+            r["added"], r["updated"], done or "none", r["skipped"])
+        if r["problems"]:
+            text += "\nNot saved:\n" + "\n".join(r["problems"])
+        self.upload_result.text = text
+        state.toast("Phrases saved: %d added, %d updated" % (r["added"], r["updated"]), "ok")
+        phrases.reset()
+        self._content()

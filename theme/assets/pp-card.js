@@ -1,7 +1,7 @@
 /* pp-card.js: Parapeet's swipe card (window.PP.Card), wrapped by client_code/Components/PhraseCard.
    One phrase at a time in one of ten moods. The card follows the finger (or mouse):
      drag sideways -> the next / previous mood of the same phrase      drag up / down -> the next / previous phrase
-     tap -> flip between French and English                            keys: arrows, Space (flip), Enter (listen)
+     tap -> flip between the phrase and the English                    keys: arrows, Space (flip), Enter (listen)
    It also draws the mood strip above the card and the mood dots below it. Python gets told about every change
    through opts.onChange({index, tone, key, id, side, reason}). JavaScript because the card has to move with the finger
    every frame, which Anvil's in-browser Python is too slow for. */
@@ -43,15 +43,45 @@
     return out.join(' ');
   };
 
-  PP.register = function (fr) {
-    var tu = false, vous = false;
-    words(String(fr || '').toLowerCase().replace(/[’]/g, "'").replace(/[.,;:!?()"«»“”…]/g, ' ')).forEach(function (w) {
-      if (w === 'vous' || w === 'votre' || w === 'vos') vous = true;
-      else if (['tu', 'te', 'toi', 'ton', 'ta', 'tes'].indexOf(w) >= 0 || w.indexOf("t'") === 0) tu = true;
-    });
-    return vous && !tu ? 'vous' : tu && !vous ? 'tu' : tu && vous ? 'mixed' : '';
+  /* The language being learned (French, Spanish or Italian): client_code/langs.py for_js(), set by pp.py.
+     The card's "fr" side is always the phrase in this language (the key name is historical). */
+  var LANG = PP.LANG = {
+    code: 'fr', name: 'French', short: 'FR', tts: 'fr-FR', asr: 'fr-CA', formal: 'vous', familiar: 'tu',
+    formalWords: ['vous', 'votre', 'vos'], formalCased: [], formalClitics: false,
+    familiarWords: ['tu', 'te', 'toi', 'ton', 'ta', 'tes'], familiarPrefixes: ["t'"],
+    formalWeak: [], formalSuffixes: [], familiarSuffixes: [], suffixExceptions: []
   };
-  var REG = { vous: 'vous · formal', tu: 'tu · familiar', mixed: 'tu + vous', '': '' };
+  PP.setLang = function (cfg) { LANG = PP.LANG = Object.assign({}, LANG, cfg || {}); };
+
+  /* Same rules as langs.register() in Python: 'formal', 'familiar', 'mixed' or ''. */
+  function ends(w, list) {
+    return LANG.suffixExceptions.indexOf(w) < 0 && list.some(function (e) { return w.length > e.length + 1 && w.slice(-e.length) === e; });
+  }
+  function clitic(w) {
+    return ['La', 'Le', 'Lo', 'Gli'].some(function (e) {
+      var head = w.slice(0, -e.length);
+      return w.length > e.length + 2 && w.slice(-e.length) === e && head === head.toLowerCase();
+    });
+  }
+  PP.register = function (text) {
+    var formal = false, familiar = false, weak = false;
+    String(text || '').replace(/[’]/g, "'").split(/[.!?…]/).forEach(function (sentence) {
+      words(sentence.replace(/[,;:()"«»“”¿¡]/g, ' ')).forEach(function (w, i) {
+        var lw = w.toLowerCase();
+        if (LANG.formalWords.indexOf(lw) >= 0 || LANG.formalCased.indexOf(w) >= 0) formal = true;
+        else if (LANG.formalClitics && (clitic(w) || (i > 0 && (w === 'La' || w === 'Le')))) formal = true;
+        else if (LANG.familiarWords.indexOf(lw) >= 0 || LANG.familiarPrefixes.some(function (p) { return lw.indexOf(p) === 0; }) ||
+                 ends(lw, LANG.familiarSuffixes)) familiar = true;
+        else if (LANG.formalWeak.indexOf(lw) >= 0 || ends(lw, LANG.formalSuffixes)) weak = true;
+      });
+    });
+    if (formal && familiar) return 'mixed';
+    if (formal || (weak && !familiar)) return 'formal';
+    return familiar ? 'familiar' : '';
+  };
+  function regText(reg) {
+    return { formal: LANG.formal + ' · formal', familiar: LANG.familiar + ' · familiar', mixed: LANG.familiar + ' + ' + LANG.formal }[reg] || '';
+  }
 
   function reduced() { return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); }
   function typing(el) { return el && (/^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) || el.isContentEditable); }
@@ -125,13 +155,13 @@
     if (!c || !t) return '<div class="pc-empty">No phrases here yet.</div>';
     var text = (c[lang] || {})[t.key] || '';
     var base = this.t > 0 ? (c[lang] || {})[TONES[0].key] : '';
-    var reg = lang === 'fr' ? REG[PP.register(text)] : '';
+    var reg = lang === 'fr' ? regText(PP.register(text)) : '';
     var who = t.label === 'Neutral' ? 'Neutral' : t.label;
     return '<div class="pc-head"><span class="pc-mood">' + icon(t.icon) + '<span>' + esc(who) + '</span></span>' +
       (reg ? '<span class="pc-reg">' + esc(reg) + '</span>' : '') +
-      '<span class="pc-lang">' + (lang === 'fr' ? 'FR' : 'EN') + '</span></div>' +
-      '<div class="pc-text" lang="' + lang + '"><span class="pc-words">' + (this.opts.diff === false ? esc(tidy(text)) : PP.diffHtml(text, base)) + '</span></div>' +
-      '<div class="pc-foot">' + (lang === 'fr' ? 'Tap to see the English' : 'Tap for the French') + '</div>';
+      '<span class="pc-lang">' + (lang === 'fr' ? esc(LANG.short) : 'EN') + '</span></div>' +
+      '<div class="pc-text" lang="' + (lang === 'fr' ? esc(LANG.code) : 'en') + '"><span class="pc-words">' + (this.opts.diff === false ? esc(tidy(text)) : PP.diffHtml(text, base)) + '</span></div>' +
+      '<div class="pc-foot">' + (lang === 'fr' ? 'Tap to see the English' : 'Tap for the ' + esc(LANG.name)) + '</div>';
   };
 
   Card.prototype._render = function () {

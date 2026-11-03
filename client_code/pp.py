@@ -7,10 +7,18 @@ like any Anvil server call; `fire` starts one without waiting and calls `done(re
 import anvil.js
 from anvil.js import window
 
-from . import tones
+from . import langs, state, tones
 
 PP = window.PP
 PP.setTones(tones.as_list())
+
+
+def set_lang(code):
+    """Tell the engines which language is being learned (card labels, tu/vous badges, voices, speech check)."""
+    PP.setLang(langs.for_js(code))
+
+
+set_lang(state.lang())
 
 
 def card(node, on_change, on_listen=None, keys=True, keep_tone=False):
@@ -26,7 +34,8 @@ def diff_html(text, base):
 
 
 def say(text, lang="fr", mood="Basic"):
-    """Read aloud with the browser's voice (pace and pitch follow the mood). Waits until it's done."""
+    """Read aloud with the browser's voice (pace and pitch follow the mood). Waits until it's done.
+    lang "fr" = the language being learned (French, Spanish or Italian), "en" = English."""
     return PP.say(text, lang, mood)
 
 
@@ -56,9 +65,10 @@ def can_listen():
     return bool(PP.canListen())
 
 
-def listen(lang="fr-CA"):
-    """Speech recognition: {"transcript", "alternatives"} or {"error"}. Waits (up to ~9 s)."""
-    r = PP.listen(lang, 9000)
+def listen(lang=None):
+    """Speech recognition in the language being learned (or a tag like "es-ES"): {"transcript", "alternatives"} or
+    {"error"}. Waits (up to ~9 s)."""
+    r = PP.listen(lang or langs.info(state.lang())["asr"], 9000)
     return {"transcript": r.transcript or "", "alternatives": list(r.alternatives or []), "error": r.error or ""}
 
 

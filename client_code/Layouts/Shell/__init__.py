@@ -5,7 +5,7 @@ import anvil.js
 from anvil.js import window
 
 from ._anvil_designer import ShellTemplate
-from ... import auth, game, router, state
+from ... import auth, game, langs, phrases, router, state
 
 THEMES = ["auto", "light", "dark"]
 NO_STATS = ("landing", "auth", "admin")
@@ -48,7 +48,39 @@ class Shell(ShellTemplate):
         self.stats_chip.visible = page not in NO_STATS
         if page not in NO_STATS:
             self.refresh_stats()
+        self.lang_button.visible = page not in ("auth", "admin")
+        self.show_lang()
         self._show_theme()
+
+    # ---- the language being learned
+    def show_lang(self):
+        code = state.lang()
+        self.lang_label.text = langs.info(code)["short"]
+        self.dom_nodes["lang_flag"].style.background = langs.flag_css(code)
+        state.set_attr(self.lang_button, "title", "Learning %s. Tap to change." % langs.name(code))
+
+    def lang_click(self, event):
+        from ...Dialogs.LanguagePick import LanguagePick
+        try:
+            counts = phrases.counts()
+        except Exception:
+            counts = {}
+        code = alert(LanguagePick(counts=counts), buttons=[], role="app-dialog")
+        if code and code != state.lang():
+            self.use_lang(code)
+
+    def use_lang(self, code):
+        """Switch the language being learned and reopen the page in it (a lesson goes back to the trail)."""
+        phrases.switch(code)
+        self.show_lang()
+        state.toast("Now learning %s. %s" % (langs.name(code), langs.info(code)["praise"][1]), "ok")
+        page = router.current()
+        if page == "lesson":
+            router.go("play")
+        elif page in ("practice", "saved"):
+            router.go(page)
+        else:
+            router.show()
 
     def refresh_stats(self):
         """The streak flame and the seed count in the header."""
@@ -101,5 +133,5 @@ class Shell(ShellTemplate):
 
     def sign_out_click(self, event):
         auth.sign_out()
-        state.toast("Signed out. À bientôt !")
+        state.toast("Signed out. %s" % langs.info(state.lang())["bye"])
         router.go("landing")

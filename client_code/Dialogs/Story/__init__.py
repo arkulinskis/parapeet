@@ -1,7 +1,7 @@
 from anvil import *
 
 from ._anvil_designer import StoryTemplate
-from ... import game
+from ... import game, langs, state
 
 
 class Story(StoryTemplate):
@@ -12,6 +12,7 @@ class Story(StoryTemplate):
         super().__init__(**properties)
         self.name_box.text = game.adventurer()
         self.part_two.visible = False
+        self.start_button.text = "Get my %s back!" % langs.name(state.lang())
 
     @handle("name_box", "pressed_enter")
     def name_box_pressed_enter(self, **event_args):
@@ -24,12 +25,13 @@ class Story(StoryTemplate):
             self.message.text, self.message.visible = "I need your name, adventurer!", True
             return
         game.set_adventurer(name)
-        self.story_two.text = ("One fateful day, Parapeet spotted %s, a curious mind full of French. He couldn't resist: "
-                               "he swooped down and pecked away at all those lovely phrases. By sunset, %s's French was "
-                               "gone, with gaps and confusion where it used to be." % (name, name))
+        lang = langs.name(state.lang())
+        self.story_two.text = ("One fateful day, Parapeet spotted %s, a curious mind full of %s. He couldn't resist: "
+                               "he swooped down and pecked away at all those lovely phrases. By sunset, %s's %s was "
+                               "gone, with gaps and confusion where it used to be." % (name, lang, name, lang))
         self.story_three.text = ("Now %s is on his trail, phrase by phrase, seed by seed. Every right answer earns seeds. "
-                                 "Collect 3,000 and Parapeet is caught, and your French is back, in every mood: for "
-                                 "the boss, the client, the hothead, the sad friend and the one you love." % name)
+                                 "Collect 3,000 and Parapeet is caught, and your %s is back, in every mood: for "
+                                 "the boss, the client, the hothead, the sad friend and the one you love." % (name, lang))
         self.part_one.visible = False
         self.part_two.visible = True
         self.bird.mood = "wow"

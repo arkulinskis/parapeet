@@ -1,4 +1,5 @@
-"""This learner's progress (seeds, streak, daily goal, mastery, lesson stars, badges).
+"""This learner's progress (seeds, streak, daily goal, mastery, lesson stars, badges). Mastery and lesson stars are
+kept per language (the one being learned now: state.lang()); seeds, streak, goal and badges are shared.
 
 Members: kept in their account (server: Progress.py). Guests: kept in this browser only, with the very same rules
 (gamerules.py), and folded into the account when they sign up or sign in (merge_guest).
@@ -51,10 +52,10 @@ def reset():
 def record_lesson(kind, key, results):
     """A finished lesson -> the summary for the end screen (seeds, stars, new badges, goal/streak events)."""
     if state.me():
-        r = anvil.server.call("record_lesson", kind, key, results, today())
+        r = anvil.server.call("record_lesson", kind, key, results, today(), state.lang())
         _g["p"] = G.normal(r["progress"])
         return r["result"]
-    p, res = G.apply_lesson(progress(), kind, key, results, today())
+    p, res = G.apply_lesson(progress(), kind, key, results, today(), state.lang())
     _keep_guest(p)
     return res
 
@@ -62,10 +63,10 @@ def record_lesson(kind, key, results):
 def mark(line_id, mood, what, on=True):
     """what = "known" (Got it) or "said" (said right out loud). Returns {seeds, events, badges}."""
     if state.me():
-        r = anvil.server.call("mark_card", int(line_id), mood, what, bool(on), today())
+        r = anvil.server.call("mark_card", int(line_id), mood, what, bool(on), today(), state.lang())
         _g["p"] = G.normal(r["progress"])
         return r["result"]
-    p, res = G.mark(progress(), line_id, mood, what, on, today())
+    p, res = G.mark(progress(), line_id, mood, what, on, today(), state.lang())
     _keep_guest(p)
     return res
 
@@ -111,12 +112,13 @@ def merge_guest():
 
 
 def known(line_id, mood):
-    m = progress()["mastery"].get("%d:%s" % (int(line_id), mood)) or {}
+    """Marked "Got it" in the language being learned now."""
+    m = progress()["mastery"].get(G.ckey(line_id, mood, state.lang())) or {}
     return bool(m.get("k"))
 
 
 def said(line_id, mood):
-    m = progress()["mastery"].get("%d:%s" % (int(line_id), mood)) or {}
+    m = progress()["mastery"].get(G.ckey(line_id, mood, state.lang())) or {}
     return bool(m.get("v"))
 
 
@@ -126,7 +128,7 @@ def summary():
     t = today()
     _touch = p["today"] == t
     today_seeds = p["today_seeds"] if _touch else 0
-    i, name, line, at, nxt = G.stage(p["seeds"])
+    i, name, line, at, nxt = G.stage(p["seeds"], state.lang())
     return {"seeds": p["seeds"], "streak": G.live_streak(p, t), "best_streak": p["best_streak"],
             "today_seeds": today_seeds, "goal": p["daily_goal"], "goal_pct": min(100, int(100 * today_seeds / max(1, p["daily_goal"]))),
             "goal_done": today_seeds >= p["daily_goal"], "stage": i, "stage_name": name, "stage_line": line,

@@ -20,7 +20,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 _tmp = pathlib.Path(tempfile.mkdtemp())
 shutil.copytree(PROJECT / "server_code", _tmp / "app")
-for shared in ("tones.py", "gamerules.py"):
+for shared in ("langs.py", "tones.py", "gamerules.py"):
     shutil.copyfile(PROJECT / "client_code" / shared, _tmp / "app" / shared)
 (_tmp / "app" / "__init__.py").write_text("")
 os.environ["ANVIL_APP_YAML"] = str(PROJECT / "anvil.yaml")  # the mock's tables follow the app's own schema
@@ -120,6 +120,58 @@ try:
 except Exception as e:
     raise AssertionError("voice_url crashed: %r" % e)
 
+# ---------------------------------------------------------------------------------- Spanish and Italian
+as_user(None)
+es = call("get_phrases", "es")
+assert es["lang"] == "es" and len(es["phrases"]) == 10, "guests get the 10 free sample phrases in Spanish too"
+p1 = es["phrases"][0]
+assert p1["id"] == 1 and p1["lang"] == "es" and p1["fr"]["Basic"] == "Hola, ¿cómo estás?", p1["fr"]["Basic"]
+assert p1["en"]["Basic"].startswith("Hello"), "the English is shared by every language"
+assert es["locked"]["signup"] == {"1": 1, "2": 1, "3": 1}
+assert es["counts"] == {"fr": 14, "es": 13, "it": 13}, es["counts"]
+it = call("get_phrases", "it")
+assert it["phrases"][0]["fr"]["Client"] == "Buongiorno, come posso aiutarLa oggi?"
+assert call("get_phrases", "de")["lang"] == "fr", "an unknown language falls back to French"
+assert call("get_phrases")["lang"] == "fr" and call("get_phrases")["phrases"][0]["fr"]["Basic"].startswith("Bonjour")
+as_user(ana)
+assert len(call("get_phrases", "it")["phrases"]) == 13
+T.spanishsentences.add_row(LineID=300, Basic="Frase premium")  # no unit / access of its own: the French row's
+assert call("get_phrases", "es")["locked"]["premium"] == {"2": 1}, "a Spanish row takes the French row's unit and access"
+as_user(vip)
+assert len(call("get_phrases", "es")["phrases"]) == 14
+# the live app: Spanish / Italian samples only land on phrases whose French is word for word the sample's
+for r in T.italiansentences.search():
+    r.delete()
+T.frenchsentences.get(LineID=5)["Basic"] = "Une autre phrase"
+assert M["DemoData"].ensure_languages() is True
+assert len(T.italiansentences.search()) == 12 and T.italiansentences.get(LineID=5) is None
+assert len(T.spanishsentences.search()) == 14, "a language that has phrases is left alone"
+T.frenchsentences.get(LineID=5)["Basic"] = "Avez-vous des questions sur ce projet ?"
+T.italiansentences.add_row(LineID=5, CategoryID=1, Availability="basic", Basic="Ha qualche domanda su questo progetto?")
+langs_c = M["DemoData"].counts()["languages"]
+assert [(x["code"], x["phrases"], x["missing"], x["ready"]) for x in langs_c] == [("fr", 14, 0, True), ("es", 14, 0, True), ("it", 13, 1, True)], langs_c
+# voices per language
+as_user(None)
+assert call("voice_url", 1, "Basic", "es") is None and call("voice_url", 1, "Basic", "de") is None
+T.voicefiles_italian.add_row(LineID="1", Type="Boss", VoiceFile=anvil.BlobMedia("audio/mpeg", b"ID3", name="1.mp3"))
+try:
+    call("voice_url", 1, "Boss", "it")
+except Exception as e:
+    raise AssertionError("voice_url crashed: %r" % e)
+assert call("voice_url", 201, "Basic", "es") is None, "a member-only phrase has no voice for guests in any language"
+# formal / familiar in each language
+L = importlib.import_module("app.langs")
+assert L.register("Je suis là pour vous aider.", "fr") == "formal" and L.register("Prends ton temps.", "fr") == "familiar"
+assert L.register("¿En qué puedo ayudarle hoy?", "es") == "formal" and L.register("¿Me prestas tu bolígrafo?", "es") == "familiar"
+assert L.register("El director quiere verte en su oficina.", "es") == "familiar" and L.register("Buena suerte.", "es") == ""
+assert L.register("Buongiorno, come posso aiutarLa oggi?", "it") == "formal" and L.register("La riunione è finita.", "it") == ""
+assert L.register("Scendo alla caffetteria, Le porto qualcosa?", "it") == "formal" and L.register("Come ti senti?", "it") == "familiar"
+assert L.register_text("formal", "es") == "usted · formal" and L.register_text("familiar", "it") == "tu · familiar"
+Tn = importlib.import_module("app.tones")
+assert Tn.blurb("Client", "es") == 'Your service voice: polite "usted", offers to help, reassures, never blames.'
+assert "{" not in "".join(Tn.blurb(k, c) for k in Tn.KEYS for c in L.CODES)
+assert all(Tn.listen_hint(k, c) for k in Tn.KEYS for c in L.CODES)
+
 # ---------------------------------------------------------------------------------- progress (seeds, streak, mastery)
 as_user(None)
 for fn, args in [("get_progress", (TODAY,)), ("record_lesson", ("lesson", "u1-1", [], TODAY)),
@@ -163,6 +215,15 @@ assert m["result"]["seeds"] == G.SEEDS["said"]
 assert call("mark_card", 1, "Sad", "said", True, TODAY)["result"]["seeds"] == 0, "seeds only the first time"
 assert call("mark_card", 1, "Sad", "known", True, TODAY)["progress"]["mastery"]["1:Sad"]["k"] is True
 assert call("mark_card", 1, "Sad", "known", False, TODAY)["progress"]["mastery"]["1:Sad"]["k"] is False
+# each language keeps its own mastery and lesson stars; seeds are shared
+m = call("mark_card", 1, "Sad", "known", True, TODAY, "es")["progress"]
+assert m["mastery"]["es:1:Sad"]["k"] is True and m["mastery"]["1:Sad"]["k"] is False
+r = call("record_lesson", "lesson", "u1-1", [{"id": 1, "tone": "Boss", "type": "mood", "ok": True, "first": True}], TODAY, "it")
+assert r["progress"]["lessons"]["it:u1-1"] == 3 and r["progress"]["lessons"]["u1-1"] == 3
+assert r["progress"]["mastery"]["it:1:Boss"]["s"] == 1 and r["progress"]["mastery"]["1:Boss"]["s"] == 1
+assert "xx:1:Sad" not in call("mark_card", 1, "Sad", "known", True, TODAY, "xx")["progress"]["mastery"], "unknown language = French"
+assert G.strength(r["progress"], 1, "Boss", "it") == 1 and G.strength(r["progress"], 1, "Boss", "es") == 0
+assert G.stage(0, "es")[2] == "He flew off with your Spanish. Follow the trail of seeds."
 bad(call("mark_card", 1, "Nope", "known", True, TODAY))
 bad(call("mark_card", 1, "Sad", "hack", True, TODAY))
 bad(call("set_daily_goal", 33))
@@ -213,6 +274,16 @@ assert call("list_notes")["notes"] == []
 as_user(ana)
 ok(call("remove_note", n2["id"]))
 assert len(call("list_notes")["notes"]) == 1
+# each language has its own phrasebook
+bad(call("add_note", "", "x", "es"))
+n3 = ok(call("add_note", "Hola, ¿cómo estás?", "Hello, how are you?", "es"))["note"]
+assert n3["lang"] == "es" and [n["id"] for n in call("list_notes", "es")["notes"]] == [n3["id"]]
+assert len(call("list_notes")["notes"]) == 1 and len(call("list_notes", "fr")["notes"]) == 1, "French notes stay French"
+assert call("list_notes", "it")["notes"] == []
+ok(call("add_note", "Bonjour, comment ça va ?", "Same words, saved while learning Italian", "it"))
+assert len(call("list_notes", "it")["notes"]) == 1 and call("list_notes")["notes"][0]["en"] == "Hi there (friendly)", "same text, other language = another note"
+for n in call("list_notes", "es")["notes"] + call("list_notes", "it")["notes"]:
+    ok(call("remove_note", n["id"]))
 
 # ---------------------------------------------------------------------------------- the original functions (kept, fixed)
 as_user(None)
@@ -243,6 +314,35 @@ as_user(admin)
 ov = call("admin_overview")
 assert ov["users"] == 4 and ov["admins"] == 1 and ov["phrases"] == 14 and ov["learners"] == 2 and ov["lessons"] >= 3 and ov["notes"] >= 2, ov
 c = call("admin_content")
+assert [x["code"] for x in c["languages"]] == ["fr", "es", "it"]
+# the phrase file: download everything, upload Spanish / Italian
+as_user(ana)
+assert denied("admin_phrases_csv") and denied("admin_upload_phrases", anvil.BlobMedia("text/csv", b"x"))
+as_user(admin)
+f = anvil.server.call("admin_phrases_csv")  # a file (Media), not JSON
+text = f.get_bytes().decode("utf-8-sig")
+head = text.splitlines()[0]
+assert head == ",".join(["Lang", "LineID", "CategoryID", "Availability"] + Tn.KEYS), head
+assert "\nfr,1,1,basic,\"Bonjour, comment ça va ?\"" in text and "\nen,1,1,basic," in text and "\nes,1,1,basic,\"Hola" in text
+up = "Lang,LineID,CategoryID,Availability,Basic,Boss\n" \
+     "fr,1,1,basic,Hacked,Hacked\n" \
+     "es,1,,,¡Hola!,\n" \
+     "it,400,2,free,Nuova frase,Frase per il capo\n" \
+     "it,401,2,free,,Senza base\n" \
+     "es,abc,1,free,x,y\n" \
+     "es,402,1,gold,x,y\n"
+r = ok(call("admin_upload_phrases", anvil.BlobMedia("text/csv", up.encode("utf-8"), name="x.csv")))
+assert (r["added"], r["updated"], r["skipped"], len(r["problems"])) == (1, 1, 1, 3), r
+assert T.frenchsentences.get(LineID=1)["Basic"].startswith("Bonjour"), "French rows in the file are never written"
+es1 = T.spanishsentences.get(LineID=1)
+assert es1["Basic"] == "¡Hola!" and es1["Boss"] and es1["CategoryID"] == 1, "empty cells keep the old text"
+assert T.italiansentences.get(LineID=400)["Boss"] == "Frase per il capo"
+semi = "Lang;LineID;Basic\r\nes;1;Hola otra vez, señor\r\n".encode("cp1252")
+assert ok(call("admin_upload_phrases", anvil.BlobMedia("text/csv", semi)))["updated"] == 1, "Excel's ; and Windows encoding work"
+assert T.spanishsentences.get(LineID=1)["Basic"] == "Hola otra vez, señor"
+bad(call("admin_upload_phrases", anvil.BlobMedia("text/csv", b"")))
+bad(call("admin_upload_phrases", anvil.BlobMedia("text/csv", b"Name,Text\nx,y\n")))
+bad(call("admin_upload_phrases", anvil.BlobMedia("text/csv", "Lang,LineID,Basic\nit,abc,x\n".encode("utf-8"))))
 assert c["by_access"]["basic"] == 10 and c["voices_fr"] == 1 and c["interest_total"] >= 2
 assert len(call("list_users")["users"]) == 4 and len(call("list_users", "bob")["users"]) == 1
 ok(call("set_admin", bob.get_id(), True))

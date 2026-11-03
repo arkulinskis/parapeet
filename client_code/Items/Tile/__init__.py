@@ -4,7 +4,7 @@ from ._anvil_designer import TileTemplate
 
 
 class Tile(TileTemplate):
-    """A word tile in a "Write this in French" exercise. item = {word, n, used}. A used tile in the word bank stays as
+    """A word tile in a "Write this in French / Spanish / Italian" exercise. item = {word, n, used}. A used tile in the word bank stays as
     an empty slot so the others don't jump around. Clicking raises x-tile with the tile number."""
 
     def __init__(self, **properties):

@@ -12,7 +12,7 @@ from anvil.tables import app_tables
 
 from . import common as C
 from . import gamerules as G
-from . import tones
+from . import langs, tones
 
 COLUMNS = ["seeds", "streak", "best_streak", "last_day", "today", "today_seeds", "daily_goal", "mastery", "lessons",
            "badges", "stats", "adventurer"]
@@ -93,19 +93,20 @@ def _clean_results(results):
 
 
 @anvil.server.callable(require_user=True)
-def record_lesson(kind, lesson_key, results, today=None):
+def record_lesson(kind, lesson_key, results, today=None, lang="fr"):
+    """A finished lesson in one language ("fr", "es", "it"): seeds, stars and mastery."""
     user = C.require_user()
     row = _row(user)
     key = C.text(lesson_key, 40)
     if key and not re.match(r"^[a-z0-9\-]+$", key):
         key = ""
-    p, res = G.apply_lesson(_load(row), C.text(kind, 20), key, _clean_results(results), _today(today))
+    p, res = G.apply_lesson(_load(row), C.text(kind, 20), key, _clean_results(results), _today(today), langs.valid(lang))
     _save(row, p)
     return {"progress": p, "result": res}
 
 
 @anvil.server.callable(require_user=True)
-def mark_card(line_id, mood, what, on=True, today=None):
+def mark_card(line_id, mood, what, on=True, today=None, lang="fr"):
     user = C.require_user()
     if mood not in tones.KEYS or what not in ("known", "said"):
         return C.fail("Unknown card.")
@@ -114,7 +115,7 @@ def mark_card(line_id, mood, what, on=True, today=None):
     except Exception:
         return C.fail("Unknown card.")
     row = _row(user)
-    p, res = G.mark(_load(row), line_id, mood, what, bool(on), _today(today))
+    p, res = G.mark(_load(row), line_id, mood, what, bool(on), _today(today), langs.valid(lang))
     _save(row, p)
     return {"ok": True, "progress": p, "result": res}
 

@@ -1,22 +1,43 @@
 """The phrases this person can use, loaded once per visit, the trail of units and lessons built from them, and their
 voices (a recorded file when the database has one, the browser's voice otherwise).
 
-A phrase is {"id": LineID, "cat": unit number, "fr": {mood: text}, "en": {mood: text}}.
+A phrase is {"id": LineID, "cat": unit number, "lang": "fr" | "es" | "it", "fr": {mood: text}, "en": {mood: text}}:
+"fr" holds the text in the language being learned (state.lang(); the key name is historical, see langs.py).
 Guests get the free sample ("basic" rows); members get the "free" rows too; "premium" rows stay locked (none yet).
 """
 import anvil.server
 
 from . import gamerules as G
-from . import pp, tones
+from . import langs, pp, state, tones
 
 _c: dict = {"data": None}
 _voices: dict = {}
 
 
 def data():
-    if _c["data"] is None:
-        _c["data"] = anvil.server.call("get_phrases")
+    if _c["data"] is None or _c["data"].get("lang") != state.lang():
+        _c["data"] = anvil.server.call("get_phrases", state.lang())
     return _c["data"]
+
+
+def lang():
+    return state.lang()
+
+
+def lang_name():
+    return langs.name(state.lang())
+
+
+def switch(code):
+    """Learn another language from now on (this browser remembers it). The next page loads its phrases."""
+    state.set_lang(code)
+    pp.set_lang(state.lang())
+    reset()
+
+
+def counts():
+    """How many phrases each language has: {"fr": n, "es": n, "it": n} (from the last load)."""
+    return dict((data().get("counts") or {}))
 
 
 def reset():
@@ -101,7 +122,9 @@ def locked_total(group):
 
 
 def voice_url(line_id, mood, lang):
-    """A recorded voice for this phrase and mood, or None (then the browser's voice reads it)."""
+    """A recorded voice for this phrase and mood, or None (then the browser's voice reads it).
+    lang "en" = the English, anything else = the language being learned."""
+    lang = "en" if lang == "en" else state.lang()
     k = "%s|%s|%s" % (line_id, mood, lang)
     if k not in _voices:
         try:

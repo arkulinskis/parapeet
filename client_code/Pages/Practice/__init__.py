@@ -5,7 +5,7 @@ import anvil.js
 import anvil.server
 
 from ._anvil_designer import PracticeTemplate
-from ... import game, phrases, pp, router, state, tones
+from ... import game, langs, phrases, pp, router, state, tones
 
 SAY_PASS = 0.75  # how close the recognised speech must be to the phrase (0..1)
 
@@ -21,8 +21,9 @@ class Practice(PracticeTemplate):
         self._st: dict = {}
         self._busy_listen, self._looping = False, False
         self.hf_bar.visible = False
-        self._front = state.store_get("front", "fr") or "fr"
-        self.front_button.text = "English first" if self._front == "en" else "French first"
+        self._front = "en" if state.store_get("front", "fr") == "en" else "fr"
+        self._lang = state.lang()
+        self._front_text()
         self._units = [u for u in phrases.unit_numbers() if phrases.in_unit(u)]
         self.unit_drop.items = [("%s (%d)" % (phrases.unit_info(u)["name"], len(phrases.in_unit(u))), u) for u in self._units]
         start_id = args[0] if args else None
@@ -72,10 +73,10 @@ class Practice(PracticeTemplate):
         self.counter.text = "Phrase %d of %d" % (st["index"] + 1, st["count"])
         self.mood_name.text = info["label"]
         self.mood_who.text = "Talking to %s" % info["who"] if mood != "Basic" else "Say it to anyone"
-        self.mood_blurb.text = info["blurb"]
-        self.mood_listen.text = info["listen"]
-        reg = tones.register(p["fr"].get(mood))
-        self.mood_register.text = tones.REGISTER_TEXT[reg]
+        self.mood_blurb.text = tones.blurb(mood, self._lang)
+        self.mood_listen.text = tones.listen_hint(mood, self._lang)
+        reg = langs.register(p["fr"].get(mood), self._lang)
+        self.mood_register.text = langs.register_text(reg, self._lang)
         self.mood_register.visible = bool(reg)
         self.dom_nodes["mood_dot"].style.setProperty("--tone", info["colour"])
         self.neutral_box.visible = mood != "Basic"
@@ -165,11 +166,14 @@ class Practice(PracticeTemplate):
     def dock_next_click(self, **event_args):
         self.card.next_phrase()
 
+    def _front_text(self):
+        self.front_button.text = "English first" if self._front == "en" else "%s first" % langs.name(self._lang)
+
     @handle("front_button", "click")
     def front_button_click(self, **event_args):
         self._front = "en" if self._front == "fr" else "fr"
         state.store_set("front", self._front)
-        self.front_button.text = "English first" if self._front == "en" else "French first"
+        self._front_text()
         self.card.set_front(self._front)
 
     @handle("help_button", "click")
@@ -215,7 +219,7 @@ class Practice(PracticeTemplate):
         self.say_button.text, self.say_button.role = "Listening...", ["tool", "tool-say", "ic-mic", "on"]
         self.card.mark("pc-recording", True)
         try:
-            heard = pp.listen("fr-CA")
+            heard = pp.listen()
         finally:
             self.say_button.text, self.say_button.role = "Say it", ["tool", "tool-say", "ic-mic"]
             self.card.mark("pc-recording", False)
@@ -234,7 +238,7 @@ class Practice(PracticeTemplate):
                 self._reward(res, "said out loud (%d%% match)" % int(score * 100))
             else:
                 pp.sfx("good")
-                state.toast("Très bien ! %d%% match." % int(score * 100), "ok")
+                state.toast("%s %d%% match." % (langs.info(self._lang)["very_good"], int(score * 100)), "ok")
         else:
             self.card.flash("bad")
             pp.sfx("bad")
@@ -370,7 +374,7 @@ class Practice(PracticeTemplate):
                     t, i = 0, (i + 1) % len(self._cards)
         finally:
             if self._looping:
-                state.toast("Hands-free lesson done. Bien joué !", "ok")
+                state.toast("Hands-free lesson done. %s" % langs.info(self._lang)["well_done"], "ok")
             self._stop_loop()
 
     def _play_pattern(self, phrase, mood, pattern):

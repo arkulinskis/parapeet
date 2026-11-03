@@ -4,27 +4,29 @@ Plain Python with no Anvil imports, shared by the browser (guests keep their pro
 (members' progress lives in the `progress` table). Both call the same functions, so the numbers always agree.
 
 A progress dict looks like blank() below. Days are the learner's local date as "YYYY-MM-DD".
-mastery["<LineID>:<mood key>"] = {"s": strength 0..5, "d": day number last practised, "k": marked known,
-"v": said out loud correctly}.
+mastery[ckey(LineID, mood, lang)] = {"s": strength 0..5, "d": day number last practised, "k": marked known,
+"v": said out loud correctly}. French keys are "<LineID>:<mood>" (as before Spanish and Italian came), the others
+"<lang>:<LineID>:<mood>"; lesson stars likewise ("u1-2" for French, "es:u1-2"). Seeds, streak, goal and badges are
+shared: one parakeet to catch, whichever language you practise.
 """
-from . import tones
+from . import langs, tones
 
 SEEDS = {"first_try": 2, "second_try": 1, "lesson": 5, "perfect": 5, "said": 3, "known": 1, "goal": 10}
 GOALS = [(10, "Casual"), (20, "Regular"), (40, "Serious"), (80, "Intense")]
 CATCH = 3000  # the old app's promise: "Just 3000 seeds to catch Parapeet!"
 STAGES = [
-    (0, "Parapeet spotted", "He flew off with your French. Follow the trail of seeds."),
+    (0, "Parapeet spotted", "He flew off with your {lang}. Follow the trail of seeds."),
     (100, "On his trail", "You found feathers by the water cooler. Keep going."),
-    (400, "Feather in hand", "You can hear him squawking in French now."),
-    (1000, "Closing in", "He's tired. Your French is coming back."),
+    (400, "Feather in hand", "You can hear him squawking in {lang} now."),
+    (1000, "Closing in", "He's tired. Your {lang} is coming back."),
     (2000, "Cage ready", "One more push and he's yours."),
-    (CATCH, "Caught him!", "Parapeet is caught, and your French is back. Keep him happy with daily practice."),
+    (CATCH, "Caught him!", "Parapeet is caught, and your {lang} is back. Keep him happy with daily practice."),
 ]
 BADGES = [
     ("first", "First flight", "Finish your first lesson", "feather"),
     ("perfect", "Flawless", "Finish a lesson with no mistakes", "sparkle"),
     ("streak3", "On fire", "Practise 3 days in a row", "flame"),
-    ("streak7", "Week of French", "Practise 7 days in a row", "calendar"),
+    ("streak7", "Week on the trail", "Practise 7 days in a row", "calendar"),
     ("streak30", "Unstoppable", "Practise 30 days in a row", "trophy"),
     ("seeds100", "Seed collector", "Collect 100 seeds", "seed"),
     ("seeds1000", "Seed hoarder", "Collect 1,000 seeds", "seed"),
@@ -133,16 +135,27 @@ def add_seeds(p, n, today, events):
         del days[d]
 
 
-def _card(p, line_id, tone):
-    key = "%d:%s" % (int(line_id), tone)
+def ckey(line_id, tone, lang=langs.DEFAULT):
+    """The mastery key of one card (phrase + mood) in one language."""
+    base = "%d:%s" % (int(line_id), tone)
+    return base if langs.valid(lang) == langs.DEFAULT else "%s:%s" % (langs.valid(lang), base)
+
+
+def lkey(lesson_key, lang=langs.DEFAULT):
+    """Where a lesson's stars are kept ("u1-2" in French, "es:u1-2" in Spanish)."""
+    return lesson_key if langs.valid(lang) == langs.DEFAULT else "%s:%s" % (langs.valid(lang), lesson_key)
+
+
+def _card(p, line_id, tone, lang=langs.DEFAULT):
+    key = ckey(line_id, tone, lang)
     m = dict(p["mastery"].get(key) or {})
     m["s"] = int(m.get("s") or 0)
     return key, m
 
 
-def apply_lesson(p, kind, lesson_key, results, today):
-    """A finished lesson. results = [{"id": LineID, "tone": mood key, "type": exercise type, "ok": right in the end,
-    "first": right on the first try}]. Returns (new progress, summary for the end screen)."""
+def apply_lesson(p, kind, lesson_key, results, today, lang=langs.DEFAULT):
+    """A finished lesson in one language. results = [{"id": LineID, "tone": mood key, "type": exercise type,
+    "ok": right in the end, "first": right on the first try}]. Returns (new progress, summary for the end screen)."""
     p = normal(p)
     events, stats = [], p["stats"]
     day = day_no(today) or 0
@@ -157,7 +170,7 @@ def apply_lesson(p, kind, lesson_key, results, today):
         if tone not in tones.KEYS:
             continue
         clean.append(r)
-        key, m = _card(p, line_id, tone)
+        key, m = _card(p, line_id, tone, lang)
         if r.get("first"):
             first += 1
             m["s"] = min(5, m["s"] + 1)
@@ -177,7 +190,8 @@ def apply_lesson(p, kind, lesson_key, results, today):
     acc = first / float(answered)
     stars = 3 if acc >= 0.9 else (2 if acc >= 0.7 else 1)
     if lesson_key:
-        p["lessons"][lesson_key] = max(int(p["lessons"].get(lesson_key) or 0), stars)
+        lk = lkey(lesson_key, lang)
+        p["lessons"][lk] = max(int(p["lessons"].get(lk) or 0), stars)
     seeds = first * SEEDS["first_try"] + later * SEEDS["second_try"] + SEEDS["lesson"]
     if first == answered:
         seeds += SEEDS["perfect"]
@@ -191,13 +205,13 @@ def apply_lesson(p, kind, lesson_key, results, today):
                "events": events, "badges": new, "kind": kind}
 
 
-def mark(p, line_id, tone, what, on, today):
+def mark(p, line_id, tone, what, on, today, lang=langs.DEFAULT):
     """what = "known" (the Got it toggle) or "said" (spoken right in the phrasebook). Seeds only the first time."""
     p = normal(p)
     events = []
     if tone not in tones.KEYS or what not in ("known", "said"):
         return p, {"seeds": 0, "events": events, "badges": []}
-    key, m = _card(p, line_id, tone)
+    key, m = _card(p, line_id, tone, lang)
     seeds = 0
     if what == "known":
         m["k"] = bool(on)
@@ -277,39 +291,39 @@ def merge(server_p, guest_p):
     return a
 
 
-def stage(seeds):
+def stage(seeds, lang=langs.DEFAULT):
     """(index, name, line, seeds where it starts, seeds where the next one starts or None)."""
     i = 0
     for n, (at, _, _) in enumerate(STAGES):
         if seeds >= at:
             i = n
     nxt = STAGES[i + 1][0] if i + 1 < len(STAGES) else None
-    return i, STAGES[i][1], STAGES[i][2], STAGES[i][0], nxt
+    return i, STAGES[i][1], STAGES[i][2].replace("{lang}", langs.name(lang)), STAGES[i][0], nxt
 
 
-def strength(p, line_id, tone):
-    m = p["mastery"].get("%d:%s" % (int(line_id), tone)) or {}
+def strength(p, line_id, tone, lang=langs.DEFAULT):
+    m = p["mastery"].get(ckey(line_id, tone, lang)) or {}
     return int(m.get("s") or 0)
 
 
-def mood_mastery(p, cards_by_mood):
+def mood_mastery(p, cards_by_mood, lang=langs.DEFAULT):
     """{mood: percent of its cards at strength 3+} for the moods' progress bars. cards_by_mood = {mood: [LineIDs]}."""
     out = {}
     for mood, ids in cards_by_mood.items():
         if not ids:
             out[mood] = 0
             continue
-        good = len([i for i in ids if strength(p, i, mood) >= 3])
+        good = len([i for i in ids if strength(p, i, mood, lang) >= 3])
         out[mood] = int(round(100.0 * good / len(ids)))
     return out
 
 
-def due(p, cards, today, limit=10):
+def due(p, cards, today, limit=10, lang=langs.DEFAULT):
     """The weakest and most overdue (LineID, mood) pairs first, for a 'practise weak spots' lesson."""
     day = day_no(today) or 0
     scored = []
     for line_id, mood in cards:
-        m = p["mastery"].get("%d:%s" % (int(line_id), mood)) or {}
+        m = p["mastery"].get(ckey(line_id, mood, lang)) or {}
         s, last = int(m.get("s") or 0), int(m.get("d") or 0)
         if not m:
             scored.append((-50, 0, line_id, mood))  # never seen: after the overdue ones

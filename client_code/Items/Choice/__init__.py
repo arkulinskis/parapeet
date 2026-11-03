@@ -2,7 +2,7 @@ from anvil import *
 import anvil.js
 
 from ._anvil_designer import ChoiceTemplate
-from ... import tones
+from ... import state, tones
 
 
 class Choice(ChoiceTemplate):
@@ -22,8 +22,8 @@ class Choice(ChoiceTemplate):
         st = i.get("state") or ""
         for s in ("picked", "right", "wrong", "dim"):
             self.btn.classes[s] = st == s
-        if i.get("lang") == "fr":
-            anvil.js.get_dom_node(self.txt).setAttribute("lang", "fr")
+        if i.get("lang") == "fr":  # the language being learned (langs.py)
+            anvil.js.get_dom_node(self.txt).setAttribute("lang", state.lang())
 
     def btn_click(self, event):
         if not self.item.get("locked"):

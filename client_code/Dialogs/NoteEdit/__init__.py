@@ -2,14 +2,21 @@ import anvil.server
 from anvil import *
 
 from ._anvil_designer import NoteEditTemplate
+from ... import langs, state
+
+HINTS = {"fr": "Je voulais te dire...", "es": "Quería decirte...", "it": "Volevo dirti..."}
 
 
 class NoteEdit(NoteEditTemplate):
-    """Add a phrase to My phrasebook, or edit one (note_id). Closes with the saved note, or None."""
+    """Add a phrase to My phrasebook (of the language being learned, or `lang`), or edit one (note_id).
+    Closes with the saved note, or None."""
 
-    def __init__(self, fr="", en="", note_id=None, **properties):
+    def __init__(self, fr="", en="", note_id=None, lang=None, **properties):
         super().__init__(**properties)
         self.note_id = note_id
+        self.lang = langs.valid(lang or state.lang())
+        self.fr_label.text = langs.name(self.lang)
+        self.fr_box.placeholder = HINTS[self.lang]
         self.fr_box.text, self.en_box.text = fr or "", en or ""
         self.title.text = "Edit this phrase" if note_id else "Save to your phrasebook"
 
@@ -25,14 +32,14 @@ class NoteEdit(NoteEditTemplate):
     def save_button_click(self, **event_args):
         fr, en = (self.fr_box.text or "").strip(), (self.en_box.text or "").strip()
         if not fr or not en:
-            self.message.text, self.message.visible = "Fill in both the French and what it means.", True
+            self.message.text, self.message.visible = "Fill in both the %s and what it means." % langs.name(self.lang), True
             return
         self.save_button.enabled = False
         try:
             if self.note_id:
                 r = anvil.server.call("edit_note", self.note_id, fr, en)
             else:
-                r = anvil.server.call("add_note", fr, en)
+                r = anvil.server.call("add_note", fr, en, self.lang)
         finally:
             self.save_button.enabled = True
         if not r.get("ok"):

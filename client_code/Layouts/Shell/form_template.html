@@ -13,6 +13,9 @@ layout_metadata:
         <anvil-component type="RepeatingPanel" name="nav_panel" prop:item_template="parapeet.Items.NavLink" prop:role='["contents"]'></anvil-component>
       </nav>
       <div class="ui-header-right">
+        <button type="button" class="pp-lang" anvil:name="lang_button" anvil:on-dom:click="self.lang_click" aria-label="Change the language you're learning">
+          <span class="pp-flag" anvil:dom-node="lang_flag" aria-hidden="true"></span><anvil-component type="Label" name="lang_label" prop:text="FR" prop:role='["pp-lang-code"]'></anvil-component><i class="ic ic-down"></i>
+        </button>
         <a class="pp-stats" href="#progress" anvil:name="stats_chip" aria-label="Your streak and seeds">
           <span class="pp-stat-streak" anvil:name="streak_box"><i class="ic ic-flame"></i><anvil-component type="Label" name="streak_label" prop:text="0"></anvil-component></span>
           <span class="pp-stat-seeds"><i class="ic ic-seed"></i><anvil-component type="Label" name="seeds_label" prop:text="0"></anvil-component></span>
@@ -55,7 +58,7 @@ layout_metadata:
     <div class="ui-footer-in">
       <div class="ui-footer-brand">
         <a class="ui-brand" href="#landing"><img src="_/theme/icon.svg" alt="" width="34" height="34"><span>Parapeet</span></a>
-        <p class="muted small">French phrases in ten moods. Say it like you mean it.</p>
+        <p class="muted small">French, Spanish and Italian phrases in ten moods. Say it like you mean it.</p>
       </div>
       <div class="ui-footer-links">
         <a href="#landing">About</a>

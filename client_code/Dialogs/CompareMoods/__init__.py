@@ -1,11 +1,12 @@
 from anvil import *
 
 from ._anvil_designer import CompareMoodsTemplate
-from ... import phrases, pp, tones
+from ... import langs, phrases, pp, state, tones
 
 
 class CompareMoods(CompareMoodsTemplate):
-    """All ten moods of one phrase in a list (French, English, register). Closes with the mood key picked, or None."""
+    """All ten moods of one phrase in a list (the language being learned, English, register). Closes with the mood
+    key picked, or None."""
 
     def __init__(self, phrase=None, mood="Basic", **properties):
         super().__init__(**properties)
@@ -18,7 +19,8 @@ class CompareMoods(CompareMoodsTemplate):
             fr = fr_map.get(k) or ""
             rows.append({"key": k, "label": tones.label(k), "who": tones.TONES[k]["who"], "colour": tones.TONES[k]["colour"],
                          "icon": tones.TONES[k]["icon"], "fr": fr, "en": en_map.get(k) or "",
-                         "register": tones.REGISTER_TEXT[tones.register(fr)] if tones.register(fr) else "",
+                         "register": langs.register_text(langs.register(fr, state.lang()), state.lang()),
+                         "lang": state.lang(),
                          "html": pp.diff_html(fr, base) if k != "Basic" else "", "on": k == mood})
         self.rows_panel.items = rows
         self.rows_panel.add_event_handler("x-listen", self._listen)

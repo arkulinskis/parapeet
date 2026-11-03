@@ -1,0 +1,10 @@
+<div class="ix lc-host">
+<button type="button" class="lc" anvil:name="btn" anvil:on-dom:click="self.btn_click">
+  <span class="pp-flag lc-flag" anvil:dom-node="flag" aria-hidden="true"></span>
+  <span class="lc-names">
+    <anvil-component type="Label" name="native" prop:role='["lc-native"]' bind:text="self.item['native']"></anvil-component>
+    <anvil-component type="Label" name="english" prop:role='["lc-english"]' bind:text="self.item['line']"></anvil-component>
+  </span>
+  <span class="lc-on" anvil:name="on_mark"><i class="ic ic-check"></i></span>
+</button>
+</div>

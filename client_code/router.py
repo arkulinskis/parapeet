@@ -13,7 +13,7 @@ from anvil.js import window
 from . import state
 
 PAGES = {
-    "landing": (None, "French phrases in 10 moods"),
+    "landing": (None, "French, Spanish and Italian phrases in 10 moods"),
     "play": (None, "Play"),
     "practice": (None, "Phrasebook"),
     "lesson": (None, "Lesson"),

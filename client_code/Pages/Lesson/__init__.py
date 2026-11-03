@@ -5,10 +5,10 @@ import anvil.js
 from anvil.js import window
 
 from ._anvil_designer import LessonTemplate
-from ... import drills, game, gamerules as G, phrases, pp, router, state, tones
+from ... import drills, game, gamerules as G, langs, phrases, pp, router, state, tones
 
 SAY_PASS = 0.72
-PRAISE = ["Nice!", "Très bien !", "Bravo !", "Exactly!", "Super !", "Spot on!", "Parfait !"]
+PRAISE = ["Nice!", "Exactly!", "Spot on!"]  # + the language's own (langs.py "praise")
 
 
 class Lesson(LessonTemplate):
@@ -41,7 +41,7 @@ class Lesson(LessonTemplate):
             self.kind = "review"
             pairs = [(p["id"], k) for p in everything for k in tones.KEYS if p["fr"].get(k)]
             by_id = dict((p["id"], p) for p in everything)
-            cards = [(by_id[i], m) for i, m in G.due(prog, pairs, game.today(), 10) if i in by_id]
+            cards = [(by_id[i], m) for i, m in G.due(prog, pairs, game.today(), 10, state.lang()) if i in by_id]
             lesson_phrases, pool = [], everything
             self.lesson_ids = [p["id"] for p, m in cards]
         else:
@@ -88,7 +88,7 @@ class Lesson(LessonTemplate):
         anvil.js.get_dom_node(self.prompt_mood).style.setProperty("--tone", tones.TONES[mood]["colour"])
         self.prompt_text.text = ex.get("prompt") or ""
         self.prompt_text.visible = bool(ex.get("prompt"))
-        anvil.js.get_dom_node(self.prompt_text).setAttribute("lang", ex.get("lang") or "fr")
+        anvil.js.get_dom_node(self.prompt_text).setAttribute("lang", "en" if ex.get("lang") == "en" else state.lang())
         self.speak_button.visible = ex.get("lang") == "fr" and kind not in ("listen",) and bool(ex.get("prompt"))
         self.big_listen_box.visible = kind == "listen"
         self.prompt_box.classes["is-listen"] = kind == "listen"
@@ -180,7 +180,7 @@ class Lesson(LessonTemplate):
             return
         self.mic_button.text, self.mic_button.role = "Listening...", ["mic", "ic-mic", "on"]
         try:
-            heard = pp.listen("fr-CA")
+            heard = pp.listen()
         finally:
             self.mic_button.text, self.mic_button.role = "Tap and speak", ["mic", "ic-mic"]
         if heard["error"]:
@@ -235,8 +235,8 @@ class Lesson(LessonTemplate):
         self.foot.classes["good"], self.foot.classes["bad"] = ok, not ok
         self.verdict_icon.classes["ic-check"], self.verdict_icon.classes["ic-x"] = ok, not ok
         if ok:
-            self.foot_title.text = random.choice(PRAISE)
-            self.foot_text.text = tones.TONES[ex["mood"]]["blurb"] if ex["type"] in ("mood", "switch") else ""
+            self.foot_title.text = random.choice(PRAISE + langs.info(state.lang())["praise"])
+            self.foot_text.text = tones.blurb(ex["mood"], state.lang()) if ex["type"] in ("mood", "switch") else ""
             self.bird.mood = "happy"
             pp.sfx("good")
         else:
@@ -272,7 +272,8 @@ class Lesson(LessonTemplate):
         res = game.record_lesson(self.kind, "" if self.kind == "review" else self.key, list(self.results.values()))
         s = game.summary()
         acc = int(round(100 * (res.get("accuracy") or 0)))
-        self.end_title.text = "Parfait !" if acc == 100 else ("Bien joué !" if acc >= 70 else "Lesson done!")
+        L = langs.info(state.lang())
+        self.end_title.text = L["perfect"] if acc == 100 else (L["well_done"] if acc >= 70 else "Lesson done!")
         lines = []
         if "goal" in (res.get("events") or []):
             lines.append("Daily goal reached: +10 bonus seeds.")

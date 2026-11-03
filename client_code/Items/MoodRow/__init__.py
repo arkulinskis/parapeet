@@ -13,6 +13,7 @@ class MoodRow(MoodRowTemplate):
         i = self.item
         self.icon.classes.add("ic-" + i["icon"])
         self.who.text = "to " + i["who"] if i["key"] != "Basic" else "to anyone"
+        self.dom_nodes["fr"].setAttribute("lang", i.get("lang") or "fr")
         self.dom_nodes["fr"].innerHTML = i["html"] or ""
         if not i["html"]:
             self.dom_nodes["fr"].textContent = i["fr"]

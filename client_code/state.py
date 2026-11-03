@@ -8,6 +8,7 @@
     state.store_get/store_set  this browser's storage (same keys as the JavaScript version, so drafts carry over)
     state.set_theme(t)         "auto", "light" or "dark"
     state.set_attr(c, name, v) an HTML attribute on a component's root (href on a named <a>, aria-label ...)
+    state.lang() / set_lang(c)  the language being learned in this browser: "fr", "es" or "it" (langs.py)
 """
 import json
 
@@ -15,6 +16,8 @@ import anvil.js
 import anvil.server
 from anvil import Notification
 from anvil.js import window
+
+from . import langs
 
 _state = {"me": None}
 
@@ -89,6 +92,18 @@ def store_json(key, default=None):
 
 def store_json_set(key, value):
     store_set(key, None if value is None else json.dumps(value))
+
+
+def lang():
+    """The language this browser is learning (French until someone picks another one)."""
+    try:
+        return langs.valid(store_get("lang", langs.DEFAULT))
+    except Exception:
+        return langs.DEFAULT
+
+
+def set_lang(code):
+    store_set("lang", langs.valid(code))
 
 
 def theme():

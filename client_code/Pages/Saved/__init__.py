@@ -4,26 +4,31 @@ from anvil import *
 import anvil.server
 
 from ._anvil_designer import SavedTemplate
-from ... import pp, state
+from ... import langs, pp, state
 
 PASS = 0.8
 
 
 class Saved(SavedTemplate):
     """#saved, My phrasebook (members): the phrases they saved or typed in (the old Notes), each with listen, edit
-    and delete, and a quiz: see the meaning, type the French; weaker phrases come up more often."""
+    and delete, and a quiz: see the meaning, type the phrase; weaker phrases come up more often. One phrasebook per
+    language (the one being learned now)."""
 
     def __init__(self, args=(), **properties):
         super().__init__(**properties)
         self.quiz_part.visible = False
+        self.lang = state.lang()
+        self.quiz_hint.text = "Here's what it means. Type it in %s (accents and capitals don't matter)." % langs.name(self.lang)
+        self.quiz_box.placeholder = {"fr": "En français...", "es": "En español...", "it": "In italiano..."}[self.lang]
         self.notes_panel.add_event_handler("x-changed", self._load)
         self._load()
 
     def _load(self, **event_args):
-        self.notes = anvil.server.call("list_notes")["notes"]
+        self.notes = anvil.server.call("list_notes", self.lang)["notes"]
         self.notes_panel.items = self.notes
         self.empty.visible = not self.notes
-        self.count.text = state.plural(len(self.notes), "phrase") + " saved" if self.notes else "Your own collection of phrases"
+        self.count.text = ("%s saved in %s" % (state.plural(len(self.notes), "phrase"), langs.name(self.lang)) if self.notes
+                           else "Your own collection of %s phrases" % langs.name(self.lang))
         self.quiz_button.enabled = len(self.notes) >= 1
 
     @handle("add_button", "click")
@@ -81,7 +86,7 @@ class Saved(SavedTemplate):
         anvil.server.call("note_result", self.q["id"], right)
         self.q["level"] = min(5, self.q["level"] + 1) if right else max(0, self.q["level"] - 1)
         pp.sfx("good" if right else "bad")
-        self.quiz_result.text = ("Très bien ! %d%% match." % int(score * 100)) if right else ("%d%% match. The answer: %s" % (int(score * 100), self.q["fr"]))
+        self.quiz_result.text = ("%s %d%% match." % (langs.info(self.lang)["very_good"], int(score * 100))) if right else ("%d%% match. The answer: %s" % (int(score * 100), self.q["fr"]))
         self.quiz_result.role = ["sv-quiz-result", "good" if right else "bad"]
         self.quiz_check.visible, self.quiz_show.visible, self.quiz_next.visible = False, False, True
 

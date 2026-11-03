@@ -49,10 +49,20 @@
       </div>
 
       <div anvil:name="content_part">
+        <div class="ui-card ad-langs">
+          <h3>Languages</h3>
+          <p class="muted small">French, Spanish and Italian share one LineID per phrase and the English in FrenchSentences_translation. Spanish and Italian live in SpanishSentences and ItalianSentences (voices: VoiceFiles_spanish, VoiceFiles_italian). To translate: download the phrases, add rows with Lang <b>es</b> or <b>it</b> (same LineID, one column per mood), then upload the file. Only Spanish and Italian rows are written: a known LineID is updated (empty cells keep the old text), a new one is added. French and English rows in the file are skipped.</p>
+          <anvil-component type="Label" name="c_langs" prop:role='["ad-interest"]'></anvil-component>
+          <div class="ui-row">
+            <anvil-component type="Button" name="download_button" prop:text="Download all phrases (CSV)" prop:role='["btn", "ic-download"]'></anvil-component>
+            <anvil-component type="FileLoader" name="upload_loader" prop:text="Upload Spanish / Italian (CSV)" prop:role='["btn", "btn-primary"]' prop:file_types=".csv,text/csv"></anvil-component>
+          </div>
+          <anvil-component type="Label" name="upload_result" prop:role='["fine-print"]' prop:visible="false"></anvil-component>
+        </div>
         <div class="ui-grid two">
           <div class="ui-card">
-            <h3>Phrase library</h3>
-            <p class="muted small">The phrases live in the FrenchSentences and FrenchSentences_translation tables (edit them in the Anvil editor). Availability: <b>basic</b> = everyone, <b>free</b> = any account, <b>premium</b> = customer_type "premium".</p>
+            <h3>French library</h3>
+            <p class="muted small">The French phrases live in the FrenchSentences and FrenchSentences_translation tables (edit them in the Anvil editor). Availability: <b>basic</b> = everyone, <b>free</b> = any account, <b>premium</b> = customer_type "premium".</p>
             <anvil-component type="Label" name="c_access" prop:role='["strong"]'></anvil-component>
             <anvil-component type="Label" name="c_units" prop:role='["fine-print"]'></anvil-component>
             <anvil-component type="Label" name="c_voices" prop:role='["fine-print"]'></anvil-component>

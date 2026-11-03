@@ -1,23 +1,24 @@
 ---
 name: parapeet
-description: Context, workflow and recipes for Parapeet (folder parapeet-forms), the user's Anvil app built as native Anvil Forms (Python + HTML templates, a layout, custom components, RepeatingPanels). Parapeet teaches everyday French phrases in ten moods (boss, client, lover, hothead, sad friend, silly...) with a swipe phrasebook, Duolingo-style lessons, seeds, streaks and badges. Load this before any feature request, bug fix, restyle, content change or deploy for this app.
+description: Context, workflow and recipes for Parapeet (folder parapeet-forms), the user's Anvil app built as native Anvil Forms (Python + HTML templates, a layout, custom components, RepeatingPanels). Parapeet teaches everyday French, Spanish and Italian phrases in ten moods (boss, client, lover, hothead, sad friend, silly...) with a swipe phrasebook, Duolingo-style lessons, seeds, streaks and badges. Load this before any feature request, bug fix, restyle, content change or deploy for this app.
 ---
 
 # Parapeet: working on the app
 
-**What it is:** a French-learning game for people who already know some French (about A2-B2). Every phrase in the
-database exists in ten moods (columns of FrenchSentences / FrenchSentences_translation: Basic, Colleague, Client, Boss,
+**What it is:** a language-learning game (French, Spanish, Italian since 2026-11-02) for people who already know some
+of the language (about A2-B2). Every phrase in the database exists in ten moods (columns of FrenchSentences /
+SpanishSentences / ItalianSentences / FrenchSentences_translation: Basic, Colleague, Client, Boss,
 Agressive, Frustrated, Sad, Lover, Impressed, Stupid, shown as Neutral, Colleague, Client, Boss, Hothead, Frustrated,
 Comfort, Lover, Admiring, Silly; most describe who you're talking to, see client_code/tones.py). Core loop: swipe the
 phrasebook (#practice) -> play lessons on the trail (#play, #lesson/<key>) -> earn seeds, keep a streak, hit the daily
 goal, collect badges -> "catch Parapeet" at 3,000 seeds (the original app's promise). Guest-first: everything but
 My phrasebook (#saved) works without an account; guest progress lives in localStorage and merges into the account.
-The original app (2023-2025, classic YAML forms by the user) was rebuilt as native Forms on 2026-11-02.
+The original app (2023-2025, classic YAML forms by the user) was rebuilt as native Forms on 2026-11-02 and merged
+into master the same day.
 
 **Where it lives:**
-- Folder `C:\Users\arkvi\Documents\CLAUDE\parapeet-forms\` = the git clone of **github.com/arkulinskis/parapeet**, branch `forms`
-  (the rebuild; `master` = the original app until the user approves the merge). "git" layout: the folder *is* the Anvil
-  app. Live: https://parapeet.com (custom domain; an Android TWA `com.parapeet.twa` wraps it: keep
+- Folder `C:\Users\arkvi\Documents\CLAUDE\parapeet-forms\` = the git clone of **github.com/arkulinskis/parapeet**, branch
+  `master` (the rebuild was developed on `forms` and merged 2026-11-02). "git" layout: the folder *is* the Anvil app. Live: https://parapeet.com (custom domain; an Android TWA `com.parapeet.twa` wraps it: keep
   ServerModule1.assetlinks + `.well-known/assetlinks.json`). The old app's folder `..\parapeet` is a plain clone, for
   reference only. The repo's GitHub default branch is the stale `dev2`; dev3/dev4/dev5 are old IDE branches.
 - Made from `C:\Users\arkvi\Documents\CLAUDE\APP_MAKER\template-forms` (native Anvil Forms, Nov 2026). Anvil's own agent
@@ -44,7 +45,7 @@ desktop: arrows beside the card + keys). Claude assumes details and builds; Clau
    open-source Anvil App Server (container `parapeet-dev`) and headless Chrome walks tools/ui/flow.js, phone.js
    (true 390 px, no sideways scroll) and admin.js. Client edits show on reload; server edits need `--restart`.
    `--shots DIR` = screenshots of every page, desktop + phone, light + dark, guest + member: Read them.
-5. Commit only your files as arkulinskis with the Co-Authored-By line; `git push origin forms` (master after the merge).
+5. Commit only your files as arkulinskis with the Co-Authored-By line; `git push origin master`.
    New tables/columns: tell the user to accept the **Schema Mismatch** alert ("The schema of the source code is correct").
 
 ## Architecture
@@ -126,6 +127,20 @@ tools/                     check.py, assets.py, build_icons.py, make_icons.py, u
 
 ## Parapeet's own pieces
 
+- **Languages** (`client_code/langs.py`, shared with the server): CODES fr/es/it, names, voices (tts/asr tags), the
+  formal/familiar words and endings, praise words. `state.lang()` = the language this browser learns (localStorage
+  "lang"); `phrases.switch(code)` changes it (Shell.use_lang reloads the page; the landing tabs switch in place).
+  **A phrase's "fr" key, the card's "fr" side, drills' `"lang": "fr"` and pp.say(..., "fr") all mean "the language
+  being learned"** (historical name; renaming it was not worth the churn). pp-card.js PP.setLang / PP.LANG holds the
+  language for the card engine and pp-audio.js. Server: Phrases.TABLES maps code -> (text table, voice table);
+  `Phrases.table(code)` is None until the table exists (before the Schema Mismatch is accepted), and everything
+  Spanish/Italian degrades to "no phrases" instead of failing. Progress keys: gamerules.ckey / lkey (French unchanged
+  "12:Boss" / "u1-1"; others "es:12:Boss" / "es:u1-1"); record_lesson / mark_card take `lang` last. UserNotes.Lang
+  (empty = French; Notes._lang reads it safely). Content: Admin -> Phrases CSV download/upload (PhraseFiles.py);
+  DemoData.ensure_languages seeds the samples (only onto matching French). Adding a language = an entry in LANGS,
+  a table pair in Phrases.TABLES + anvil.yaml, listen hints / mood names in tones.py, the landing DEMO lines,
+  PhraseFiles.UPLOAD, NoteEdit/Saved placeholders.
+
 - **Moods**: `client_code/tones.py` (labels, colours, icons, who/blurb/listen-for texts, `register()` tu/vous). The
   database column names never change (keep "Agressive"/"Stupid"); only the labels do.
 - **Game rules**: `client_code/gamerules.py`, plain Python imported by the browser (guests) AND the server
@@ -146,8 +161,9 @@ tools/                     check.py, assets.py, build_icons.py, make_icons.py, u
   Notes.py (UserNotes by owner email), Admin.py (+ admin_content, ask_for_more -> Interest table), ServerModule1.py
   (the original callables, kept and fixed). DemoData.py only fills an EMPTY phrase library (local tests) from
   sample_phrases.py: 10 real "basic" rows from parapeet.com + 3 member-only test rows (201-203) written for tests.
-- **Content lives in the live database**, not the repo (about 150 phrases x 10 moods x FR/EN + recorded voices).
-  Edit it in the Anvil data tables. Known typos there: some English rows start "understand..." / "hope..." (missing "I").
+- **Content lives in the live database**, not the repo (about 150 phrases x 10 moods x FR/EN + recorded voices;
+  Spanish / Italian start with the 13 sample phrases until the rest is uploaded). Edit it in the Anvil data tables,
+  or round-trip it as CSV on Admin -> Phrases. Known typos there: some English rows start "understand..." / "hope..." (missing "I").
 
 ## Privacy & Terms (legal kit)
 

@@ -4,9 +4,9 @@
       <section class="lp-hero">
         <div class="ui-wrap">
           <div class="lp-copy">
-            <div class="eyebrow">French with feeling</div>
+            <div class="eyebrow">French, Spanish and Italian, with feeling</div>
             <h1>Say it like you <em>mean</em> it.</h1>
-            <p class="lp-lead">One French phrase, ten moods: to your boss, a client, a hothead, a sad friend, your lover, just for a laugh. Swipe through them, hear the difference, then play quick lessons to catch Parapeet, the parakeet who stole your French.</p>
+            <p class="lp-lead">One phrase, ten moods, in French, Spanish or Italian: to your boss, a client, a hothead, a sad friend, your lover, just for a laugh. Swipe through them, hear the difference, then play quick lessons to catch Parapeet, the parakeet who stole your words.</p>
             <div class="lp-cta" anvil:name="guest_cta">
               <a class="ui-btn primary lg" href="#play">Start playing, it's free <i class="ic ic-arrow"></i></a>
               <a class="ui-btn lg" href="#practice">Swipe the phrasebook</a>
@@ -23,6 +23,7 @@
             <p class="lp-signup small muted" anvil:name="signup_line">Want to keep your seeds on every device? <a href="#auth/signup">Create a free account</a>.</p>
           </div>
           <div class="lp-demo">
+            <anvil-component type="RepeatingPanel" name="lang_tabs" prop:item_template="parapeet.Items.LangChoice" prop:role='["lp-langs"]'></anvil-component>
             <div class="lp-phone">
               <div class="lp-phone-top"><span class="lp-phone-q">"Could you lend me your pen?"</span><span class="small muted">in 10 moods</span></div>
               <anvil-component type="parapeet.Components.PhraseCard" name="demo_card" prop:keys="false"></anvil-component>
@@ -35,19 +36,8 @@
 
       <section class="lp-section lp-moods-sec" id="moods">
         <div class="ui-wrap">
-          <div class="lp-head"><h2>One phrase. Ten moods.</h2><p>French changes with who you're talking to. "Lend me your pen" to a colleague isn't what you'd say to your boss, to someone who's furious, or to the person you love. Parapeet teaches all ten.</p></div>
-          <div class="lp-moods">
-            <article class="lp-mood" style="--tone:#3f9a3a"><header><i class="ic ic-leaf"></i><b>Neutral</b><span>to anyone</span></header><p lang="fr">Pourrais-tu me prêter ton stylo, s'il te plaît ?</p><small>Could you lend me your pen, please?</small></article>
-            <article class="lp-mood" style="--tone:#2f7fe0"><header><i class="ic ic-users"></i><b>Colleague</b><span>team talk</span></header><p lang="fr">Je l'ai oublié chez moi et j'ai besoin d'écrire quelques notes.</p><small>I forgot it at home and I need to write some notes.</small></article>
-            <article class="lp-mood" style="--tone:#0e9a9a"><header><i class="ic ic-handshake"></i><b>Client</b><span>polite "vous"</span></header><p lang="fr">Bien sûr, voici mon stylo, vous pouvez l'emprunter.</p><small>Of course, here is my pen, you can borrow it.</small></article>
-            <article class="lp-mood" style="--tone:#26346f"><header><i class="ic ic-crown"></i><b>Boss</b><span>up the ladder</span></header><p lang="fr">J'ai besoin de noter quelques informations importantes.</p><small>I need to jot down some important information.</small></article>
-            <article class="lp-mood" style="--tone:#d93d43"><header><i class="ic ic-flame"></i><b>Hothead</b><span>calming someone angry</span></header><p lang="fr">Je vois que tu es contrarié, mais pourrais-tu me prêter ton stylo, s'il te plaît ?</p><small>I see you're upset, but could you lend me your pen, please?</small></article>
-            <article class="lp-mood" style="--tone:#e07b22"><header><i class="ic ic-storm"></i><b>Frustrated</b><span>keeping your cool</span></header><p lang="fr">Je comprends que tu puisses être mécontent, mais pourrais-tu faire preuve d'un peu de compréhension ?</p><small>I understand you may be unhappy, but could you show a little understanding?</small></article>
-            <article class="lp-mood" style="--tone:#4f74b0"><header><i class="ic ic-umbrella"></i><b>Comfort</b><span>someone who's sad</span></header><p lang="fr">Je sais que tu es triste en ce moment, mais si tu peux me prêter ton stylo, cela me serait d'une grande aide.</p><small>I know you're sad right now, but if you can lend me your pen, it would be a great help.</small></article>
-            <article class="lp-mood" style="--tone:#d44a8f"><header><i class="ic ic-heart"></i><b>Lover</b><span>soft and tender</span></header><p lang="fr">Mon amour, pourrais-tu me faire le plus tendre des cadeaux en me prêtant ton stylo ?</p><small>My love, could you give me the most tender of gifts by lending me your pen?</small></article>
-            <article class="lp-mood" style="--tone:#c48a00"><header><i class="ic ic-star"></i><b>Admiring</b><span>warm praise</span></header><p lang="fr">Si tu pouvais me prêter ton stylo, je t'en serais vraiment reconnaissant.</p><small>If you could lend me your pen, I would really appreciate it.</small></article>
-            <article class="lp-mood" style="--tone:#8a55d6"><header><i class="ic ic-party"></i><b>Silly</b><span>friends only</span></header><p lang="fr">Tu peux me prêter ta plume de phénix, s'il te plaît ?</p><small>Can you lend me your phoenix feather, please?</small></article>
-          </div>
+          <div class="lp-head"><h2>One phrase. Ten moods.</h2><p>Every language changes with who you're talking to. "Lend me your pen" to a colleague isn't what you'd say to your boss, to someone who's furious, or to the person you love. Parapeet teaches all ten.</p></div>
+          <anvil-component type="RepeatingPanel" name="moods_panel" prop:item_template="parapeet.Items.MoodSample" prop:role='["lp-moods"]'></anvil-component>
         </div>
       </section>
 
@@ -57,7 +47,7 @@
           <div class="lp-steps">
             <div class="ui-card lp-step"><i class="ic ic-cards lp-step-ic"></i><h3>Swipe the moods</h3><p class="muted">Each card is one phrase. Swipe sideways to hear it said to your boss, a client or your partner. Swipe up for the next one. The words that change are highlighted.</p></div>
             <div class="ui-card lp-step"><i class="ic ic-trail lp-step-ic"></i><h3>Play short lessons</h3><p class="muted">Guess the mood, pick the meaning, build the sentence from word tiles, listen and choose, then say it out loud. Wrong answers come back at the end.</p></div>
-            <div class="ui-card lp-step"><i class="ic ic-feather lp-step-ic"></i><h3>Catch Parapeet</h3><p class="muted">Every right answer earns seeds. Keep your streak, hit your daily goal, collect badges. At 3,000 seeds, Parapeet is caught and your French is back.</p></div>
+            <div class="ui-card lp-step"><i class="ic ic-feather lp-step-ic"></i><h3>Catch Parapeet</h3><p class="muted">Every right answer earns seeds. Keep your streak, hit your daily goal, collect badges. At 3,000 seeds, Parapeet is caught and your words are back.</p></div>
           </div>
         </div>
       </section>
@@ -68,12 +58,12 @@
           <div class="ui-grid lp-feats">
             <div class="ui-card lp-feature"><i class="ic ic-seed"></i><h3>Seeds and a daily goal</h3><p>Pick Casual, Regular, Serious or Intense. Reach it for 10 bonus seeds.</p></div>
             <div class="ui-card lp-feature"><i class="ic ic-flame"></i><h3>Streaks</h3><p>Practise every day and watch the flame grow. It's your own midnight, not ours.</p></div>
-            <div class="ui-card lp-feature"><i class="ic ic-trophy"></i><h3>15 badges</h3><p>Diplomat, Peacemaker, Romantic, Class clown, Mood ring... each one for a different side of French.</p></div>
+            <div class="ui-card lp-feature"><i class="ic ic-trophy"></i><h3>15 badges</h3><p>Diplomat, Peacemaker, Romantic, Class clown, Mood ring... each one for a different side of the language.</p></div>
             <div class="ui-card lp-feature"><i class="ic ic-mic"></i><h3>Say it out loud</h3><p>Your browser listens and tells you how close you were. Record yourself and compare.</p></div>
-            <div class="ui-card lp-feature"><i class="ic ic-headphones"></i><h3>Hands-free lessons</h3><p>English, pause, French, pause: listen and repeat on the bus or while you cook.</p></div>
+            <div class="ui-card lp-feature"><i class="ic ic-headphones"></i><h3>Hands-free lessons</h3><p>English, pause, the phrase, pause: listen and repeat on the bus or while you cook.</p></div>
             <div class="ui-card lp-feature"><i class="ic ic-target"></i><h3>Weak spots</h3><p>Parapeet remembers what you miss and brings it back at the right time.</p></div>
             <div class="ui-card lp-feature"><i class="ic ic-bookmark"></i><h3>Your phrasebook</h3><p>Save any card, add your own phrases, then quiz yourself on them.</p></div>
-            <div class="ui-card lp-feature"><i class="ic ic-sparkle"></i><h3>Tu or vous?</h3><p>Every card shows whether it's formal or familiar, and which words carry the mood.</p></div>
+            <div class="ui-card lp-feature"><i class="ic ic-sparkle"></i><h3>Formal or familiar?</h3><p>Tu or vous, tú or usted, tu or Lei: every card shows which one it is, and which words carry the mood.</p></div>
           </div>
         </div>
       </section>
@@ -84,8 +74,8 @@
             <anvil-component type="parapeet.Components.Bird" name="story_bird" prop:mood="wow" prop:size="170"></anvil-component>
             <div>
               <div class="eyebrow">The story</div>
-              <h2>A klepto parakeet stole your French</h2>
-              <p>Once upon a time, a mischievous blue parakeet named Parapeet discovered he could steal knowledge. One day he swooped down on you and pecked away every French phrase you knew. Now you're on his trail, phrase by phrase, seed by seed.</p>
+              <h2>A klepto parakeet stole your words</h2>
+              <p>Once upon a time, a mischievous blue parakeet named Parapeet discovered he could steal knowledge. One day he swooped down on you and pecked away every phrase you knew, in French, Spanish and Italian. Now you're on his trail, phrase by phrase, seed by seed.</p>
               <p class="muted">We want swipers, actors, haters, lovers. Passion is what this will take.</p>
               <anvil-component type="Button" name="story_button" prop:text="Read the whole story" prop:role='["btn", "ic-book"]'></anvil-component>
             </div>
@@ -98,8 +88,8 @@
           <div class="lp-head"><h2>Who it's for</h2></div>
           <div class="lp-for">
             <div class="ui-card"><h3>You know the basics</h3><p class="muted">You can order a coffee and follow a slow conversation. Now you want to sound natural, polite or warm when it counts.</p></div>
-            <div class="ui-card"><h3>You work in French</h3><p class="muted">Meetings, clients, a demanding boss, a stressed colleague: the water cooler, the presentation and the board room are all here.</p></div>
-            <div class="ui-card"><h3>You live in French</h3><p class="muted">In Montréal, Paris, Brussels or Geneva, with a partner, friends and neighbours. The tender and the silly moods are for them.</p></div>
+            <div class="ui-card"><h3>You work in another language</h3><p class="muted">Meetings, clients, a demanding boss, a stressed colleague: the water cooler, the presentation and the board room are all here.</p></div>
+            <div class="ui-card"><h3>You live in another language</h3><p class="muted">In Montréal, Madrid, Rome or Buenos Aires, with a partner, friends and neighbours. The tender and the silly moods are for them.</p></div>
           </div>
         </div>
       </section>
@@ -109,8 +99,9 @@
           <div class="lp-head"><h2>Questions</h2></div>
           <div class="lp-faq">
             <details><summary>Is Parapeet free?</summary><p>Yes. You can play right away without an account; the sample phrases and every game feature are free. A free account unlocks more phrases and keeps your seeds, streak and phrasebook on every device.</p></details>
-            <details><summary>What level of French do I need?</summary><p>Parapeet is for people who already know some French (around A2 to B2) and want to sound natural in different situations. Every card has the English on the back.</p></details>
-            <details><summary>Is it French from France or from Québec?</summary><p>The phrases are standard, everyday French that works in both. The speech check listens for Canadian French and understands a French accent too.</p></details>
+            <details><summary>Which languages can I learn?</summary><p>French, Spanish and Italian: the same phrases in the same ten moods. Tap the little flag at the top to switch. Your seeds, streak and badges come with you; each language keeps its own lessons and saved phrases.</p></details>
+            <details><summary>What level do I need?</summary><p>Parapeet is for people who already know some of the language (around A2 to B2) and want to sound natural in different situations. Every card has the English on the back.</p></details>
+            <details><summary>Which French, Spanish and Italian?</summary><p>Standard, everyday language that works everywhere: French for France and Québec (the speech check listens for Canadian French), neutral Spanish for Spain and Latin America ("ustedes", no "vosotros"), and standard Italian with the formal "Lei" written with a capital L so you can spot it.</p></details>
             <details><summary>What does Parapeet do with my voice?</summary><p>Record me keeps your recording in your browser only; it is never uploaded. Say it uses your browser's speech recognition, which in some browsers (like Chrome) is run by the browser maker online. Details are in Privacy &amp; Terms.</p></details>
             <details><summary>Does it work on my phone?</summary><p>Yes, in any modern browser. Swipe the cards with your thumb, and add Parapeet to your home screen to open it like an app.</p></details>
             <details><summary>How is this different from other language apps?</summary><p>Most apps teach you one way to say something. Parapeet teaches the same sentence in ten moods, so you learn tone, politeness and feeling, not just words.</p></details>
