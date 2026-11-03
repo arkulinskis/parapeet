@@ -15,33 +15,37 @@ except ImportError:  # seo.py imports this file outside Anvil to render previews
 
 SEO = {
  "name": "Parapeet",
- "title": "Parapeet: French phrases in 10 moods, learned like a game",
- "tagline": "One French phrase, ten moods. Swipe, play, catch Parapeet.",
- "description": "Learn everyday French phrases in ten moods: to your boss, a client, a hothead, a sad friend, your lover. Swipe the cards, play short lessons, keep your streak.",
+ "title": "Parapeet: French, Spanish and Italian phrases in 10 moods",
+ "tagline": "One phrase, ten moods, three languages. Swipe, play, catch Parapeet.",
+ "description": "Learn everyday French, Spanish and Italian phrases in ten moods: to your boss, a client, a sad friend, your lover. Swipe, play short lessons, keep your streak.",
  "keywords": [
   "learn French phrases",
+  "learn Spanish phrases",
+  "learn Italian phrases",
   "French for work",
   "polite French phrases",
   "tu or vous",
+  "tú or usted",
+  "tu or Lei",
   "French conversation practice",
-  "French tone and politeness",
-  "intermediate French app",
-  "business French phrases",
-  "French speaking practice",
+  "Spanish conversation practice",
+  "Italian conversation practice",
+  "intermediate language app",
   "Quebec French practice",
-  "Duolingo alternative French"
+  "Duolingo alternative"
  ],
  "type": "WebApplication",
  "category": "EducationalApplication",
- "audience": "Adults who know some French (about A2 to B2) and want to sound natural at work and at home",
+ "audience": "Adults who know some French, Spanish or Italian (about A2 to B2) and want to sound natural at work and at home",
  "about": [
-  "Parapeet teaches everyday French phrases in ten moods. Each phrase comes in a neutral version and as you would say it to a colleague, a client, your boss, someone who is angry, in a tense moment, to comfort someone sad, to your partner, to someone you admire, and just for a laugh.",
-  "You swipe a card sideways to change the mood and up for the next phrase; the words that change are highlighted and every card shows whether it uses tu or vous. Short lessons mix picking the meaning, guessing the mood, building the sentence from word tiles, listening and saying it out loud.",
-  "It is built like a game: seeds for right answers, a daily goal, streaks, 15 badges and a story about Parapeet, a parakeet who stole your French. You can play without an account; a free account keeps your progress and unlocks more phrases."
+  "Parapeet teaches everyday phrases in French, Spanish and Italian, each in ten moods. Every phrase comes in a neutral version and as you would say it to a colleague, a client, your boss, someone who is angry, in a tense moment, to comfort someone sad, to your partner, to someone you admire, and just for a laugh.",
+  "You swipe a card sideways to change the mood and up for the next phrase; the words that change are highlighted and every card shows whether it is formal or familiar (tu or vous, tú or usted, tu or Lei). Short lessons mix picking the meaning, guessing the mood, building the sentence from word tiles, listening and saying it out loud.",
+  "It is built like a game: seeds for right answers, a daily goal, streaks, 15 badges and a story about Parapeet, a parakeet who stole your words. You can play without an account and switch languages any time; a free account keeps your progress and unlocks more phrases."
  ],
  "features": [
+  "French, Spanish and Italian: the same phrases in the same ten moods",
   "Every phrase in ten moods, from your boss to your lover",
-  "Swipe cards with tu / vous labels and highlighted differences",
+  "Swipe cards with formal / familiar labels and highlighted differences",
   "Short lessons: meaning, mood, word tiles, listening and speaking",
   "Speech check in the browser and record-yourself playback",
   "Seeds, daily goal, streaks and 15 badges",
@@ -54,16 +58,20 @@ SEO = {
    "Yes. You can play without an account. A free account keeps your progress on every device and unlocks more phrases."
   ],
   [
-   "What level of French is it for?",
-   "People who already know some French, roughly A2 to B2, and want to sound natural, polite or warm in different situations."
+   "Which languages can I learn?",
+   "French, Spanish and Italian, with the same phrases in the same ten moods. Switch any time with the flag button at the top; your seeds, streak and badges come with you."
+  ],
+  [
+   "What level is it for?",
+   "People who already know some of the language, roughly A2 to B2, and want to sound natural, polite or warm in different situations."
   ],
   [
    "What are the ten moods?",
    "Neutral, colleague, client, boss, calming someone angry, a tense moment, comforting someone sad, your partner, admiring someone, and silly."
   ],
   [
-   "Is it French from France or Quebec?",
-   "Standard everyday French that works in both. The speech check listens for Canadian French and understands a French accent too."
+   "Which French, Spanish and Italian?",
+   "Standard everyday language: French for France and Quebec, neutral Spanish for Spain and Latin America, and standard Italian."
   ]
  ],
  "free": True,

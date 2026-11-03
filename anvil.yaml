@@ -711,10 +711,9 @@ db_schema:
     server: full
     title: VoiceFiles_spanish
 metadata:
-  description: 'Learn everyday French phrases in ten moods: to your boss, a client, a hothead, a sad friend, your lover. Swipe
-    the cards, play short lessons, keep your streak.'
-  logo_img: asset:icon-512.png
-  title: 'Parapeet: French phrases in 10 moods, learned like a game'
+  description: "Learn everyday French, Spanish and Italian phrases in ten moods: to your boss, a client, a sad friend, your lover. Swipe, play short lessons, keep your streak."
+  logo_img: "asset:icon-512.png"
+  title: "Parapeet: French, Spanish and Italian phrases in 10 moods"
 name: Parapeet
 native_deps:
   head_html: |
@@ -722,23 +721,23 @@ native_deps:
     <!-- seo:start (APP_MAKER/seo: edit seo/apps/parapeet.json and run seo.py, not here) -->
     <link rel="canonical" href="https://parapeet.com/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="keywords" content="learn French phrases, French for work, polite French phrases, tu or vous, French conversation practice, French tone and politeness, intermediate French app, business French phrases, French speaking practice, Quebec French practice, Duolingo alternative French">
+    <meta name="keywords" content="learn French phrases, learn Spanish phrases, learn Italian phrases, French for work, polite French phrases, tu or vous, tú or usted, tu or Lei, French conversation practice, Spanish conversation practice, Italian conversation practice, intermediate language app, Quebec French practice, Duolingo alternative">
     <meta name="author" content="Arkvital">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Parapeet">
-    <meta property="og:title" content="Parapeet: French phrases in 10 moods, learned like a game">
-    <meta property="og:description" content="Learn everyday French phrases in ten moods: to your boss, a client, a hothead, a sad friend, your lover. Swipe the cards, play short lessons, keep your streak.">
+    <meta property="og:title" content="Parapeet: French, Spanish and Italian phrases in 10 moods">
+    <meta property="og:description" content="Learn everyday French, Spanish and Italian phrases in ten moods: to your boss, a client, a sad friend, your lover. Swipe, play short lessons, keep your streak.">
     <meta property="og:locale" content="en_CA">
     <meta property="og:url" content="https://parapeet.com/">
     <meta property="og:image" content="https://parapeet.com/_/theme/og-image.png">
     <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Parapeet: One French phrase, ten moods. Swipe, play, catch Parapeet.">
+    <meta property="og:image:alt" content="Parapeet: One phrase, ten moods, three languages. Swipe, play, catch Parapeet.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Parapeet: French phrases in 10 moods, learned like a game">
-    <meta name="twitter:description" content="Learn everyday French phrases in ten moods: to your boss, a client, a hothead, a sad friend, your lover. Swipe the cards, play short lessons, keep your streak.">
+    <meta name="twitter:title" content="Parapeet: French, Spanish and Italian phrases in 10 moods">
+    <meta name="twitter:description" content="Learn everyday French, Spanish and Italian phrases in ten moods: to your boss, a client, a sad friend, your lover. Swipe, play short lessons, keep your streak.">
     <meta name="twitter:image" content="https://parapeet.com/_/theme/og-image.png">
     <link rel="alternate" type="text/plain" title="Parapeet for AI assistants" href="https://parapeet.com/llms.txt">
-    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://parapeet.com/#app", "name": "Parapeet", "url": "https://parapeet.com/", "description": "Learn everyday French phrases in ten moods: to your boss, a client, a hothead, a sad friend, your lover. Swipe the cards, play short lessons, keep your streak.", "image": "https://parapeet.com/_/theme/og-image.png", "inLanguage": "en", "publisher": {"@id": "https://arkvital.com/#org"}, "keywords": "learn French phrases, French for work, polite French phrases, tu or vous, French conversation practice, French tone and politeness, intermediate French app, business French phrases, French speaking practice, Quebec French practice, Duolingo alternative French", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript and a modern web browser", "featureList": ["Every phrase in ten moods, from your boss to your lover", "Swipe cards with tu / vous labels and highlighted differences", "Short lessons: meaning, mood, word tiles, listening and speaking", "Speech check in the browser and record-yourself playback", "Seeds, daily goal, streaks and 15 badges", "Hands-free listening lessons", "Your own phrasebook with a quiz"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CAD"}, "audience": {"@type": "Audience", "audienceType": "Adults who know some French (about A2 to B2) and want to sound natural at work and at home"}}, {"@type": "WebSite", "@id": "https://parapeet.com/#site", "url": "https://parapeet.com/", "name": "Parapeet", "publisher": {"@id": "https://arkvital.com/#org"}}, {"@type": "Organization", "@id": "https://arkvital.com/#org", "name": "Arkvital", "url": "https://arkvital.com", "email": "arkvital@outlook.com", "address": {"@type": "PostalAddress", "addressLocality": "Montreal", "addressRegion": "QC", "addressCountry": "CA"}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "@id": "https://parapeet.com/#app", "name": "Parapeet", "url": "https://parapeet.com/", "description": "Learn everyday French, Spanish and Italian phrases in ten moods: to your boss, a client, a sad friend, your lover. Swipe, play short lessons, keep your streak.", "image": "https://parapeet.com/_/theme/og-image.png", "inLanguage": "en", "publisher": {"@id": "https://arkvital.com/#org"}, "keywords": "learn French phrases, learn Spanish phrases, learn Italian phrases, French for work, polite French phrases, tu or vous, tú or usted, tu or Lei, French conversation practice, Spanish conversation practice, Italian conversation practice, intermediate language app, Quebec French practice, Duolingo alternative", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript and a modern web browser", "featureList": ["French, Spanish and Italian: the same phrases in the same ten moods", "Every phrase in ten moods, from your boss to your lover", "Swipe cards with formal / familiar labels and highlighted differences", "Short lessons: meaning, mood, word tiles, listening and speaking", "Speech check in the browser and record-yourself playback", "Seeds, daily goal, streaks and 15 badges", "Hands-free listening lessons", "Your own phrasebook with a quiz"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "CAD"}, "audience": {"@type": "Audience", "audienceType": "Adults who know some French, Spanish or Italian (about A2 to B2) and want to sound natural at work and at home"}}, {"@type": "WebSite", "@id": "https://parapeet.com/#site", "url": "https://parapeet.com/", "name": "Parapeet", "publisher": {"@id": "https://arkvital.com/#org"}}, {"@type": "Organization", "@id": "https://arkvital.com/#org", "name": "Arkvital", "url": "https://arkvital.com", "email": "arkvital@outlook.com", "address": {"@type": "PostalAddress", "addressLocality": "Montreal", "addressRegion": "QC", "addressCountry": "CA"}}]}</script>
     <!-- seo:end -->
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#2e9e4f">
