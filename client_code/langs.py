@@ -35,9 +35,10 @@ LANGS: dict = {
         "familiar_words": ["tú", "tu", "tus", "te", "ti", "contigo", "tuyo", "tuya", "tuyos", "tuyas"],
         "familiar_prefixes": [],
         "formal_weak": ["le", "les"], "formal_suffixes": ["rle", "rles", "ndole", "ndoles"],
-        "familiar_suffixes": ["rte", "ndote"],
-        "suffix_exceptions": ["parte", "aparte", "arte", "suerte", "fuerte", "muerte", "norte", "corte", "porte",
-                              "deporte", "transporte", "soporte", "reporte", "importe", "inerte", "consorte"],
+        "familiar_suffixes": ["arte", "erte", "irte", "ndote"],  # verte, ayudarte, escucharte, recordándote
+        "suffix_exceptions": ["parte", "aparte", "arte", "comparte", "reparte", "descarte", "baluarte", "estandarte", "marte",
+                              "suerte", "fuerte", "muerte", "inerte", "advierte", "divierte", "convierte",
+                              "invierte", "vierte", "despierte", "pervierte"],
         "praise": ["¡Muy bien!", "¡Bravo!", "¡Genial!", "¡Perfecto!"],
         "very_good": "¡Muy bien!", "perfect": "¡Perfecto!", "well_done": "¡Bien hecho!", "bye": "¡Hasta pronto!",
         "places": "Madrid, Mexico City, Bogotá or Buenos Aires",
@@ -112,7 +113,7 @@ def _formal_clitic(word):
 
 
 def _ends(word, endings, exceptions):
-    return word not in exceptions and any(len(word) > len(e) + 1 and word.endswith(e) for e in endings)
+    return word not in exceptions and any(len(word) > len(e) and word.endswith(e) for e in endings)
 
 
 def register(text, code=DEFAULT):

@@ -55,7 +55,7 @@
 
   /* Same rules as langs.register() in Python: 'formal', 'familiar', 'mixed' or ''. */
   function ends(w, list) {
-    return LANG.suffixExceptions.indexOf(w) < 0 && list.some(function (e) { return w.length > e.length + 1 && w.slice(-e.length) === e; });
+    return LANG.suffixExceptions.indexOf(w) < 0 && list.some(function (e) { return w.length > e.length && w.slice(-e.length) === e; });
   }
   function clitic(w) {
     return ['La', 'Le', 'Lo', 'Gli'].some(function (e) {
