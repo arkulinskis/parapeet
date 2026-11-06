@@ -53,6 +53,10 @@ WHO = {"Basic": "to anyone", "Colleague": "team talk", "Client": "polite \"{form
        "Lover": "soft and tender", "Impressed": "warm praise", "Stupid": "friends only"}
 
 
+# The app's video on the Addanapp YouTube channel (APP_MAKER/youtube/manifest.json), shown in the Watch section.
+YT_VIDEO = "FW-j_xL_DWo"
+
+
 class Landing(LandingTemplate):
     """#landing, the front page: language tabs and a live swipeable card in the hero, the ten moods, how it works,
     the game, the story, who it's for, questions. Static copy lives in the template; the language-dependent parts
@@ -60,12 +64,20 @@ class Landing(LandingTemplate):
 
     def __init__(self, args=(), **properties):
         super().__init__(**properties)
+        self.dom_nodes["yt_cover"].addEventListener("click", self._play)
         me = state.me()
         self.guest_cta.visible = not me
         self.member_cta.visible = bool(me)
         self.signup_line.visible = not me
         self.lang_tabs.add_event_handler("x-lang", self._lang_picked)
         self._show(state.lang())
+
+    def _play(self, event):
+        """Swap the video's cover for YouTube's player (privacy-enhanced); nothing loads from YouTube before this click."""
+        self.dom_nodes["yt_frame"].innerHTML = (
+            '<iframe src="https://www.youtube-nocookie.com/embed/' + YT_VIDEO + '?autoplay=1&rel=0&playsinline=1" '
+            'title="Parapeet video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen '
+            'referrerpolicy="strict-origin-when-cross-origin"></iframe>')
 
     def _show(self, code):
         """The demo card, the language tabs and the ten moods in this language."""
