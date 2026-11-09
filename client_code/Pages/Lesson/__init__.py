@@ -319,12 +319,12 @@ class Lesson(LessonTemplate):
 
     # ---- keys: 1-4 pick, Enter = check / continue, Backspace = take back the last tile
     def _key(self, event):
-        if not self.ex or self.end_part.visible or event.ctrlKey or event.metaKey or event.altKey:
+        if not self.ex or self.end_part.visible or getattr(event, "ctrlKey", False) or getattr(event, "metaKey", False) or getattr(event, "altKey", False):
             return
         tag = str(getattr(event.target, "tagName", "") or "").upper()
         if tag in ("INPUT", "TEXTAREA"):
             return
-        k = event.key
+        k = getattr(event, "key", None)
         if k == "Enter":
             event.preventDefault()
             if self.checked:
