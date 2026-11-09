@@ -34,7 +34,7 @@ SEO = {
   "Quebec French practice",
   "Duolingo alternative"
  ],
- "type": "WebApplication",
+ "type": "Service",
  "category": "EducationalApplication",
  "audience": "Adults who know some French, Spanish or Italian (about A2 to B2) and want to sound natural at work and at home",
  "about": [
@@ -76,7 +76,7 @@ SEO = {
  ],
  "free": True,
  "site": "https://parapeet.com",
- "updated": "2026-11-03",
+ "updated": "2026-11-09",
  "icon": "icon-512.png",
  "colors": {
   "bg": "#f3fae9",
@@ -157,9 +157,17 @@ def llms_txt(o):
 
 def _ld(o):
     s = SEO
-    app = {"@type": s.get("type", "WebApplication"), "@id": o + "/#app", "name": s["name"], "url": o + "/",
+    app = {"@type": s.get("type", "Service"), "@id": o + "/#app", "name": s["name"], "url": o + "/",
            "description": s["description"], "image": o + "/_/theme/og-image.png", "inLanguage": s.get("lang", "en"),
            "publisher": {"@id": "https://arkvital.com/#org"}, "keywords": ", ".join(s.get("keywords", []))}
+    if app["@type"] == "Service":
+        # An online service people use in the browser: no app-store listing, so no price/rating fields Google demands of apps
+        app["serviceType"] = s.get("service_type", s.get("tagline", s["title"]))
+        app["provider"] = {"@id": "https://arkvital.com/#org"}
+        app["areaServed"] = "Worldwide"
+        app["availableChannel"] = {"@type": "ServiceChannel", "serviceUrl": o + "/", "name": "Web browser"}
+        del app["inLanguage"], app["publisher"], app["keywords"]
+        app["availableLanguage"] = s.get("lang", "en")
     if app["@type"] in ("WebApplication", "VideoGame"):
         app["applicationCategory"] = s.get("category", "WebApplication")
         app["operatingSystem"] = "Any (web browser)"
