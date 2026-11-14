@@ -389,7 +389,7 @@ assert "email" in r["tables"]["users"] and "seeds" in r["tables"]["progress"] an
 
 # ---------------------------------------------------------------------------------- every callable is covered by a permission check
 # A callable that changes data without require_user / a C.require_* check is a security hole. List the public ones here.
-PUBLIC = {"get_me", "submit_feedback", "legal_state", "legal_accept", "get_phrases", "voice_url",
+PUBLIC = {"session_ping", "get_me", "submit_feedback", "legal_state", "legal_accept", "get_phrases", "voice_url",
           # the original app's functions: they check the user inside and answer "Sign in first" / False / None
           "save_note", "delete_note", "update_note", "get_notes", "update_local_storage", "get_music", "get_video",
           "get_voice", "send_interest", "is_alive_check", "set_points", "get_points"}
