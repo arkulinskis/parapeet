@@ -83,7 +83,7 @@ The app already exists in Anvil (parapeet.com) and runs `master`. After a push t
    UserNotes.Lang. No table or column is removed. Until it's accepted, French keeps working and the Spanish / Italian
    picker shows no phrases.
 3. Check the **Users** service (email + password, Continue with Google, sign-up on).
-4. Sign in with arkulinskis@gmail.com once (that account becomes admin).
+4. Sign in with your admin email (App Secret `admin_emails`) once (that account becomes admin).
 
 <!-- libraries:start -->
 ## Libraries and outside services

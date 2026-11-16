@@ -40,7 +40,7 @@ def start(restart=False):
         sh("docker", "rm", "-f", NAME, check=False)
         sh("docker", "run", "-d", "--name", NAME, "-p", "%d:%d" % (PORT, PORT), "-v", "%s:/apps/MainApp" % ROOT.as_posix(),
            "-v", KEY + "-data:/anvil-data", IMAGE, "--app", "MainApp", "--origin", URL,
-           "--auto-migrate")  # new tables / columns in anvil.yaml are created, like accepting the Schema Mismatch
+           "--auto-migrate", "--secret", "admin_emails=admin@example.com")  # new tables / columns in anvil.yaml are created, like accepting the Schema Mismatch
            # (--ignore-invalid-schema would win over it and skip the migration)
         print("starting the App Server ...")
     for _ in range(300):

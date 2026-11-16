@@ -27,6 +27,8 @@ os.environ["ANVIL_APP_YAML"] = str(PROJECT / "anvil.yaml")  # the mock's tables 
 sys.path[:0] = [str(HERE / "mock"), str(_tmp)]
 import anvil.server  # noqa: E402
 import anvil.users  # noqa: E402
+import anvil.secrets  # noqa: E402
+anvil.secrets.SECRETS["admin_emails"] = "admin@example.com"  # the App Secret, faked
 from anvil.tables import app_tables as T  # noqa: E402
 
 M = {p.stem: importlib.import_module("app." + p.stem) for p in sorted((PROJECT / "server_code").glob("*.py"))}
@@ -70,7 +72,7 @@ def person(email, name=None, **kw):
 
 
 # ---------------------------------------------------------------------------------- accounts
-admin = person("arkulinskis@gmail.com", "The Admin")
+admin = person("admin@example.com", "The Admin")
 ana = person("ana@example.com", "Ana")
 bob = person("bob@example.com")
 vip = person("vip@example.com", "Vee", customer_type="premium")
@@ -389,7 +391,7 @@ assert "email" in r["tables"]["users"] and "seeds" in r["tables"]["progress"] an
 
 # ---------------------------------------------------------------------------------- every callable is covered by a permission check
 # A callable that changes data without require_user / a C.require_* check is a security hole. List the public ones here.
-PUBLIC = {"session_ping", "get_me", "submit_feedback", "legal_state", "legal_accept", "get_phrases", "voice_url",
+PUBLIC = {"log_client_error", "session_ping", "get_me", "submit_feedback", "legal_state", "legal_accept", "get_phrases", "voice_url",
           # the original app's functions: they check the user inside and answer "Sign in first" / False / None
           "save_note", "delete_note", "update_note", "get_notes", "update_local_storage", "get_music", "get_video",
           "get_voice", "send_interest", "is_alive_check", "set_points", "get_points"}
