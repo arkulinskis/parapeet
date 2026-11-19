@@ -15,10 +15,12 @@ except ImportError:  # seo.py imports this file outside Anvil to render previews
 
 SEO = {
  "name": "Parapeet",
- "title": "Parapeet: French, Spanish and Italian phrases in 10 moods",
+ "title": "Parapeet app: French, Spanish and Italian phrases in 10 moods",
  "tagline": "One phrase, ten moods, three languages. Swipe, play, catch Parapeet.",
  "description": "Learn everyday French, Spanish and Italian phrases in ten moods: to your boss, a client, a sad friend, your lover. Swipe, play short lessons, keep your streak.",
  "keywords": [
+  "Parapeet",
+  "Parapeet app",
   "learn French phrases",
   "learn Spanish phrases",
   "learn Italian phrases",
@@ -32,7 +34,9 @@ SEO = {
   "Italian conversation practice",
   "intermediate language app",
   "Quebec French practice",
-  "Duolingo alternative"
+  "Duolingo alternative",
+  "tu or vous examples",
+  "formal and familiar you"
  ],
  "type": "Service",
  "category": "EducationalApplication",
@@ -72,11 +76,447 @@ SEO = {
   [
    "Which French, Spanish and Italian?",
    "Standard everyday language: French for France and Quebec, neutral Spanish for Spain and Latin America, and standard Italian."
+  ],
+  [
+   "Is Parapeet the same as Parakeet, or a parapet?",
+   "No. Parapeet, spelled with two e's, is the phrase app at parapeet.com. It is not connected to the Parakeet language app, and a parapet is a low wall. Search for \"Parapeet app\" or go straight to parapeet.com."
   ]
  ],
  "free": True,
  "site": "https://parapeet.com",
- "updated": "2026-11-16",
+ "guides": [
+  {
+   "path": "/tu-or-vous",
+   "title": "Tu or vous? French formal and familiar, with real examples",
+   "description": "When to say tu and when to say vous in French: the simple rule, the grey areas, and the same sentence said formally and familiarly, side by side.",
+   "intro": [
+    "French has two words for \"you\". Vous is the polite form: for a client, your boss, a stranger, an older person, and for any group. Tu is the familiar form: for friends, family, your partner, children and, in many workplaces, colleagues.",
+    "The choice changes more than one word. The verb ending changes with it (vous avez, tu as), and so do the possessives (votre, ton) and the object pronouns (vous, te). That is why Parapeet highlights every word that changes when you swipe from one mood to another."
+   ],
+   "sections": [
+    {
+     "h2": "The same sentence, formal and familiar",
+     "paras": [
+      "These pairs come from Parapeet's free sample phrases. The formal version is how the app says it to a client or someone senior; the familiar one is how it says it to a friend, a partner or someone who is upset."
+     ],
+     "table": {
+      "head": [
+       "Situation",
+       "Vous (formal)",
+       "Tu (familiar)"
+      ],
+      "rows": [
+       [
+        "Asking someone to check a number",
+        "Pourriez-vous vérifier ce chiffre dans la base de données ?",
+        "Serait-il possible pour toi de vérifier ce chiffre dans la base de données ?"
+       ],
+       [
+        "The director wants to see them",
+        "Le directeur souhaite vous rencontrer dans son bureau.",
+        "Le directeur souhaite te voir dans son bureau."
+       ],
+       [
+        "Inviting suggestions",
+        "Je serais ravi d'entendre vos suggestions pour améliorer cette procédure.",
+        "Est-ce que tu as des suggestions pour améliorer cette procédure ?"
+       ],
+       [
+        "Saying thank you",
+        "Je vous remercie pour votre retour positif, cela signifie beaucoup pour moi.",
+        "Je voulais te remercier pour ton aide précieuse, tu as vraiment bien travaillé."
+       ],
+       [
+        "Offering to answer questions",
+        "Je suis là pour répondre à toutes vos questions.",
+        "Si tu as des questions, n'hésite pas à les poser. Je suis là pour t'écouter."
+       ]
+      ]
+     },
+     "after": [
+      "Spot the pattern: vous goes with the -ez verb ending (pourriez-vous) and votre/vos; tu goes with te/t', ton/ta/tes and the -s ending (tu as, pourrais-tu)."
+     ]
+    },
+    {
+     "h2": "When to use which",
+     "paras": [
+      "Start with vous with anyone you don't know, anyone older or more senior, clients and customers, and in work emails. Switch to tu when the other person invites you to (\"on peut se tutoyer ?\") or when everyone around you clearly does.",
+      "Use vous for any group of two or more people, even close friends: vous is also the plural \"you\".",
+      "In Quebec, tu is used more widely than in France, including with many colleagues; vous is still the safe start with clients and older people.",
+      "Family, friends, your partner, children and pets get tu."
+     ]
+    }
+   ],
+   "faq": [
+    [
+     "Is it rude to say tu to a stranger in French?",
+     "Often, yes, especially in France: it can sound overfamiliar or even aggressive. With strangers, clients and older people, start with vous and wait to be invited to use tu."
+    ],
+    [
+     "What do tutoyer and vouvoyer mean?",
+     "Tutoyer means to address someone as tu; vouvoyer means to address them as vous. \"On se tutoie ?\" is a friendly way to suggest switching to tu."
+    ],
+    [
+     "How does Parapeet teach tu and vous?",
+     "Every Parapeet card shows whether the phrase is formal or familiar, and when you swipe to another mood the words that change are highlighted, so you see exactly what tu or vous does to the sentence."
+    ]
+   ]
+  },
+  {
+   "path": "/tu-or-usted",
+   "title": "Tú or usted? Spanish formal and familiar, with real examples",
+   "description": "When to use tú and when to use usted in Spanish, where ustedes and vosotros fit in, and the same sentence said formally and familiarly, side by side.",
+   "intro": [
+    "Spanish has a familiar \"you\", tú, and a polite one, usted. Usted takes the same verb form as él and ella (usted tiene, usted puede), with su and le instead of tu and te. Tú has its own forms (tú tienes, tú puedes).",
+    "How soon people switch to tú varies a lot between countries and generations. Spain tends to switch quickly; in many parts of Latin America usted lasts longer, and in some regions it is used warmly even within families."
+   ],
+   "sections": [
+    {
+     "h2": "The same sentence, formal and familiar",
+     "paras": [
+      "These pairs come from Parapeet's free sample phrases. The formal version is how the app says it to a client or someone senior; the familiar one is how it says it to a friend, a partner or someone who is upset."
+     ],
+     "table": {
+      "head": [
+       "Situation",
+       "Usted (formal)",
+       "Tú (familiar)"
+      ],
+      "rows": [
+       [
+        "Asking someone to check a number",
+        "¿Podría verificar esta cifra en la base de datos?",
+        "¿Te sería posible verificar esta cifra en la base de datos?"
+       ],
+       [
+        "The director wants to see them",
+        "El director desea reunirse con usted en su oficina.",
+        "El director quiere verte en su oficina."
+       ],
+       [
+        "Inviting suggestions",
+        "Me encantaría escuchar sus sugerencias para mejorar este procedimiento.",
+        "¿Tienes alguna sugerencia para mejorar este procedimiento?"
+       ],
+       [
+        "Saying thank you",
+        "Le agradezco sus comentarios positivos; significan mucho para mí.",
+        "Quería agradecerte tu valiosa ayuda, de verdad hiciste un gran trabajo."
+       ],
+       [
+        "Offering to answer questions",
+        "Estoy aquí para responder a todas sus preguntas.",
+        "Si tienes preguntas, no dudes en hacerlas. Estoy aquí para escucharte."
+       ]
+      ]
+     },
+     "after": [
+      "Spot the pattern: usted goes with le, su/sus and the él/ella verb form (podría, tiene); tú goes with te, tu/tus and the -s ending (tienes)."
+     ]
+    },
+    {
+     "h2": "Ustedes and vosotros",
+     "paras": [
+      "For a group, Latin America uses ustedes for everyone, friends included. Spain uses vosotros for friends and ustedes for formal groups. Parapeet uses neutral Spanish that works on both sides of the Atlantic, so groups are ustedes."
+     ]
+    },
+    {
+     "h2": "When to use which",
+     "paras": [
+      "Use usted with clients, customers, older people, officials and anyone senior until they invite you to use tú (\"puedes tutearme\"). Use tú with friends, family, your partner, children and, in most of Spain, with colleagues and people your own age."
+     ]
+    }
+   ],
+   "faq": [
+    [
+     "Is usted always more polite?",
+     "It is more formal, not always more polite. Usted with a friend can sound cold or distant, while in some regions it is a warm everyday form. Follow the other person's lead."
+    ],
+    [
+     "What does tutear mean?",
+     "Tutear means to address someone as tú; tratar de usted means to use usted."
+    ],
+    [
+     "Which Spanish does Parapeet teach?",
+     "Neutral everyday Spanish that works in Spain and Latin America, with the formal or familiar form marked on every card."
+    ]
+   ]
+  },
+  {
+   "path": "/tu-or-lei",
+   "title": "Tu or Lei? Italian formal and familiar, with real examples",
+   "description": "When to say tu and when to say Lei in Italian, why the polite form looks like the word for she, and the same sentence said both ways, side by side.",
+   "intro": [
+    "Italian uses tu for people you know well and Lei for polite address. Lei is the same word as \"she\" and takes the third-person verb (Lei ha, Lei può), whether you are speaking to a man or a woman. In writing it is often capitalised, along with La, Le and Suo, to show respect.",
+    "For a group, today's Italian uses voi for friends and formal groups alike."
+   ],
+   "sections": [
+    {
+     "h2": "The same sentence, formal and familiar",
+     "paras": [
+      "These pairs come from Parapeet's free sample phrases. The formal version is how the app says it to a client or someone senior; the familiar one is how it says it to a friend, a partner or someone who is upset."
+     ],
+     "table": {
+      "head": [
+       "Situation",
+       "Lei (formal)",
+       "Tu (familiar)"
+      ],
+      "rows": [
+       [
+        "Asking someone to check a number",
+        "Potrebbe verificare questo dato nel database?",
+        "Ti sarebbe possibile verificare questo dato nel database?"
+       ],
+       [
+        "The director wants to see them",
+        "Il direttore desidera incontrarLa nel suo ufficio.",
+        "Il direttore vorrebbe vederti nel suo ufficio."
+       ],
+       [
+        "Inviting suggestions",
+        "Sarei felice di ascoltare i Suoi suggerimenti per migliorare questa procedura.",
+        "Hai qualche suggerimento per migliorare questa procedura?"
+       ],
+       [
+        "Saying thank you",
+        "La ringrazio per il Suo riscontro positivo, significa molto per me.",
+        "Volevo ringraziarti per il tuo prezioso aiuto, hai lavorato davvero bene."
+       ],
+       [
+        "Offering to answer questions",
+        "Sono qui per rispondere a tutte le Sue domande.",
+        "Se hai domande, non esitare a farle. Sono qui per ascoltarti."
+       ]
+      ]
+     },
+     "after": [
+      "Spot the pattern: Lei goes with La/Le, Suo/Sua and the third-person verb (potrebbe, ha); tu goes with ti, tuo/tua and the second-person verb (hai)."
+     ]
+    },
+    {
+     "h2": "When to use which",
+     "paras": [
+      "Use Lei with clients, shop staff, officials, older people and anyone senior. Young people and many colleagues switch to tu quickly; if someone says \"diamoci del tu\" (let's use tu), you can switch."
+     ]
+    }
+   ],
+   "faq": [
+    [
+     "Why does Lei have a capital L?",
+     "To tell the polite \"you\" apart from \"she\" in writing and to show respect. In emails and letters you will often see Lei, La, Le and Suo capitalised; in casual writing many people use lower case."
+    ],
+    [
+     "What do dare del tu and dare del Lei mean?",
+     "Dare del tu means to address someone as tu; dare del Lei means to use the polite Lei."
+    ],
+    [
+     "Which Italian does Parapeet teach?",
+     "Standard everyday Italian, with every card marked formal or familiar, and voi for groups."
+    ]
+   ]
+  },
+  {
+   "path": "/one-phrase-ten-moods",
+   "title": "One phrase, ten moods: borrowing a pen in French, Spanish and Italian",
+   "description": "One everyday moment, borrowing a pen, said ten ways: to a colleague, a client, someone angry, a sad friend, your partner, and just for a laugh.",
+   "intro": [
+    "Parapeet's idea is simple: what you say depends on who you are talking to. Every phrase in the app comes in a neutral version and nine more moods. Here is one of the app's free sample phrases, borrowing a pen, in all ten, in French, Spanish and Italian."
+   ],
+   "sections": [
+    {
+     "h2": "In French",
+     "table": {
+      "head": [
+       "Mood",
+       "French",
+       "English"
+      ],
+      "rows": [
+       [
+        "Neutral (anyone)",
+        "Pourrais-tu me prêter ton stylo, s'il te plaît ?",
+        "Could you lend me your pen, please?"
+       ],
+       [
+        "Colleague",
+        "Je l'ai oublié chez moi et j'ai besoin d'écrire quelques notes.",
+        "I left mine at home and I need to write a few notes."
+       ],
+       [
+        "Client",
+        "Bien sûr, voici mon stylo, vous pouvez l'emprunter.",
+        "Of course, here's my pen, you can borrow it."
+       ],
+       [
+        "Boss",
+        "J'ai besoin de noter quelques informations importantes.",
+        "I need to note down some important information."
+       ],
+       [
+        "Hothead (someone angry)",
+        "Je vois que tu es contrarié, mais pourrais-tu me prêter ton stylo, s'il te plaît ? J'en ai vraiment besoin pour prendre des notes.",
+        "I can see you're upset, but could you lend me your pen, please? I really need it to take notes."
+       ],
+       [
+        "Frustrated (a tense moment)",
+        "Je comprends que tu puisses être mécontent, mais pourrais-tu faire preuve d'un peu de compréhension et me prêter ton stylo, s'il te plaît ?",
+        "I understand you may be unhappy, but could you be a little understanding and lend me your pen, please?"
+       ],
+       [
+        "Comfort (someone sad)",
+        "Je sais que tu es triste en ce moment, mais si tu peux me prêter ton stylo, cela me serait d'une grande aide.",
+        "I know you're sad right now, but if you could lend me your pen, it would really help me."
+       ],
+       [
+        "Lover (your partner)",
+        "Mon amour, pourrais-tu me faire le plus tendre des cadeaux en me prêtant ton stylo ?",
+        "My love, would you give me the tenderest of gifts and lend me your pen?"
+       ],
+       [
+        "Admiring (someone you admire)",
+        "Si tu pouvais me prêter ton stylo, je t'en serais vraiment reconnaissant.",
+        "If you could lend me your pen, I'd be really grateful."
+       ],
+       [
+        "Silly (a friend, for a laugh)",
+        "Tu peux me prêter ta plume de phénix, s'il te plaît ?",
+        "Can you lend me your phoenix feather, please?"
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "In Spanish",
+     "table": {
+      "head": [
+       "Mood",
+       "Spanish"
+      ],
+      "rows": [
+       [
+        "Neutral (anyone)",
+        "¿Me prestas tu bolígrafo, por favor?"
+       ],
+       [
+        "Colleague",
+        "Se me olvidó el mío en casa y necesito tomar unas notas."
+       ],
+       [
+        "Client",
+        "Por supuesto, aquí tiene mi bolígrafo, puede usarlo."
+       ],
+       [
+        "Boss",
+        "Necesito anotar unos datos importantes."
+       ],
+       [
+        "Hothead (someone angry)",
+        "Veo que estás molesto, pero ¿podrías prestarme tu bolígrafo, por favor? De verdad lo necesito para tomar notas."
+       ],
+       [
+        "Frustrated (a tense moment)",
+        "Entiendo que puedas estar descontento, pero ¿podrías ser un poco comprensivo y prestarme tu bolígrafo, por favor?"
+       ],
+       [
+        "Comfort (someone sad)",
+        "Sé que estás triste en este momento, pero si puedes prestarme tu bolígrafo, me ayudarías mucho."
+       ],
+       [
+        "Lover (your partner)",
+        "Mi amor, ¿me harías el regalo más tierno del mundo prestándome tu bolígrafo?"
+       ],
+       [
+        "Admiring (someone you admire)",
+        "Si pudieras prestarme tu bolígrafo, te lo agradecería muchísimo."
+       ],
+       [
+        "Silly (a friend, for a laugh)",
+        "¿Me prestas tu pluma de fénix, por favor?"
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "In Italian",
+     "table": {
+      "head": [
+       "Mood",
+       "Italian"
+      ],
+      "rows": [
+       [
+        "Neutral (anyone)",
+        "Mi presteresti la tua penna, per favore?"
+       ],
+       [
+        "Colleague",
+        "L'ho dimenticata a casa e devo prendere qualche appunto."
+       ],
+       [
+        "Client",
+        "Certo, ecco la mia penna, può prenderla in prestito."
+       ],
+       [
+        "Boss",
+        "Ho bisogno di annotare alcune informazioni importanti."
+       ],
+       [
+        "Hothead (someone angry)",
+        "Vedo che sei contrariato, ma potresti prestarmi la tua penna, per favore? Mi serve davvero per prendere appunti."
+       ],
+       [
+        "Frustrated (a tense moment)",
+        "Capisco che tu possa essere scontento, ma potresti essere un po' comprensivo e prestarmi la tua penna, per favore?"
+       ],
+       [
+        "Comfort (someone sad)",
+        "So che in questo momento sei triste, ma se puoi prestarmi la tua penna, mi saresti di grande aiuto."
+       ],
+       [
+        "Lover (your partner)",
+        "Amore mio, mi faresti il regalo più tenero del mondo prestandomi la tua penna?"
+       ],
+       [
+        "Admiring (someone you admire)",
+        "Se potessi prestarmi la tua penna, te ne sarei davvero grato."
+       ],
+       [
+        "Silly (a friend, for a laugh)",
+        "Mi presti la tua piuma di fenice, per favore?"
+       ]
+      ]
+     }
+    },
+    {
+     "h2": "What changes between moods",
+     "paras": [
+      "The client version switches to the formal form (vous, usted, può) while the others stay familiar. The comforting and calming versions name the other person's feeling before asking. The colleague and boss versions give the reason, and the silly one turns the pen into a phoenix feather.",
+      "In the app you swipe sideways between these moods, and the words that change are highlighted."
+     ]
+    }
+   ],
+   "faq": [
+    [
+     "What are the ten moods in Parapeet?",
+     "Neutral, colleague, client, boss, calming someone angry, a tense moment, comforting someone sad, your partner, admiring someone, and silly."
+    ],
+    [
+     "Are the moods word-for-word translations of each other?",
+     "No. They are the same situation, but each mood says what fits that relationship: some add a reason or a feeling, and the silly one plays with the words."
+    ]
+   ]
+  }
+ ],
+ "same_as": [
+  "https://github.com/arkulinskis/parapeet"
+ ],
+ "alternate_names": [
+  "Parapeet app",
+  "parapeet.com"
+ ],
+ "disambiguation": "Parapeet (two e's, parapeet.com) is a phrase-learning app for French, Spanish and Italian. It is not a parapet (the low wall along a roof or bridge), and it is not connected to the Parakeet language-learning app. Its mascot is Parapeet, a parakeet who stole your words.",
+ "updated": "2026-11-19",
  "icon": "icon-512.png",
  "colors": {
   "bg": "#f3fae9",
@@ -128,8 +568,14 @@ def robots_txt(o):
     return "\n".join(lines)
 
 
+def guides():
+    """Optional extra crawlable pages (facts "guides"): plain HTML served by this module, listed in the sitemap."""
+    return SEO.get("guides") or []
+
+
 def sitemap_xml(o):
-    urls = [("/", "1.0"), ("/about", "0.8")] + [(p, "0.6") for p in SEO.get("sitemap_extra", [])]
+    urls = [("/", "1.0"), ("/about", "0.8")] + [(g["path"], "0.7") for g in guides()]
+    urls += [(p, "0.6") for p in SEO.get("sitemap_extra", [])]
     rows = ["<url><loc>%s%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>"
             % (html.escape(o), html.escape(p), SEO["updated"], pr) for p, pr in urls]
     return ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -139,6 +585,8 @@ def sitemap_xml(o):
 def llms_txt(o):
     s = SEO
     out = ["# %s" % s["name"], "", "> %s" % s["description"], ""]
+    if s.get("disambiguation"):
+        out += [s["disambiguation"], ""]
     out += [p for para in s.get("about", []) for p in (para, "")]
     if s.get("audience"):
         out += ["Who it's for: %s" % s["audience"], ""]
@@ -150,8 +598,11 @@ def llms_txt(o):
             out += ["### %s" % q, "", a, ""]
     out += ["## Links", "", "- [Open %s](%s/)" % (s["name"], o), "- [About %s](%s/about)" % (s["name"], o),
             "- Made by [Arkvital](https://arkvital.com), Montreal, Canada (arkvital@outlook.com)", ""]
-    if s.get("pages"):  # more pages worth reading: [title, path]
-        out += ["## Pages", ""] + ["- [%s](%s%s)" % (n, o, p) for n, p in s["pages"]] + [""]
+    pages = [[g["title"], g["path"]] for g in guides()] + list(s.get("pages") or [])
+    if pages:  # more pages worth reading: [title, path]
+        out += ["## Pages", ""] + ["- [%s](%s%s)" % (n, o, p) for n, p in pages] + [""]
+    if s.get("same_as"):
+        out += ["## %s elsewhere" % s["name"], ""] + ["- %s" % u for u in s["same_as"]] + [""]
     if s.get("keywords"):
         out += ["Keywords: %s" % ", ".join(s["keywords"]), ""]
     if s.get("updated"):
@@ -180,6 +631,8 @@ def noscript_html(o):
     """
     s, e = SEO, html.escape
     t = ["<noscript><div class=\"seo-noscript\">", "<h1>%s</h1>" % e(s["title"]), "<p>%s</p>" % e(s["description"])]
+    if s.get("disambiguation"):
+        t.append("<p>%s</p>" % e(s["disambiguation"]))
     t += ["<p>%s</p>" % e(p) for p in s.get("about", [])]
     if s.get("audience"):
         t.append("<p>Who it's for: %s</p>" % e(s["audience"]))
@@ -187,6 +640,9 @@ def noscript_html(o):
         t.append("<h2>What it does</h2><ul>%s</ul>" % "".join("<li>%s</li>" % e(f) for f in s["features"]))
     if s.get("faq"):
         t.append("<h2>Questions</h2>" + "".join("<h3>%s</h3><p>%s</p>" % (e(q), e(a)) for q, a in s["faq"]))
+    if guides():
+        t.append("<h2>Guides</h2><ul>%s</ul>" % "".join("<li><a href=\"%s%s\">%s</a></li>" % (e(o), e(g["path"]), e(g["title"]))
+                                                       for g in guides()))
     t.append("<p><a href=\"%s/about\">About %s</a> &middot; <a href=\"%s/llms.txt\">%s for AI assistants</a> &middot; "
              "Made by <a href=\"https://arkvital.com\">Arkvital</a>, Montreal, Canada. "
              "%s needs JavaScript in your browser.</p>" % (e(o), e(s["name"]), e(o), e(s["name"]), e(s["name"])))
@@ -229,11 +685,21 @@ def _ld(o):
         app["offers"] = {"@type": "Offer", "price": "0", "priceCurrency": "CAD"}
     if s.get("audience") and app["@type"] != "ProfessionalService":
         app["audience"] = {"@type": "Audience", "audienceType": s["audience"]}
+    # brand signals (optional facts): other names people use, a "not to be confused with" line, official profiles
+    if s.get("alternate_names"):
+        app["alternateName"] = s["alternate_names"]
+    if s.get("disambiguation"):
+        app["disambiguatingDescription"] = s["disambiguation"]
+    if s.get("same_as"):
+        app["sameAs"] = s["same_as"]
+        app["logo"] = o + "/_/theme/" + s.get("icon", "og-image.png")
     page = {"@type": "AboutPage", "@id": o + "/about#page", "url": o + "/about", "name": "About " + s["name"],
             "about": {"@id": app["@id"]}, "isPartOf": {"@id": site_id}}
-    graph = [app, page, {"@type": "WebSite", "@id": site_id, "url": o + "/", "name": s["name"],
-                         "publisher": {"@id": app["@id"] if app["@type"] == "ProfessionalService"
-                                       else "https://arkvital.com/#org"}},
+    site = {"@type": "WebSite", "@id": site_id, "url": o + "/", "name": s["name"],
+            "publisher": {"@id": app["@id"] if app["@type"] == "ProfessionalService" else "https://arkvital.com/#org"}}
+    if s.get("alternate_names"):  # Google reads WebSite name + alternateName for the site name shown in results
+        site["alternateName"] = s["alternate_names"]
+    graph = [app, page, site,
              {"@type": "Organization", "@id": "https://arkvital.com/#org", "name": "Arkvital", "url": "https://arkvital.com",
               "email": "arkvital@outlook.com", "address": {"@type": "PostalAddress", "addressLocality": "Montreal",
                                                            "addressRegion": "QC", "addressCountry": "CA"}}]
@@ -243,9 +709,31 @@ def _ld(o):
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/")
 
 
+_STYLE = """<style>
+:root{--bg:%(bg)s;--ink:%(ink)s;--brand:%(brand)s;--on:%(on)s;--page:#ffffff;--text:#1d1f24;--muted:#5b616e;--line:#e4e6eb}
+@media (prefers-color-scheme: dark){:root{--page:#121317;--text:#eceef2;--muted:#a3a9b6;--line:#2a2d35}}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--bg);color:var(--ink);padding:40px 16px 36px}
+.wrap{max-width:760px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:20px}
+.brand img{width:52px;height:52px;border-radius:12px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:22px 0 12px}
+.lead{font-size:19px;margin:0 0 24px;opacity:.9}
+.cta{display:inline-block;background:var(--brand);color:var(--on);padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none}
+main{padding:24px 16px 48px}h2{margin:36px 0 10px;font-size:24px}h3{margin:22px 0 4px;font-size:18px}
+ul{padding-left:22px}li{margin:6px 0}.who{color:var(--muted)}a{color:inherit}
+footer{border-top:1px solid var(--line);padding:22px 16px;color:var(--muted);font-size:15px}
+</style>"""
+
+
+def _style():
+    c = SEO.get("colors", {})
+    return _STYLE % {"bg": c.get("bg", "#1d1f24"), "ink": c.get("ink", "#ffffff"), "brand": c.get("brand", "#2f6fed"),
+                     "on": c.get("on", "#ffffff")}
+
+
 def about_html(o):
     s, e = SEO, html.escape
-    c = s.get("colors", {})
     paras = "".join("<p>%s</p>" % e(p) for p in s.get("about", []))
     feats = "".join("<li>%s</li>" % e(f) for f in s.get("features", []))
     faq = "".join("<h3>%s</h3><p>%s</p>" % (e(q), e(a)) for q, a in s.get("faq", []))
@@ -263,21 +751,7 @@ def about_html(o):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="%(o)s/_/theme/%(icon)s">
 <script type="application/ld+json">%(ld)s</script>
-<style>
-:root{--bg:%(bg)s;--ink:%(ink)s;--brand:%(brand)s;--on:%(on)s;--page:#ffffff;--text:#1d1f24;--muted:#5b616e;--line:#e4e6eb}
-@media (prefers-color-scheme: dark){:root{--page:#121317;--text:#eceef2;--muted:#a3a9b6;--line:#2a2d35}}
-*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{background:var(--bg);color:var(--ink);padding:40px 16px 36px}
-.wrap{max-width:760px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:20px}
-.brand img{width:52px;height:52px;border-radius:12px}
-h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:22px 0 12px}
-.lead{font-size:19px;margin:0 0 24px;opacity:.9}
-.cta{display:inline-block;background:var(--brand);color:var(--on);padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none}
-main{padding:24px 16px 48px}h2{margin:36px 0 10px;font-size:24px}h3{margin:22px 0 4px;font-size:18px}
-ul{padding-left:22px}li{margin:6px 0}.who{color:var(--muted)}a{color:inherit}
-footer{border-top:1px solid var(--line);padding:22px 16px;color:var(--muted);font-size:15px}
-</style></head>
+%(style)s</head>
 <body>
 <header><div class="wrap">
 <div class="brand"><img src="%(o)s/_/theme/%(icon)s" alt="" width="52" height="52">%(name)s</div>
@@ -286,20 +760,106 @@ footer{border-top:1px solid var(--line);padding:22px 16px;color:var(--muted);fon
 <a class="cta" href="%(o)s/">Open %(name)s</a>
 </div></header>
 <main><div class="wrap">
-<h2>What %(name)s is</h2>%(paras)s%(who)s
+<h2>What %(name)s is</h2>%(dis)s%(paras)s%(who)s
 %(feat_block)s
 %(faq_block)s
-<p><a class="cta" href="%(o)s/">Open %(name)s</a></p>
+%(guide_block)s<p><a class="cta" href="%(o)s/">Open %(name)s</a></p>
 </div></main>
 <footer><div class="wrap">%(name)s is made by <a href="https://arkvital.com">Arkvital</a> in Montreal, Canada.
 Questions: <a href="mailto:arkvital@outlook.com">arkvital@outlook.com</a>. A short version for AI assistants: <a href="%(o)s/llms.txt">llms.txt</a>.</div></footer>
 </body></html>
 """ % {"lang": e(s.get("lang", "en")), "name": e(s["name"]), "short": e(s.get("tagline", s["title"])),
        "desc": e(s["description"]), "kw": e(", ".join(s.get("keywords", []))), "o": e(o), "icon": e(s.get("icon", "og-image.png")),
-       "ld": _ld(o), "bg": c.get("bg", "#1d1f24"), "ink": c.get("ink", "#ffffff"), "brand": c.get("brand", "#2f6fed"),
-       "on": c.get("on", "#ffffff"), "title": e(s["title"]), "paras": paras, "who": who,
+       "ld": _ld(o), "style": _style(), "title": e(s["title"]), "paras": paras, "who": who,
+       "dis": ("<p>%s</p>" % e(s["disambiguation"])) if s.get("disambiguation") else "",
+       "guide_block": _guide_list(o) + "\n" if guides() else "",
        "feat_block": ("<h2>What you can do</h2><ul>%s</ul>" % feats) if feats else "",
        "faq_block": ("<h2>Questions</h2>%s" % faq) if faq else ""}
+
+
+def _guide_list(o, skip=None):
+    e = html.escape
+    items = "".join('<li><a href="%s%s">%s</a></li>' % (e(o), e(g["path"]), e(g["title"]))
+                    for g in guides() if g["path"] != skip)
+    return "<h2>%s</h2><ul>%s</ul>" % ("More guides" if skip else "Guides", items) if items else ""
+
+
+def _table(t):
+    """{"head": [...], "rows": [[...], ...]} -> an HTML table (first column as row headers)."""
+    e = html.escape
+    head = "".join("<th scope=\"col\">%s</th>" % e(h) for h in t.get("head", []))
+    rows = "".join("<tr><th scope=\"row\">%s</th>%s</tr>" % (e(r[0]), "".join("<td>%s</td>" % e(c) for c in r[1:]))
+                   for r in t.get("rows", []))
+    cap = "<caption>%s</caption>" % e(t["caption"]) if t.get("caption") else ""
+    return "<div class=\"tbl\"><table>%s<thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>" % (cap, head, rows)
+
+
+def guide_ld(o, g):
+    """The site graph plus this page as a WebPage about the app (same @ids, so it is one entity everywhere)."""
+    s = SEO
+    ld = json.loads(_ld(o))
+    ld["@graph"] = [n for n in ld["@graph"] if n["@type"] not in ("AboutPage", "FAQPage")]
+    ld["@graph"].insert(0, {"@type": "WebPage", "@id": o + g["path"] + "#page", "url": o + g["path"], "name": g["title"],
+                            "description": g["description"], "inLanguage": s.get("lang", "en"),
+                            "isPartOf": {"@id": o + "/#site"}, "about": {"@id": o + "/#app"},
+                            "dateModified": s.get("updated")})
+    if g.get("faq"):
+        ld["@graph"].append({"@type": "FAQPage", "@id": o + g["path"] + "#faq", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in g["faq"]]})
+    return json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
+
+
+def guide_html(o, g):
+    """One guide page: facts "guides" entry {path, title, description, h1?, intro: [p], sections: [{h2, paras, table}], faq}."""
+    s, e = SEO, html.escape
+    body = "".join("<p>%s</p>" % e(p) for p in g.get("intro", []))
+    for sec in g.get("sections", []):
+        body += "<h2>%s</h2>" % e(sec["h2"])
+        body += "".join("<p>%s</p>" % e(p) for p in sec.get("paras", []))
+        if sec.get("table"):
+            body += _table(sec["table"])
+        body += "".join("<p>%s</p>" % e(p) for p in sec.get("after", []))
+    if g.get("faq"):
+        body += "<h2>Questions</h2>" + "".join("<h3>%s</h3><p>%s</p>" % (e(q), e(a)) for q, a in g["faq"])
+    about = "<h2>About %s</h2><p>%s</p>" % (e(s["name"]), e(s["description"]))
+    if s.get("disambiguation"):
+        about += "<p>%s</p>" % e(s["disambiguation"])
+    return """<!doctype html>
+<html lang="%(lang)s"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>%(title)s | %(name)s</title>
+<meta name="description" content="%(desc)s">
+<link rel="canonical" href="%(o)s%(path)s">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article"><meta property="og:site_name" content="%(name)s">
+<meta property="og:title" content="%(title)s"><meta property="og:description" content="%(desc)s">
+<meta property="og:url" content="%(o)s%(path)s"><meta property="og:image" content="%(o)s/_/theme/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="%(o)s/_/theme/%(icon)s">
+<script type="application/ld+json">%(ld)s</script>
+%(style)s
+<style>.tbl{overflow-x:auto;margin:14px 0}table{border-collapse:collapse;width:100%%;font-size:16px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}thead th{font-size:14px;color:var(--muted)}
+caption{text-align:left;color:var(--muted);font-size:14px;padding-bottom:6px}nav.crumbs{font-size:15px;margin-bottom:6px;opacity:.85}</style></head>
+<body>
+<header><div class="wrap">
+<div class="brand"><img src="%(o)s/_/theme/%(icon)s" alt="" width="52" height="52">%(name)s</div>
+<h1>%(h1)s</h1>
+<p class="lead">%(desc)s</p>
+<a class="cta" href="%(o)s/">Practise this in %(name)s</a>
+</div></header>
+<main><div class="wrap">
+<nav class="crumbs"><a href="%(o)s/">%(name)s</a> &rsaquo; <a href="%(o)s/about">About</a> &rsaquo; %(title)s</nav>
+%(body)s
+%(about)s
+%(more)s
+<p><a class="cta" href="%(o)s/">Open %(name)s</a></p>
+</div></main>
+<footer><div class="wrap">%(name)s is made by <a href="https://arkvital.com">Arkvital</a> in Montreal, Canada.
+Questions: <a href="mailto:arkvital@outlook.com">arkvital@outlook.com</a>. A short version for AI assistants: <a href="%(o)s/llms.txt">llms.txt</a>.</div></footer>
+</body></html>
+""" % {"lang": e(s.get("lang", "en")), "name": e(s["name"]), "title": e(g["title"]), "h1": e(g.get("h1", g["title"])),
+       "desc": e(g["description"]), "o": e(o), "path": e(g["path"]), "icon": e(s.get("icon", "og-image.png")),
+       "ld": guide_ld(o, g), "style": _style(), "body": body, "about": about, "more": _guide_list(o, g["path"])}
 
 
 def _file(text, ctype):
@@ -332,6 +892,15 @@ if ROUTE:  # the Python 3.10+ server runtimes have it; older ones serve nothing 
     @ROUTE("/about")
     def seo_about(**params):
         return _file(about_html(origin()), "text/html; charset=utf-8")
+
+    def _guide_route(i, g):
+        def seo_guide(**params):
+            return _file(guide_html(origin(), g), "text/html; charset=utf-8")
+        seo_guide.__name__ = "seo_guide_%d" % i
+        return ROUTE(g["path"])(seo_guide)
+
+    for _i, _g in enumerate(guides()):
+        _guide_route(_i, _g)
 
     def _verify_route(i, path, ctype, body):
         def seo_verify(**params):
