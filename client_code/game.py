@@ -49,13 +49,15 @@ def reset():
     _g["p"] = None
 
 
-def record_lesson(kind, key, results):
-    """A finished lesson -> the summary for the end screen (seeds, stars, new badges, goal/streak events)."""
+def record_lesson(kind, key, results, lang=None):
+    """A finished lesson -> the summary for the end screen (seeds, stars, new badges, goal/streak events).
+    lang = the language the phrases were in (a Mood Duel link can be in another one); default: the one being learned."""
+    code = lang or state.lang()
     if state.me():
-        r = anvil.server.call("record_lesson", kind, key, results, today(), state.lang())
+        r = anvil.server.call("record_lesson", kind, key, results, today(), code)
         _g["p"] = G.normal(r["progress"])
         return r["result"]
-    p, res = G.apply_lesson(progress(), kind, key, results, today(), state.lang())
+    p, res = G.apply_lesson(progress(), kind, key, results, today(), code)
     _keep_guest(p)
     return res
 

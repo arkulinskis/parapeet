@@ -1,4 +1,5 @@
 from anvil import *
+import anvil.js
 
 from ._anvil_designer import LandingTemplate
 from ... import langs, phrases, router, state, tones
@@ -70,6 +71,7 @@ class Landing(LandingTemplate):
         self.member_cta.visible = bool(me)
         self.signup_line.visible = not me
         self.lang_tabs.add_event_handler("x-lang", self._lang_picked)
+        anvil.js.get_dom_node(self.find_box).setAttribute("aria-label", "What do you need to say?")
         self._show(state.lang())
 
     def _play(self, event):
@@ -101,6 +103,19 @@ class Landing(LandingTemplate):
         st = event_args["state"]
         self.hero_bird.mood = {"Lover": "happy", "Stupid": "wow", "Sad": "sleepy", "Agressive": "oops",
                                "Frustrated": "oops"}.get(st["key"], "talk")
+
+    @handle("find_box", "pressed_enter")
+    def find_box_pressed_enter(self, **event_args):
+        self.find_button_click()
+
+    @handle("find_button", "click")
+    def find_button_click(self, **event_args):
+        """The hero's "What do you need to say?" box opens the Phrase finder with those words."""
+        q = (self.find_box.text or "").strip()[:80]
+        if q:
+            router.go("find", q)
+        else:
+            router.go("find")
 
     @handle("story_button", "click")
     def story_button_click(self, **event_args):

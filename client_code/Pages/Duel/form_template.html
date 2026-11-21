@@ -1,0 +1,81 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="du-wrap">
+      <section class="du-intro" anvil:name="intro_part">
+        <anvil-component type="parapeet.Components.Bird" name="intro_bird" prop:mood="wow" prop:size="128"></anvil-component>
+        <anvil-component type="Label" name="intro_title" prop:role='["du-title"]' prop:text="Mood Duel"></anvil-component>
+        <anvil-component type="Label" name="intro_text" prop:role='["du-lead"]'></anvil-component>
+        <div class="du-rules">
+          <span><i class="ic ic-cards"></i>5 sentences</span>
+          <span><i class="ic ic-palette"></i>Pick the mood</span>
+          <span><i class="ic ic-share"></i>Dare a friend</span>
+        </div>
+        <anvil-component type="Button" name="start_button" prop:text="Start the duel" prop:role='["btn", "btn-primary", "btn-lg", "ic-duel"]'></anvil-component>
+        <p class="small muted">No account needed. Not learning the language? Switch on Show English while you play.</p>
+      </section>
+
+      <section class="du-play" anvil:name="play_part">
+        <div class="du-top">
+          <anvil-component type="Label" name="step_label" prop:role='["du-step"]'></anvil-component>
+          <div class="du-dots" aria-hidden="true"><span anvil:dom-node="dot0"></span><span anvil:dom-node="dot1"></span><span anvil:dom-node="dot2"></span><span anvil:dom-node="dot3"></span><span anvil:dom-node="dot4"></span><span anvil:dom-node="dot5"></span></div>
+          <anvil-component type="CheckBox" name="english_box" prop:text="Show English" prop:role='["du-english"]'></anvil-component>
+        </div>
+        <div class="ls-prompt du-prompt">
+          <anvil-component type="parapeet.Components.Bird" name="bird" prop:mood="talk" prop:size="88"></anvil-component>
+          <div class="ls-bubble">
+            <div class="ls-bubble-head">
+              <span class="small muted">Who is this for?</span>
+              <anvil-component type="Button" name="listen_button" prop:text="Listen" prop:role='["btn", "btn-sm", "btn-icon", "ic-volume"]' prop:tooltip="Listen"></anvil-component>
+            </div>
+            <anvil-component type="Label" name="prompt_text" prop:role='["ls-prompt-text"]'></anvil-component>
+            <anvil-component type="Label" name="prompt_en" prop:role='["fine-print", "du-en"]'></anvil-component>
+          </div>
+        </div>
+        <anvil-component type="RepeatingPanel" name="choices_panel" prop:item_template="parapeet.Items.Choice" prop:role='["ls-choices", "moods"]'></anvil-component>
+        <div class="du-verdict" anvil:name="verdict_box">
+          <anvil-component type="Label" name="verdict_title" prop:role='["du-verdict-title"]'></anvil-component>
+          <anvil-component type="Label" name="verdict_text" prop:role='["fine-print"]'></anvil-component>
+          <anvil-component type="Button" name="next_button" prop:text="Next" prop:role='["btn", "btn-primary", "btn-lg", "ic-arrow"]'></anvil-component>
+        </div>
+      </section>
+
+      <section class="du-end" anvil:name="end_part">
+        <anvil-component type="parapeet.Components.Bird" name="end_bird" prop:mood="happy" prop:size="132"></anvil-component>
+        <anvil-component type="Label" name="end_title" prop:role='["du-title"]'></anvil-component>
+        <div class="du-scores">
+          <div class="du-score you"><span>You</span><anvil-component type="Label" name="my_score" prop:role='["du-score-num"]'></anvil-component></div>
+          <div class="du-score them" anvil:name="their_box"><anvil-component type="Label" name="their_name" prop:role='["du-score-name"]'></anvil-component><anvil-component type="Label" name="their_score" prop:role='["du-score-num"]'></anvil-component></div>
+        </div>
+        <anvil-component type="Label" name="end_line" prop:role='["du-lead"]'></anvil-component>
+
+        <div class="ui-card du-share" anvil:name="share_box">
+          <h2 class="du-h"><i class="ic ic-share"></i> Dare a friend</h2>
+          <p class="small muted">They play the same five sentences and see your score first.</p>
+          <label class="ui-field"><span>Your name in the challenge</span>
+            <anvil-component type="TextBox" name="name_box" prop:placeholder="Your first name"></anvil-component></label>
+          <div class="du-share-actions">
+            <anvil-component type="Button" name="share_button" prop:text="Share the challenge" prop:role='["btn", "btn-primary", "ic-share"]'></anvil-component>
+            <a class="ui-btn du-wa" anvil:name="wa_link" target="_blank" rel="noopener"><i class="ic ic-chat"></i>WhatsApp</a>
+          </div>
+          <anvil-component type="TextBox" name="link_box" prop:role='["du-link"]'></anvil-component>
+        </div>
+
+        <div class="du-review">
+          <h2 class="du-h">The five sentences</h2>
+          <anvil-component type="RepeatingPanel" name="review_panel" prop:item_template="parapeet.Items.DuelReview" prop:role='["du-review-list"]'></anvil-component>
+        </div>
+        <div class="du-end-actions">
+          <anvil-component type="Button" name="back_button" prop:text="Challenge them back" prop:role='["btn", "btn-lg", "ic-duel"]'></anvil-component>
+          <anvil-component type="Button" name="play_button" prop:text="Start playing free" prop:role='["btn", "btn-primary", "btn-lg", "ic-arrow"]'></anvil-component>
+        </div>
+      </section>
+
+      <section class="du-intro" anvil:name="broken_part">
+        <anvil-component type="parapeet.Components.Bird" name="broken_bird" prop:mood="oops" prop:size="112"></anvil-component>
+        <h2>This challenge got lost on the way</h2>
+        <anvil-component type="Label" name="broken_text" prop:role='["fine-print"]'></anvil-component>
+        <anvil-component type="Button" name="own_button" prop:text="Start your own duel" prop:role='["btn", "btn-primary", "btn-lg", "ic-duel"]'></anvil-component>
+      </section>
+    </div>
+  </anvil-block>
+</anvil-form>

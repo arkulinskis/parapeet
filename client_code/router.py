@@ -18,6 +18,9 @@ PAGES = {
     "practice": (None, "Phrasebook"),
     "lesson": (None, "Lesson"),
     "progress": (None, "Your progress"),
+    "find": (None, "Find a phrase"),
+    "duel": (None, "Mood Duel"),
+    "call": (None, "Practice call"),
     "saved": ("user", "Saved phrases"),
     "auth": ("guest", "Sign in"),
     "profile": ("user", "Your profile"),
@@ -49,6 +52,15 @@ def _form(name):
     if name == "saved":
         from .Pages.Saved import Saved
         return Saved
+    if name == "find":
+        from .Pages.Find import Find
+        return Find
+    if name == "duel":
+        from .Pages.Duel import Duel
+        return Duel
+    if name == "call":
+        from .Pages.Call import Call
+        return Call
     if name == "auth":
         from .Pages.Auth import Auth
         return Auth

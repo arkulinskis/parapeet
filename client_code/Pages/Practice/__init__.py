@@ -176,6 +176,10 @@ class Practice(PracticeTemplate):
         self._front_text()
         self.card.set_front(self._front)
 
+    @handle("find_button", "click")
+    def find_button_click(self, **event_args):
+        router.go("find")
+
     @handle("help_button", "click")
     def help_button_click(self, **event_args):
         from ...Dialogs.Gestures import Gestures

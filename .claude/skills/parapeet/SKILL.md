@@ -156,6 +156,20 @@ tools/                     check.py, assets.py, build_icons.py, make_icons.py, u
   recognition fr-CA, PP.similarity, sfx, confetti, wake lock, music). Python face: `client_code/pp.py`. JS returning a
   Promise blocks Python (Anvil awaits it); `pp.fire(name, args, done)` starts one without waiting.
   Tests: `window.PP_TEST = {silent: true, heard: "text"}`.
+- **Phrase finder** (`Pages/Find`, `Items/FindRow`, `Items/FindChip`, 2026-11-20): searching is `client_code/finder.py`
+  (plain Python, shared with the server: norm/accents, stop words, LISTENERS words that pick the mood, SYNONYMS at half
+  weight, prefix match for 3+ letters, index() once per page, search(), suggestions()). Register tips: tones.TIPS / tip().
+  Guests: `Phrases.count_locked_matches(lang, query)` (public, counts only, `C.rate_limited("find", 30, 600)`). No match:
+  `ask_for_more("find: <words> (to <mood>, <lang>)")` -> Interest -> Admin. `window.PP_FIND` = {count, mood, query}.
+- **Mood Duel** (`Pages/Duel`, `Items/DuelReview`): cards in the address as `<LineID>-<mood key>` joined by "."; friends
+  load them with `Phrases.duel_cards(lang, pairs)` (public, max 6, basic + free only, rate-limited). Options are seeded
+  per card (same four for both players). Name and score come from the URL: Label text only, name <= 20 chars, score
+  0-5. game.record_lesson("duel", None, results, lang) (record_lesson takes the link's language). `window.PP_DUEL`.
+- **Practice call** (`Pages/Call`, no-chrome like the lesson): CALLERS (slug, mood, who, caller name per language).
+  PP.ring(on) + sfx "ring"/"hangup" in pp-audio.js; pp.listen(lang, seconds). Checked speech = result type "say"
+  (said-out-loud stats), self-graded turns = type "recall" (never counted as said). `window.PP_CALL` = {target, turn,
+  total, done}; tests set `PP_TEST = {silent: true, heard: PP_CALL.target}`.
+- `send_interest` (old callable) is rate-limited since 2026-11-20 (3 an hour per session).
 - **Data**: Phrases.py (get_phrases by access level + locked counts, voice_url from VoiceFiles/VoiceFiles_english,
   LineID stored as text there), Progress.py (one `progress` row per user; imports old UserPoints digits once),
   Notes.py (UserNotes by owner email), Admin.py (+ admin_content, ask_for_more -> Interest table), ServerModule1.py

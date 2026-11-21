@@ -65,10 +65,10 @@ def can_listen():
     return bool(PP.canListen())
 
 
-def listen(lang=None):
+def listen(lang=None, seconds=9):
     """Speech recognition in the language being learned (or a tag like "es-ES"): {"transcript", "alternatives"} or
-    {"error"}. Waits (up to ~9 s)."""
-    r = PP.listen(lang or langs.info(state.lang())["asr"], 9000)
+    {"error"}. Waits (up to `seconds`)."""
+    r = PP.listen(lang or langs.info(state.lang())["asr"], int(seconds * 1000))
     return {"transcript": r.transcript or "", "alternatives": list(r.alternatives or []), "error": r.error or ""}
 
 
@@ -111,6 +111,11 @@ def clear_recording():
 
 def sfx(kind):
     PP.sfx(kind)
+
+
+def ring(on):
+    """The phone ringing on the Practice call screen (repeats until ring(False))."""
+    PP.ring(bool(on))
 
 
 def confetti():

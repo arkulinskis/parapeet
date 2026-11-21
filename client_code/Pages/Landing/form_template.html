@@ -4,9 +4,13 @@
       <section class="lp-hero">
         <div class="ui-wrap">
           <div class="lp-copy">
-            <div class="eyebrow">French, Spanish and Italian, with feeling</div>
             <h1>Say it like you <em>mean</em> it.</h1>
             <p class="lp-lead">One phrase, ten moods, in French, Spanish or Italian: to your boss, a client, a hothead, a sad friend, your lover, just for a laugh. Swipe through them, hear the difference, then play quick lessons to catch Parapeet, the parakeet who stole your words.</p>
+            <div class="lp-find" role="search">
+              <i class="ic ic-search"></i>
+              <anvil-component type="TextBox" name="find_box" prop:placeholder="What do you need to say? late, sorry, thank you..." prop:role='["lp-find-input"]'></anvil-component>
+              <anvil-component type="Button" name="find_button" prop:text="Find it" prop:role='["btn", "btn-sm", "btn-primary"]'></anvil-component>
+            </div>
             <div class="lp-cta" anvil:name="guest_cta">
               <a class="ui-btn primary lg" href="#play">Start playing, it's free <i class="ic ic-arrow"></i></a>
               <a class="ui-btn lg" href="#practice">Swipe the phrasebook</a>

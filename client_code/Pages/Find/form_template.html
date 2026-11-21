@@ -1,0 +1,52 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap fd-wrap">
+      <header class="fd-head">
+        <anvil-component type="parapeet.Components.Bird" name="bird" prop:mood="talk" prop:size="88"></anvil-component>
+        <div>
+          <h1>Find a phrase</h1>
+          <p class="muted">What do you need to say, and to whom? Type a few words in English (or in the language you're learning), then pick who's listening.</p>
+        </div>
+      </header>
+
+      <div class="fd-search" role="search">
+        <i class="ic ic-search"></i>
+        <anvil-component type="TextBox" name="query_box" prop:placeholder="late, help, meeting, thank you..." prop:role='["fd-input"]'></anvil-component>
+        <anvil-component type="Button" name="clear_button" prop:text="Clear the search" prop:role='["btn", "btn-sm", "btn-icon", "btn-ghost", "ic-x"]' prop:tooltip="Clear"></anvil-component>
+      </div>
+      <anvil-component type="RepeatingPanel" name="chips_panel" prop:item_template="parapeet.Items.FindChip" prop:role='["fd-chips"]'></anvil-component>
+
+      <section class="fd-who">
+        <h2 class="fd-h">Who are you talking to?</h2>
+        <anvil-component type="RepeatingPanel" name="moods_panel" prop:item_template="parapeet.Items.FindChip" prop:role='["fd-chips", "fd-moods"]'></anvil-component>
+        <div class="fd-tip" anvil:name="tip_box">
+          <i class="ic ic-info"></i>
+          <div>
+            <anvil-component type="Label" name="tip_who" prop:role='["strong"]'></anvil-component>
+            <anvil-component type="Label" name="tip_label" prop:role='["fd-tip-text"]'></anvil-component>
+          </div>
+        </div>
+      </section>
+
+      <section class="fd-results" aria-live="polite">
+        <anvil-component type="Label" name="count_label" prop:role='["fd-count"]'></anvil-component>
+        <anvil-component type="RepeatingPanel" name="results_panel" prop:item_template="parapeet.Items.FindRow" prop:role='["fd-list"]'></anvil-component>
+        <div class="fd-locked" anvil:name="locked_box">
+          <i class="ic ic-lock"></i>
+          <anvil-component type="Label" name="locked_label" prop:role='["fd-locked-text"]'></anvil-component>
+          <a class="ui-btn primary sm" href="#auth/signup">Join free</a>
+        </div>
+        <div class="fd-empty" anvil:name="empty_box">
+          <anvil-component type="parapeet.Components.Bird" name="empty_bird" prop:mood="oops" prop:size="104"></anvil-component>
+          <h3>Parapeet doesn't know that one yet</h3>
+          <anvil-component type="Label" name="empty_text" prop:role='["fine-print"]'></anvil-component>
+          <div class="ui-row fd-empty-actions">
+            <anvil-component type="Button" name="ask_button" prop:text="Ask for this phrase" prop:role='["btn", "btn-primary", "ic-bulb"]'></anvil-component>
+            <anvil-component type="Button" name="join_button" prop:text="Join free to ask for it" prop:role='["btn", "btn-primary", "ic-user"]'></anvil-component>
+            <a class="ui-btn" href="#practice">Browse the phrasebook</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </anvil-block>
+</anvil-form>

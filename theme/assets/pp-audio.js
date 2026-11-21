@@ -3,7 +3,7 @@
      different pace and pitch per mood. Both return a Promise that resolves when the sound has finished.
    - PP.rec: record yourself (stays in this browser) and play it back.
    - PP.listen(lang): speech recognition (Chrome, Edge, Safari), for "Say it". PP.similarity scores the attempt.
-   - PP.sfx(kind), PP.confetti(), PP.wake(on) (keep the screen on during hands-free lessons).
+   - PP.sfx(kind) (incl. 'ring' + PP.ring(on) for the Practice call), PP.confetti(), PP.wake(on) (keep the screen on during hands-free lessons).
    Test hooks: window.PP_TEST = {heard: "text"} makes PP.listen answer at once; {silent: true} skips real audio. */
 (function () {
   'use strict';
@@ -209,9 +209,18 @@
       else if (kind === 'bad') { tone(220, 0, 0.18, 'sawtooth', 0.07); tone(180, 0.12, 0.22, 'sawtooth', 0.06); }
       else if (kind === 'done') { [523, 659, 784, 1046].forEach(function (f, i) { tone(f, i * 0.1, 0.25, 'triangle'); }); }
       else if (kind === 'seed') { tone(1200, 0, 0.08, 'sine', 0.1); }
+      else if (kind === 'ring') { [0, 0.16, 0.32, 0.55, 0.71, 0.87].forEach(function (t, i) { tone(i % 2 ? 1180 : 1480, t, 0.12, 'triangle', 0.11); }); }
+      else if (kind === 'hangup') { tone(620, 0, 0.12, 'sine', 0.1); tone(460, 0.14, 0.18, 'sine', 0.1); }
       else { tone(440, 0, 0.06, 'sine', 0.08); }
     } catch (e) {}
     if (navigator.vibrate && (kind === 'good' || kind === 'bad')) { try { navigator.vibrate(kind === 'bad' ? [20, 40, 20] : 12); } catch (e) {} }
+  };
+
+  /* the Practice call's ringing: a budgie trill every 2.2 s until PP.ring(false) */
+  var ringer = null;
+  PP.ring = function (on) {
+    if (ringer) { clearInterval(ringer); ringer = null; }
+    if (on) { PP.sfx('ring'); ringer = setInterval(function () { PP.sfx('ring'); }, 2200); }
   };
 
   var lock = null;

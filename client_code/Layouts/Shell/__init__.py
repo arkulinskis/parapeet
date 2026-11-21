@@ -28,7 +28,7 @@ class Shell(ShellTemplate):
 
     def refresh(self, page):
         me = state.me()
-        self.classes.update({"signed-in": bool(me), "signed-out": not me, "no-chrome": page == "lesson",
+        self.classes.update({"signed-in": bool(me), "signed-out": not me, "no-chrome": page in ("lesson", "call"),
                              "no-tabbar": page == "auth" or (page == "landing" and not me),
                              "page-practice": page == "practice"})
         self.member_actions.visible = bool(me)

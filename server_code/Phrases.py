@@ -12,7 +12,7 @@ import anvil.server
 from anvil.tables import app_tables
 
 from . import common as C
-from . import DemoData, langs, tones
+from . import DemoData, finder, langs, tones
 
 LEVELS = {"basic": ["basic"], "free": ["basic", "free"], "premium": ["basic", "free", "premium"]}
 TABLES = {"fr": ("frenchsentences", "voicefiles"), "es": ("spanishsentences", "voicefiles_spanish"),
@@ -141,3 +141,92 @@ def voice_url(line_id, mood, lang="fr"):
         return voice["VoiceFile"].get_url()
     except Exception:
         return None
+
+
+def _english(line_ids=None):
+    out = {}
+    for r in app_tables.frenchsentences_translation.search():
+        if r["LineID"] is not None and (line_ids is None or int(r["LineID"]) in line_ids):
+            out[int(r["LineID"])] = r
+    return out
+
+
+@anvil.server.callable
+def count_locked_matches(lang="fr", query=""):
+    """Phrase finder (#find): how many phrases this person can't open yet match a search, as
+    {"signup": n (a free account opens them), "premium": n}. Counts only, never the text. Public (guests search
+    too), so rate-limited."""
+    none = {"signup": 0, "premium": 0}
+    if C.rate_limited("find", 30, 600):
+        return none
+    q = C.text(query, 80)
+    if not finder.terms(q):
+        return none
+    lang = langs.valid(lang)
+    level = level_of(C.me())
+    allowed = LEVELS[level]
+    french = {}
+    if lang != "fr":
+        for r in app_tables.frenchsentences.search():
+            if r["LineID"] is not None:
+                french[int(r["LineID"])] = r
+    locked, groups = [], []
+    for r in rows(lang):
+        if r["LineID"] is None:
+            continue
+        line_id = int(r["LineID"])
+        cat, avail = _meta(r, french.get(line_id))
+        if avail in allowed:
+            continue
+        texts = _texts(r)
+        if texts["Basic"]:
+            locked.append({"id": line_id, "fr": texts, "en": {}})
+            groups.append("signup" if (level == "basic" and avail == "free") else "premium")
+    if not locked:
+        return none
+    english = _english(set(p["id"] for p in locked))
+    for p in locked:
+        p["en"] = _texts(english.get(p["id"]))
+    found = finder.search(finder.index(locked), locked, q, "Basic", None)["items"]
+    out = dict(none)
+    for p in found:
+        out[groups[locked.index(p)]] += 1
+    return out
+
+
+@anvil.server.callable
+def duel_cards(lang="fr", cards=None):
+    """Mood Duel (#duel): the cards of a challenge link. cards = up to 6 [LineID, mood] pairs; returns
+    [{id, mood, text, en, neutral}] for the ones that exist. Public (friends open the link signed out), so only
+    "basic" and "free" phrases, never "premium", and rate-limited."""
+    if C.rate_limited("duel", 40, 600):
+        return []
+    lang = langs.valid(lang)
+    t = table(lang)
+    if t is None:
+        return []
+    pairs, seen = [], set()
+    for c in list(cards or [])[:6]:
+        try:
+            line_id, mood = int(c[0]), str(c[1])
+        except Exception:
+            continue
+        if mood not in tones.KEYS or (line_id, mood) in seen:
+            continue
+        seen.add((line_id, mood))
+        pairs.append((line_id, mood))
+    english = _english(set(i for i, m in pairs)) if pairs else {}
+    out = []
+    for line_id, mood in pairs:
+        row = _first(t.search(LineID=line_id))
+        if row is None:
+            continue
+        french = _first(app_tables.frenchsentences.search(LineID=line_id)) if lang != "fr" else row
+        if _meta(row, french)[1] not in ("basic", "free"):
+            continue
+        texts, en = _texts(row), _texts(english.get(line_id))
+        if not texts[mood]:
+            continue
+        out.append({"id": line_id, "mood": mood, "text": texts[mood], "en": en[mood] or en["Basic"],
+                    "neutral": texts["Basic"]})
+    return out

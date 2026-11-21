@@ -1,0 +1,79 @@
+<anvil-form layout="parapeet.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="cl-wrap">
+      <div class="cl-top">
+        <anvil-component type="Button" name="back_button" prop:text="Back" prop:role='["btn", "btn-sm", "btn-ghost", "ic-back"]'></anvil-component>
+        <anvil-component type="Label" name="clock_label" prop:role='["cl-clock"]'></anvil-component>
+      </div>
+
+      <section class="cl-pick" anvil:name="pick_part">
+        <anvil-component type="parapeet.Components.Bird" name="pick_bird" prop:mood="talk" prop:size="104"></anvil-component>
+        <h1>Practice call</h1>
+        <p class="muted cl-lead">Someone calls. They tell you in English what to say, and you answer out loud from memory, no text to read. Private, no one is listening but Parapeet.</p>
+        <h2 class="fd-h">Who's calling?</h2>
+        <anvil-component type="RepeatingPanel" name="callers_panel" prop:item_template="parapeet.Items.FindChip" prop:role='["fd-chips", "cl-callers"]'></anvil-component>
+        <anvil-component type="Label" name="pick_note" prop:role='["fine-print"]'></anvil-component>
+      </section>
+
+      <section class="cl-phone" anvil:name="phone_part">
+        <div class="cl-caller">
+          <span class="cl-avatar" anvil:name="avatar"><i class="ic" anvil:name="avatar_icon"></i></span>
+          <div>
+            <anvil-component type="Label" name="caller_name" prop:role='["cl-name"]'></anvil-component>
+            <anvil-component type="Label" name="caller_role" prop:role='["fine-print"]'></anvil-component>
+          </div>
+        </div>
+
+        <div class="cl-ring" anvil:name="ring_part">
+          <anvil-component type="Label" name="ring_label" prop:role='["cl-ringing"]' prop:text="Incoming call..."></anvil-component>
+          <div class="cl-answer-row">
+            <anvil-component type="Button" name="decline_button" prop:text="Decline" prop:role='["cl-round", "cl-red", "ic-hangup"]'></anvil-component>
+            <anvil-component type="Button" name="answer_button" prop:text="Answer" prop:role='["cl-round", "cl-green", "ic-phone"]'></anvil-component>
+          </div>
+        </div>
+
+        <div class="cl-talk" anvil:name="talk_part">
+          <anvil-component type="Label" name="turn_label" prop:role='["cl-turn"]'></anvil-component>
+          <div class="cl-cue">
+            <anvil-component type="Label" name="cue_who" prop:role='["fine-print"]'></anvil-component>
+            <anvil-component type="Label" name="cue_label" prop:role='["cl-cue-text"]'></anvil-component>
+            <anvil-component type="Label" name="cue_reg" prop:role='["badge", "badge-brand"]'></anvil-component>
+          </div>
+          <div class="cl-status">
+            <div class="cl-count" anvil:dom-node="count"><anvil-component type="Label" name="status_icon" prop:role='["cl-count-in"]'></anvil-component></div>
+            <anvil-component type="Label" name="status_label" prop:role='["cl-status-text"]'></anvil-component>
+          </div>
+          <anvil-component type="Label" name="heard_label" prop:role='["fine-print", "cl-heard"]'></anvil-component>
+          <div class="cl-target" anvil:name="target_box">
+            <anvil-component type="Label" name="verdict_label" prop:role='["cl-verdict"]'></anvil-component>
+            <anvil-component type="Label" name="target_label" prop:role='["cl-target-text"]'></anvil-component>
+          </div>
+          <div class="cl-actions">
+            <anvil-component type="Button" name="reveal_button" prop:text="Reveal" prop:role='["btn", "btn-primary", "btn-lg", "ic-sparkle"]'></anvil-component>
+            <anvil-component type="Button" name="got_button" prop:text="I got it" prop:role='["btn", "btn-primary", "ic-check"]'></anvil-component>
+            <anvil-component type="Button" name="notyet_button" prop:text="Not yet" prop:role='["btn", "ic-refresh"]'></anvil-component>
+            <anvil-component type="Button" name="retry_button" prop:text="Try again" prop:role='["btn", "ic-mic"]'></anvil-component>
+            <anvil-component type="Button" name="shadow_button" prop:text="Say it once more with them" prop:role='["btn", "ic-volume"]'></anvil-component>
+            <anvil-component type="Button" name="next_button" prop:text="Next" prop:role='["btn", "btn-primary", "ic-arrow"]'></anvil-component>
+          </div>
+          <anvil-component type="Button" name="nospeak_button" prop:text="I can't speak right now" prop:role='["btn", "btn-ghost", "btn-sm"]'></anvil-component>
+          <div class="cl-hang">
+            <anvil-component type="Button" name="hangup_button" prop:text="Hang up" prop:role='["cl-round", "cl-red", "cl-small", "ic-hangup"]'></anvil-component>
+          </div>
+        </div>
+      </section>
+
+      <section class="cl-end" anvil:name="end_part">
+        <anvil-component type="parapeet.Components.Bird" name="end_bird" prop:mood="happy" prop:size="132"></anvil-component>
+        <anvil-component type="Label" name="end_title" prop:role='["du-title"]' prop:text="Call ended"></anvil-component>
+        <anvil-component type="Label" name="end_stats" prop:role='["cl-end-stats"]'></anvil-component>
+        <anvil-component type="Label" name="end_line" prop:role='["du-lead"]'></anvil-component>
+        <div class="du-end-actions">
+          <anvil-component type="Button" name="again_button" prop:text="Call again" prop:role='["btn", "btn-primary", "btn-lg", "ic-phone"]'></anvil-component>
+          <anvil-component type="Button" name="other_button" prop:text="Another caller" prop:role='["btn", "btn-lg", "ic-users"]'></anvil-component>
+        </div>
+        <a class="small" href="#play">Back to the trail</a>
+      </section>
+    </div>
+  </anvil-block>
+</anvil-form>

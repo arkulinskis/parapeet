@@ -110,18 +110,41 @@ UNITS = {
 }
 
 
+# Register tips for the Phrase finder ("Who are you talking to?"), filled in like the blurbs.
+TIPS = {
+    "Basic": "Neutral works with anyone. With strangers and at work, {formal} is the safe default.",
+    "Colleague": "Depends on the team: start with {formal}, then follow their lead. Many teams switch to {familiar} fast.",
+    "Client": "Formal: {formal}. Keep it even when the client is friendly, until they ask you to switch.",
+    "Boss": "Formal: {formal}. At work, keep {formal} until they offer {familiar}.",
+    "Agressive": "Use what you already use with them. Name the feeling first, then steer back to the point.",
+    "Frustrated": "Stay calm and firm. Keep your usual register: {formal} at work, {familiar} with friends.",
+    "Sad": "Familiar: {familiar}. Soft words, no pressure, and an offer to help.",
+    "Lover": "Familiar: {familiar}, always. A little warmth goes a long way (\"{love}\").",
+    "Impressed": "Praise goes both ways: {formal} for someone senior, {familiar} for a friend.",
+    "Stupid": "Familiar: {familiar}. Friends only, never your boss!",
+}
+
+
+def _fill(text, code):
+    L = langs.info(code)
+    for k, v in (("{lang}", L["name"]), ("{formal}", L["formal"]), ("{familiar}", L["familiar"]), ("{we}", L["we"]),
+                 ("{love}", L["love"])):
+        text = text.replace(k, v)
+    return text
+
+
+def tip(key, code=langs.DEFAULT):
+    """The register tip for talking to this listener, with this language's words ("keep usted until...")."""
+    return _fill(TIPS.get(key, ""), code)
+
+
 def label(key):
     return TONES.get(key, {}).get("label", key)
 
 
 def blurb(key, code=langs.DEFAULT):
     """The mood explained, with this language's words filled in ("polite usted")."""
-    L = langs.info(code)
-    text = TONES.get(key, {}).get("blurb", "")
-    for k, v in (("{lang}", L["name"]), ("{formal}", L["formal"]), ("{familiar}", L["familiar"]), ("{we}", L["we"]),
-                 ("{love}", L["love"])):
-        text = text.replace(k, v)
-    return text
+    return _fill(TONES.get(key, {}).get("blurb", ""), code)
 
 
 def listen_hint(key, code=langs.DEFAULT):

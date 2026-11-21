@@ -2,7 +2,7 @@
 app link (/.well-known/assetlinks.json for the com.parapeet.twa Play Store wrapper) and account deletion.
 
 The new app uses Phrases.py, Progress.py and Notes.py. Fixed here in Nov 2026: update_note only changes the caller's
-own note; get_voice no longer crashes on a locked phrase; send_interest no longer stores visitors' IP addresses;
+own note; get_voice no longer crashes on a locked phrase; send_interest no longer stores visitors' IP addresses (and is rate-limited since 2026-11-20);
 delete_account also removes the new progress row and copes with a missing points row.
 """
 from datetime import datetime
@@ -10,6 +10,8 @@ from datetime import datetime
 import anvil.server
 import anvil.users
 from anvil.tables import app_tables
+
+from . import common as C
 
 
 def _email():
@@ -138,10 +140,14 @@ def get_voice(id, type, language):
 
 @anvil.server.callable
 def send_interest(customer_interest):
-    """Signed-in people are noted by email; visitors just as "guest" (no IP addresses)."""
+    """Signed-in people are noted by email; visitors just as "guest" (no IP addresses). Anyone can call it, so it is
+    rate-limited per browser session (3 an hour), like ask_for_more."""
+    if C.rate_limited("send_interest", 3, 3600):
+        return False
     email = _email()
     app_tables.interest.add_row(showed_interest=email or "guest", mydatetime=datetime.now(),
                                 interested=str(customer_interest or "")[:200])
+    return True
 
 
 @anvil.server.callable
